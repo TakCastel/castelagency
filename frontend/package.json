@@ -1,0 +1,24 @@
+{
+  "name": "castel-agency",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "clean": "rm -rf .nuxt .output node_modules/.vite",
+    "clean:all": "rm -rf .nuxt .output node_modules/.vite node_modules package-lock.json && npm install"
+  },
+  "dependencies": {
+    "@directus/sdk": "^17.0.0",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "nuxt": "^4.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "typescript": "^5.8.2"
+  }
+}

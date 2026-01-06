@@ -1,0 +1,76 @@
+services:
+  # Services backend (Directus + PostgreSQL)
+  directus:
+    image: directus/directus:latest
+    container_name: castelagency-directus
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: ${KEY:-change-me-to-a-random-value}
+      SECRET: ${SECRET:-change-me-to-a-random-value}
+      DB_CLIENT: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: directus
+      DB_USER: directus
+      DB_PASSWORD: directus
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@castelagency.fr}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:8055}
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+    volumes:
+      - ./backend/uploads:/directus/uploads
+      - ./backend/extensions:/directus/extensions
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - castelagency-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: castelagency-postgres
+    environment:
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: directus
+      POSTGRES_DB: directus
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - castelagency-network
+
+  # Service frontend (Nuxt 4) avec watch activé
+  frontend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.frontend
+    container_name: castelagency-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DIRECTUS_URL: http://directus:8055
+      NUXT_HOST: 0.0.0.0
+      NUXT_PORT: 3000
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.nuxt
+    depends_on:
+      - directus
+    restart: unless-stopped
+    networks:
+      - castelagency-network
+    command: npm run dev
+
+volumes:
+  postgres_data:
+
+networks:
+  castelagency-network:
+    driver: bridge
+

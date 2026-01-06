@@ -1,0 +1,17 @@
+{
+  "name": "castelagency",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "docker-compose up --build",
+    "dev:watch": "docker-compose up --build",
+    "down": "docker-compose down",
+    "logs": "docker-compose logs -f",
+    "logs:frontend": "docker-compose logs -f frontend",
+    "logs:backend": "docker-compose logs -f directus",
+    "restart": "docker-compose restart",
+    "restart:frontend": "docker-compose restart frontend",
+    "clean": "docker-compose down -v && docker-compose build --no-cache"
+  }
+}
+
