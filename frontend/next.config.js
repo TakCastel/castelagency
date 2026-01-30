@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: "standalone",
+  // "standalone" uniquement pour Docker ; Netlify utilise son propre runtime Next.js
+  ...(process.env.NETLIFY ? {} : { output: "standalone" }),
   poweredByHeader: false,
   transpilePackages: ["motion"],
   async redirects() {
