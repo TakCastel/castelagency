@@ -1,24 +1,36 @@
 {
-  "name": "castel-agency",
-  "version": "1.0.0",
+  "name": "castelagency-frontend",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "clean": "rm -rf .nuxt .output node_modules/.vite",
-    "clean:all": "rm -rf .nuxt .output node_modules/.vite node_modules package-lock.json && npm install"
+    "dev": "next dev -H 0.0.0.0 -p 3000",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 3000",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@directus/sdk": "^17.0.0",
-    "@nuxtjs/tailwindcss": "^6.12.0",
-    "nuxt": "^4.0.0"
+    "@radix-ui/react-accordion": "^1.2.4",
+    "@radix-ui/react-separator": "^1.1.4",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.473.0",
+    "motion": "^12.29.2",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^15.1.6",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.8.2"
   }
 }

@@ -1,0 +1,8 @@
+# Déploiement du frontend Next.js sur Netlify
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+
+# Next.js est détecté automatiquement par Netlify (plugin Essential Next.js)

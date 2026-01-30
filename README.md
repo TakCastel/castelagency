@@ -1,18 +1,16 @@
 # Castel Agency
 
-Site web de l'agence Castel Agency, développé avec Nuxt 4 et Directus.
+Site web de l'agence Castel Agency, avec un backend Directus + un frontend Next.js.
 
 ## Structure du projet
 
 - **`backend/`** : Configuration backend (Directus + PostgreSQL)
-  - `Dockerfile.frontend` : Image Docker pour le frontend Nuxt
-  - `env.example` : Variables d'environnement
   - `uploads/` : Fichiers uploadés par Directus
   - `extensions/` : Extensions Directus
   - `init-collections.js` : Script d'initialisation des collections
   
-- **`frontend/`** : Code source du frontend Nuxt 4
-  - Pages, composants, styles, etc.
+- **`frontend/`** : Code source du frontend Next.js
+  - App Router (`app/`)
   - Ce dossier est monté en volume dans le conteneur Docker pour le watch
 
 - **`docker-compose.yml`** : Orchestration de tous les services (à la racine)
@@ -28,8 +26,17 @@ npm run dev
 docker-compose up --build
 ```
 
+### Variables d’environnement
+
+Crée un fichier `.env` à la racine (utilisé par Docker Compose) :
+
+```bash
+cp .env.example .env
+npm run dev
+```
+
 Les services seront accessibles sur :
-- **Frontend Nuxt** : http://localhost:3000 (avec watch activé)
+- **Frontend Next.js** : http://localhost:3000 (avec watch activé)
 - **Directus Admin** : http://localhost:8055
 
 **Note** : Le frontend watch automatiquement les modifications dans `frontend/` grâce au volume monté.
@@ -46,9 +53,9 @@ Après la première connexion à Directus, créez les collections suivantes :
 
 ## Technologies utilisées
 
-- **Nuxt 4** : Framework Vue.js pour le frontend
+- **Next.js** : Framework React pour le frontend
+- **shadcn/ui + Tailwind CSS** : Composants UI et styles
 - **Directus** : CMS headless pour la gestion de contenu
-- **Tailwind CSS** : Framework CSS utilitaire
 - **TypeScript** : Typage statique
 - **Docker** : Containerisation de tous les services
 
@@ -82,8 +89,6 @@ Si vous préférez développer le frontend en local :
 ```bash
 cd frontend
 npm install
-cp .env.example .env
-# Configurez DIRECTUS_URL=http://localhost:8055 dans .env
 npm run dev
 ```
 

@@ -41,31 +41,29 @@ services:
     networks:
       - castelagency-network
 
-  # Service frontend (Nuxt 4) avec watch activé
+  # Service frontend (Next.js) avec watch activé
   frontend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile.frontend
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: dev
     container_name: castelagency-frontend
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: development
-      DIRECTUS_URL: http://directus:8055
-      NUXT_HOST: 0.0.0.0
-      NUXT_PORT: 3000
+      NEXT_PUBLIC_DIRECTUS_URL: http://directus:8055
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     volumes:
       - ./frontend:/app
-      - /app/node_modules
-      - /app/.nuxt
+      - /app/.next
     depends_on:
       - directus
     restart: unless-stopped
     networks:
       - castelagency-network
-    command: npm run dev
+    command: sh -lc "npm install && npm run dev"
 
 volumes:
   postgres_data:

@@ -1,50 +1,83 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./app.vue",
-    "./error.vue",
-  ],
+module.exports = {
+  darkMode: ["class"],
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        // Palette Premium
-        'purple-deep': '#1A0B2E',
-        'purple-dark': '#2C0B3A',
-        'purple-base': '#3A1053',
-        'purple-medium': '#5A1A73',
-        'purple-light': '#7B2A93',
-        'violet': '#8B5CF6',
-        'violet-light': '#A78BFA',
-        'orange-deep': '#EA580C',
-        'orange-bright': '#F97316',
-        'orange-light': '#FB923C',
-        'yellow-bright': '#FCD34D',
-        'yellow-light': '#FDE68A',
-        'yellow-warm': '#FBBF24',
-        // Rétrocompatibilité
-        'castel-yellow': '#FCD34D',
-        'castel-orange': '#F97316',
-        'castel-purple': '#3A1053',
-        'castel-dark': '#1A0B2E',
-      },
-      backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #1A0B2E 0%, #3A1053 50%, #5A1A73 100%)',
-        'gradient-warm': 'linear-gradient(135deg, #8B5CF6 0%, #F97316 50%, #FCD34D 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #1A0B2E 0%, #3A1053 30%, #8B5CF6 60%, #F97316 90%, #FCD34D 100%)',
-        'gradient-accent': 'linear-gradient(135deg, #7B2A93 0%, #F97316 50%, #FCD34D 100%)',
-        'gradient-subtle': 'linear-gradient(180deg, rgba(26, 11, 46, 0.95) 0%, rgba(58, 16, 83, 0.9) 100%)',
-      },
-      boxShadow: {
-        'glow-purple': '0 0 40px rgba(139, 92, 246, 0.3), 0 0 80px rgba(249, 115, 22, 0.2)',
-        'glow-orange': '0 0 30px rgba(249, 115, 22, 0.4)',
-        'glow-yellow': '0 0 30px rgba(252, 211, 77, 0.3)',
-      },
+    container: {
+      center: true,
+      padding: "0",
+      screens: {
+        sm: "100%",
+        md: "100%",
+        lg: "100%",
+        xl: "100%",
+        "2xl": "100%"
+      }
     },
+    extend: {
+      fontSize: {
+        "titre-gros": ["var(--text-titre-gros)", { lineHeight: "var(--text-titre-gros-leading)" }],
+        "titre-moyen": ["var(--text-titre-moyen)", { lineHeight: "var(--text-titre-moyen-leading)" }],
+        "titre-petit": ["var(--text-titre-petit)", { lineHeight: "var(--text-titre-petit-leading)" }],
+        paragraphe: ["var(--text-paragraphe)", { lineHeight: "var(--text-paragraphe-leading)" }],
+        small: ["var(--text-small)", { lineHeight: "var(--text-small-leading)" }]
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)"
+      },
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "oklch(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))"
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))"
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))"
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))"
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))"
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))"
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))"
+        }
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" }
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" }
+        }
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out"
+      }
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};
 

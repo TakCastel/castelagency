@@ -1,0 +1,42 @@
+import { ArrowRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+export function CTA() {
+  return (
+    <section id="contact" className="container py-16 md:py-20">
+      <Card className="relative overflow-hidden bg-card/50">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-gradient-to-br from-white/15 via-white/5 to-transparent blur-2xl" />
+          <div className="absolute bottom-[-140px] right-[-140px] h-[360px] w-[360px] rounded-full bg-gradient-to-tr from-white/10 via-white/5 to-transparent blur-2xl" />
+        </div>
+        <CardContent className="relative p-8 md:p-10">
+          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <h3 className="text-balance text-titre-moyen font-semibold tracking-tight">
+                Besoin d’un site qui génère des demandes ?
+              </h3>
+              <p className="mt-3 text-pretty text-muted-foreground">
+                Dites-moi votre offre, votre cible et vos objectifs (visibilité, leads, ventes).
+                <br />
+                Je reviens avec un plan simple + un devis.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button size="lg" asChild>
+                <a href="#contact">
+                  Demander un devis <ArrowRight />
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href="#faq">Voir la FAQ</a>
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
