@@ -1,8 +1,13 @@
 # Déploiement du frontend Next.js sur Netlify
 # https://docs.netlify.com/configure-builds/file-based-configuration/
+#
+# IMPORTANT : Dans Netlify (Site configuration > Build & deploy > Build settings),
+# laisse le champ "Publish directory" VIDE. Ne mets pas "frontend".
 
 [build]
   base = "frontend"
   command = "npm run build"
+  # Ne pas définir publish : le plugin Next.js gère le déploiement
 
-# Next.js est détecté automatiquement par Netlify (plugin Essential Next.js)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
