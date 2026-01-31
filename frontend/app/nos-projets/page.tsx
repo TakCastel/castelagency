@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -74,11 +75,12 @@ export default function NosProjetsPage() {
               {/* Capture d’écran : déposez l’image dans public/realisations/ (ex. florine-clap.png, arnaud-ban.png) */}
               <figure className="overflow-hidden rounded-lg border bg-muted">
                 <div className="relative aspect-video w-full">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={r.image}
                     alt={`Capture du site ${r.title}`}
-                    className="h-full w-full object-cover object-top"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 48rem"
                   />
                 </div>
                 <figcaption className="sr-only">

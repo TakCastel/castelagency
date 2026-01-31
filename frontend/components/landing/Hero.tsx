@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { Variants } from "motion/react";
 import { motion } from "motion/react";
@@ -138,11 +139,14 @@ export function Hero() {
   return (
     <section className="relative -mt-20 overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }}>
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <img
+        <Image
           src="/hero-background.png"
           alt=""
-          aria-hidden="true"
-          className="h-full w-full object-cover opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
+          aria-hidden
+          fill
+          className="object-cover opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
+          sizes="100vw"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
       </div>
