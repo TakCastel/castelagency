@@ -6,7 +6,11 @@ const nextConfig = {
   poweredByHeader: false,
   transpilePackages: ["motion"],
   async redirects() {
-    return [{ source: "/realisations", destination: "/nos-projets", permanent: true }];
+    return [
+      { source: "/realisations", destination: "/mes-projets", permanent: true },
+      { source: "/nos-projets", destination: "/mes-projets", permanent: true },
+      { source: "/nos-projets/:path*", destination: "/mes-projets/:path*", permanent: true },
+    ];
   },
 };
 

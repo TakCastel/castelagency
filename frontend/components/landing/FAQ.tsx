@@ -12,7 +12,7 @@ const items = [
   },
   {
     q: "Combien de temps faut-il pour lancer un site ?",
-    a: "Cela dépend du périmètre. Un site vitrine bien cadré peut être livré en quelques semaines. Un e‑commerce ou une application sur mesure demandent plus de temps (plusieurs semaines à quelques mois). Le cadrage initial permet de fixer un planning réaliste et des jalons de livraison. Chaque étape est validée avec vous pour avancer sans surprise et livrer dans les délais convenus."
+    a: "Cela dépend du périmètre. Un site vitrine bien cadré peut être livré en quelques jours. Un e‑commerce ou une application sur mesure demandent plus de temps (plusieurs semaines à quelques mois). Le cadrage initial permet de fixer un planning réaliste et des jalons de livraison. Chaque étape est validée avec vous pour avancer sans surprise et livrer dans les délais convenus."
   },
   {
     q: "Comment se passe la première prise de contact et le devis ?",
@@ -32,15 +32,15 @@ const items = [
   },
   {
     q: "Quelles technologies utilisez-vous pour les sites ?",
-    a: "J’adapte la stack au projet : sites vitrines et blogs avec WordPress, Nuxt ou Next.js selon les besoins (performance, éditorial, référencement). Pour le contenu, j’utilise des CMS comme Directus ou Decap CMS quand c’est pertinent. E‑commerce et applications sur mesure sont développés avec les technologies les plus adaptées (HTML/CSS/JS, frameworks modernes). L’objectif est toujours un site rapide, accessible et facile à faire évoluer."
+    a: "J’adapte la stack au projet : sites vitrines et blogs avec WordPress, Nuxt ou Next.js selon les besoins (performance, éditorial, référencement). Pour le contenu, j’utilise des CMS comme Directus ou Decap CMS quand c’est pertinent. E‑commerce et applications sur mesure sont développés avec les technologies les plus adaptées (Shopify, Prestashop ou WooCommerce). L’objectif est toujours un site rapide, accessible et facile à faire évoluer."
   },
   {
     q: "Peut-on voir des exemples de réalisations ?",
-    a: "Oui. La section Nos projets présente une sélection de réalisations (sites vitrines, e‑commerce, refontes, applications). Vous y verrez le type de livrables et l’approche. Pour un projet proche du vôtre, on peut en discuter lors du premier échange et, si besoin, regarder ensemble des cas concrets en visio."
+    a: "Oui. La section Mes projets présente une sélection de réalisations (sites vitrines, e‑commerce, refontes, applications). Vous y verrez le type de livrables et l’approche. Pour un projet proche du vôtre, on peut en discuter lors du premier échange et, si besoin, regarder ensemble des cas concrets en visio."
   },
   {
     q: "Proposez-vous un accompagnement sur l’IA et les automatisations ?",
-    a: "Oui. En plus du web classique, j’accompagne sur les process IA : bonnes pratiques de prompting, mise en place d’outils et de workflows (n8n ou équivalents), conception d’agents ou de chatbots, et systèmes automatisés (modération, tri de contenu, routage). L’idée est d’intégrer l’IA dans votre façon de travailler de façon pragmatique et mesurable."
+    a: "Oui. En plus du web classique, j’accompagne sur les process IA : bonnes pratiques de prompting, mise en place d’outils et de workflows (n8n ou équivalents), conception d’agents ou de chatbots, et systèmes automatisés (modération, tri de contenu, routage). L’idée est d’intégrer l’IA dans votre façon de travailler en respectant vos workflows existants."
   },
   {
     q: "Comment se déroule un projet du début à la fin ?",

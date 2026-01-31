@@ -161,7 +161,7 @@ export default function UxUiBrandingPage() {
                 Ce que je livre
               </h2>
               <p className="mt-4 text-muted-foreground text-pretty">
-                Du wireframe à la vidéo en passant par l’identité visuelle, je livre des livrables prêts à l’emploi ou à intégrer. Chaque livrable est pensé pour votre cible et pour la cohérence de votre marque.
+                Du wireframe à la vidéo en passant par l’identité visuelle : tout est prêt à l’emploi ou à intégrer. Chaque livrable est pensé pour votre cible et pour la cohérence de votre marque.
               </p>
               <ul className="mt-10 grid gap-6 sm:grid-cols-2" role="list">
                 {[

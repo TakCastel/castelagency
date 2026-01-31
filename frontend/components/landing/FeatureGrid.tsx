@@ -60,6 +60,15 @@ export function FeatureGrid() {
             <ScrollIllustration scrollTargetRef={mobileIlluRef} variant="mobile" />
           </div>
 
+          <p className="mt-6 text-center lg:text-left">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-small font-medium text-primary hover:underline"
+            >
+              Voir tous les services
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </p>
           <div className="mt-10 grid gap-4 overflow-visible md:grid-cols-2 lg:items-stretch">
             {features.map((f, i) => (
               <motion.div

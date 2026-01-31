@@ -3,6 +3,38 @@
 @tailwind utilities;
 
 @layer components {
+  /* Grille masonry (react-masonry-css) : flux horizontal */
+  .projects-masonry-grid {
+    display: flex;
+    margin-left: -0.75rem; /* gutter offset */
+    width: auto;
+  }
+  .projects-masonry-grid_column {
+    padding-left: 0.75rem;
+    background-clip: padding-box;
+  }
+  @media (min-width: 1024px) {
+    .projects-masonry-grid {
+      margin-left: -1rem;
+    }
+    .projects-masonry-grid_column {
+      padding-left: 1rem;
+    }
+  }
+  .projects-masonry-grid_column > * {
+    margin-bottom: 0.75rem;
+  }
+  @media (min-width: 1024px) {
+  .projects-masonry-grid_column > * {
+    margin-bottom: 1rem;
+    }
+  }
+
+  /* Images des cartes projets : flou très fort pour estomper détails/texte, couleur dominante en overlay */
+  .project-card-image-engraving {
+    filter: blur(28px);
+  }
+
   /* Même conteneur que le header partout : padding horizontal responsive (réduit en mobile) */
   .container {
     padding-left: 1rem;
