@@ -9,6 +9,10 @@ const nextConfig = {
   transpilePackages: ["motion"],
   // Racine pour le tracing (évite le warning lockfiles sur Netlify quand base = "frontend")
   outputFileTracingRoot: path.join(__dirname),
+  /** Formats servis par l’optimiseur d’images (grille + zoom modale). */
+  images: {
+    formats: ["image/webp", "image/avif"],
+  },
   async redirects() {
     return [
       { source: "/realisations", destination: "/mes-projets", permanent: true },

@@ -33,8 +33,10 @@ function DrawingThumbnail({
       className="group block w-full overflow-hidden rounded-xl border border-border/50 bg-muted/30 shadow-sm transition-shadow hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       aria-label={`Agrandir : ${drawing.alt}`}
     >
-      <span className="block w-full overflow-hidden rounded-xl">
-        {/* Ratio naturel : image entière visible, pas de crop, masonry à hauteurs variables */}
+      <span
+        className={`block w-full overflow-hidden rounded-xl ${drawing.id === "commission" ? "flex items-center justify-center" : ""}`}
+      >
+        {/* Ratio naturel : image entière visible, pas de crop ; Commission : léger zoom dans l’encart */}
         <Image
           src={drawing.src}
           alt={drawing.alt}
@@ -43,7 +45,7 @@ function DrawingThumbnail({
           placeholder="blur"
           blurDataURL={DRAWING_BLUR_DATA_URL}
           sizes="(max-width: 500px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 33vw, 25vw"
-          className="w-full h-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+          className={`w-full h-auto object-contain transition-transform duration-200 ${drawing.id === "commission" ? "scale-[1.25] group-hover:scale-[1.275]" : "group-hover:scale-[1.02]"}`}
         />
       </span>
     </button>
@@ -116,6 +118,7 @@ function DrawingModal({
               blurDataURL={DRAWING_BLUR_DATA_URL}
               className="object-contain"
               sizes="100vw"
+              quality={90}
             />
           </div>
         )}

@@ -25,6 +25,42 @@ export type DrawingItem = {
 /** Liste des dessins affichés dans la galerie dessins. */
 export const drawings: DrawingItem[] = [
   {
+    id: "commission",
+    src: "/assets/drawings/commission.png",
+    alt: "Commission drawing.",
+    width: 500,
+    height: 650,
+    title: "Commission",
+    date: 2025,
+    videoSrc: "/assets/drawings/commission.mp4",
+  },
+  {
+    id: "supercureuil",
+    src: "/assets/drawings/supercureuil.png",
+    alt: "Supercureuil drawing.",
+    width: 500,
+    height: 650,
+    title: "Supercureuil",
+    date: 2025,
+    videoSrc: "/assets/drawings/supercureuil.mp4",
+  },
+  {
+    id: "le-garcon",
+    src: "/assets/drawings/le-garcon.png",
+    alt: "Le garçon drawing.",
+    width: 500,
+    height: 650,
+    title: "Le garçon",
+  },
+  {
+    id: "take-cover",
+    src: "/assets/drawings/take-cover.png",
+    alt: "Take Cover drawing.",
+    width: 500,
+    height: 650,
+    title: "Take Cover",
+  },
+  {
     id: "backpack",
     src: "/assets/drawings/backpack.png",
     alt: "Backpack drawing.",
