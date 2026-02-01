@@ -37,7 +37,7 @@ export function Stepper({
   defaultExpandedIndex = 0,
   mobileVariant = "vertical",
   ctaHref = "/devis",
-  ctaLabel = "On bosse ensemble ?",
+  ctaLabel = "On travaille ensemble ?",
   className
 }: StepperProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(defaultExpandedIndex ?? null);
@@ -238,13 +238,17 @@ export function Stepper({
                 layout
                 onClick={() => selectStep(i)}
                 className={cn(
-                  "flex min-w-[160px] shrink-0 snap-center flex-col overflow-hidden rounded-xl border bg-card/50 p-4 text-left shadow-sm transition-colors hover:bg-card/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                  "relative flex min-w-[160px] shrink-0 snap-center flex-col overflow-hidden rounded-xl border bg-card/50 p-4 text-left shadow-sm transition-colors hover:bg-card/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                   expandedIndex === i ? "w-[85vw] bg-card ring-2 ring-primary/20" : "w-[72vw]"
                 )}
                 initial={false}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
-                <div className="flex min-h-[200px] flex-col">
+                <div className="pointer-events-none absolute inset-0">
+                  <div className="absolute left-[-60px] top-[-60px] h-[160px] w-[160px] rounded-full bg-gradient-to-br from-muted-foreground/15 via-muted-foreground/5 to-transparent blur-2xl" />
+                  <div className="absolute bottom-[-70px] right-[-70px] h-[180px] w-[180px] rounded-full bg-gradient-to-tr from-muted-foreground/12 via-muted-foreground/5 to-transparent blur-2xl" />
+                </div>
+                <div className="relative z-10 flex min-h-[200px] flex-col">
                   {sharedStepContent(step, i, expandedIndex === i, isCompleted(i), iconRefsRef.current[i], () => triggerIconAnimation(i, true), () => triggerIconAnimation(i, false))}
                 </div>
               </motion.button>
@@ -347,12 +351,16 @@ export function Stepper({
               className="mt-6"
             >
               <motion.div
-                className="rounded-xl border bg-card/50 p-5 shadow-sm md:p-6"
+                className="relative overflow-hidden rounded-xl border bg-card/50 p-5 shadow-sm md:p-6"
                 initial={hasContentAnimated ? false : "hidden"}
                 animate={isDesktopInView ? "visible" : "hidden"}
                 variants={contentBlockVariants}
               >
-              <div className="space-y-4 text-small leading-relaxed text-muted-foreground [&_strong]:text-foreground/85">
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute left-[-80px] top-[-80px] h-[200px] w-[200px] rounded-full bg-gradient-to-br from-muted-foreground/15 via-muted-foreground/5 to-transparent blur-2xl" />
+                <div className="absolute bottom-[-90px] right-[-90px] h-[220px] w-[220px] rounded-full bg-gradient-to-tr from-muted-foreground/12 via-muted-foreground/5 to-transparent blur-2xl" />
+              </div>
+              <div className="relative z-10 space-y-4 text-small leading-relaxed text-muted-foreground [&_strong]:text-foreground/85">
                 {typeof (steps[expandedIndex].desktopWording ?? steps[expandedIndex].desc) === "string" ? (
                   <p className="whitespace-pre-line">
                     {steps[expandedIndex].desktopWording ?? steps[expandedIndex].desc}
@@ -362,7 +370,7 @@ export function Stepper({
                 )}
               </div>
               {/* Étape précédente à gauche / Étape suivante ou CTA à droite — même taille */}
-              <div className="mt-6 flex justify-between items-center gap-3">
+              <div className="relative z-10 mt-6 flex justify-between items-center gap-3">
                 <div>
                   {!isFirst && (
                     <Button

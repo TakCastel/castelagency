@@ -8,10 +8,10 @@ export function CTA() {
     <section id="contact" className="container py-16 md:py-20">
       <Card className="relative overflow-hidden bg-card/50">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-gradient-to-br from-white/15 via-white/5 to-transparent blur-2xl" />
-          <div className="absolute bottom-[-140px] right-[-140px] h-[360px] w-[360px] rounded-full bg-gradient-to-tr from-white/10 via-white/5 to-transparent blur-2xl" />
+          <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-gradient-to-br from-muted-foreground/15 via-muted-foreground/5 to-transparent blur-2xl" />
+          <div className="absolute bottom-[-140px] right-[-140px] h-[360px] w-[360px] rounded-full bg-gradient-to-tr from-muted-foreground/12 via-muted-foreground/5 to-transparent blur-2xl" />
         </div>
-        <CardContent className="relative p-8 md:p-10">
+        <CardContent className="relative z-10 p-8 md:p-10">
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <h3 className="text-balance text-titre-moyen font-semibold tracking-tight">

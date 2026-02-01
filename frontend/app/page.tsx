@@ -3,6 +3,7 @@ import { FAQ } from "@/components/landing/FAQ";
 import { FeatureGrid } from "@/components/landing/FeatureGrid";
 import { Hero } from "@/components/landing/Hero";
 import { Process } from "@/components/landing/Process";
+import { Testimonials } from "@/components/landing/Testimonials";
 
 export default function HomePage() {
   const organizationJsonLd = {
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Hero />
       <FeatureGrid />
       <Process />
+      <Testimonials />
       <FAQ />
       <CTA />
     </>

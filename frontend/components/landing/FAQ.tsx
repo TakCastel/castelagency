@@ -77,11 +77,15 @@ export function FAQ() {
       </div>
 
       <div className="mx-auto mt-10 max-w-3xl">
-        <Card className="bg-card/50">
-          <CardHeader>
+        <Card className="relative overflow-hidden bg-card/50">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute left-[-80px] top-[-80px] h-[200px] w-[200px] rounded-full bg-gradient-to-br from-muted-foreground/15 via-muted-foreground/5 to-transparent blur-2xl" />
+            <div className="absolute bottom-[-90px] right-[-90px] h-[220px] w-[220px] rounded-full bg-gradient-to-tr from-muted-foreground/12 via-muted-foreground/5 to-transparent blur-2xl" />
+          </div>
+          <CardHeader className="relative z-10">
             <CardTitle>Je réponds avant de builder</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <Accordion type="single" collapsible className="w-full">
               {items.map((it) => (
                 <AccordionItem key={it.q} value={it.q}>

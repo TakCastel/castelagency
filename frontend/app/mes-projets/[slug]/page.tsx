@@ -80,7 +80,7 @@ function ProjectSections({ project }: { project: ProjectDetail }) {
             id="how-i-worked"
             className="text-titre-petit font-semibold tracking-tight text-foreground"
           >
-            Comment j’ai bossé
+            Comment j'ai abordé le projet
           </h2>
           <p className="mt-4 text-muted-foreground text-pretty leading-relaxed">
             {project.howIWorked.join(" ")}

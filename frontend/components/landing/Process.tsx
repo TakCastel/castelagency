@@ -106,7 +106,7 @@ export function Process() {
               steps={steps}
               defaultExpandedIndex={0}
               ctaHref="/devis"
-              ctaLabel="On bosse ensemble ?"
+              ctaLabel="On travaille ensemble ?"
             />
           </div>
         </div>

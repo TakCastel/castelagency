@@ -45,24 +45,14 @@ export default function LeStudioPage() {
           <header>
             <h2 className="sr-only">Présentation</h2>
             <p className="text-paragraphe text-foreground text-pretty leading-relaxed">
-              J’ai une vraie culture de product builder. J’interviens sur
-              l’ensemble de la chaîne de conception d’un produit numérique, du
-              design à la mise en production, du front-end au back-end, de
-              l’architecture technique au SEO, en passant par l’accessibilité,
-              l’administration système et le product management.
-            </p>
-            <p className="mt-4 text-paragraphe text-foreground text-pretty leading-relaxed">
-              Mon approche n’est pas d’empiler des compétences, mais de porter un
-              projet de bout en bout. Comprendre les enjeux, faire les bons choix
-              techniques et fonctionnels à chaque étape, et livrer un produit
-              cohérent, robuste et utile. Un produit pensé pour vos utilisateurs,
-              pas pour une démo.
-            </p>
-            <p className="mt-4 text-paragraphe text-foreground text-pretty leading-relaxed">
-              Je conçois des sites web et applications sur mesure orientés
-              performance, lisibilité, évolutivité et usage réel, avec une
-              attention particulière portée à la qualité du code, à l’expérience
-              utilisateur et à la pérennité des solutions.
+              J’ai une culture de product builder et j’accompagne des projets
+              numériques de bout en bout, du design à la mise en production, du
+              front au back, de l’architecture au SEO et à l’accessibilité. Mon
+              approche ne consiste pas à empiler des compétences, mais à faire
+              les bons choix à chaque étape pour livrer des sites et applications
+              sur mesure, performants, lisibles et durables, pensés pour un usage
+              réel et des utilisateurs concrets, pas pour une simple démonstration
+              technique.
             </p>
           </header>
         </AnimatedSection>

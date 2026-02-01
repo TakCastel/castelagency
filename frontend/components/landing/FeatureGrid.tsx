@@ -79,14 +79,18 @@ export function FeatureGrid() {
                 custom={i}
                 variants={cardVariants}
               >
-                <Card className="flex h-full flex-col bg-card">
-                  <CardHeader className="pb-3">
+                <Card className="relative flex h-full flex-col overflow-hidden bg-card">
+                  <div className="pointer-events-none absolute inset-0">
+                    <div className="absolute left-[-80px] top-[-80px] h-[200px] w-[200px] rounded-full bg-gradient-to-br from-muted-foreground/15 via-muted-foreground/5 to-transparent blur-2xl" />
+                    <div className="absolute bottom-[-90px] right-[-90px] h-[220px] w-[220px] rounded-full bg-gradient-to-tr from-muted-foreground/12 via-muted-foreground/5 to-transparent blur-2xl" />
+                  </div>
+                  <CardHeader className="relative z-10 pb-3">
                     <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg border bg-background">
                       <f.icon className="h-5 w-5" />
                     </div>
                     <CardTitle>{f.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="flex flex-1 flex-col pt-0">
+                  <CardContent className="relative z-10 flex flex-1 flex-col pt-0">
                     <p className="text-small text-muted-foreground">{f.desc}</p>
                     <Link
                       href={f.href}

@@ -19,7 +19,7 @@ export type ProjectDetail = ProjectItem & {
   useCase: string;
   /** Ce que j’ai fait (paragraphes ou puces) */
   whatIDid: string[];
-  /** Comment j’ai bossé (méthode, organisation) */
+  /** Comment j'ai abordé le projet (méthode, organisation) */
   howIWorked: string[];
   /** Ce que j’ai accompli et aidé à mettre en place */
   accomplishments: string[];
