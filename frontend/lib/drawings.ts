@@ -66,6 +66,13 @@ export const drawings: DrawingItem[] = [
     title: "Kate",
     date: 2012,
   },
+  {
+    id: "boweling-crab",
+    src: "/assets/drawings/boweling-crab.png",
+    alt: "Boweling Crab drawing.",
+    title: "Boweling Crab",
+    date: 2012,
+  },
 ];
 
 /** Dessins triés du plus récent au plus ancien (par date). */
