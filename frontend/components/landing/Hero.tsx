@@ -198,7 +198,7 @@ export function Hero() {
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: REST_DELAY, duration: REST_DURATION, ease: [0.22, 1, 0.36, 1] }}
           >
-            Design sur mesure, SEO, création d’applications, conception de systèmes de gamification. À Avignon et partout.
+            Design sur mesure, SEO, création d’applications, conception de systèmes de gamification. À Avignon et en remote.
           </motion.p>
 
           <motion.div

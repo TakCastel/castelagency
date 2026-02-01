@@ -10,7 +10,7 @@ import { projectsList } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Mes projets | Studio Castel",
   description:
-    "Réalisations Studio Castel : Polinizz, Serpenter, sites vitrines (Florine, Arnaud, Brice), Archéode, Bobithèque, Pavat, Préhistopia. Avignon et partout.",
+    "Réalisations Studio Castel : Polinizz, Serpenter, sites vitrines (Florine, Arnaud, Brice), Archéode, Bobithèque, Pavat, Préhistopia. Avignon et en remote.",
   openGraph: {
     title: "Mes projets | Studio Castel",
     description:

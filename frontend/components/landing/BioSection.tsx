@@ -46,7 +46,7 @@ export function BioSection({ children, className }: BioSectionProps) {
       <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10">
         <figure className="w-full shrink-0 sm:w-80 md:w-96">
           <motion.div
-            className="relative overflow-hidden rounded-xl border border-border bg-muted shadow-lg aspect-[4/5] w-full"
+            className="rounded-xl border border-border bg-muted shadow-lg w-full overflow-hidden"
             style={{
               ...(prefersReducedMotion ? {} : { x, rotate, opacity })
             }}
@@ -54,8 +54,9 @@ export function BioSection({ children, className }: BioSectionProps) {
             <Image
               src={BIO_IMAGE}
               alt="Photo de Tarik Talhaoui"
-              fill
-              className="object-cover"
+              width={384}
+              height={480}
+              className="w-full h-auto block"
               sizes="(max-width: 640px) 100vw, 24rem"
               priority={false}
             />
