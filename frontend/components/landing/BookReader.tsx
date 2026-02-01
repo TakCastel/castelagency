@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { splitIntoPages } from "@/lib/homme-masque-verre";
+import { splitIntoPages } from "@/lib/book-pages";
 
 const CHARS_PER_PAGE = 1800;
 

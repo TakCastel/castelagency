@@ -4,6 +4,41 @@
  */
 const DEFAULT_CHARS_PER_PAGE = 2800;
 
+/**
+ * Regroupe des paragraphes en pages selon un nombre max de caractères par page.
+ * Utilisé par BookReader (lecture par paragraphes).
+ */
+export function splitIntoPages(
+  paragraphs: string[],
+  charsPerPage: number
+): string[][] {
+  const pages: string[][] = [];
+  let current: string[] = [];
+  let currentLength = 0;
+
+  for (const p of paragraphs) {
+    const len = p.length + (currentLength > 0 ? 1 : 0);
+    if (currentLength + len <= charsPerPage) {
+      current.push(p);
+      currentLength += len;
+      continue;
+    }
+    if (current.length > 0) {
+      pages.push(current);
+      current = [];
+      currentLength = 0;
+    }
+    if (p.length > charsPerPage) {
+      pages.push([p]);
+    } else {
+      current.push(p);
+      currentLength = p.length;
+    }
+  }
+  if (current.length > 0) pages.push(current);
+  return pages.length > 0 ? pages : [[]];
+}
+
 export function splitMarkdownIntoPages(
   content: string,
   charsPerPage: number = DEFAULT_CHARS_PER_PAGE
