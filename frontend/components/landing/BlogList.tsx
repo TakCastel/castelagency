@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { AnimatedSection } from "@/components/landing/AnimatedSection";
 import type { BlogItem } from "@/lib/blog";
 
-const DEFAULT_LIST_IMAGE = "/illu-app.png";
+const DEFAULT_LIST_IMAGE = "/assets/illustrations/illu-app.png";
 const DEFAULT_LIST_IMAGE_ALT = "Illustration évoquant un article de blog.";
 
 function formatDate(dateStr: string): string {

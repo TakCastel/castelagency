@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal, flushSync } from "react-dom";
@@ -12,17 +12,20 @@ import { LaptopMinimalCheckIcon } from "@/components/ui/laptop-minimal-check";
 import { LayoutPanelTopIcon } from "@/components/ui/layout-panel-top";
 import { FolderKanbanIcon } from "@/components/ui/folder-kanban";
 import { FeatherIcon } from "@/components/ui/feather";
+import { SparklesIcon } from "@/components/ui/sparkles";
 import type { LaptopMinimalCheckIconHandle } from "@/components/ui/laptop-minimal-check";
 import type { LayoutPanelTopIconHandle } from "@/components/ui/layout-panel-top";
 import type { FolderKanbanIconHandle } from "@/components/ui/folder-kanban";
 import type { FeatherIconHandle } from "@/components/ui/feather";
+import type { SparklesIconHandle } from "@/components/ui/sparkles";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/le-studio", label: "Studio", title: "Le Studio", Icon: LaptopMinimalCheckIcon },
   { href: "/mes-projets", label: "Projets", title: "Projets", Icon: LayoutPanelTopIcon },
   { href: "/mode-de-fonctionnement", label: "Méthode", title: "Ma méthode", Icon: FolderKanbanIcon },
-  { href: "/blog", label: "Blog", title: "Blog", Icon: FeatherIcon },
+  { href: "/creations", label: "Créations", title: "Mes créations", Icon: SparklesIcon },
+  { href: "/blog", label: "Blog", title: "Mon blog", Icon: FeatherIcon },
 ] as const;
 
 const SCROLL_THRESHOLD = 12; // px de scroll vers le bas pour cacher le header
@@ -33,6 +36,7 @@ const MENU_ITEM_STAGGER_MS = 80;
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuMounted, setMenuMounted] = useState(false); // true = overlay dans le DOM (pour animation de fermeture)
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -155,22 +159,31 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen, menuMounted, closeMenu]);
 
+  // Précharger toutes les routes du nav à l’ouverture du menu mobile pour navigation instantanée au clic
+  useEffect(() => {
+    if (!menuOpen || !menuMounted) return;
+    navItems.forEach(({ href }) => router.prefetch(href));
+  }, [menuOpen, menuMounted]);
+
   const refsDesktop = [
     useRef<LaptopMinimalCheckIconHandle>(null),
     useRef<LayoutPanelTopIconHandle>(null),
     useRef<FolderKanbanIconHandle>(null),
+    useRef<SparklesIconHandle>(null),
     useRef<FeatherIconHandle>(null),
   ] as const;
   const refsTablet = [
     useRef<LaptopMinimalCheckIconHandle>(null),
     useRef<LayoutPanelTopIconHandle>(null),
     useRef<FolderKanbanIconHandle>(null),
+    useRef<SparklesIconHandle>(null),
     useRef<FeatherIconHandle>(null),
   ] as const;
   const refsMobile = [
     useRef<LaptopMinimalCheckIconHandle>(null),
     useRef<LayoutPanelTopIconHandle>(null),
     useRef<FolderKanbanIconHandle>(null),
+    useRef<SparklesIconHandle>(null),
     useRef<FeatherIconHandle>(null),
   ] as const;
 
@@ -200,6 +213,7 @@ export function Navbar() {
                 key={href}
                 href={href}
                 title={title}
+                prefetch={true}
                 onClick={() => {
                   handleNavClickMobile(i)();
                   closeMenu();
@@ -264,7 +278,7 @@ export function Navbar() {
       >
         <div className="container flex h-20 items-center gap-10 md:h-24 md:gap-12">
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="Accueil">
+        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="Accueil" prefetch={true} onMouseEnter={() => router.prefetch("/")}>
           <BrandMark className="text-foreground" title="Studio Castel" />
         </Link>
 
@@ -281,6 +295,8 @@ export function Navbar() {
                 )}
                 href={href}
                 title={title}
+                prefetch={true}
+                onMouseEnter={() => router.prefetch(href)}
                 onClick={handleNavClickDesktop(i)}
               >
                 <Icon ref={refsDesktop[i]} size={24} className="shrink-0 text-inherit" />
@@ -299,6 +315,8 @@ export function Navbar() {
                 key={href}
                 href={href}
                 title={title}
+                prefetch={true}
+                onMouseEnter={() => router.prefetch(href)}
                 className={cn(
                   "rounded-md p-3 transition-[color,transform] duration-150 active:scale-95",
                   isActive ? "text-primary hover:text-primary" : "text-white hover:bg-white/10 hover:text-white/90"

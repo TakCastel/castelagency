@@ -135,7 +135,7 @@ export default async function ProjectPage({ params }: Props) {
       >
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/hero-background.png"
+            src="/assets/illustrations/hero-background.png"
             alt=""
             fill
             className="object-cover object-center opacity-50"

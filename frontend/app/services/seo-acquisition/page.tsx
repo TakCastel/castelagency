@@ -79,7 +79,7 @@ export default function SeoAcquisitionPage() {
       <section className="relative -mt-20 w-full overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }} aria-hidden>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/illu-seo.png"
+            src="/assets/illustrations/illu-seo.png"
             alt=""
             fill
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
@@ -322,7 +322,7 @@ export default function SeoAcquisitionPage() {
 
             <figure className="pt-8">
               <Image
-                src="/illu-seo-bottom.png"
+                src="/assets/illustrations/illu-seo-bottom.png"
                 alt="Illustration évoquant le SEO et l’acquisition : visibilité, structure et mesure, pour rappeler que la visibilité et l’acquisition se construisent avec méthode."
                 width={1200}
                 height={600}

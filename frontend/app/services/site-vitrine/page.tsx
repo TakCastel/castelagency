@@ -124,7 +124,7 @@ export default function SiteVitrinePage() {
       <section className="relative -mt-20 w-full overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }} aria-hidden>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/illu-onepage.png"
+            src="/assets/illustrations/illu-onepage.png"
             alt=""
             fill
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
@@ -390,7 +390,7 @@ export default function SiteVitrinePage() {
 
         <figure className="pt-8">
             <Image
-              src="/illu-onepage-bottom.png"
+              src="/assets/illustrations/illu-onepage-bottom.png"
               alt="Illustration évoquant la construction d’un site web : plan, structure et étapes de conception, pour rappeler qu’un site ne se construit pas sans plan."
               width={1200}
               height={600}

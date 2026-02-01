@@ -23,46 +23,51 @@ const COLUMN_MIN_WIDTH = 260;
 const COLUMN_GAP = 20;
 const NUM_COLUMNS = 7;
 
-const COLUMNS: { id: string; title: string; ticketLabel: string; description?: string }[] = [
+const COLUMNS: {
+  id: string;
+  columnTitle: string;
+  ticketLabel: string;
+  description?: string;
+}[] = [
   {
     id: "contact",
-    title: "1. Prise de contact",
+    columnTitle: "Premier échange",
     ticketLabel: "Prise de contact (1h gratuite)",
     description: "Premier échange pour comprendre votre projet"
   },
   {
     id: "planning",
-    title: "2. Planning & cadrage",
+    columnTitle: "Objectifs",
     ticketLabel: "Planning & cadrage",
     description: "Objectifs, cible, arborescence, plan de contenu"
   },
   {
     id: "acompte",
-    title: "3. Acompte 40 %",
+    columnTitle: "Paiement initial",
     ticketLabel: "Acompte 40 %",
     description: "Je ne démarre pas les maquettes sans un acompte de 40 %"
   },
   {
     id: "maquettes",
-    title: "4. Maquettes",
+    columnTitle: "Conception",
     ticketLabel: "Maquettes",
     description: "Wireframes, UI, validation visuelle"
   },
   {
     id: "livrable",
-    title: "5. Livrable",
+    columnTitle: "Développement",
     ticketLabel: "Livrable",
     description: "Développement, intégration, mise en ligne"
   },
   {
     id: "retour",
-    title: "6. Retours & validation",
+    columnTitle: "Retours client",
     ticketLabel: "Retours & validation",
     description: "Ajustements, validation client"
   },
   {
     id: "facture",
-    title: "7. Devis & facture",
+    columnTitle: "Clôture",
     ticketLabel: "Envoi de la facture",
     description: "Envoi de la facture"
   }
@@ -258,16 +263,11 @@ export function ProcessKanban() {
                   "border-border"
               )}
             >
-              {/* En-tête de colonne */}
+              {/* En-tête de colonne : un seul titre, pas de sous-titre */}
               <div className="shrink-0 border-b border-border/50 px-4 py-3">
                 <h3 className="text-small font-semibold uppercase tracking-wider text-muted-foreground">
-                  {col.title}
+                  {col.columnTitle}
                 </h3>
-                {col.description && (
-                  <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-                    {col.description}
-                  </p>
-                )}
               </div>
 
               {/* Contenu : zone de drop (si survol) / ticket actif / préviews / tickets validés en bas */}

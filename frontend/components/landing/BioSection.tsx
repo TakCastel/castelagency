@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 
-import bioImage from "../../public/illu-bio.png";
+const BIO_IMAGE = "/assets/illustrations/illu-bio.png";
 
 type BioSectionProps = {
   children: React.ReactNode;
@@ -46,17 +46,16 @@ export function BioSection({ children, className }: BioSectionProps) {
       <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10">
         <figure className="w-full shrink-0 sm:w-80 md:w-96">
           <motion.div
-            className="overflow-hidden rounded-xl border border-border bg-muted shadow-lg"
+            className="relative overflow-hidden rounded-xl border border-border bg-muted shadow-lg aspect-[4/5] w-full"
             style={{
               ...(prefersReducedMotion ? {} : { x, rotate, opacity })
             }}
           >
             <Image
-              src={bioImage}
+              src={BIO_IMAGE}
               alt="Photo de Tarik Talhaoui"
-              width={bioImage.width}
-              height={bioImage.height}
-              className="h-auto w-full"
+              fill
+              className="object-cover"
               sizes="(max-width: 640px) 100vw, 24rem"
               priority={false}
             />

@@ -103,7 +103,7 @@ export default function EcommercePage() {
       <section className="relative -mt-20 w-full overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }} aria-hidden>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/illu-ecommerce.png"
+            src="/assets/illustrations/illu-ecommerce.png"
             alt=""
             fill
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
@@ -343,7 +343,7 @@ export default function EcommercePage() {
 
             <figure className="pt-8">
               <Image
-                src="/illu-ecommerce-bottom.png"
+                src="/assets/illustrations/illu-ecommerce-bottom.png"
                 alt="Illustration évoquant la vente de produits en ligne : panier, paiement, livraison."
                 width={1200}
                 height={600}

@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: Props) {
       >
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src={post.image ?? "/hero-background.png"}
+            src={post.image ?? "/assets/illustrations/hero-background.png"}
             alt=""
             fill
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"

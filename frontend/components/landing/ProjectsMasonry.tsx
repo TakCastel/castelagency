@@ -2,12 +2,11 @@
 
 import Masonry from "react-masonry-css";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 
 import { ProjectCard } from "@/components/landing/ProjectCard";
 import { AnimatedSection } from "@/components/landing/AnimatedSection";
 import type { ProjectItem } from "@/lib/projects";
-import { cn } from "@/lib/utils";
 
 type ProjectsMasonryProps = {
   projects: ProjectItem[];
@@ -20,31 +19,46 @@ const breakpointCols = {
   500: 1,
 };
 
-/** Carte placeholder "Votre projet ici ?" → lien vers demande de devis (5ème position). */
+/** Carte "Votre projet ici ?" → même taille que ProjectCard, lien vers devis (5ème position). */
 function DevisPlaceholderCard({ index }: { index: number }) {
   return (
     <AnimatedSection delay={index}>
-      <Link
-        href="/devis"
-        className={cn(
-          "group flex flex-col overflow-hidden rounded-xl border-2 border-dashed border-border bg-muted/50 shadow-sm transition-all hover:border-primary/50 hover:bg-muted hover:shadow-md"
-        )}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{
+          opacity: 1,
+          scale: [1, 1.02, 1],
+        }}
+        transition={{
+          opacity: { duration: 0.4, ease: "easeOut" },
+          scale: {
+            duration: 2.5,
+            repeat: Infinity,
+            repeatDelay: 2,
+            ease: "easeInOut",
+          },
+        }}
+        whileHover={{
+          scale: 1.02,
+          transition: { duration: 0.2 },
+        }}
+        whileTap={{
+          scale: 0.98,
+          transition: { duration: 0.1 },
+        }}
       >
-        <div className="relative flex aspect-[4/3] w-full flex-col items-center justify-center rounded-t-xl px-4 text-center">
-          <span className="text-lg font-semibold tracking-tight text-foreground md:text-xl">
-            Votre projet ici ?
-          </span>
-          <span className="mt-1 text-small text-muted-foreground">
-            Demander un devis
-          </span>
-        </div>
-        <div className="rounded-b-xl border-t border-border/80 bg-card px-4 py-4">
-          <span className="inline-flex items-center gap-1.5 text-small font-medium text-primary">
-            En savoir plus
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-          </span>
-        </div>
-      </Link>
+        <Link
+          href="/devis"
+          className="group flex overflow-hidden rounded-xl border border-border/80 bg-card shadow-sm transition-shadow hover:shadow-md"
+        >
+          <div className="relative flex aspect-[4/3] w-full flex-col items-center justify-center rounded-xl bg-primary p-5">
+            {/* Bordure intérieure noire légère avec padding */}
+            <span className="flex h-full w-full items-center justify-center rounded-lg border border-black/20 p-4 text-center text-lg font-semibold tracking-tight text-primary-foreground md:text-xl">
+              Votre projet ici ?
+            </span>
+          </div>
+        </Link>
+      </motion.div>
     </AnimatedSection>
   );
 }

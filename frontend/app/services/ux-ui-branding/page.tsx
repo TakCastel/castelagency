@@ -80,7 +80,7 @@ export default function UxUiBrandingPage() {
       <section className="relative -mt-20 w-full overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }} aria-hidden>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/illu-design.png"
+            src="/assets/illustrations/illu-design.png"
             alt=""
             fill
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
@@ -407,7 +407,7 @@ export default function UxUiBrandingPage() {
 
             <figure className="pt-8">
               <Image
-                src="/illu-design-bottom.png"
+                src="/assets/illustrations/illu-design-bottom.png"
                 alt="Illustration évoquant la conception : structure, wireframes et identité visuelle, pour rappeler qu’une marque se construit avec méthode."
                 width={1200}
                 height={600}

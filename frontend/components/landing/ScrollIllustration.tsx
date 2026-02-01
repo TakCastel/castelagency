@@ -5,7 +5,7 @@ import type { RefObject } from "react";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-const ILLU_SRC = "/illu-1.png";
+const ILLU_SRC = "/assets/illustrations/illu-1.png";
 const IMG_ASPECT = 800 / 500;
 
 type ScrollIllustrationProps = {

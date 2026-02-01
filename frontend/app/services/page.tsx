@@ -27,42 +27,42 @@ const services: ServiceItem[] = [
     title: "Création / refonte de site vitrine",
     description: "Pages claires, copy orientée conversion, SEO on‑page.",
     href: "/services/site-vitrine",
-    image: "/illu-onepage.png",
+    image: "/assets/illustrations/illu-onepage.png",
     imageAlt: "Illustration évoquant un site vitrine et sa structure.",
   },
   {
     title: "E‑commerce",
     description: "Catalogue, paiement, tracking, pages optimisées.",
     href: "/services/ecommerce",
-    image: "/illu-ecommerce.png",
+    image: "/assets/illustrations/illu-ecommerce.png",
     imageAlt: "Illustration évoquant une boutique en ligne.",
   },
   {
     title: "Applications & sur‑mesure",
     description: "Portails, outils internes, dashboards.",
     href: "/services/applications-sur-mesure",
-    image: "/illu-app.png",
+    image: "/assets/illustrations/illu-app.png",
     imageAlt: "Illustration évoquant une application sur mesure.",
   },
   {
     title: "UX/UI & branding",
     description: "Wireframes, UI kit, identité, médias (photo/vidéo).",
     href: "/services/ux-ui-branding",
-    image: "/illu-design.png",
+    image: "/assets/illustrations/illu-design.png",
     imageAlt: "Illustration évoquant le design et l’identité visuelle.",
   },
   {
     title: "SEO & acquisition",
     description: "SEO technique, contenu, maillage, analytics.",
     href: "/services/seo-acquisition",
-    image: "/illu-seo.png",
+    image: "/assets/illustrations/illu-seo.png",
     imageAlt: "Illustration évoquant le référencement et l’acquisition.",
   },
   {
     title: "Process IA",
     description: "Audit, plan éditorial, briefs, automatisations.",
     href: "/services/process-ia",
-    image: "/illu-app.png",
+    image: "/assets/illustrations/illu-app.png",
     imageAlt: "Illustration évoquant l’automatisation et l’IA.",
   },
 ];
@@ -77,7 +77,7 @@ export default function ServicesPage() {
       >
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/hero-background.png"
+            src="/assets/illustrations/hero-background.png"
             alt=""
             fill
             className="object-cover object-center opacity-50"

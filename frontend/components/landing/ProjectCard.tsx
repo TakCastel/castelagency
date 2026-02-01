@@ -7,10 +7,17 @@ import { ArrowRight } from "lucide-react";
 import ColorThief from "colorthief";
 
 import { AnimatedSection } from "@/components/landing/AnimatedSection";
+import {
+  getHeroPatternDataUri,
+  getPatternIndexForProject,
+  getTintedColorForPattern,
+  HERO_PATTERN_SIZE,
+} from "@/lib/hero-patterns";
 import { cn } from "@/lib/utils";
 import type { ProjectItem } from "@/lib/projects";
 
 const OVERLAY_ALPHA = 0.95; // aplat de couleur plus marqué, blur légèrement visible derrière
+const PATTERN_OPACITY = 0.4; // motif Hero Patterns au-dessus de l’overlay
 
 /** Luminance relative (0–1) : au-dessus du seuil → fond clair → texte noir, en dessous → texte blanc */
 function getTextColorForBg(r: number, g: number, b: number): string {
@@ -30,6 +37,9 @@ type ProjectCardProps = {
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [overlayColor, setOverlayColor] = useState<string | null>(null);
   const [textColor, setTextColor] = useState<string>("#0a0a0a");
+  const [patternStyle, setPatternStyle] = useState<{
+    backgroundImage: string;
+  } | null>(null);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -38,6 +48,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       const [r, g, b] = colorThief.getColor(img, 10);
       setOverlayColor(`rgba(${r},${g},${b},${OVERLAY_ALPHA})`);
       setTextColor(getTextColorForBg(r, g, b));
+      const hexTint = getTintedColorForPattern(r, g, b);
+      const patternIndex = getPatternIndexForProject(project.id);
+      setPatternStyle({
+        backgroundImage: getHeroPatternDataUri(patternIndex, hexTint),
+      });
     } catch {
       // CORS ou image non chargée : pas d’overlay
     }
@@ -82,6 +97,22 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               style={{ backgroundColor: overlayColor }}
               aria-hidden
             />
+          )}
+          {patternStyle && (
+            <div
+              className="pointer-events-none absolute inset-0 overflow-hidden rounded-t-xl"
+              aria-hidden
+            >
+              <div
+                className="absolute left-1/2 top-1/2 h-[200%] w-[200%] bg-repeat"
+                style={{
+                  ...patternStyle,
+                  backgroundSize: `${HERO_PATTERN_SIZE}px ${HERO_PATTERN_SIZE}px`,
+                  opacity: PATTERN_OPACITY,
+                  transform: "translate(-50%, -50%) rotate(40deg)",
+                }}
+              />
+            </div>
           )}
           <h2
             className="absolute bottom-0 left-0 right-0 p-4 font-semibold tracking-tight"

@@ -140,7 +140,7 @@ export function Hero() {
     <section className="relative -mt-20 overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }}>
       <div className="pointer-events-none absolute inset-0 -z-10">
         <Image
-          src="/hero-background.png"
+          src="/assets/illustrations/hero-background.png"
           alt=""
           aria-hidden
           fill

@@ -30,7 +30,7 @@ const COLUMN_VARIANTS: Variants = {
     opacity: [1, 0.2, 1],
     transition: {
       duration: 1,
-      repeat: Number.POSITIVE_INFINITY,
+      repeat: 0,
       ease: "easeInOut",
     },
   },

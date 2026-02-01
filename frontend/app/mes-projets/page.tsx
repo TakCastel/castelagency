@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/landing/PageHero";
 import { ProjectsMasonry } from "@/components/landing/ProjectsMasonry";
 import { SectionIntro } from "@/components/landing/SectionIntro";
 import { projectsList } from "@/lib/projects";
@@ -26,36 +26,12 @@ export const metadata: Metadata = {
 export default function MesProjetsPage() {
   return (
     <>
-      {/* Hero : même veine que Services et Le Studio */}
-      <section
-        className="relative -mt-20 flex min-h-[50vh] flex-col justify-end overflow-hidden md:-mt-24"
-        aria-label="Mes projets"
-      >
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <Image
-            src="/hero-background.png"
-            alt=""
-            fill
-            className="object-cover object-center opacity-50"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
-        </div>
-
-        <div className="container flex flex-col justify-end pb-12 pt-12 md:pb-16 md:pt-16">
-          <p className="text-small font-medium text-muted-foreground">
-            Portfolio
-          </p>
-          <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight text-foreground md:text-titre-gros">
-            Mes projets
-          </h1>
-          <p className="mt-3 max-w-2xl text-paragraphe text-muted-foreground text-pretty">
-            Sites vitrines, outils métier, jeux et projets sur mesure réalisés
-            à Avignon et ailleurs.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Portfolio"
+        title="Mes projets"
+        description="Sites vitrines, outils métier, jeux et projets sur mesure réalisés à Avignon et ailleurs."
+        ariaLabel="Mes projets"
+      />
 
       <div className="container mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <SectionIntro

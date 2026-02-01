@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { BlogMasonry } from "@/components/landing/BlogMasonry";
+import { PageHero } from "@/components/landing/PageHero";
 import { SectionIntro } from "@/components/landing/SectionIntro";
 import { blogList } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog | Studio Castel",
+  title: "Mon blog | Studio Castel",
   description:
     "Articles et réflexions sur le web, l’IA, les agents et la tech. Studio Castel, Avignon.",
   openGraph: {
-    title: "Blog | Studio Castel",
+    title: "Mon blog | Studio Castel",
     description:
       "Articles et réflexions sur le web, l’IA, les agents et la tech.",
     type: "website",
@@ -26,33 +26,12 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <>
-      <section
-        className="relative -mt-20 flex min-h-[50vh] flex-col justify-end overflow-hidden md:-mt-24"
-        aria-label="Blog"
-      >
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <Image
-            src="/hero-background.png"
-            alt=""
-            fill
-            className="object-cover object-center opacity-50"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
-        </div>
-
-        <div className="container flex flex-col justify-end pb-12 pt-12 md:pb-16 md:pt-16">
-          <p className="text-small font-medium text-muted-foreground">Blog</p>
-          <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight text-foreground md:text-titre-gros">
-            Blog
-          </h1>
-          <p className="mt-3 max-w-2xl text-paragraphe text-muted-foreground text-pretty">
-            Réflexions sur le web, l’IA, les agents et la tech. Ce qui est réel,
-            ce qui relève du mythe, et ce qui compte vraiment.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Mon blog"
+        title="Mon blog"
+        description="Réflexions sur le web, l'IA, les agents et la tech. Ce qui est réel, ce qui relève du mythe, et ce qui compte vraiment."
+        ariaLabel="Mon blog"
+      />
 
       <div className="container mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <SectionIntro

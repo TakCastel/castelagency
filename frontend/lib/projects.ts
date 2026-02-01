@@ -32,7 +32,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "polinizz",
     title: "Polinizz",
     description: "Moteur de recherche d'événements près de chez soi.",
-    image: "/project-polinizz.png",
+    image: "/assets/projects/project-polinizz.png",
     imageAlt: "Aperçu du projet Polinizz, recherche d’événements.",
     url: "https://polinizz.fr/",
     useCase:
@@ -59,7 +59,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "florine",
     title: "Florine Clap",
     description: "Portfolio d'une réalisatrice et artiste.",
-    image: "/project-florine.png",
+    image: "/assets/projects/project-florine.png",
     imageAlt: "Aperçu du site de Florine Clap.",
     url: "https://www.florineclap.com/",
     useCase:
@@ -83,7 +83,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "subscrivo",
     title: "Subscrivo",
     description: "App pour gérer ses abonnements.",
-    image: "/project-subscrivo.png",
+    image: "/assets/projects/project-subscrivo.png",
     imageAlt: "Aperçu de Subscrivo, gestion des abonnements.",
     url: "https://subscrivo.netlify.app/",
     useCase:
@@ -107,7 +107,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "serpenter",
     title: "Serpenter",
     description: "SaaS d'audit SEO et technique.",
-    image: "/project-serpenter.png",
+    image: "/assets/projects/project-serpenter.png",
     imageAlt: "Aperçu de Serpenter, outil d’audit SEO.",
     url: "http://serpenter.eu/",
     useCase:
@@ -141,7 +141,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "bobitheque",
     title: "Bobithèque",
     description: "App pour découvrir des films au hasard et garder une liste à voir.",
-    image: "/project-bobitheque.png",
+    image: "/assets/projects/project-bobitheque.png",
     imageAlt: "Aperçu de Bobithèque, films et plateformes.",
     url: "https://bobitheque.com/",
     isMobileApp: true,
@@ -166,7 +166,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "arnaud",
     title: "Arnaud Ban",
     description: "Portfolio d'un réalisateur et monteur vidéo.",
-    image: "/project-arnaud.png",
+    image: "/assets/projects/project-arnaud.png",
     imageAlt: "Aperçu du site Arnaud Ban.",
     url: "https://arnaudban.fr/",
     useCase:
@@ -190,7 +190,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "pavat",
     title: "Pavat",
     description: "Jeu de puzzle stratégique, bientôt sur les stores.",
-    image: "/project-pavat.png",
+    image: "/assets/projects/project-pavat.png",
     imageAlt: "Aperçu du puzzle game Pavat.",
     url: "https://pavat-game.web.app/",
     isMobileApp: true,
@@ -216,7 +216,7 @@ export const projectsDetail: ProjectDetail[] = [
     title: "Archéode",
     description:
       "Récits de campagnes de JDR sur l'univers The Elder Scrolls Online.",
-    image: "/project-archeode.png",
+    image: "/assets/projects/project-archeode.png",
     imageAlt: "Aperçu du site Archéode, récits de campagnes JDR sur TESO.",
     url: "https://archeode.fr/",
     useCase:
@@ -242,7 +242,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "prehistopia",
     title: "Préhistopia",
     description: "City builder : un village au néolithique.",
-    image: "/project-prehistopia.png",
+    image: "/assets/projects/project-prehistopia.png",
     imageAlt: "Aperçu de Préhistopia, simulation de village au néolithique.",
     url: "https://prehistopia.vercel.app/",
     useCase:
@@ -266,7 +266,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "randex",
     title: "Randex",
     description: "Mon jeu de société : prototype jouable en ligne.",
-    image: "/project-randex.png",
+    image: "/assets/projects/project-randex.png",
     imageAlt: "Aperçu de Randex, prototype de jeu de société.",
     url: "https://randex-boardgame.netlify.app/",
     useCase:
@@ -291,7 +291,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "apasnap",
     title: "Apasnap",
     description: "App pour retrouver les photos de sa course.",
-    image: "/project-apasnap.png",
+    image: "/assets/projects/project-apasnap.png",
     imageAlt: "Aperçu d’Apasnap, photos de course running.",
     url: "https://apasnap.netlify.app/",
     isMobileApp: true,
@@ -316,7 +316,7 @@ export const projectsDetail: ProjectDetail[] = [
     id: "brice",
     title: "Brice Théâte",
     description: "Portfolio d'un scénariste.",
-    image: "/project-brice.png",
+    image: "/assets/projects/project-brice.png",
     imageAlt: "Aperçu du site Brice Théâte.",
     url: "https://bricetheate.fr/",
     useCase:

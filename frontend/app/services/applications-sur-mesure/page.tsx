@@ -108,7 +108,7 @@ export default function ApplicationsSurMesurePage() {
       <section className="relative -mt-20 w-full overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }} aria-hidden>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <Image
-            src="/illu-app.png"
+            src="/assets/illustrations/illu-app.png"
             alt=""
             fill
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
@@ -396,7 +396,7 @@ export default function ApplicationsSurMesurePage() {
 
             <figure className="pt-8">
               <Image
-                src="/illu-app-bottom.png"
+                src="/assets/illustrations/illu-app-bottom.png"
                 alt="Illustration évoquant le développement d’applications : code, mobile, API et méthodologie."
                 width={1200}
                 height={600}
