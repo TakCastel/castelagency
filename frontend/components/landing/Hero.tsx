@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Variants } from "motion/react";
 import { motion } from "motion/react";
@@ -208,9 +209,9 @@ export function Hero() {
             transition={{ delay: REST_DELAY + 0.1, duration: REST_DURATION, ease: [0.22, 1, 0.36, 1] }}
           >
             <Button size="lg" asChild>
-              <a href="#contact">
+              <Link href="/devis">
                 Demander un devis <ArrowRight />
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a href="#features">Voir mes services</a>

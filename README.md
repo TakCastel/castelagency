@@ -1,6 +1,6 @@
-# Castel Agency
+# Studio Castel
 
-Site web de l'agence Castel Agency, avec un backend Directus + un frontend Next.js.
+Site web de Studio Castel, avec un backend Directus + un frontend Next.js.
 
 ## Structure du projet
 

@@ -51,6 +51,7 @@ export const drawings: DrawingItem[] = [
     width: 500,
     height: 650,
     title: "Le garçon",
+    date: 2012,
   },
   {
     id: "take-cover",
@@ -59,6 +60,7 @@ export const drawings: DrawingItem[] = [
     width: 500,
     height: 650,
     title: "Take Cover",
+    date: 2012,
   },
   {
     id: "backpack",

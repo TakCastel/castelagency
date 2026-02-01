@@ -50,6 +50,8 @@ services:
     container_name: castelagency-frontend
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     environment:
       NODE_ENV: development
       NEXT_PUBLIC_DIRECTUS_URL: http://directus:8055
