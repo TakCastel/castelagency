@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { PageHero } from "@/components/landing/PageHero";
 import { SectionIntro } from "@/components/landing/SectionIntro";
 import { ServicesList, type ServiceItem } from "@/components/landing/ServicesList";
 
@@ -70,36 +70,12 @@ const services: ServiceItem[] = [
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero : intermédiaire entre accueil et pages de service, même veine que Le Studio */}
-      <section
-        className="relative -mt-20 flex min-h-[50vh] flex-col justify-end overflow-hidden md:-mt-24"
-        aria-label="Mes services"
-      >
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <Image
-            src="/assets/illustrations/hero-background.png"
-            alt=""
-            fill
-            className="object-cover object-center opacity-50"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
-        </div>
-
-        <div className="container flex flex-col justify-end pb-12 pt-12 md:pb-16 md:pt-16">
-          <p className="text-small font-medium text-muted-foreground">
-            Ce que je fais
-          </p>
-          <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight text-foreground md:text-titre-gros">
-            Mes services
-          </h1>
-          <p className="mt-3 max-w-2xl text-paragraphe text-muted-foreground text-pretty">
-            De la vitrine au e‑commerce, du design à l’IA : une offre claire pour
-            avancer. Je m’occupe de tout, de l’idée à la mise en ligne.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Services"
+        title="Mes services"
+        description="De la vitrine au e‑commerce, du design à l’IA : une offre claire pour avancer. Je m’occupe de tout, de l’idée à la mise en ligne."
+        ariaLabel="Mes services"
+      />
 
       <div className="container mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <SectionIntro
