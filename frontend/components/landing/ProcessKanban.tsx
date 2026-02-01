@@ -8,13 +8,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const springTransition = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 400,
   damping: 30
 };
 
 const layoutTransition = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 350,
   damping: 30
 };
