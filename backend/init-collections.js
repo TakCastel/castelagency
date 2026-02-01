@@ -30,6 +30,7 @@ Ce script est un guide. Pour créer les collections, vous avez deux options :
      * services
      * partners
      * contacts
+     * devis
 
 2. Via l'API Directus (nécessite un token d'authentification)
 
@@ -91,6 +92,15 @@ Collections à créer :
    - subject (string, required)
    - message (text, required)
    - status (string: new|read|replied|archived)
+
+📋 devis
+   - name (string, required)
+   - email (string, required)
+   - phone (string, optional)
+   - project_type (string, optional)
+   - budget (string, optional)
+   - message (text, required)
+   - status (string: new|in_progress|quoted|archived)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

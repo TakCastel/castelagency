@@ -46,7 +46,7 @@ const variants = {
     transition: {
       delay: opts.reducedMotion ? 0 : opts.delay * 0.05,
       duration: opts.reducedMotion ? 0 : 0.35,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
 };

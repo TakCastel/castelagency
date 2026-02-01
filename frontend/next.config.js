@@ -1,3 +1,5 @@
+const path = require("path");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -5,6 +7,8 @@ const nextConfig = {
   ...(process.env.NETLIFY ? {} : { output: "standalone" }),
   poweredByHeader: false,
   transpilePackages: ["motion"],
+  // Racine pour le tracing (évite le warning lockfiles sur Netlify quand base = "frontend")
+  outputFileTracingRoot: path.join(__dirname),
   async redirects() {
     return [
       { source: "/realisations", destination: "/mes-projets", permanent: true },

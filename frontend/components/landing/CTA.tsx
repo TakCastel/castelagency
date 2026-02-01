@@ -25,12 +25,12 @@ export function CTA() {
             </div>
             <div className="flex gap-3">
               <Button size="lg" asChild>
-                <a href="#contact">
+                <a href="/devis">
                   Demander un devis <ArrowRight />
                 </a>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <a href="#faq">Voir la FAQ</a>
+                <a href="/#faq">Voir la FAQ</a>
               </Button>
             </div>
           </div>
