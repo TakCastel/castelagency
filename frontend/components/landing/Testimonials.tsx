@@ -99,8 +99,8 @@ export function Testimonials() {
             <SwiperSlide key={t.initials} className="!h-full">
               <article
                 className={cn(
-                  "relative flex h-[260px] flex-col overflow-hidden rounded-lg border bg-card/80 p-4 shadow-sm backdrop-blur-sm",
-                  "md:h-[240px] md:p-5"
+                  "relative flex min-h-0 flex-col overflow-hidden rounded-lg border bg-card/80 p-4 shadow-sm backdrop-blur-sm",
+                  "md:p-5"
                 )}
               >
                 {/* Sphères grises pour le relief (style bloc CTA) */}
