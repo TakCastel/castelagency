@@ -148,3 +148,31 @@ export const drawings: DrawingItem[] = [
 export function getDrawings(): DrawingItem[] {
   return [...drawings].sort((a, b) => (b.date ?? 0) - (a.date ?? 0));
 }
+
+/**
+ * Réordonne les dessins pour équilibrer les hauteurs des colonnes du masonry
+ * (place chaque item dans la colonne actuellement la plus courte).
+ * Pour 3 colonnes, évite qu’une colonne (ex. du milieu) soit beaucoup plus courte.
+ */
+export function balanceDrawingsForMasonry(
+  items: DrawingItem[],
+  cols: number = 3
+): DrawingItem[] {
+  if (items.length <= cols) return items;
+  const colHeights: number[] = new Array(cols).fill(0);
+  const columns: DrawingItem[][] = Array.from({ length: cols }, () => []);
+  const sorted = [...items].sort((a, b) => b.height - a.height);
+  for (const item of sorted) {
+    const col = colHeights.indexOf(Math.min(...colHeights));
+    columns[col].push(item);
+    colHeights[col] += item.height;
+  }
+  const result: DrawingItem[] = [];
+  const maxLen = Math.max(...columns.map((c) => c.length));
+  for (let i = 0; i < maxLen; i++) {
+    for (let c = 0; c < cols; c++) {
+      if (columns[c][i]) result.push(columns[c][i]);
+    }
+  }
+  return result;
+}

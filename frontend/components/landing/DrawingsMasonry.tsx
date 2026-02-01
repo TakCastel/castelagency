@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Masonry from "react-masonry-css";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
@@ -59,10 +59,6 @@ function DrawingModal({
   drawing: DrawingItem;
   onClose: () => void;
 }) {
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) onClose();
-  };
-
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -71,12 +67,19 @@ function DrawingModal({
     return () => window.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
+  const contentRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, []);
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (contentRef.current?.contains(e.target as Node)) return;
+    onClose();
+  };
 
   return (
     <motion.div
@@ -93,23 +96,29 @@ function DrawingModal({
     >
       <motion.div
         className="relative flex h-full w-full min-h-0 max-h-[90dvh] items-center justify-center"
-        onClick={(e) => e.stopPropagation()}
         initial={{ scale: 0.92, opacity: 0.6 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.96, opacity: 0.8 }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         {drawing.videoSrc ? (
-          <video
-            src={drawing.videoSrc}
-            controls
-            autoPlay
-            playsInline
-            className="max-h-[90dvh] max-w-full w-auto object-contain"
-            aria-label={drawing.alt}
-          />
+          <div ref={contentRef} onClick={(e) => e.stopPropagation()}>
+            <video
+              src={drawing.videoSrc}
+              controls
+              autoPlay
+              playsInline
+              className="max-h-[90dvh] max-w-full w-auto object-contain"
+              aria-label={drawing.alt}
+            />
+          </div>
         ) : (
-          <div className="relative h-full max-h-[90dvh] w-full min-h-0 min-w-0">
+          <div
+            ref={contentRef}
+            className="relative max-h-[90dvh] max-w-full w-full"
+            style={{ aspectRatio: `${drawing.width} / ${drawing.height}` }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={drawing.src}
               alt={drawing.alt}
@@ -124,14 +133,17 @@ function DrawingModal({
         )}
       </motion.div>
       {(drawing.title || drawing.date) && (
-        <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center text-sm text-white/80">
+        <p className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-center text-sm text-white/80 pointer-events-none">
           {[drawing.title, drawing.date].filter(Boolean).join(", ")}
         </p>
       )}
       <button
         type="button"
-        onClick={onClose}
-        className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        className="absolute right-4 top-4 z-20 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         aria-label="Fermer"
       >
         <svg

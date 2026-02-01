@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/landing/PageHero";
 import { DrawingsMasonry } from "@/components/landing/DrawingsMasonry";
-import { getDrawings } from "@/lib/drawings";
+import { getDrawings, balanceDrawingsForMasonry } from "@/lib/drawings";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export default function DessinsPage() {
-  const drawings = getDrawings();
+  const drawings = balanceDrawingsForMasonry(getDrawings());
 
   return (
     <>
