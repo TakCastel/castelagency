@@ -2,8 +2,11 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Masonry from "react-masonry-css";
+import Image from "next/image";
+import { motion, AnimatePresence } from "motion/react";
 
 import type { DrawingItem } from "@/lib/drawings";
+import { DRAWING_BLUR_DATA_URL } from "@/lib/drawings";
 
 type DrawingsMasonryProps = {
   drawings: DrawingItem[];
@@ -31,12 +34,16 @@ function DrawingThumbnail({
       aria-label={`Agrandir : ${drawing.alt}`}
     >
       <span className="block w-full overflow-hidden rounded-xl">
-        {/* Taille naturelle du dessin pour un vrai masonry (hauteurs variables) */}
-        <img
+        {/* Ratio naturel : image entière visible, pas de crop, masonry à hauteurs variables */}
+        <Image
           src={drawing.src}
           alt={drawing.alt}
-          className="w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
-          loading="lazy"
+          width={drawing.width}
+          height={drawing.height}
+          placeholder="blur"
+          blurDataURL={DRAWING_BLUR_DATA_URL}
+          sizes="(max-width: 500px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 33vw, 25vw"
+          className="w-full h-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
         />
       </span>
     </button>
@@ -70,16 +77,25 @@ function DrawingModal({
   }, []);
 
   return (
-    <div
+    <motion.div
       role="dialog"
       aria-modal="true"
       aria-label={drawing.alt}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 p-4"
+      className="fixed inset-0 z-[10000] flex h-[100dvh] w-full items-center justify-center bg-black/70 p-0"
+      style={{ height: "100dvh" }}
       onClick={handleBackdropClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
-      <div
-        className="flex max-h-[85vh] max-w-[90vw] items-center justify-center"
+      <motion.div
+        className="relative flex h-full w-full min-h-0 max-h-[90dvh] items-center justify-center"
         onClick={(e) => e.stopPropagation()}
+        initial={{ scale: 0.92, opacity: 0.6 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.96, opacity: 0.8 }}
+        transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         {drawing.videoSrc ? (
           <video
@@ -87,20 +103,25 @@ function DrawingModal({
             controls
             autoPlay
             playsInline
-            className="max-h-[85vh] max-w-full rounded-lg shadow-2xl"
+            className="max-h-[90dvh] max-w-full w-auto object-contain"
             aria-label={drawing.alt}
           />
         ) : (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={drawing.src}
-            alt={drawing.alt}
-            className="max-h-[85vh] max-w-full rounded-lg object-contain shadow-2xl"
-          />
+          <div className="relative h-full max-h-[90dvh] w-full min-h-0 min-w-0">
+            <Image
+              src={drawing.src}
+              alt={drawing.alt}
+              fill
+              placeholder="blur"
+              blurDataURL={DRAWING_BLUR_DATA_URL}
+              className="object-contain"
+              sizes="100vw"
+            />
+          </div>
         )}
-      </div>
+      </motion.div>
       {(drawing.title || drawing.date) && (
-        <p className="mt-3 text-center text-sm text-white/90">
+        <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center text-sm text-white/80">
           {[drawing.title, drawing.date].filter(Boolean).join(", ")}
         </p>
       )}
@@ -125,7 +146,7 @@ function DrawingModal({
           <path d="m6 6 12 12" />
         </svg>
       </button>
-    </div>
+    </motion.div>
   );
 }
 
@@ -160,9 +181,15 @@ export function DrawingsMasonry({ drawings: items }: DrawingsMasonryProps) {
           />
         ))}
       </Masonry>
-      {selected && (
-        <DrawingModal drawing={selected} onClose={closeModal} />
-      )}
+      <AnimatePresence>
+        {selected && (
+          <DrawingModal
+            key={selected.id}
+            drawing={selected}
+            onClose={closeModal}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
