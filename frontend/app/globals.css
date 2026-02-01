@@ -306,15 +306,15 @@
     animation: nav-item-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
 
-  /* Menu mobile plein écran : entrée décalée des éléments */
+  /* Menu mobile plein écran : entrée depuis la gauche */
   @keyframes mobile-menu-item-in {
     from {
       opacity: 0;
-      transform: translateY(1rem);
+      transform: translateX(-1.5rem);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
   }
 

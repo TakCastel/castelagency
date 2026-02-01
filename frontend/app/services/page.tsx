@@ -9,11 +9,11 @@ import { ServicesList, type ServiceItem } from "@/components/landing/ServicesLis
 export const metadata: Metadata = {
   title: "Mes services | Studio Castel",
   description:
-    "Création de sites à Avignon : site vitrine, e‑commerce, applications sur mesure, UX/UI & branding, SEO & acquisition, process IA. Une offre claire pour avancer.",
+    "Création de sites : site vitrine, e‑commerce, applications sur mesure, UX/UI & branding, SEO & acquisition, process IA. Stratégie, design, développement, contenu et SEO.",
   openGraph: {
     title: "Mes services | Studio Castel",
     description:
-      "Site vitrine, e‑commerce, applications, UX/UI, SEO, process IA. Création de sites à Avignon.",
+      "Site vitrine, e‑commerce, applications, UX/UI, SEO, process IA. Création de sites. Chaque service peut être pris seul ou combiné selon votre projet.",
     type: "website",
     locale: "fr_FR",
   },
@@ -104,7 +104,7 @@ export default function ServicesPage() {
       <div className="container mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <SectionIntro
           label="Découvrez"
-          title="Création de sites à Avignon. Je couvre l’essentiel."
+          title="Création de sites. Je couvre l’essentiel."
           description="Stratégie, design, développement, contenu et SEO. Chaque service peut être pris seul ou combiné selon votre projet."
           textAlignClassName="text-center"
         />

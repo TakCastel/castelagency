@@ -13,15 +13,18 @@ import { LayoutPanelTopIcon } from "@/components/ui/layout-panel-top";
 import { FolderKanbanIcon } from "@/components/ui/folder-kanban";
 import { FeatherIcon } from "@/components/ui/feather";
 import { SparklesIcon } from "@/components/ui/sparkles";
+import { WrenchIcon } from "@/components/ui/wrench";
 import type { LaptopMinimalCheckIconHandle } from "@/components/ui/laptop-minimal-check";
 import type { LayoutPanelTopIconHandle } from "@/components/ui/layout-panel-top";
 import type { FolderKanbanIconHandle } from "@/components/ui/folder-kanban";
 import type { FeatherIconHandle } from "@/components/ui/feather";
 import type { SparklesIconHandle } from "@/components/ui/sparkles";
+import type { WrenchIconHandle } from "@/components/ui/wrench";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/le-studio", label: "Studio", title: "Le Studio", Icon: LaptopMinimalCheckIcon },
+  { href: "/services", label: "Services", title: "Mes services", Icon: WrenchIcon },
   { href: "/mes-projets", label: "Projets", title: "Projets", Icon: LayoutPanelTopIcon },
   { href: "/mode-de-fonctionnement", label: "Méthode", title: "Ma méthode", Icon: FolderKanbanIcon },
   { href: "/creations", label: "Créations", title: "Mes créations", Icon: SparklesIcon },
@@ -167,6 +170,7 @@ export function Navbar() {
 
   const refsDesktop = [
     useRef<LaptopMinimalCheckIconHandle>(null),
+    useRef<WrenchIconHandle>(null),
     useRef<LayoutPanelTopIconHandle>(null),
     useRef<FolderKanbanIconHandle>(null),
     useRef<SparklesIconHandle>(null),
@@ -174,6 +178,7 @@ export function Navbar() {
   ] as const;
   const refsTablet = [
     useRef<LaptopMinimalCheckIconHandle>(null),
+    useRef<WrenchIconHandle>(null),
     useRef<LayoutPanelTopIconHandle>(null),
     useRef<FolderKanbanIconHandle>(null),
     useRef<SparklesIconHandle>(null),
@@ -181,6 +186,7 @@ export function Navbar() {
   ] as const;
   const refsMobile = [
     useRef<LaptopMinimalCheckIconHandle>(null),
+    useRef<WrenchIconHandle>(null),
     useRef<LayoutPanelTopIconHandle>(null),
     useRef<FolderKanbanIconHandle>(null),
     useRef<SparklesIconHandle>(null),
@@ -198,14 +204,14 @@ export function Navbar() {
       aria-modal="true"
       aria-label="Menu de navigation"
       className={cn(
-        "fixed inset-0 z-[9998] flex flex-col bg-background md:hidden transition-opacity ease-out",
+        "fixed inset-0 z-[9998] flex flex-col bg-background lg:hidden transition-opacity ease-out",
         menuOpen ? "opacity-100" : "opacity-0"
       )}
       style={{ transitionDuration: `${MENU_ANIM_DURATION_MS}ms` }}
       aria-hidden={!menuOpen}
     >
-      <div className="flex min-h-full flex-1 flex-col items-center justify-center gap-2 px-8 py-24">
-        <nav className="flex flex-col items-center gap-1 text-center">
+      <div className="flex min-h-full flex-1 flex-col items-start justify-center gap-2 px-8 py-24">
+        <nav className="flex w-full max-w-sm flex-col items-stretch gap-1 text-left">
           {navItems.map(({ href, label, title, Icon }, i) => {
             const isActive = pathname === href;
             return (
@@ -219,7 +225,7 @@ export function Navbar() {
                   closeMenu();
                 }}
                 className={cn(
-                  "flex items-center justify-center gap-3 rounded-xl px-6 py-4 text-titre-petit font-medium transition-[color,transform] duration-150 hover:bg-muted active:scale-95 active:bg-muted touch-manipulation",
+                  "flex w-full items-center justify-start gap-3 rounded-xl px-4 py-4 text-left text-titre-petit font-medium transition-[color,transform] duration-150 hover:bg-muted active:scale-95 active:bg-muted touch-manipulation",
                   isActive ? "text-primary hover:text-primary" : "text-foreground hover:text-foreground",
                   menuOpen && "animate-mobile-menu-item"
                 )}
@@ -237,7 +243,7 @@ export function Navbar() {
         </nav>
         <div
           className={cn(
-            "mt-8 w-full max-w-xs",
+            "mt-8 w-full max-w-sm text-left",
             menuOpen && "animate-mobile-menu-item"
           )}
           style={
@@ -276,14 +282,14 @@ export function Navbar() {
         )}
         style={isInvisible ? { transform: "translateY(-100%)" } : { transform: "translateY(0)" }}
       >
-        <div className="container flex h-20 items-center gap-10 md:h-24 md:gap-12">
+        <div className="container flex h-20 items-center gap-10 lg:h-24 lg:gap-12">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="Accueil" prefetch={true} onMouseEnter={() => router.prefetch("/")}>
           <BrandMark className="text-foreground" title="Studio Castel" />
         </Link>
 
-        {/* Desktop (lg+) : nav complète à gauche */}
-        <nav className="hidden items-center gap-10 lg:flex lg:gap-12">
+        {/* Desktop (xl+) : nav complète à gauche */}
+        <nav className="hidden items-center gap-10 xl:flex xl:gap-12">
           {navItems.map(({ href, label, title, Icon }, i) => {
             const isActive = pathname === href;
             return (
@@ -306,8 +312,8 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Tablette (md à lg) : uniquement les icônes */}
-        <nav className="hidden items-center gap-8 md:flex lg:hidden">
+        {/* Tablette (lg à xl) : uniquement les icônes */}
+        <nav className="hidden items-center gap-8 lg:flex xl:hidden">
           {navItems.map(({ href, title, Icon }, i) => {
             const isActive = pathname === href;
             return (
@@ -330,7 +336,7 @@ export function Navbar() {
         </nav>
 
         {/* Bouton CTA : tout à droite sur desktop/tablette */}
-        <div className="ml-auto hidden items-center md:flex">
+        <div className="ml-auto hidden items-center lg:flex">
           <Button asChild size="lg" variant="outline" className="px-6 py-3 text-paragraphe border-white/30 bg-white text-black hover:bg-white/90 hover:text-black">
             <a href="/devis">
               Demander un devis <ArrowRight className="size-5" />
@@ -339,8 +345,8 @@ export function Navbar() {
         </div>
 
         {/* Mobile : bouton burger (menu caché par défaut, visible au clic) */}
-        <div className="ml-auto flex items-center gap-2 md:hidden">
-          <Button asChild size="sm" variant="outline" className="lg:hidden border-white/30 bg-white text-black hover:bg-white/90 hover:text-black">
+        <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <Button asChild size="sm" variant="outline" className="border-white/30 bg-white text-black hover:bg-white/90 hover:text-black">
             <a href="/devis">Devis</a>
           </Button>
           <button
@@ -359,7 +365,7 @@ export function Navbar() {
       </header>
 
       {/* Spacer pour que le contenu ne passe pas sous le header fixe */}
-      <div className="h-20 shrink-0 md:h-24" aria-hidden />
+      <div className="h-20 shrink-0 lg:h-24" aria-hidden />
 
       {/* Menu mobile : portail dans document.body pour être au-dessus de tout (z 9998) ; header z 9999 pour rester cliquable */}
       {menuMounted &&
