@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/le-studio", label: "Studio", title: "Le Studio", Icon: LaptopMinimalCheckIcon },
   { href: "/mes-projets", label: "Projets", title: "Projets", Icon: LayoutPanelTopIcon },
-  { href: "/mode-de-fonctionnement", label: "Méthode", title: "Mon mode de fonctionnement", Icon: FolderKanbanIcon },
+  { href: "/mode-de-fonctionnement", label: "Méthode", title: "Ma méthode", Icon: FolderKanbanIcon },
   { href: "/blog", label: "Blog", title: "Blog", Icon: FeatherIcon },
 ] as const;
 
