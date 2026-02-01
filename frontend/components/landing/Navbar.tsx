@@ -65,11 +65,12 @@ export function Navbar() {
       clearTimeout(openMenuTimeoutRef.current);
       openMenuTimeoutRef.current = null;
     }
+    // Déplacer le focus hors du menu avant aria-hidden pour éviter l’erreur a11y
+    menuButtonRef.current?.focus();
     setMenuOpen(false);
     closeTimeoutRef.current = setTimeout(() => {
       setMenuMounted(false);
       closeTimeoutRef.current = null;
-      menuButtonRef.current?.focus();
     }, MENU_ANIM_DURATION_MS);
   }, []);
 
