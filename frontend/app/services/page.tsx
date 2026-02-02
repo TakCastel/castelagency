@@ -79,9 +79,9 @@ export default function ServicesPage() {
 
       <div className="container mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <SectionIntro
-          label="Découvrez"
-          title="Création de sites. Je couvre l’essentiel."
-          description="Stratégie, design, développement, contenu et SEO. Chaque service peut être pris seul ou combiné selon votre projet."
+          label=""
+          title="Création de sites web à Avignon, pensés pour l’usage et la performance"
+          description="J’accompagne entreprises, indépendants et structures locales dans la conception de sites clairs, rapides et évolutifs. De la stratégie au développement, avec un SEO intégré dès la conception."
           textAlignClassName="text-center"
         />
 
