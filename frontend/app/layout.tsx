@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Comic_Neue } from "next/font/google";
 import "./globals.css";
 
 import { Footer } from "@/components/landing/Footer";
@@ -9,6 +9,13 @@ import { WhatsAppFloatingCTA } from "@/components/landing/WhatsAppFloatingCTA";
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+});
+
+const comicNeue = Comic_Neue({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-comic-neue",
   display: "swap",
 });
 
@@ -44,7 +51,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`dark ${outfit.variable}`}>
+    <html lang="fr" className={`dark ${outfit.variable} ${comicNeue.variable}`}>
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-background font-sans text-foreground antialiased">
         <Navbar />
         <main>{children}</main>

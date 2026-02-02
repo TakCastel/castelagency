@@ -59,48 +59,6 @@
     }
   }
 
-  /* Livre / récit : mise en page, espacement, dialogues par personnage (couleur unique chacun) */
-  .book-prose {
-    --dialogue-madaea: 340 65% 52%;
-    --dialogue-theos: 145 50% 38%;
-    --dialogue-dracuse: 260 70% 55%;
-    --dialogue-corlion: 280 55% 52%;
-    --dialogue-elhsya: 145 45% 42%;
-    --dialogue-ayshel: 340 70% 55%;
-    --dialogue-yara: 320 60% 52%;
-    --dialogue-saiyara: 320 60% 52%;
-    --dialogue-autre: 220 50% 42%;
-    --dialogue-medecin: 190 55% 42%;
-    /* Par défaut = Kheym (vert) : dialogues non attribués à un autre personnage */
-    --dialogue-inline: 145 50% 38%;
-  }
-  .dark .book-prose {
-    --dialogue-madaea: 335 60% 60%;
-    --dialogue-theos: 150 45% 50%;
-    --dialogue-dracuse: 255 65% 62%;
-    --dialogue-corlion: 275 50% 60%;
-    --dialogue-elhsya: 150 40% 50%;
-    --dialogue-ayshel: 335 65% 62%;
-    --dialogue-yara: 315 55% 60%;
-    --dialogue-saiyara: 315 55% 60%;
-    --dialogue-autre: 215 45% 58%;
-    --dialogue-medecin: 190 50% 55%;
-    /* Par défaut = Kheym (vert) en dark mode */
-    --dialogue-inline: 150 45% 50%;
-  }
-  /* Couleurs dialogues désactivées : tout en couleur du texte normal */
-  .book-prose .dialogue-madaea,
-  .book-prose .dialogue-theos,
-  .book-prose .dialogue-dracuse,
-  .book-prose .dialogue-corlion,
-  .book-prose .dialogue-elhsya,
-  .book-prose .dialogue-ayshel,
-  .book-prose .dialogue-yara,
-  .book-prose .dialogue-saiyara,
-  .book-prose .dialogue-autre,
-  .book-prose .dialogue-medecin,
-  .book-prose .dialogue-inline,
-  .book-prose .dialogue-incise { color: inherit; }
   .book-prose p {
     margin-bottom: 1.25rem;
     line-height: 1.75;
@@ -128,6 +86,24 @@
   }
   .book-prose blockquote.intro p + p {
     margin-top: 1.25rem;
+  }
+  /* Passages centrés, taille normale (titres et paragraphes) */
+  .book-prose .book-passage-centered {
+    text-align: center;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+  }
+  .book-prose .book-passage-centered h2 {
+    font-size: var(--text-titre-moyen);
+    margin-bottom: 0.5rem;
+  }
+  .book-prose .book-passage-centered p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .book-prose .book-passage-centered p:last-child {
+    margin-bottom: 0;
   }
   .book-prose ul {
     list-style: none;

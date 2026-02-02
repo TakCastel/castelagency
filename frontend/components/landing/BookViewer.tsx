@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HtmlBookContent } from "@/components/landing/HtmlBookContent";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+/** Header + espacement + pagination pour garder tout visible au changement de page. */
+const SCROLL_OFFSET_PX = 200;
 
 type BookViewerProps = {
   pages: string[];
@@ -98,6 +101,7 @@ function PaginationNav({
 
 export function BookViewer({ pages }: BookViewerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const contentStartRef = useRef<HTMLDivElement>(null);
 
   const canPrev = currentIndex > 0;
   const canNext = currentIndex < pages.length - 1;
@@ -107,7 +111,11 @@ export function BookViewer({ pages }: BookViewerProps) {
     setCurrentIndex(Math.max(0, Math.min(pages.length - 1, index)));
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const el = contentStartRef.current;
+    if (!el) return;
+    const top =
+      el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET_PX;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   }, [currentIndex]);
 
   const pageContent = pages[currentIndex];
@@ -136,8 +144,8 @@ export function BookViewer({ pages }: BookViewerProps) {
         />
       )}
 
-      {/* Une page par vue : pleine largeur mobile, centrée desktop, scroll naturel */}
-      <div className="w-full flex justify-center">
+      {/* Ancre pour le scroll au changement de page : on vise le début du contenu (sous la pagination). */}
+      <div ref={contentStartRef} className="w-full flex justify-center" aria-hidden>
         <section
           key={currentIndex}
           className="w-full md:max-w-[210mm] md:min-w-0 rounded-xl border border-border/50 bg-card shadow-lg print:shadow-none"

@@ -19,6 +19,7 @@ const DIALOGUE_PERSONNAGES: [string, string][] = [
   ["Ayshel", "dialogue-ayshel"],
   ["Yara", "dialogue-yara"],
   ["Saiyara", "dialogue-saiyara"],
+  ["Voyante", "dialogue-voyante"],
 ];
 
 /** Attribue la couleur du dialogue au personnage quand le narrateur l’indique après « ... » */
@@ -33,6 +34,14 @@ function attributeDialogueByContext(html: string): string {
       "g"
     ),
     "$1«<span class=\"dialogue-theos\">$2</span>»"
+  );
+  // Kheym : « Le fournisseur de café a changé ? » (explicite, au cas où apostrophe en &#39;)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Le fournisseur de café a changé[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-theos\">$1</span>»"
   );
 
   // Madaea : réplique « Les filles dorment encore. »
@@ -104,6 +113,274 @@ function attributeDialogueByContext(html: string): string {
       "g"
     ),
     "«<span class=\"dialogue-medecin\">$1</span>»"
+  );
+
+  // Voyante (La Mystique) — violet
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Votre fille n[^<]*pas comme les autres[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-voyante\">$1</span>»"
+  );
+  // Voyante : dialogue jusqu'à la fermeture des guillemets (peut contenir </p><p>)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([\\s\\S]*?Vous, vous êtes différent[\\s\\S]*?)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-voyante\">$1</span>»"
+  );
+  // Voyante : dialogue jusqu'à la fermeture (peut contenir </p><p>)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([\\s\\S]*?Vous allez la voir mourir[\\s\\S]*?)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-voyante\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([\\s\\S]*?Ne vous y attachez pas trop[\\s\\S]*?)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-voyante\">$1</span>»"
+  );
+
+  // Ayshel — « Tu crois que c'est le Un qui fait bouger Elshya comme ça ? » (la fille, pas la mère)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Tu crois que c'est le Un qui fait bouger Elshya[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-ayshel\">$1</span>»"
+  );
+
+  // Elhsya — cri « En, en'pouveh… » (fille malade)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*En, en[^<]*pouveh[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-elhsya\">$1</span>»"
+  );
+
+  // Vieil homme / juge / autre (avant Dracuse pour que "Commis Kheym, combien..." soit autre)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*L'avez-vous[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Combien y en a-t-il[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Commis Kheym, combien en avez-vous trouvé[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Vous ne pouvez pas vous détourner de votre Destin[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Adjugé[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Vous n'avez rien vu[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Tu seras l'épée du Un[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Une carabine ou une épée[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-autre\">$1</span>»"
+  );
+
+  // Dracuse — dialogues explicites (couleur sombre)
+  const dracusePhrases = [
+    "J'ai contacté notre indic",
+    "Si la Mesure est compromise",
+    "Cela pourrait être les deux",
+    "Monsieur Corlion, ravi",
+    "Monsieur Corlion, je vous remercie",
+    "Il ne s'agit pas de cela",
+    "Vous me semblez bien catégorique",
+    "Tu en verras d'autres",
+    "Il a peut-être raison finalement",
+    "Ce n'est pas cela",
+    "Oui, c'est une personne",
+    "C'est parfaitement cela",
+    "Et laquelle",
+    "Je ne sais pas encore",
+    "C'est elle !",
+    "Ma chère, je vous présente",
+    "Ne referme pas cette porte",
+    "Les Persécuteurs, Theos",
+    "Ils ont encore tué",
+  ];
+  for (const phrase of dracusePhrases) {
+    const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(
+      new RegExp(
+        `«<span class="dialogue-inline">([^<]*${escaped}[^<]*)</span>»`,
+        "g"
+      ),
+      "«<span class=\"dialogue-dracuse\">$1</span>»"
+    );
+  }
+
+  // Corlion — prédicateur (or/ambre)
+  const corlionPhrases = [
+    "Messieurs Dracuse et Kheym",
+    "Si vous voulez bien me suivre",
+    "Si j'étais vous, j'éviterais",
+    "Monsieur Dracuse, lui répondit",
+    "Ma parole, s'indigna le prédicateur",
+    "C'est parce que nous avions",
+    "Bien sûr que non",
+    "Le procès a déjà eut lieu",
+    "D'ailleurs, poursuivit Corlion",
+    "Je ne répondrais pas",
+    "N'importe quoi",
+    "Assez ! je vais vous demander de partir",
+    "Parfois, il faut savoir faire des sacrifices",
+  ];
+  for (const phrase of corlionPhrases) {
+    const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(
+      new RegExp(
+        `«<span class="dialogue-inline">([^<]*${escaped}[^<]*)</span>»`,
+        "g"
+      ),
+      "«<span class=\"dialogue-corlion\">$1</span>»"
+    );
+  }
+
+  // Kheym/Theos — répliques spécifiques pour éviter d'être écrasées par Dracuse/Corlion
+  const kheymSpecificPhrases = [
+    "Il n'a rien à faire là",
+    "Il n'en existe pas",
+    "La victime était un archiviste",
+    "Je vous en prie, ne faites pas de déduction",
+    "Il nous faut interroger Corlion",
+    "Ne restons pas là",
+    "C'est une Fable !",
+    "Le mal \\?",
+    "Avait-il dénaturé",
+    "Avez-vous cherché à mettre un terme",
+    "Avez-vous cherché à mettre fin",
+    "Dites-moi, ce vase Hredonien",
+    "C'est tout ce que j'avais besoin d'entendre",
+    "Qu'est ce que tu fais là, Dracuse",
+    "Tu te paies ma tête",
+    "Cet homme, le Vicomte Corlion",
+    "Celui-ci est pire",
+    "Ah oui \\? Cela nous ressemble-t-il",
+    "Tu as peur que l'on nous observe",
+    "Tu veux me présenter quelqu'un",
+    "Reprenons depuis le début",
+    "Nous n'avons qu'à suivre une autre piste",
+    "C'est elle \\?",
+    "Yara, quelle belle surprise",
+    "Toujours aussi polie",
+    "De toutes les vipères",
+    "Comment le pourrais-je",
+    "Je ne suis que l'outil du Un",
+    "Maintenant Yara tu vas être gentille",
+    "Me\\.\\.\\. Tuer \\?",
+    "Dracuse\\.",
+    "Si ce n'est pas moi qui me charge",
+    "Bien que je sois le seul à pouvoir",
+    "La prochaine fois qu'ils m'enverront",
+    "Je pense que nous en resterons là",
+    "Je comprends\\. Lui répondit-il",
+    "Je vous écoute",
+    "Non messieurs, nous",
+    "Monsieur Dracuse",
+  ];
+  for (const phrase of kheymSpecificPhrases) {
+    out = out.replace(
+      new RegExp(
+        `«<span class="dialogue-inline">([^<]*${phrase}[^<]*)</span>»`,
+        "g"
+      ),
+      "«<span class=\"dialogue-theos\">$1</span>»"
+    );
+  }
+
+  // Saiyara/Yara — Conjuratrice (magenta)
+  const saiYaraPhrases = [
+    "Pas un geste, monsieur Kheym",
+    "Mettez vos mains en évidence",
+    "Ne m'appelle plus comme ça",
+    "Pour s'adresser à un homme",
+    "Ne rend pas les choses plus difficile",
+    "Tu n'avais qu'un seul job",
+    "Tu ne saisis toujours pas",
+    "Te tuer, toi",
+    "Le Concile m'envoie",
+    "La prochaine fois qu'ils m'enverront, ce sera peut-être pour te tuer",
+    "Dracuse n'aura jamais une telle affaire",
+    "Bien que tu sois le seul à pouvoir être aussi facilement utilisé",
+    "Tu viens de chier partout dans le lit",
+    "Qu'est ce que vous faites là",
+    "C'est mon bureau",
+    "Quel collègue",
+    "Ça n'a pas d'importance",
+    "Je vous laisse avec votre bureau",
+  ];
+  for (const phrase of saiYaraPhrases) {
+    const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(
+      new RegExp(
+        `«<span class="dialogue-inline">([^<]*${escaped}[^<]*)</span>»`,
+        "g"
+      ),
+      "«<span class=\"dialogue-saiyara\">$1</span>»"
+    );
+  }
+
+  // Qui êtes-vous ? = Kheym (il pose la question à la jeune femme)
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*Qui êtes-vous[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-theos\">$1</span>»"
+  );
+  out = out.replace(
+    new RegExp(
+      "«<span class=\"dialogue-inline\">([^<]*C'est votre collègue[^<]*)</span>»",
+      "g"
+    ),
+    "«<span class=\"dialogue-theos\">$1</span>»"
   );
 
   // Ayshel — « Papa, c'est vrai que le Un est partout ? » (Ayshel avait posé APRÈS les guillemets)
