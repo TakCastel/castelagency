@@ -137,38 +137,40 @@ export function Testimonials() {
           ))}
         </Swiper>
 
-        {/* Pagination dots en bas des cartes */}
-        <div className="testimonials-pagination mt-4 flex justify-center gap-1" />
-
-        {/* Boutons navigation (désactivés en début/fin par Swiper via .swiper-button-disabled) */}
-        <button
-          type="button"
-          aria-label="Avis précédent"
-          className={cn(
-            "testimonials-swiper-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 -translate-x-4",
-            "flex size-9 items-center justify-center rounded-full border bg-background shadow-md",
-            "text-muted-foreground transition hover:border-primary/50 hover:text-primary",
-            "focus:outline-none focus:ring-2 focus:ring-primary/30",
-            "[&.swiper-button-disabled]:cursor-default [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:pointer-events-none",
-            "max-sm:left-1 max-sm:translate-x-0 max-sm:size-8"
-          )}
-        >
-          <ChevronLeft className="h-4 w-4 max-sm:h-3.5 max-sm:w-3.5" strokeWidth={2} />
-        </button>
-        <button
-          type="button"
-          aria-label="Avis suivant"
-          className={cn(
-            "testimonials-swiper-next absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-4",
-            "flex size-9 items-center justify-center rounded-full border bg-background shadow-md",
-            "text-muted-foreground transition hover:border-primary/50 hover:text-primary",
-            "focus:outline-none focus:ring-2 focus:ring-primary/30",
-            "[&.swiper-button-disabled]:cursor-default [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:pointer-events-none",
-            "max-sm:right-1 max-sm:translate-x-0 max-sm:size-8"
-          )}
-        >
-          <ChevronRight className="h-4 w-4 max-sm:h-3.5 max-sm:w-3.5" strokeWidth={2} />
-        </button>
+        {/* Mobile : [flèche gauche] [pagination au centre] [flèche droite]. Desktop : flèches en absolute sur les côtés, pagination en dessous */}
+        <div className="mt-4 flex items-center justify-between gap-3 max-sm:flex-row sm:block">
+          <button
+            type="button"
+            aria-label="Avis précédent"
+            className={cn(
+              "testimonials-swiper-prev z-10 shrink-0",
+              "flex size-9 items-center justify-center rounded-full border bg-background shadow-md testimonial-avatar",
+              "text-muted-foreground transition hover:border-primary/50 hover:text-primary",
+              "focus:outline-none focus:ring-2 focus:ring-primary/30",
+              "[&.swiper-button-disabled]:cursor-default [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:pointer-events-none",
+              "max-sm:size-8",
+              "sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 sm:-translate-x-4"
+            )}
+          >
+            <ChevronLeft className="h-4 w-4 max-sm:h-3.5 max-sm:w-3.5" strokeWidth={2} />
+          </button>
+          <div className="testimonials-pagination flex flex-1 justify-center gap-1 max-sm:min-w-0" />
+          <button
+            type="button"
+            aria-label="Avis suivant"
+            className={cn(
+              "testimonials-swiper-next z-10 shrink-0",
+              "flex size-9 items-center justify-center rounded-full border bg-background shadow-md testimonial-avatar",
+              "text-muted-foreground transition hover:border-primary/50 hover:text-primary",
+              "focus:outline-none focus:ring-2 focus:ring-primary/30",
+              "[&.swiper-button-disabled]:cursor-default [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:pointer-events-none",
+              "max-sm:size-8",
+              "sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-4"
+            )}
+          >
+            <ChevronRight className="h-4 w-4 max-sm:h-3.5 max-sm:w-3.5" strokeWidth={2} />
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Footer } from "@/components/landing/Footer";
 import { Navbar } from "@/components/landing/Navbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { WhatsAppFloatingCTA } from "@/components/landing/WhatsAppFloatingCTA";
 
 const outfit = Outfit({
@@ -51,12 +52,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`dark ${outfit.variable} ${comicNeue.variable}`}>
+    <html lang="fr" className={`${outfit.variable} ${comicNeue.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('studio-castel-theme');var d=document.documentElement;d.classList.remove('light','dark');d.classList.add(t==='light'?'light':'dark');})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-background font-sans text-foreground antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppFloatingCTA />
+        <ThemeProvider>
+          <Navbar />
+          <main className="pt-20 lg:pt-24">{children}</main>
+          <Footer />
+          <WhatsAppFloatingCTA />
+        </ThemeProvider>
       </body>
     </html>
   );

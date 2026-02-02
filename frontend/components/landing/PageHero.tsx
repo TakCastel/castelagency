@@ -33,9 +33,10 @@ const MIN_HEIGHT_CLASS = {
   tall: "min-h-[75vh]",
 } as const;
 
+/** Padding-top pour que le titre soit sous le header : section remonte sous le header (-mt-40 / -mt-48), contenu pt-40/pt-48. */
 const CONTENT_PADDING_CLASS = {
-  default: "pb-12 pt-12 md:pb-16 md:pt-16",
-  studio: "pb-16 pt-12 md:pb-20 md:pt-16",
+  default: "pb-12 pt-40 md:pb-16 md:pt-48",
+  studio: "pb-16 pt-40 md:pb-20 md:pt-48",
 } as const;
 
 /** Vitesse du parallax : le contenu monte plus vite que le scroll (multiplicateur). */
@@ -81,7 +82,7 @@ export function PageHero({
   return (
     <section
       ref={sectionRef}
-      className={`relative -mt-20 flex flex-col justify-end overflow-hidden md:-mt-24 ${MIN_HEIGHT_CLASS[minHeight]}`}
+      className={`relative z-0 -mt-40 flex flex-col justify-end overflow-hidden md:-mt-48 ${MIN_HEIGHT_CLASS[minHeight]}`}
       aria-label={ariaLabel}
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -106,16 +107,8 @@ export function PageHero({
               ? false
               : { opacity: 0, y: 24 }
           }
-          animate={
-            reduceScrollMotion
-              ? undefined
-              : { opacity: 1, y: 0 }
-          }
-          transition={
-            reduceScrollMotion
-              ? undefined
-              : { duration: 0.5, ease: "easeOut" }
-          }
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           {topLine}
           <h1

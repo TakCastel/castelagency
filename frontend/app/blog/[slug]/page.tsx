@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
+import { HeroCardPageLayout } from "@/components/landing/HeroCardPageLayout";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/landing/AnimatedSection";
 import { Separator } from "@/components/ui/separator";
@@ -100,30 +100,11 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      {/* Hero pleine hauteur, image seule (même style que pages services) */}
-      <section
-        className="relative -mt-20 w-full overflow-hidden md:-mt-24"
-        style={{ minHeight: "100svh" }}
-        aria-hidden
-      >
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <Image
-            src={post.image ?? "/assets/illustrations/hero-background.png"}
-            alt=""
-            fill
-            className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
-        </div>
-      </section>
-
-      <main className="relative z-10 -mt-[70vh]">
+      <HeroCardPageLayout imageSrc={post.image ?? "/assets/illustrations/hero-background.png"}>
         <article>
           {/* Carte sur l’image : en-tête + première section (style service) */}
-          <div className="container px-4 pb-12 pt-16 sm:px-6">
-            <div className="relative mx-auto max-w-2xl rounded-3xl border border-border/80 bg-background/95 px-6 py-8 shadow-xl shadow-black/20 backdrop-blur-sm sm:px-8 sm:py-10">
+          <div className="container px-4 pb-12 pt-4 sm:px-6">
+            <div className="relative mx-auto max-w-3xl rounded-xl border border-border bg-background px-6 py-8 sm:px-8 sm:py-10">
               <Link
                 href="/blog"
                 className="inline-flex items-center gap-2 text-small font-medium text-muted-foreground hover:text-foreground"
@@ -202,7 +183,7 @@ export default async function BlogPostPage({ params }: Props) {
             </section>
           </div>
         </article>
-      </main>
+      </HeroCardPageLayout>
     </>
   );
 }

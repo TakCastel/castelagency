@@ -11,6 +11,7 @@ import {
   Smartphone,
 } from "lucide-react";
 
+import { HeroCardPageLayout } from "@/components/landing/HeroCardPageLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -121,25 +122,11 @@ export default function SiteVitrinePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Image pleine largeur comme l’accueil, le contenu de l’article commence à mi-hauteur */}
-      <section className="relative -mt-20 w-full overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }} aria-hidden>
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <Image
-            src="/assets/illustrations/illu-onepage.png"
-            alt=""
-            fill
-            className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
-        </div>
-      </section>
-
-      <main className="relative z-10 -mt-[70vh]">
+      <HeroCardPageLayout imageSrc="/assets/illustrations/illu-onepage.png">
         <article>
           {/* Hero : petite card sur l’image */}
-          <div className="container px-4 pb-12 pt-16 sm:px-6">
-            <div className="relative mx-auto max-w-2xl rounded-3xl border border-border/80 bg-background/95 px-6 py-8 shadow-xl shadow-black/20 backdrop-blur-sm sm:px-8 sm:py-10">
+          <div className="container px-4 pb-12 pt-4 sm:px-6">
+            <div className="relative mx-auto max-w-3xl rounded-xl border border-border bg-background px-6 py-8 sm:px-8 sm:py-10">
               <div
                 className="absolute -top-3 right-2 z-10 w-20 origin-top-right overflow-hidden rounded-b-sm border-t-0 border-l border-r border-b border-neutral-200/80 bg-white px-2 pt-3 pb-2 sm:-top-6 sm:right-6 sm:w-32 sm:px-3.5 sm:pt-6 sm:pb-5 dark:border-neutral-600/50 dark:bg-white/95"
                 style={{
@@ -403,7 +390,7 @@ export default function SiteVitrinePage() {
         </figure>
         </div>
       </article>
-      </main>
+      </HeroCardPageLayout>
     </>
   );
 }

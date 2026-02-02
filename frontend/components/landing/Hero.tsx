@@ -138,7 +138,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative -mt-20 overflow-hidden md:-mt-24" style={{ minHeight: "100svh" }}>
+    <section className="relative -mt-40 overflow-hidden md:-mt-48" style={{ minHeight: "100svh" }}>
       <div className="pointer-events-none absolute inset-0 -z-10">
         <Image
           src="/assets/illustrations/hero-background.png"
@@ -152,8 +152,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
       </div>
 
-      {/* Contenu centré sur toute la largeur de la section (sans padding container) */}
-      <div className="absolute inset-0 flex min-h-0 items-center justify-center py-12 md:py-16">
+      {/* Contenu : en mobile pt-40 pour passer sous le header, centré en desktop */}
+      <div className="absolute inset-0 flex min-h-0 items-center justify-center pt-40 py-12 md:pt-0 md:py-16">
         <div className="w-full max-w-2xl flex flex-col items-center justify-center gap-0 text-center px-3 sm:px-6">
           {/* Bloc titre : largeur fixe centrée → ne bouge jamais */}
           {/* Titre : centrage fixe avec left 50% + translateX(-50%), chaque caractère (y compris l’espace) en cellule de largeur fixe */}

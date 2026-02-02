@@ -48,7 +48,7 @@ export function SectionIntro({
   return (
     <div
       ref={ref}
-      className={cn("relative z-10 bg-background/95 py-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm md:py-8", className)}
+      className={cn("relative z-10 py-6 md:py-8", className)}
     >
       <motion.p
         className={cn("text-small font-medium text-muted-foreground", textAlignClassName)}

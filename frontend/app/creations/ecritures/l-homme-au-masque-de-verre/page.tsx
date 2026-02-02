@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { readFile } from "fs/promises";
 import path from "path";
 
-import { Button } from "@/components/ui/button";
-import { PageHero } from "@/components/landing/PageHero";
+import { ContentPageLayout } from "@/components/landing/ContentPageLayout";
 import { BookViewer } from "@/components/landing/BookViewer";
 import { splitHtmlIntoPages } from "@/lib/book-pages";
-import { ArrowLeft } from "lucide-react";
 
 const TITLE = "L'homme au masque de verre";
 
@@ -41,27 +38,14 @@ export default async function HommeMasqueVerrePage() {
   const pages = splitHtmlIntoPages(content);
 
   return (
-    <>
-      <PageHero
-        backLink={{ href: "/creations/ecritures", label: "Retour aux écritures" }}
-        title={TITLE}
-        description="Ou la véritable histoire du Kheym. Texte intégral. — 2013"
-        ariaLabel={TITLE}
-        titleSize="small"
-      />
-
-      <main className="container mx-auto w-full px-4 py-4 sm:px-6 flex flex-col pb-12">
-        <BookViewer pages={pages} />
-
-        <div className="flex-shrink-0 flex justify-center py-4">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/creations/ecritures" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Retour aux écritures
-            </Link>
-          </Button>
-        </div>
-      </main>
-    </>
+    <ContentPageLayout
+      backLink={{ href: "/creations/ecritures", label: "Retour aux écritures" }}
+      title={TITLE}
+      description="Ou la véritable histoire du Kheym. Texte intégral. — 2013"
+      ariaLabel={TITLE}
+      titleSize="small"
+    >
+      <BookViewer pages={pages} />
+    </ContentPageLayout>
   );
 }

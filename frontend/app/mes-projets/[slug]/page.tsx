@@ -130,7 +130,7 @@ export default async function ProjectPage({ params }: Props) {
     <>
       {/* Hero : même image que la page d’accueil */}
       <section
-        className="relative -mt-20 flex min-h-[50vh] flex-col justify-end overflow-hidden md:-mt-24"
+        className="relative -mt-40 flex min-h-[50vh] flex-col justify-end overflow-hidden md:-mt-48"
         aria-label={project.title}
       >
         <div className="pointer-events-none absolute inset-0 -z-10">
@@ -145,7 +145,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
         </div>
 
-        <div className="container flex flex-col justify-end pb-12 pt-12 md:pb-16 md:pt-16">
+        <div className="container flex flex-col justify-end pb-12 pt-40 md:pb-16 md:pt-48">
           <Link
             href="/mes-projets"
             className="inline-flex items-center gap-2 text-small font-medium text-muted-foreground hover:text-foreground"

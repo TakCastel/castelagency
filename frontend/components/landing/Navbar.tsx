@@ -20,6 +20,7 @@ import type { FolderKanbanIconHandle } from "@/components/ui/folder-kanban";
 import type { FeatherIconHandle } from "@/components/ui/feather";
 import type { SparklesIconHandle } from "@/components/ui/sparkles";
 import type { WrenchIconHandle } from "@/components/ui/wrench";
+import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -94,13 +95,15 @@ export function Navbar() {
     const handleScroll = () => {
       const y = getScrollY();
       const prev = lastScrollY.current;
+      const isDesktop = typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
       setAtTop(y <= TOP_THRESHOLD);
       if (y <= TOP_THRESHOLD) {
         flushSync(showHeader);
       } else if (y < prev) {
         // Scroll vers le haut : réafficher immédiatement (DOM + state)
         flushSync(showHeader);
-      } else if (y > prev + SCROLL_THRESHOLD) {
+      } else if (isDesktop && y > prev + SCROLL_THRESHOLD) {
+        // Cacher le header uniquement sur desktop au scroll vers le bas
         hideHeader();
       }
       lastScrollY.current = y;
@@ -124,15 +127,23 @@ export function Navbar() {
       }
     };
 
+    const onResize = () => {
+      if (typeof window !== "undefined" && !window.matchMedia("(min-width: 1024px)").matches) {
+        showHeader();
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("wheel", onWheel, { passive: true });
     document.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("resize", onResize);
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("scroll", onScroll);
       window.removeEventListener("wheel", onWheel);
       document.removeEventListener("wheel", onWheel);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -255,7 +266,7 @@ export function Navbar() {
               : undefined
           }
         >
-          <Button asChild size="lg" variant="outline" className="w-full touch-manipulation border-white/30 bg-white text-black hover:bg-white/90 hover:text-black">
+          <Button asChild size="lg" variant="outline" className="w-full touch-manipulation border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
             <a href="/devis" onClick={closeMenu}>
               Demander un devis <ArrowRight className="size-5" />
             </a>
@@ -275,11 +286,11 @@ export function Navbar() {
       <header
         ref={headerRef}
         className={cn(
-          "fixed left-0 right-0 top-0 z-[9999] border-b transition-[transform,background-color,border-color,border-width,backdrop-filter] duration-300 ease-out will-change-transform",
+          "fixed left-0 right-0 top-0 z-[10000] border-b transition-[transform,background-color,border-color,border-width,backdrop-filter] duration-300 ease-out will-change-transform",
           isInvisible && "-translate-y-full",
           !isInvisible && "translate-y-0",
-          isAtTop && "bg-gradient-to-b from-black/20 to-transparent border-b-0",
-          isScrollingUp && "bg-background/80 border-border backdrop-blur-md"
+          isAtTop && "border-b-0 bg-transparent",
+          !isAtTop && isScrollingUp && "bg-background/80 border-border backdrop-blur-md"
         )}
         style={isInvisible ? { transform: "translateY(-100%)" } : { transform: "translateY(0)" }}
       >
@@ -298,7 +309,7 @@ export function Navbar() {
                 key={href}
                 className={cn(
                   "inline-flex items-center gap-2.5 text-paragraphe font-medium transition-[color,transform] duration-150 active:scale-95",
-                  isActive ? "text-primary hover:text-primary" : "text-white hover:text-white/90"
+                  isActive ? "text-primary hover:text-primary" : "text-foreground hover:text-foreground/90 dark:text-white dark:hover:text-white/90"
                 )}
                 href={href}
                 title={title}
@@ -326,7 +337,7 @@ export function Navbar() {
                 onMouseEnter={() => router.prefetch(href)}
                 className={cn(
                   "rounded-md p-3 transition-[color,transform] duration-150 active:scale-95",
-                  isActive ? "text-primary hover:text-primary" : "text-white hover:bg-white/10 hover:text-white/90"
+                  isActive ? "text-primary hover:text-primary" : "text-foreground hover:bg-foreground/10 hover:text-foreground/90 dark:text-white dark:hover:bg-white/10 dark:hover:text-white/90"
                 )}
                 onClick={handleNavClickTablet(i)}
               >
@@ -337,29 +348,31 @@ export function Navbar() {
         </nav>
 
         {/* Bouton CTA : tout à droite sur desktop/tablette */}
-        <div className="ml-auto hidden items-center lg:flex">
-          <Button asChild size="lg" variant="outline" className="px-6 py-3 text-paragraphe border-white/30 bg-white text-black hover:bg-white/90 hover:text-black">
+        <div className="ml-auto hidden items-center gap-3 lg:flex">
+          <ThemeToggleButton size={22} />
+          <Button asChild size="lg" variant="outline" className="px-6 py-3 text-paragraphe border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
             <a href="/devis">
               Demander un devis <ArrowRight className="size-5" />
             </a>
           </Button>
         </div>
 
-        {/* Mobile : bouton burger (menu caché par défaut, visible au clic) */}
+        {/* Mobile : bouton burger (même hauteur que le bouton Devis = h-9) */}
         <div className="ml-auto flex items-center gap-2 lg:hidden">
-          <Button asChild size="sm" variant="outline" className="border-white/30 bg-white text-black hover:bg-white/90 hover:text-black">
+          <ThemeToggleButton className="h-9 w-9" size={20} />
+          <Button asChild size="sm" variant="outline" className="border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
             <a href="/devis">Devis</a>
           </Button>
           <button
             ref={menuButtonRef}
             type="button"
             onClick={() => (menuOpen ? closeMenu() : openMenu())}
-            className="flex size-12 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground touch-manipulation"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground touch-manipulation"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
-            {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>

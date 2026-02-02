@@ -117,13 +117,23 @@
   .book-prose ul li::before {
     content: none;
   }
+
 }
 
 @layer base {
+  /* View Transitions API : variable animée pour le masque de l’ancien thème (reste visible hors du cercle) */
+  @property --reveal-r {
+    syntax: "<length>";
+    initial-value: 0px;
+    inherits: false;
+  }
+
   /* Réserve l’espace de la scrollbar pour un centrage symétrique */
   html {
     overflow-x: hidden;
     scrollbar-gutter: stable;
+    /* View Transitions API : nommer la racine pour l’animation cercle thème */
+    view-transition-name: root;
   }
 
   :root {
@@ -148,9 +158,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    /* Couleur primaire : OKLCH */
-    --primary: 92.4% 0.12 95.746;
-    --primary-foreground: 0 0% 10%;
+    /* Couleur primaire : OKLCH (violet) */
+    --primary: 45.7% 0.24 277.023;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -197,6 +207,50 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+
+  /* Îlot thème : appliquer les variables à un sous-arbre (pour le portail de transition) */
+  .theme-light {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 45.7% 0.24 277.023;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+  }
+  .theme-dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 92.4% 0.12 95.746;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
