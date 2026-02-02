@@ -8,10 +8,10 @@ import { Palette, BookOpen } from "lucide-react";
 export const metadata: Metadata = {
   title: "Mes créations | Studio Castel",
   description:
-    "Dessins et écritures : galeries personnelles de créations. Dessins et livres.",
+    "Parfois je dessine, parfois j’écris. Galeries de créations réalisées sur mon temps libre : dessins et écritures.",
   openGraph: {
     title: "Mes créations | Studio Castel",
-    description: "Dessins et écritures : galeries de créations personnelles.",
+    description: "Créations personnelles : dessins et écritures réalisés sur mon temps libre.",
     type: "website",
     locale: "fr_FR",
   },
@@ -26,7 +26,7 @@ export default function CreationsPage() {
       <PageHero
         label="Créations"
         title="Mes créations"
-        description="Dessins et écritures : deux galeries pour découvrir une partie plus personnelle de mon travail."
+        description="Parfois je dessine, parfois j’écris. Voici quelques créations réalisées sur mon temps libre : dessins et écritures."
         ariaLabel="Mes créations"
       />
 

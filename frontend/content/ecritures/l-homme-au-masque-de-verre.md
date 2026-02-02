@@ -4,7 +4,7 @@
 
 ---
 
-> « Il m'est impossible de répondre encore à cette question. Je dois donc découvrir qui ils sont, ce qu'ils sont et ce qu'ils veulent. Leurs désirs sont-ils les même que les nôtres ? Font-ils partie du Tout ? Sont-ils Un ? Il me faut rencontrer les élites du quartier afin de le savoir. Le débat public doit être ouvert. Je vais m'empresser d'aller sur le Parvis de Scylla afin d'essayer de déterminer leur nombre et voir s'il est possible de les identifier. Il me semble avoir un atout de taille. Cet instinct que j'ai. Ces voix que j'entends, parfois, dans ma tête. Est-ce cela qu'être Lanyshtas ? Si tel est le cas, leur pouvoir est puissant, et donc dangereux. Ils peuvent renverser l'ordre. Nous devons les contrôler, les recenser. C'est ce que je vais faire. J'ai fais appelle à mes meilleurs hommes pour me protéger en cas de besoin. Une caisse et un carnet devraient faire l'affaire pour essayer de repérer ces êtres. Je vais opérer de jour, aux heures d'affluence, et essayer de cataloguer l'ensemble des kil'déens. Me voilà parti pour une nouvelle croisade dont l'issue m'est incertaine. »
+> « Il m'est impossible de répondre encore à cette question. Je dois donc découvrir qui ils sont, ce qu'ils sont et ce qu'ils veulent. Leurs désirs sont-ils les mêmes que les nôtres ? Font-ils partie du Tout ? Sont-ils Un ? Il me faut rencontrer les élites du quartier afin de le savoir. Le débat public doit être ouvert. Je vais m'empresser d'aller sur le Parvis de Scylla afin d'essayer de déterminer leur nombre et voir s'il est possible de les identifier. Il me semble avoir un atout de taille. Cet instinct que j'ai. Ces voix que j'entends, parfois, dans ma tête. Est-ce cela qu'être Lanyshtas ? Si tel est le cas, leur pouvoir est puissant, et donc dangereux. Ils peuvent renverser l'ordre. Nous devons les contrôler, les recenser. C'est ce que je vais faire. J'ai fait appel à mes meilleurs hommes pour me protéger en cas de besoin. Une caisse et un carnet devraient faire l'affaire pour essayer de repérer ces êtres. Je vais opérer de jour, aux heures d'affluence, et essayer de cataloguer l'ensemble des kil'déens. Me voilà parti pour une nouvelle croisade dont l'issue m'est incertaine. »
 
 ## L'Aube
 
@@ -14,11 +14,11 @@ Un satané rêve qui ne voulait pas quitter son esprit, malgré tout le travail 
 
 Une poussière environnante se dévoila dans les entrelacements des rayons de lumière, preuve d'une bâtisse plus vieille encore que les ancêtres qu'il avait connu.
 
-Il avait hérité de cette maison suite à la mort de ses parents, et y avait déménagé avec sa femme et ses deux filles. Cet entourage féminin avait développé chez lui un fort ressentiment patristique. Il avait voué sa vie à Scylla, il la vouerait à présent à sa famille. C'est en pensant à cette position de patriarche, de père, qu'il se tourna vers le côté de sa dulcinée. Rien.
+Il avait hérité de cette maison suite à la mort de ses parents, et y avait déménagé avec sa femme et ses deux filles. Dans l'univers du Kil'dé, où les rôles familiaux étaient codifiés, cet entourage avait renforcé chez lui un sentiment de responsabilité patriarcale. Il avait voué sa vie à Scylla, il la vouerait à présent à sa famille. C'est en pensant à cette position de patriarche, de père, qu'il se tourna vers le côté de sa dulcinée. Rien.
 
 Pas une seule forme de vie.
 
-Elle s'était sans doute réveillée avant lui avant de rejoindre les pièces du rez-de-chaussé. Ce n'était pas avec un comportement pareil qu'il réussirait à tenir son rôle de protecteur. Mais aujourd'hui, la Mesure n'avait pas besoin de lui. Aujourd'hui, c'était son jour de congé.
+Elle s'était sans doute réveillée avant lui et avait rejoint les pièces du rez-de-chaussée. Ce n'était pas avec un comportement pareil qu'il réussirait à tenir son rôle de protecteur. Mais aujourd'hui, la Mesure n'avait pas besoin de lui. Aujourd'hui, c'était son jour de congé.
 
 Il aurait voulu s'endormir une nouvelle fois pour profiter de sa matinée, mais le souvenir encore frais de son rêve étrange l'extirpa de sa torpeur matinale.
 
@@ -28,9 +28,9 @@ En tant que Commis et grâce à ses ancêtres, il avait su profiter d'une situat
 
 Il était même considéré comme un homme à la situation plutôt aisée dans son voisinage et dans le quartier de Kil'dé tout entier. Son reflet dans le miroir lui parut brumeux. Il passa une serviette pour nettoyer la glace mais rien n'y faisait. Il avait certainement les yeux encore brouillés de sa nuit. Il se passa de l'eau sur le visage, se rinça la bouche et quitta la pièce.
 
-« Ah, te voilà réveillé. Bonjour, chéri. » Sa femme, Madaea. Quelle magnifique personne. Son visage radieux, sa jeunesse extérieure et sa sagesse intérieure, son sourire inconditionnel. Il l'avait épousé pour sa simplicité d'esprit autant que pour sa beauté physique. Ce n'était pas une personne idiote, bien au contraire.
+« Ah, te voilà réveillé. Bonjour, chéri. » Sa femme, Madaea. Quelle magnifique personne. Son visage radieux, sa jeunesse et sa sagesse intérieure, son sourire inconditionnel. Il l'avait épousée pour la douceur de son caractère autant que pour sa beauté. Ce n'était pas une personne idiote, bien au contraire.
 
-Elle avait ses moments de sagacité, et restait la plupart du temps prisonnière d'un carcan sociale. On lui avait promis un avenir sans tourments, avec une situation des plus confortables. Le moins que l'on puisse dire, c'est que le Kheym était parvenu à réaliser le Destin de sa compagne. Quant au sien, c'était une autre histoire... « Mad... » Ils s'embrassèrent furtivement. « Les filles dorment encore.
+Elle avait ses moments de sagacité, mais restait la plupart du temps prisonnière du carcan social de leur monde. On lui avait promis un avenir sans tourments, avec une situation des plus confortables. Le moins que l'on puisse dire, c'est que le Kheym était parvenu à réaliser le Destin de sa compagne. Quant au sien, c'était une autre histoire... « Mad... » Ils s'embrassèrent furtivement. « Les filles dorment encore.
 
 »
 
@@ -40,7 +40,7 @@ Il ne le démontra pourtant pas sur les traits de son visage et resta le plus st
 
 Elle s'installa dans son fauteuil, une revue de presse dans les mains, et s'attela elle aussi à son petit rituel. Depuis sa chaise, le Kheym pouvait observer, à travers la vitre de la cuisine, la vie de la petite ruelle sur laquelle donnait la maison. Un homme vêtu d'un chapeau haut de forme passa rapidement, suivi d'un cavalier.
 
-Deux femmes âgés les croisèrent un peu plus loin.
+Deux femmes âgées les croisèrent un peu plus loin.
 
 « J'ai parlé à un Archiviste hier soir, à propos d'Elhsya. Cria sa femme, le sortant de sa réflexion. Il m'a dit que ses Augures n'avaient pas forcément réussi à définir sa Prédication en raison de sa maladie. On dirait qu'il va falloir faire appel à un expert du Cantatère. J'ai demandé à un docteur du concile, ils disent que l'on ne connaîtra son destin qu'une fois sa maladie diagnostiquée. Pour l'heure, on devra se contenter de ce que l'on a déjà...
 
@@ -56,11 +56,11 @@ Toujours silencieux, il enfila des vêtements de ville et s'enveloppa dans sa ve
 
 De ne pas le connaître.
 
-Oh, il le connaissait, on le lui avait dit. Mais il s'était forcé à l'oublier. Il s'en était créé dix milles autres pour ne pas le savoir se réaliser. Il marqua une pause, tourna le regard vers sa femme et l'observa. Elle lisait, sagement, tout en lui parlant des problèmes de leurs filles. Elhsya et Ayshel.
+Oh, il le connaissait, on le lui avait dit. Mais il s'était forcé à l'oublier. Il s'en était créé dix mille autres pour ne pas le savoir se réaliser. Il marqua une pause, tourna le regard vers sa femme et l'observa. Elle lisait, tout en lui parlant des problèmes de leurs filles. Elhsya et Ayshel.
 
 L'une plus jeune que l'autre de deux ans, toutes deux adolescentes ou en passe de le devenir.
 
-La première atteinte d'une paralysie progressive et d'un trouble mental la poussant à parler avec lenteur et difficulté. La seconde, capricieuse, jalouse de n'avoir eut l'amour que ses parents portèrent à sa jeune sœur. Il connaissait leurs qualités et leurs défauts par cœur, et ne pouvait s'empêcher de les aimer. Ou du moins les aimer à sa manière.
+La première atteinte d'une paralysie progressive et d'un trouble mental la poussant à parler avec lenteur et difficulté. La seconde, vive et parfois jalouse de l'attention que ses parents portaient à sa jeune sœur. Il connaissait leurs qualités et leurs défauts par cœur, et ne pouvait s'empêcher de les aimer. Ou du moins les aimer à sa manière.
 
 Car il avait un esprit tourné vers quelque chose de plus grand. Un esprit perturbé par ses rêves. Depuis toujours. Ses filles, il les sauverait. Il savait quelles étaient leurs destinés. Un ami proche le lui avait dit. La première mourrait, la seconde finirait criminelle. Ha ! Le Cantatère, si seulement il n'avait pas existé, que serait-il devenu ?
 
@@ -74,7 +74,7 @@ La nuit tombait dans le Sharss de Kil'dé. Le Kheym était passé voir un homme 
 
 Il avait ouvert la porte menant à la chambre de ses filles pour les observer dormir sereinement quelques minutes, puis avait rejoint sa salle d'eau. Le miroir était resté flou. Il était tard, la nuit était tombée depuis plusieurs minutes déjà. Sa femme dormait. Et il était là, face à son reflet. Son reflet flou.
 
-« Mais qu'est ce que... » Il aurait juré avoir entendu une voix dans sa tête. Du moins, plusieurs voix. Il aurait juré les avoir entendu. L'espace d'une seconde. Une fraction de seconde. Il avait entendu la folie, la sagesse, le bruit, le silence, le dialogue, la lutte. Des dizaines d'âmes perdues se réveiller, parler, échanger.
+« Mais qu'est ce que... » Il aurait juré avoir entendu une voix dans sa tête. Du moins, plusieurs voix. Il aurait juré les avoir entendues. L'espace d'une seconde. Une fraction de seconde. Il avait entendu la folie, la sagesse, le bruit, le silence, le dialogue, la lutte. Des dizaines d'âmes perdues se réveiller, parler, échanger.
 
 Il aurait juré avoir entendu la vie extérieure dans sa tête. Et le voilà qu'il était face à son reflet flou. Il lui était de plus en plus impossible de voir son visage dans la glace. Il observa son vieux visage brouillé dans le miroir. « Je suis vraiment fatigué. »
 
@@ -134,13 +134,13 @@ Son épaule se soulevait régulièrement, crispant les muscles de sa nuque, raid
 
 Se crispait, se raidissait, reprenait place. Se crispait, se raidissait. Reprenait place. Se tordait encore, avant de convulser l’ensemble du corps, et de revenir à l’état normal. Puis encore. Et encore. Et cela sans cesse, sans but, sans raison. Et les deux parents de rester aussi calmes et aussi fixes que le marbre. Car ils vivaient avec cela tous les jours. Tous les matins. Toutes les heures. Chaque seconde.
 
-Même lorsqu’ils n’étaient pas à côté de leur fille, ils pensaient à ses mouvements incontrôlés. Le visage du Kheym restait imperturbable. Il ne cessait de parcourir les mots qui formaient la phrase de l’affiche préventive. Lavez-vous le corps, les dents puis les mains. Comment pouvait-on penser à cela lorsqu’on vivant avec une enfant atteinte de tels symptômes. Certaines personnes avaient trouvé judicieux de le dire à tout le monde, puisqu’il s’agissait là d’un problème de santé publique.
+Même lorsqu’ils n’étaient pas à côté de leur fille, ils pensaient à ses mouvements incontrôlés. Le visage du Kheym restait imperturbable. Il ne cessait de parcourir les mots qui formaient la phrase de l’affiche préventive. Lavez-vous le corps, les dents puis les mains. Comment pouvait-on penser à cela lorsqu’on vivait avec une enfant atteinte de tels symptômes. Certaines personnes avaient trouvé judicieux de le dire à tout le monde, puisqu’il s’agissait là d’un problème de santé publique.
 
-Un problème. Même quand tout allait bien dans leurs vies, les individus étaient obligés de se créer des problèmes pour pallier à leur manque de confiance en leur destin. « Monsieur et madame Kheym ? » Le moment était enfin venu d’être reçu par le docteur. Il se présentait à eux dans les habits les plus simples qu’ils soient. Une blouse blanche cintrée à la taille, un monocle sur l’œil droit, les deux mains tenant un porte-document face à lui.
+Un problème. Même quand tout allait bien dans leurs vies, les individus étaient obligés de se créer des problèmes pour pallier leur manque de confiance en leur destin. « Monsieur et madame Kheym ? » Le moment était enfin venu d’être reçu par le docteur. Il se présentait à eux dans les habits les plus simples qu’ils soient. Une blouse blanche cintrée à la taille, un monocle sur l’œil droit, les deux mains tenant un porte-document face à lui.
 
 Il les fit entrer dans son bureau d’un geste de la main. Madaea aida sa fille à se lever et à marcher. Elle boitait fortement. Plus qu’il y a quelques jours. C’était courant de l’aider à marcher. Ils s’installèrent dans l’office du docteur. C’était encore plus sobre et froid que la salle d’attente. Les instruments de mesure auraient pu effrayer n’importe quelle âme innocente entrant pour la première fois dans cette salle glauque et morte de vie.
 
-Cette salle annonçait la maladie et évoquait la mort. Il était évident de comprendre pourquoi peu de personnes venaient ici. Le médecin prit alors la parole. « Bien, je ne vais pas passer par quatre chemins. Je dois vous l’avouer, le cas de votre fille a beaucoup intrigué mes collègues de la profession. Nous avons du faire appel à de nombreux spécialistes pour travailler sur le sujet. Hélas, je dois vous avouer qu’aucun de nous ne sait ce que votre fille a contracté.
+Cette salle annonçait la maladie et évoquait la mort. Il était évident de comprendre pourquoi peu de personnes venaient ici. Le médecin prit alors la parole. « Bien, je ne vais pas passer par quatre chemins. Je dois vous l’avouer, le cas de votre fille a beaucoup intrigué mes collègues de la profession. Nous avons dû faire appel à de nombreux spécialistes pour travailler sur le sujet. Hélas, je dois vous avouer qu’aucun de nous ne sait ce que votre fille a contracté.
 
 Il est possible que cela soit une maladie logée dans les profondeurs de son esprit ou de ses muscles. » Imposteur ! « Je comprends. Lui répondit-il. » « Nous ne voyons plus qu’une seule solution, poursuivit le médecin, pour résoudre cette étrange mystère qui entoure Elhsya. Nous y avons beaucoup réfléchi et les professionnels sont à l’unanimité d’accord pour affirmer ce que je vais vous proposer. »
 
@@ -152,11 +152,11 @@ Un mot de plus et je t’enfonce ce stylo dans le fond de ta gorge. « Je… » 
 
 Madaea attrapa la main de sa fille et baissa les yeux. Le visage du Kheym restait impassible. Il fixait le docteur et observait le moindre de ses mouvements. Ce dernier essayait de supporter son regard, mais l’intensité avec laquelle l’insistance se faisait sur ses moindres gestes le mettait dans l’inconfort. Une goutte de sueur perlait sur son front. Il avait peur de cet homme, et il avait bien raison, car le commis avait la réputation d’être un homme froid, dur et intransigeant.
 
-Il se passa au moins une bonne demi-minute avant que le commis ne prenne de nouveau la parole. L’ambiance était tendue. Il avait très bien comprit sa fille.
+Il se passa au moins une bonne demi-minute avant que le commis ne prenne de nouveau la parole. L’ambiance était tendue. Il avait très bien compris sa fille.
 
 ## Après tout
 
-Après tout, il vivait avec elle tous les soirs et l’avait vu grandir. Il avait appris à traduire chacun des sons – si l’on pouvait encore appeler cela des sons – émis par sa bouche. Il avait appris à comprendre la moindre désarticulation syllabique. La moindre intonation. Il n’avait plus besoin de la regarder pour la comprendre. Tu ne dissèqueras pas ma fille, escroc ! « Je pense que nous en resterons là. » Ils mirent trois seconde pour quitter la pièce.
+Après tout, il vivait avec elle tous les soirs et l’avait vu grandir. Il avait appris à traduire chacun des sons – si l’on pouvait encore appeler cela des sons – émis par sa bouche. Il avait appris à comprendre la moindre désarticulation syllabique. La moindre intonation. Il n’avait plus besoin de la regarder pour la comprendre. Tu ne dissèqueras pas ma fille, escroc ! « Je pense que nous en resterons là. » Ils mirent trois secondes pour quitter la pièce.
 
 Deux minutes pour sortir de la ruelle. Et une heure pour revenir chez eux.
 
@@ -180,7 +180,7 @@ Il l'observa de longues secondes. Ce bout de verre.
 
 L’Audre, cette vision sacrée, cette parole qui n’est et ne sera jamais remise en doute. Une prophétie lancée à la face des étoiles, dont l’origine et la raison resteront inconnues pour la plupart d’entre les mortels. Il s’était longtemps penché sur la question et avait parcouru les ruelles de Kil’dé dans l‘espoir de voir un signe, un message, une trace de son passage. Ce qu’il cherchait, c’était un Destin.
 
-Il venait de quitter la chambre estudiantine de la mesure, de la section ordre et loi. Rien ne ‘y avait poussé si ce n’est l’ordre établi. L’ordre, ou son père. Voilà un homme bien présent dans sa vie, qui avait tout fait pour que le destin de son fils soit pleinement accompli. « Tu seras l’épée du Un », ne cessait de lui répéter son paternel.
+Il venait de quitter la chambre estudiantine de la mesure, de la section ordre et loi. Rien ne l’y avait poussé si ce n’est l’ordre établi. L’ordre, ou son père. Voilà un homme bien présent dans sa vie, qui avait tout fait pour que le destin de son fils soit pleinement accompli. « Tu seras l’épée du Un », ne cessait de lui répéter son paternel.
 
 Alors que tout ce que voulait le Kheym, c’était s’amuser à tirer à la carabine sur des volatiles qui trouvaient refuge entre les interstices de la faille. « Une carabine ou une épée, l’important est d’être l’arme du Puissant » lui avait alors répondu sa mère lorsqu’il s’était dévoilé. Oui, les deux parents s’étaient montrés très autoritaires à son égard.
 
@@ -250,11 +250,11 @@ Depuis des passerelles en bois, on pouvait avoir une vue d’ensemble sur toute 
 
 Là, en plein milieu, sans que rien n’ai put justifier une telle présence. D’ailleurs, elle faisait tache avec le reste des éléments du décor. C’était une simple bouteille, sans véritable ornement ni autre signe distinctif. Dracuse, lui, se pencha au dessus d’elle, aussi intrigué qu’un chat le serait avec un bout de ficelle, et leva la main pour toucher le vase.
 
-Chose qui ne plu pas nécessairement à l’hôte.
+Chose qui ne plut pas nécessairement à l’hôte.
 
 « Si j’étais vous, j’éviterais de toucher (Dracuse se ravisa aussitôt). Il s’agit d’un vase de Hredonien, une œuvre aussi rarissime qu’unique. Pour faire simple, c’est du verre pur. Rien que le fait de poser son regard sur cet objet nous donne envie de le toucher. Et pourtant, alors même qu’aucune pression n’est faite, si votre doigt entre en contact avec cet objet, les microfibres de verre vous coupent instantanément la peau. L’employé qui l’a installé en a encore des cicatrices. »
 
-Le Kheym ne comprenait pas forcément tout de la signification de cet objet ni même de l’utilité de l’avoir dans son salon, mais poursuivi la marche pour arriver dans le salon. Les trois hommes s’installèrent les uns face aux autres. Les sièges avaient été préparés à l’avance, et chaque protagoniste était équidistant aux deux autres. Corlion attendit la première question, sagement.
+Le Kheym ne comprenait pas forcément tout de la signification de cet objet ni même de l’utilité de l’avoir dans son salon, mais poursuivit la marche pour arriver dans le salon. Les trois hommes s’installèrent les uns face aux autres. Les sièges avaient été préparés à l’avance, et chaque protagoniste était équidistant aux deux autres. Corlion attendit la première question, sagement.
 
 Il semblait tout disposé à répondre, mais Kheym sentait déjà le malaise, car Dracuse était là pour avoir les réponses qui arrangeraient sa théorie. D’ailleurs, c’est lui qui commençait déjà à poser la conversation. « - Monsieur Corlion, je vous remercie d’avoir accepté de nous recevoir. Aussi je dois vous dire que nous sommes ici en tant que simples adjoints. Nous voudrions… Eclaircir l’affaire de l’archiviste.
 
@@ -264,19 +264,19 @@ Je comprends que vous soyez frustrés que l’on vous ait retiré l’affaire pe
 
 Voyez-vous, nous avons condamné un membre du réseau des Persécuteurs, il ne nous reste qu’à trouver la tête pensante. Vous étiez un proche de la victime et aviez partagé de nombreux écrits. Y a-t-il quelqu’un, dans la Mesure, qui aurait cherché à vous faire du mal. A lui comme à vous, j’entends. - Ma parole, s’indigna le prédicateur, vous insinuez de bien sérieuses choses ici. La gravité de votre accusation me met mal à l’aise.
 
-Si vous pensez un seul instant qu’il s’agisse là d’un complot visant à faire taire nos travaux, vous vous trompez. Il n’y a jamais eut de telle chose et cela n’est pas prêt d’arriver. Les archivistes sont tout autant respectés que les prédicateurs. Si eux sont proches de la population plutôt que nous, cela peut les amener à ce genre de… déconvenues. Voilà tout. - C’est une Fable ! Le Kheym toisa du regard Corlion tout en prononçant ces mots.
+Si vous pensez un seul instant qu’il s’agisse là d’un complot visant à faire taire nos travaux, vous vous trompez. Il n’y a jamais eu de telle chose et cela n’est pas prêt d’arriver. Les archivistes sont tout autant respectés que les prédicateurs. Si eux sont proches de la population plutôt que nous, cela peut les amener à ce genre de… déconvenues. Voilà tout. - C’est une Fable ! Le Kheym toisa du regard Corlion tout en prononçant ces mots.
 
 Les précepteurs parlent aux archivistes, qui eux parlent à la population. Ceci est une fable. Les archivistes détournent certains récits. Vous vous entendiez bien avec la victime, et pourtant, vous vous gardiez d’afficher votre proximité à la vue des autres. Pourquoi vous cacher publiquement ? » Le vieil homme se montra bourru, il avait nié de la tête tout au long et se mit à vociférer : « - C’est parce que nous avions des relations purement professionnelles, monsieur Kheym,.
 
-Il se peut que parfois nous avions eut des désaccords, mais je ne vois pas où est le mal ! - Le mal ? Le mal est dans l’exercice même de votre double jeu. D’abord, vous êtes ami avec lui. Ensuite, vous vous montrez proches spirituellement. Alors, et alors seulement, vos proches et le cercle privé vous savent suffisamment familiers pour qu’aucune trace noire ne vienne entacher cette relation.
+Il se peut que parfois nous avions eu des désaccords, mais je ne vois pas où est le mal ! - Le mal ? Le mal est dans l’exercice même de votre double jeu. D’abord, vous êtes ami avec lui. Ensuite, vous vous montrez proches spirituellement. Alors, et alors seulement, vos proches et le cercle privé vous savent suffisamment familiers pour qu’aucune trace noire ne vienne entacher cette relation.
 
 Pourtant, lors du procès, il a bien été démontré que cet archiviste avait un caractère décalé, et se permettait quelques… retouches, dirons-nous. Il n’était pas tout blanc. Il n’était pas… bon. Et vous étiez d’accord avec lui ? - Bien sûr que non. A plusieurs reprises je lui ai fait comprendre qu’il jouait un jeu dangereux. Il subissait des pressions, c’est sûr, mais de la part du bas, du réseau des Persécuteurs, pas du haut.
 
-Je vous l’ai dit, je veux bien répondre à vos questions, mais ne vous permet pas de remettre en cause une décision de justice. Je vous conseil d’arrêter de vous troubler l’esprit et d’aller célébrer la victoire avec vos collègues. Une famille de criminels a été arrêtée, voilà tout ! » L’atmosphère s’alourdissait, le Kheym poussait cet homme dans ses retranchements, tandis que Dracuse jalousait de ne pas pouvoir attirer l’attention sur lui et ses propres questions.
+Je vous l’ai dit, je veux bien répondre à vos questions, mais ne vous permet pas de remettre en cause une décision de justice. Je vous conseille d’arrêter de vous troubler l’esprit et d’aller célébrer la victoire avec vos collègues. Une famille de criminels a été arrêtée, voilà tout ! » L’atmosphère s’alourdissait, le Kheym poussait cet homme dans ses retranchements, tandis que Dracuse jalousait de ne pas pouvoir attirer l’attention sur lui et ses propres questions.
 
 Ce dernier se mit à regarder son collègue, il comprenait qu’il avait perdu tout contrôle de la situation, et que l’adjoint Kheym s’était mis en tête d’aller bien plus loin encore. Malgré cela, il poursuivait sa prise de note, car il entendait des choses intéressantes néanmoins. « - Vous me semblez bien catégorique. Il a pourtant été démontré que l’archiviste avait tenté de dénaturer vos propos, et que vous vous étiez violemment bagarré lors d’un rite déique.
 
-Et cela trois jours avant son assassinat. Avait-il dépassé la ligne ? - Le procès a déjà eut lieu ! » L’homme montrait des signes d’impatience, tandis que Kheym restait imperturbable. Il avait croisé les jambes et, pendant que son collègue prenait des notes, jouait avec les poils de son bouc naissant, pour montrer qu’il était en train de réfléchir tranquillement, aussi sagement qu'un maître penseur.
+Et cela trois jours avant son assassinat. Avait-il dépassé la ligne ? - Le procès a déjà eu lieu ! » L’homme montrait des signes d’impatience, tandis que Kheym restait imperturbable. Il avait croisé les jambes et, pendant que son collègue prenait des notes, jouait avec les poils de son bouc naissant, pour montrer qu’il était en train de réfléchir tranquillement, aussi sagement qu'un maître penseur.
 
 Sa victime vacillait et était sur le point de tomber, mais ce n'était pas encore le moment, il fallait poser encore quelques questions gênantes et user d'insinuations insultantes.Mais voilà que le bougre reprenait la parole : « - D’ailleurs, poursuivit Corlion, si l’on a jugé bon de ne pas m’interroger, c’était bien pour une raison. - Quelles divergences cachiez-vous ? - L'interprétation des destinées. C'était un question réponse ?
 
@@ -312,7 +312,7 @@ Les deux hommes étaient accoudés au comptoir, chacun tenant un verre de Mélam
 
 Il est clair que c'était l'endroit rêvé pour parler d'histoire, de philosophie et autres sujets passionnants, mais les deux hommes n'étaient hélas pas là pour ces tergiversations ce soir. Le Kheym eut le premier mot : « - Cet homme, le Vicomte Corlion, ce... Prédicateur auto-attitré... Il me dégoûte. - Tu en verras d'autres, ce n'est pas le premier corrompu que l'on rencontrera. - Celui-ci est pire. J'ai l'impression qu'il y a quelque chose de terrible caché derrière cette affaire.
 
-- Il a peut-être raison finalement. Peut-être devrions-nous abandonner ? - Ah oui ? Cela nous ressemble-t-il ? (Ils rirent) - Non, bien sûr que non... » Dracuse fut prit d'une nouvelle frénésie de curiosité. Il passa son regard par dessus les épaules du Kheym, avant de se retourner à 180 degrés et de scruter un horizon inexistant dans une pièces enfermée entre quatre murs.
+- Il a peut-être raison finalement. Peut-être devrions-nous abandonner ? - Ah oui ? Cela nous ressemble-t-il ? (Ils rirent) - Non, bien sûr que non... » Dracuse fut pris d'une nouvelle frénésie de curiosité. Il passa son regard par dessus les épaules du Kheym, avant de se retourner à 180 degrés et de scruter un horizon inexistant dans une pièces enfermée entre quatre murs.
 
 Il fut même surpris par son collègue à se soulever légèrement de son siège, le forçant à effectuer une courbette maladroite, presque ridicule. Le Kheym prit une gorgée de son verre et le fit vaciller entre son index et son pouce. L'un de ses sourcils se leva et il regarda, à son tour, les environs. Il regardait cependant avec moins d'enthousiasme et un entrain fortement imbibé d'alcool mélangée à de la paresse. « - Tu as peur que l'on nous observe ? - Ce n'est pas cela...
 
@@ -324,7 +324,7 @@ Il fallait passer au dessus, et poursuivre sur ce pourquoi ils existaient. Ils �
 
 Puis, dit-il en martelant ses phrases de son verre, quelques jours plus tard, nous retrouvons le cadavre de l'Archiviste dans les ruelles de Kil'dé. Il se trouve que c'est le Gang des Persécuteurs qui a opéré, et l'assassin est retrouvé, jugé, puis finalement condamné. - C'est parfaitement cela. Corlion est derrière tout cela, il a voulu se débarrasser d'un rival. Mais comment le prouver ? Maintenant que nous avons fait irruption dans sa villa devant tout le monde, nous serons surveillés.
 
-Pire encore, traqués ! - Nous n'avons qu'à suivre une autre piste. - Et laquelle ? - Je ne sais pas encore... » La porte du bar s'ouvrit, et une femme entra. Le Kheym la remarqua, elle était blonde, enveloppé dans une robe rappelant les jasmins des jardins de Kil'dé. Elle se mouvait de manière svelte et gracieuse, et rejoignit le bar avec une finesse des plus félines. Il pointa du menton sa direction, ponctuant son geste d'un : « C’est elle ? »
+Pire encore, traqués ! - Nous n'avons qu'à suivre une autre piste. - Et laquelle ? - Je ne sais pas encore... » La porte du bar s'ouvrit, et une femme entra. Le Kheym la remarqua, elle était blonde, enveloppée dans une robe rappelant les jasmins des jardins de Kil'dé. Elle se mouvait de manière svelte et gracieuse, et rejoignit le bar avec une finesse des plus félines. Il pointa du menton sa direction, ponctuant son geste d'un : « C’est elle ? »
 
 L'autre nia de la tête et, à son tour, trempa ses lèvres dans son alcool. Quels ivrognes, à les voir là ils profitaient de la vie comme s'ils en avaient le droit. Le Kheym écouta d'une oreille indiscrète la conversation sur la table derrière eux. Cela parlait d'une aura, de pouvoirs spéciaux et autres bizarreries. Trois individus discutaient pour savoir duquel des compères avait raison.
 
@@ -386,7 +386,7 @@ Elle posait la main gauche sur sa hanche et avait courbé son corps dans le sens
 
 Puisque tout doit passer par les voies officieuses, ils font appel aux plus silencieux des membres de cette merveilleuse famille d'hypocrites. Alors crache le morceau qu'on en finisse, j'ai un rendez-vous galant ce soir et je ne voudrais pas le rater à cause de toi. » Il fit mine de ne pas entendre la dernière remarque et poursuivit : « Ils sont craintifs. Il est plus difficile de les contacter que de parler avec un mafieux des tréfonds. J'ai pu rentrer en contact avec l'un d'entre eux.
 
-Il m'a assuré que je pourrais en rencontrer d'autres dès demain. Ce qui veut dire deux choses. La première, que je vais pouvoir établir un réseau. La seconde, qu'ils ne sont pas aussi insaisissables qu'il n'y paraît. J'ai quelques noms mais je ne peux encore en être sûr. Une liste définitive d'approximativement cinq membres pourrait leur être fournie dans la fin du mois. » Elle cracha par terre. Ah, c'est vieilles habitudes du ghetto dans lequel elle avait grandit.
+Il m'a assuré que je pourrais en rencontrer d'autres dès demain. Ce qui veut dire deux choses. La première, que je vais pouvoir établir un réseau. La seconde, qu'ils ne sont pas aussi insaisissables qu'il n'y paraît. J'ai quelques noms mais je ne peux encore en être sûr. Une liste définitive d'approximativement cinq membres pourrait leur être fournie dans la fin du mois. » Elle cracha par terre. Ah, c'étaient de vieilles habitudes du ghetto dans lequel elle avait grandi.
 
 Et ça, pour grandir, elle en avait pris du galon. La voilà à portée de son canon, dans une tenue des plus rigides qu'il soit, à se dandiner de droite à gauche, tantôt se rapprochant, tantôt s'arrêtant. Elle arriva à portée de son arme mais ne fit rien pour la lui prendre, ce qu'il interpréta comme une capitulation. Il baissa son arme, et les deux êtres se trouvèrent bientôt à moins d'un mètre de distance. Elle lui susurrait presque à son oreille. « Key...
 
@@ -394,7 +394,7 @@ Ce n'est pas pour la fin du mois qu'ils veulent cette liste. C'est pour la fin d
 
 Elle marqua un point de latence, un sourire amusé sur ses lèvres pulpeuses qui ne cessaient de se rapprocher. Imaginez-vous, le Kheym au poste de surveillance des frontières. C'est l'émeute assurée. Tu as déjà presque provoqué une révolte sur le Parvis l'autre jour... Mais dis-moi, beau gaillard miteux... Pourquoi tiens-tu tant à cette affaire ? »
 
-Leurs visages n'étaient qu'à une cinquantaine de centimètre l'un l'autre. Il gardait une expression de marbre tandis qu'elle se mordait la lèvre inférieure. Son regard de jade lui implorait le coït et ses pommettes l’incitaient à y frotter ses mains pour les engloutir à l'arrière de ses oreilles, dans sa nuque... Pour l'embrasser. Tendrement. Comme au bon vieux temps. « Dracuse. » Elle se figea, se transforma en une boule de glace.
+Leurs visages n'étaient qu'à une cinquantaine de centimètres l'un l'autre. Il gardait une expression de marbre tandis qu'elle se mordait la lèvre inférieure. Son regard de jade croisa le sien avec une intensité qui le déstabilisa ; ses pommettes l’incitaient à lui caresser le visage, à l'embrasser. Tendrement. Comme au bon vieux temps. « Dracuse. » Elle se figea, se transforma en une boule de glace.
 
 Disparus, toute sa sensualité, son érotisme et son pouvoir séducteur. Il n'y avait de place à présent que pour des sourcils interrogateurs, une curiosité et une angoisse démesurée. Elle fit quasiment un pas en arrière avant de sentir que le Kheym lui rendait son arme. « Si ce n'est pas moi qui me charge de cette affaire, Dracuse n'hésitera pas à demander la relève. Il passerait alors Commis. Mais ses méthodes sont bien moins amicales que les miennes.
 
@@ -402,11 +402,11 @@ On me connaît drastique et stricte, lui est bien pire, tu le sais. Tu as déjà
 
 D'ailleurs, il n'y avait que trois personnes au courant de l'entière histoire : l'intéressé et les deux protagonistes. Ses yeux virevoltèrent de droite à gauche, se focalisant ou bien sur l’œil droit, ou bien sur l’œil gauche du commis. Elle eut un petit sursaut en trébuchant sur un pavé et laissa pendre la bandoulière de son arme. Son regard se brouilla dans un masque de verre. Un léger mouvement de recul de la tête, puis elle put enfin arracher quelques syllabes.
 
-Elle qui aimait mordre et parler se retrouvait sans dent et sans langue : « - Dracuse n'aura jamais une telle affaire dans son bureau. Il n'en a ni la carrure ni les épaules. Ils trouveront certainement un autre Commis. Bien que... - Bien que je sois le seul à pouvoir agir avec une telle liberté ? - Bien que tu sois le seul à pouvoir être aussi facilement utilisé. » Silence. Elle n'avait pas tord sur ce coup là. Il termina : « La prochaine fois qu'ils t'enverront, j'aurais cette liste. »
+Elle qui aimait mordre et parler se retrouvait sans dent et sans langue : « - Dracuse n'aura jamais une telle affaire dans son bureau. Il n'en a ni la carrure ni les épaules. Ils trouveront certainement un autre Commis. Bien que... - Bien que je sois le seul à pouvoir agir avec une telle liberté ? - Bien que tu sois le seul à pouvoir être aussi facilement utilisé. » Silence. Elle n'avait pas tort sur ce coup-là. Il termina : « La prochaine fois qu'ils t'enverront, j'aurai cette liste. »
 
 Elle le corrigea : « La prochaine fois qu'ils m'enverront, ce sera peut-être pour te tuer. » Les Conjurateurs avaient cette réputation de forcer les choses à se dérouler comme ils le souhaitaient. Quitte à forcer, quelquefois, la mort d'individus aux connaissances un peu trop vastes sur les réseaux de corruption à grande échelle.
 
-Pas de chance pour le commis, lui qui avait enquêté sur l'une des plus grandes affaires de corruption des dernières années, et avait découvert de tristes réalités sur les pouvoirs et la cupidité que pouvait causer l'argent dans certains cœurs. Pas de chance pour lui qui avait choisit de se taire et servir plutôt que de le dire et mourir.
+Pas de chance pour le commis, lui qui avait enquêté sur l'une des plus grandes affaires de corruption des dernières années, et avait découvert de tristes réalités sur les pouvoirs et la cupidité que pouvait causer l'argent dans certains cœurs. Pas de chance pour lui qui avait choisi de se taire et servir plutôt que de le dire et mourir.
 
 ## La Liste
 
@@ -416,11 +416,11 @@ Il fit quelques pas de plus et arriva au niveau de la statue de cette jeune fill
 
 Rien ne pouvait l'arrêter maintenant. A sa main, un papier filamenteux, aussi fin que la soie, chiffonné par des doigts épais, était tenu en otage. A présent, ses pas n'étaient plus des tambourinements mais de véritables mesures de rythme. Battements incessant, réguliers et conquérants. Ils marquaient le temps et taisaient le silence d'un bourdonnement incessant de l'écho. Les sabots de ses bottes meurtrissaient le pavé comme un animal mettrait en pagaille un jardin de fleurs.
 
-« L'avez-vous ? » Au loin, la voix d'un vieil homme se faisait entendre. Il était si tard dans la nuit que personne n'oserait entrer dans les locaux. Personne, d'ailleurs, ne le pourrait, car les lieux sacrés étaient fermés au publique. L'homme pouvait donc crier aussi fort qu'il le voulait. Mais de crier, il marquait son impatience, qui n'eut d'effet que d'énerver encore plus le Commis.
+« L'avez-vous ? » Au loin, la voix d'un vieil homme se faisait entendre. Il était si tard dans la nuit que personne n'oserait entrer dans les locaux. Personne, d'ailleurs, ne le pourrait, car les lieux sacrés étaient fermés au public. L'homme pouvait donc crier aussi fort qu'il le voulait. Mais de crier, il marquait son impatience, qui n'eut d'effet que d'énerver encore plus le Commis.
 
-De l'énerver, ou de l'amuser, car ce dernier esquissait un large sourire en coin, tout en poursuivant sa marche forcée vers le fond de la salle. L'orgue se mit à jouer de plus belle, tandis que se dessinaient les silhouettes de nombreuses personnes. Etaient présents d'éminentes personnalités, à en juger par leurs habits. Il y avait de tout et de rien, mais surtout un homme perturbant en particulier. Il n'avait pas sa place ici. Il n'était pas sensé faire partie du plan.
+De l'énerver, ou de l'amuser, car ce dernier esquissait un large sourire en coin, tout en poursuivant sa marche forcée vers le fond de la salle. L'orgue se mit à jouer de plus belle, tandis que se dessinaient les silhouettes de nombreuses personnes. Etaient présents d'éminentes personnalités, à en juger par leurs habits. Il y avait de tout et de rien, mais surtout un homme perturbant en particulier. Il n'avait pas sa place ici. Il n'était pas censé faire partie du plan.
 
-Il n'était même pas sensé exister encore pour le Kil. Cet homme avait renié les écritures, forcé le destin et bafoué les principes de l'ordre global. Le Kheym, arrivé à hauteur de toutes ces gens, dévisagea cruellement l'intrus. Ne sortirent de sa bouche que ces mots : « Il n'a rien à faire là. »
+Il n'était même pas censé exister encore pour le Kil. Cet homme avait renié les écritures, forcé le destin et bafoué les principes de l'ordre global. Le Kheym, arrivé à hauteur de toutes ces gens, dévisagea cruellement l'intrus. Ne sortirent de sa bouche que ces mots : « Il n'a rien à faire là. »
 
 Le vieillard s'interposa entre les deux individus qui montraient des signes de rivalité. Les muscles se gonflaient, les pupilles se dilatèrent. La testostérone se répandit dans les corps des deux krolannes et s'apprêtait à officier pour déclencher le combat tant désiré entre les deux hommes. Mais la sagesse du temps, incarné par leur médiateur, empêcha cela de se produire.
 
@@ -430,7 +430,7 @@ Ils ne connaissaient que trop bien ce têtu de Kheym, qui n'en faisait qu'à sa 
 
 Un silence magistral vint s'engouffrer dans la conversation, entre les interstices du bâtiment, dans les intérieurs des robes et parures, plis et replis des habits. Jusque dans les langues, dans les cordes vocales, personne ne disait rien. L'enjeu était tel que reposait là l'avenir du Quartier. Ces fous étaient aveuglés par l'approche de leur propre mort, ils ne méritaient pas de recevoir un tel honneur que celui d'être servis par le Commis Kheym.
 
-Sévère, strict et sans coeur, mais néanmoins intègre et possédant un sens du devoir inouïe. L'honneur, pour lui, était plus que tout pour lui qui avait lutté contre les Persécuteurs. Et faire venir Beyffroi Corlion à cette visite était aussi transparent que de mettre une vitre de verre entre un homme et son reflet dans un miroir. C'était une insulte. Une révélation. Un aveu clairement envoyé à la face du Commis. Il ne l'accepterait pas, tout comme il ne l'avait pas accepté depuis le début.
+Sévère, strict et sans coeur, mais néanmoins intègre et possédant un sens du devoir inouï. L'honneur, pour lui, était plus que tout pour lui qui avait lutté contre les Persécuteurs. Et faire venir Beyffroi Corlion à cette visite était aussi transparent que de mettre une vitre de verre entre un homme et son reflet dans un miroir. C'était une insulte. Une révélation. Un aveu clairement envoyé à la face du Commis. Il ne l'accepterait pas, tout comme il ne l'avait pas accepté depuis le début.
 
 « Il n'en existe pas. » Trois ou quatre personnes, dans le fond, s'indignèrent. Pour le vieil homme à qui parlait Kheym, c'était pire que de l'indignation. De la sueur s'échappait de son crâne à une vitesse aussi fulgurante qu'on se demanda comment elle avait pu être emmagasinée ici tout ce temps sans transparaître. Ses sourcils se froissèrent en un point central, tandis que sa bouche formait des mots sans les laisser s'échapper.
 
@@ -440,7 +440,7 @@ Une preuve de son enquête avortée, de son choix de ne pas trahir les siens, le
 
 Le bruit de ses pas retentit comme les derniers battements d'un coeur meurtri. Il entendait toujours le vieil homme, derrière lui, crier et vociférer des mots entremêlés, insensés, sans syntaxe ni saveur. Il était fou, assurément. Les fous n'étaient pas de bonne compagnie, ni de bons compagnons pour le Tout. Le Kheym, s'il représentait l'ordre et la loi, se retrouvait aujourd'hui le dos à ses opposés, chaotiques et criminels. Leurs masques tombés, il n'en repartait que plus serein.
 
-« Vous ne pouvez pas vous détourner de votre Destin, monsieur Kheym ! Nous trouverons ces 321 Lanyshtas, avec ou sans votre aide ! Et quand viendra l'heure de les soumettre au jugement de la société, vous ne pourrez vous détourner de votre Destiné ! » Le Kheym, s'éloignant de plus en plus, ne répondit rien. « Vous ne pouvez pas vous détourner de votre Destin ! C'EST VOTRE ROLE !
+« Vous ne pouvez pas vous détourner de votre Destin, monsieur Kheym ! Nous trouverons ces 321 Lanyshtas, avec ou sans votre aide ! Et quand viendra l'heure de les soumettre au jugement de la société, vous ne pourrez vous détourner de votre Destin ! » Le Kheym, s'éloignant de plus en plus, ne répondit rien. « Vous ne pouvez pas vous détourner de votre Destin ! C'EST VOTRE ROLE !
 
 »
 
@@ -472,7 +472,7 @@ Comme des innocents, ils s’embrassèrent, pour la dernière fois, sous les ton
 
 Recherchant plus que tout le contact, ils s’échangèrent un long baiser, plus long que n’importe lequel d’autre ils auraient pu échanger dans leur vie. Ce fut leur renaissance, la résurrection d’une romance interdite. Un amour proscrit, non définit par les Augures. Un amour dangereux, car il trahissait autant la famille que le Sharss tout entier. Ils se retrouvèrent au fond d’un hôtel, tandis que l’orage gardait sa hargne et que le déluge déversait ses flots.
 
-Au dernier moment, en ce plus bel instant, il pensa, une fraction de seconde, à sa femme. Une pensée vite effacée par le corps physique, bel et bien réel, de Yara. Au lendemain, Yara avait disparue et, avec elle, les remords du Kheym. Seules restaient l'obscurité et la tempête.
+Au dernier moment, en ce plus bel instant, il pensa, une fraction de seconde, à sa femme. Une pensée vite effacée par le corps physique, bel et bien réel, de Yara. Au lendemain, Yara avait disparu et, avec elle, les remords du Kheym. Seules restaient l'obscurité et la tempête.
 
 ## Les Intempéries, impérissables
 
@@ -508,7 +508,7 @@ Il entre. Elle l'attend dans la pièce commune et referme son livre.
 **Theos :** « J'ai fais quelques recherches. »  
 **Madaea :** « Toujours cette histoire de Lanshata ? »  
 **Theos :** « Les Lanyshtas, oui. Et... » *(Il réfléchit)* « Je pense que cela va pouvoir me mener à quelque chose de plus concret que ce que nous propose le Kil. Je pense même être en mesure de trouver des personnes capables de la soigner. De la sauver de sa maladie. »  
-**Madaea :** « L'autre jour, elle jouait seule dans la cour. Ses camarades l'ont accostés, et lui ont jeté des pierres en la traitant de mutante. J'ai discuté avec le précepteur, nous sommes tombés d'accord pour l'emmener dans un institut plus approprié. Les jeunes grandissent, et ils écoutent ce que leurs parents leurs disent... Et avec les rumeurs sur les... Lanyshtas, c'est de pire en pire. Les gens sont tendus, là dehors. »  
+**Madaea :** « L'autre jour, elle jouait seule dans la cour. Ses camarades l'ont accostée et lui ont jeté des pierres en la traitant de mutante. J'ai discuté avec le précepteur, nous sommes tombés d'accord pour l'emmener dans un institut plus approprié. Les jeunes grandissent, et ils écoutent ce que leurs parents leur disent... Et avec les rumeurs sur les... Lanyshtas, c'est de pire en pire. Les gens sont tendus, là dehors. »  
 **Theos :** « Planter la graine du rejet dans sa descendance est un crime odieux. Quelles sont les familles responsables de cela ? »  
 **Madaea :** « Je t'en prie, ne va pas te charger d'une nouvelle quête pour punir ces gens. Ils n'ont rien fait de mal. Ils ont simplement peur et rejettent l'inconnu. Ne t'es-tu pas, toi même, déjà fait remarquer, l'autre jour, sur le Parvis ? Les temps sont durs, et je n'ose imaginer comment les autres quartiers se portent. Nous sommes tellement bien ici, dans le Kil'dé. Sous ta protection. » *(Elle le taquine du regard)*  
 **Theos :** « Je pense que les Lanyshtas ont des pouvoirs. »  

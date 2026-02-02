@@ -35,9 +35,9 @@ export default function MesProjetsPage() {
 
       <div className="container mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <SectionIntro
-          label="Réalisations"
-          title="Une sélection de projets récents."
-          description="Du site vitrine au produit avec IA, en passant par le JDR et le jeu : chaque projet est livré avec la même exigence."
+          label=""
+          title="Une sélection de projets récents"
+          description="Du site vitrine au produit SaaS, en passant par le jeu et l’expérimentation IA. Chaque projet répond à un contexte précis, des contraintes réelles et un objectif clair : être utile, lisible et robuste."
           textAlignClassName="text-center"
         />
 
