@@ -41,7 +41,7 @@ export function BioSection({ children, className }: BioSectionProps) {
           <motion.div
             className="rounded-xl border border-border bg-muted shadow-lg w-full overflow-hidden"
             style={{
-              ...(reduceScrollMotion ? {} : { x, rotate, opacity, willChange: "transform" })
+              ...(reduceScrollMotion ? { x: 0, rotate: 0, opacity: 1 } : { x, rotate, opacity, willChange: "transform" })
             }}
           >
             <Image

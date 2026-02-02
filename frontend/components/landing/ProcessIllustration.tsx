@@ -30,7 +30,7 @@ export function ProcessIllustration({ scrollTargetRef, variant = "desktop" }: Pr
       className={`relative w-[400px] shrink-0 md:w-[520px] lg:w-full ${variant === "desktop" ? "lg:min-h-[380px]" : ""}`}
       style={{
         ...(variant === "mobile" ? { aspectRatio: IMG_ASPECT } : {}),
-        ...(reduceScrollMotion ? {} : { x, rotate, opacity, willChange: "transform" })
+        ...(reduceScrollMotion ? { x: 0, rotate: 0, opacity: 1 } : { x, rotate, opacity, willChange: "transform" })
       }}
     >
       <div className="h-full w-full overflow-hidden rounded-3xl shadow-lg">

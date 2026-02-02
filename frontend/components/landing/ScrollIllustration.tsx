@@ -30,7 +30,7 @@ export function ScrollIllustration({ scrollTargetRef, variant = "desktop" }: Scr
       className={`relative w-[400px] shrink-0 md:w-[520px] lg:w-full ${variant === "desktop" ? "lg:min-h-[380px]" : ""}`}
       style={{
         ...(variant === "mobile" ? { aspectRatio: IMG_ASPECT } : {}),
-        ...(reduceScrollMotion ? {} : { x, rotate, opacity, willChange: "transform" })
+        ...(reduceScrollMotion ? { x: 0, rotate: 0, opacity: 1 } : { x, rotate, opacity, willChange: "transform" })
       }}
     >
       {/* Wrapper avec overflow-hidden uniquement pour les coins arrondis de l'image — ne rogne pas l'illustration */}

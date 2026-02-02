@@ -98,7 +98,7 @@ export function PageHero({
 
       <motion.div
         className={`container flex flex-col justify-end ${CONTENT_PADDING_CLASS[contentPadding]}`}
-        style={reduceScrollMotion ? undefined : { y: parallaxY, willChange: "transform" }}
+        style={reduceScrollMotion ? { y: 0 } : { y: parallaxY, willChange: "transform" }}
       >
         <motion.div
           initial={
