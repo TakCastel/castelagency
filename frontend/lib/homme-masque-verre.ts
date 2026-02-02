@@ -1,7 +1,6 @@
 /**
  * Contenu du récit « L'homme au masque de verre » (Syaria Recap).
- * Généré depuis public/realisations/Syaria Recap.docx.pdf via scripts/extract-book.js
- * Le contenu éditable est désormais dans content/ecritures/l-homme-au-masque-de-verre.md
+ * Source d'affichage : content/ecritures/l-homme-au-masque-de-verre.html
  */
 
 export const HOMME_MASQUE_VERRE_TITLE = "L'homme au masque de verre";
