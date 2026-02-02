@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import type { RefObject } from "react";
-import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { useReduceScrollMotion } from "@/lib/use-reduce-scroll-motion";
 
 const ILLU_SRC = "/assets/illustrations/illu-2.png";
 const IMG_ASPECT = 800 / 500;
@@ -14,15 +14,7 @@ type ProcessIllustrationProps = {
 };
 
 export function ProcessIllustration({ scrollTargetRef, variant = "desktop" }: ProcessIllustrationProps) {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
-    const onChange = () => setPrefersReducedMotion(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const reduceScrollMotion = useReduceScrollMotion();
 
   const { scrollYProgress } = useScroll({
     target: scrollTargetRef,
@@ -38,7 +30,7 @@ export function ProcessIllustration({ scrollTargetRef, variant = "desktop" }: Pr
       className={`relative w-[400px] shrink-0 md:w-[520px] lg:w-full ${variant === "desktop" ? "lg:min-h-[380px]" : ""}`}
       style={{
         ...(variant === "mobile" ? { aspectRatio: IMG_ASPECT } : {}),
-        ...(prefersReducedMotion ? {} : { x, rotate, opacity })
+        ...(reduceScrollMotion ? {} : { x, rotate, opacity, willChange: "transform" })
       }}
     >
       <div className="h-full w-full overflow-hidden rounded-3xl shadow-lg">

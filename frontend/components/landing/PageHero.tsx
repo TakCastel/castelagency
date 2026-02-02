@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { useReduceScrollMotion } from "@/lib/use-reduce-scroll-motion";
 
 export type PageHeroProps = {
   /** Petit label au-dessus du titre (ex. "Blog", "Mes créations"). Ignoré si backLink est fourni. */
@@ -52,15 +53,7 @@ export function PageHero({
   titleSize = "default",
 }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
-    const onChange = () => setPrefersReducedMotion(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const reduceScrollMotion = useReduceScrollMotion();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -105,21 +98,21 @@ export function PageHero({
 
       <motion.div
         className={`container flex flex-col justify-end ${CONTENT_PADDING_CLASS[contentPadding]}`}
-        style={prefersReducedMotion ? undefined : { y: parallaxY }}
+        style={reduceScrollMotion ? undefined : { y: parallaxY, willChange: "transform" }}
       >
         <motion.div
           initial={
-            prefersReducedMotion
+            reduceScrollMotion
               ? false
               : { opacity: 0, y: 24 }
           }
           animate={
-            prefersReducedMotion
+            reduceScrollMotion
               ? undefined
               : { opacity: 1, y: 0 }
           }
           transition={
-            prefersReducedMotion
+            reduceScrollMotion
               ? undefined
               : { duration: 0.5, ease: "easeOut" }
           }

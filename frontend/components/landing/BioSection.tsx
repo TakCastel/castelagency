@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useReduceScrollMotion } from "@/lib/use-reduce-scroll-motion";
 
 const BIO_IMAGE = "/assets/illustrations/illu-bio.png";
 
@@ -14,15 +15,7 @@ type BioSectionProps = {
 
 export function BioSection({ children, className }: BioSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
-    const onChange = () => setPrefersReducedMotion(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const reduceScrollMotion = useReduceScrollMotion();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -48,7 +41,7 @@ export function BioSection({ children, className }: BioSectionProps) {
           <motion.div
             className="rounded-xl border border-border bg-muted shadow-lg w-full overflow-hidden"
             style={{
-              ...(prefersReducedMotion ? {} : { x, rotate, opacity })
+              ...(reduceScrollMotion ? {} : { x, rotate, opacity, willChange: "transform" })
             }}
           >
             <Image
