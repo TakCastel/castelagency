@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 import { HtmlBookContent } from "@/components/landing/HtmlBookContent";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -32,6 +32,7 @@ function PaginationNav({
   className?: string;
 }) {
   const [inputValue, setInputValue] = useState(String(currentIndex + 1));
+  const inputId = useId();
 
   useEffect(() => {
     setInputValue(String(currentIndex + 1));
@@ -54,21 +55,21 @@ function PaginationNav({
       <Button
         variant="outline"
         size="default"
-        className="h-9 gap-1.5 px-3 text-sm sm:h-10 sm:px-4 sm:text-base"
+        className="h-9 gap-1.5 px-3 sm:h-10 sm:px-4"
         onClick={onPrev}
         disabled={!canPrev}
         aria-label="Page précédente"
       >
         <ChevronLeft className="h-4 w-4 shrink-0" />
-        <span className="hidden sm:inline">Précédent</span>
+        <span className="whitespace-nowrap">Précédent</span>
       </Button>
 
       <div className="flex items-center gap-2">
-        <label htmlFor="book-page-input" className="sr-only">
+        <label htmlFor={inputId} className="sr-only">
           Aller à la page
         </label>
         <input
-          id="book-page-input"
+          id={inputId}
           type="number"
           min={1}
           max={totalPages}
@@ -76,10 +77,10 @@ function PaginationNav({
           onChange={(e) => setInputValue(e.target.value)}
           onBlur={applyPage}
           onKeyDown={(e) => e.key === "Enter" && applyPage()}
-          className="h-9 w-14 rounded-md border border-input bg-background px-2 py-1.5 text-center text-sm text-foreground tabular-nums [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:[-webkit-appearance:none] [&::-webkit-outer-spin-button]:[-webkit-appearance:none] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 sm:h-10 sm:w-16"
+          className="h-9 w-14 rounded-md border border-input bg-background px-2 py-1.5 text-center text-sm font-medium text-foreground tabular-nums [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:[-webkit-appearance:none] [&::-webkit-outer-spin-button]:[-webkit-appearance:none] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background sm:h-10 sm:w-16"
           aria-label="Numéro de page"
         />
-        <span className="text-sm text-muted-foreground tabular-nums">
+        <span className="text-sm font-medium tabular-nums text-muted-foreground">
           / {totalPages}
         </span>
       </div>
@@ -87,12 +88,12 @@ function PaginationNav({
       <Button
         variant="outline"
         size="default"
-        className="h-9 gap-1.5 px-3 text-sm sm:h-10 sm:px-4 sm:text-base"
+        className="h-9 gap-1.5 px-3 sm:h-10 sm:px-4"
         onClick={onNext}
         disabled={!canNext}
         aria-label="Page suivante"
       >
-        <span className="hidden sm:inline">Suivant</span>
+        <span className="whitespace-nowrap">Suivant</span>
         <ChevronRight className="h-4 w-4 shrink-0" />
       </Button>
     </nav>
@@ -140,7 +141,7 @@ export function BookViewer({ pages }: BookViewerProps) {
           onPageChange={goToPage}
           canPrev={canPrev}
           canNext={canNext}
-          className="pb-6"
+          className="mb-6"
         />
       )}
 
@@ -166,7 +167,7 @@ export function BookViewer({ pages }: BookViewerProps) {
           onPageChange={goToPage}
           canPrev={canPrev}
           canNext={canNext}
-          className="py-6"
+          className="mt-6"
         />
       )}
     </div>

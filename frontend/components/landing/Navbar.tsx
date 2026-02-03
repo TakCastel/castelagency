@@ -32,7 +32,7 @@ const navItems = [
   { href: "/blog", label: "Blog", title: "Mon blog", Icon: FeatherIcon },
 ] as const;
 
-const SCROLL_THRESHOLD = 12; // px de scroll vers le bas pour cacher le header
+const SCROLL_THRESHOLD = 1; // px de scroll vers le bas pour cacher le header (dès le début du scroll)
 const TOP_THRESHOLD = 20;
 
 const MENU_ANIM_DURATION_MS = 320;
