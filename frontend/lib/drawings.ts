@@ -144,6 +144,24 @@ export const drawings: DrawingItem[] = [
     title: "Black Holy",
     date: 2024,
   },
+  {
+    id: "pantin",
+    src: "/assets/drawings/pantin.png",
+    alt: "Pantin drawing.",
+    width: 500,
+    height: 650,
+    title: "Pantin",
+    date: 2010,
+  },
+  {
+    id: "etude",
+    src: "/assets/drawings/etude.png",
+    alt: "Étude drawing.",
+    width: 500,
+    height: 650,
+    title: "Étude",
+    date: 2010,
+  },
 ];
 
 /** Dessins triés du plus récent au plus ancien (par date). */

@@ -149,7 +149,7 @@ export function BookViewer({ pages }: BookViewerProps) {
       <div ref={contentStartRef} className="w-full flex justify-center" aria-hidden>
         <section
           key={currentIndex}
-          className="w-full md:max-w-[210mm] md:min-w-0 rounded-xl border border-border/50 bg-card shadow-lg print:shadow-none"
+          className="w-full md:max-w-[210mm] md:min-w-0 rounded-xl border border-border/50 bg-card max-md:shadow-none md:shadow-lg print:shadow-none"
         >
           <div className="p-4 sm:p-6 md:p-8">
             <HtmlBookContent html={pageContent} />

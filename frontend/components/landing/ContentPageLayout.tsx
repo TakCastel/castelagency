@@ -21,7 +21,7 @@ export function ContentPageLayout({
     <>
       <PageHero backLink={backLink} {...heroProps} />
 
-      <main className="container mx-auto -mt-8 flex w-full max-w-6xl flex-col rounded-t-2xl bg-background px-4 pb-12 pt-8 shadow-[0_-4px_24px_rgba(0,0,0,0.08)] dark:shadow-[0_-4px_24px_rgba(0,0,0,0.35)] sm:px-6">
+      <main className="container mx-auto -mt-8 flex w-full max-w-6xl flex-col rounded-t-2xl bg-background px-4 pb-12 pt-8 max-md:shadow-none md:shadow-[0_-4px_24px_rgba(0,0,0,0.08)] md:dark:shadow-[0_-4px_24px_rgba(0,0,0,0.35)] sm:px-6">
         {children}
 
         {backLink && (

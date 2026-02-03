@@ -33,7 +33,7 @@ export function ProcessIllustration({ scrollTargetRef, variant = "desktop" }: Pr
         ...(reduceScrollMotion ? { x: 0, rotate: 0, opacity: 1 } : { x, rotate, opacity, willChange: "transform" })
       }}
     >
-      <div className="h-full w-full overflow-hidden rounded-3xl shadow-lg">
+      <div className="h-full w-full overflow-hidden rounded-3xl max-md:shadow-none md:shadow-lg">
         <Image
           src={ILLU_SRC}
           alt="Ma méthode, illustration gravure"

@@ -34,7 +34,7 @@ export function ScrollIllustration({ scrollTargetRef, variant = "desktop" }: Scr
       }}
     >
       {/* Wrapper avec overflow-hidden uniquement pour les coins arrondis de l'image — ne rogne pas l'illustration */}
-      <div className="h-full w-full overflow-hidden rounded-3xl shadow-lg">
+      <div className="h-full w-full overflow-hidden rounded-3xl max-md:shadow-none md:shadow-lg">
         <Image
           src={ILLU_SRC}
           alt="Création web en harmonie avec l'environnement, illustration gravure"
