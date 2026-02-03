@@ -190,7 +190,7 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: SUBTITLE_DELAY, duration: SUBTITLE_DURATION, ease: [0.22, 1, 0.36, 1] }}
             >
-              Création d’expériences web
+              Agence web à Avignon
           </motion.span>
 
           <motion.p
@@ -199,7 +199,7 @@ export function Hero() {
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: REST_DELAY, duration: REST_DURATION, ease: [0.22, 1, 0.36, 1] }}
           >
-            Design sur mesure, SEO, création d’applications, conception de systèmes de gamification. À Avignon et en remote.
+            Agence web Avignon : design sur mesure, SEO, création d’applications et de sites. À Avignon, en Vaucluse et en remote.
           </motion.p>
 
           <motion.div

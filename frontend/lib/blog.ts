@@ -37,6 +37,44 @@ export type BlogDetail = BlogItem & {
 
 export const blogPosts: BlogDetail[] = [
   {
+    id: "se-lancer-sur-le-web-concretiser-projet-site-internet",
+    slug: "se-lancer-sur-le-web-concretiser-projet-site-internet",
+    title: "Se lancer sur le web et concrétiser son projet de site internet",
+    excerpt:
+      "Se lancer sur le web est une étape importante pour toute activité professionnelle. Pourtant, beaucoup de projets restent bloqués à l'état d'idée. Le blocage vient rarement de la technique, mais de la difficulté à transformer une intention en projet concret.",
+    date: "2026-02-03",
+    sections: [
+      {
+        id: "idee-en-projet",
+        title: "Transformer une idée en projet web concret",
+        body: [
+          "Un projet de site internet ne commence pas par un design final ou un développement avancé. Il commence par une clarification simple. Il s’agit de comprendre à qui s’adresse le site, quel est son objectif principal et ce qu’il doit permettre de faire. Une fois ce cadre posé, le projet devient plus lisible et les décisions techniques prennent du sens.",
+          "Concrétiser un projet web passe par des étapes progressives. Le site évolue avec le temps, en fonction des usages et des retours. La première version n’a pas vocation à tout faire. Elle sert à poser une base solide sur laquelle il est possible d’améliorer, d’ajuster et d’enrichir le contenu.",
+        ],
+      },
+      {
+        id: "concevoir-structure",
+        title: "Concevoir un site internet de manière structurée",
+        body: [
+          "Créer un site web ne consiste pas uniquement à assembler des pages. Il s’agit de concevoir un produit numérique cohérent, performant et durable. Un site bien pensé dès le départ évite les refontes fréquentes et les choix techniques précipités.",
+          "Un accompagnement adapté permet de cadrer le projet, de prioriser les fonctionnalités utiles et de choisir une architecture évolutive. Cette approche permet de gagner du temps, d’éviter les erreurs courantes et de construire un site internet réellement aligné avec les objectifs de l’activité.",
+        ],
+      },
+      {
+        id: "accompagnement-avignon",
+        title: "Un accompagnement web à Avignon et en Vaucluse",
+        body: [
+          "Si vous êtes basé à Avignon, dans le Vaucluse ou en région PACA, il est possible d’échanger autour de votre projet web en présentiel ou à distance. Un premier échange permet de clarifier votre besoin, de définir vos objectifs et d’identifier les prochaines étapes. Cet accompagnement vise à transformer une idée en projet structuré et réalisable.",
+          "Se lancer sur le web ne relève pas d’un moment idéal à attendre. Cela passe par un cadrage clair, des choix cohérents et une mise en œuvre progressive. Un projet web qui démarre peut évoluer. Un projet qui reste à l’état d’idée n’avance pas.",
+        ],
+      },
+    ],
+    furtherReading: [
+      { label: "Demander un devis", url: "/devis", source: "Studio Castel" },
+      { label: "Ma méthode de travail", url: "/mode-de-fonctionnement", source: "Studio Castel" },
+    ],
+  },
+  {
     id: "agents-ia-en-ligne-reel-et-mythe",
     slug: "agents-ia-en-ligne-reel-et-mythe",
     title:

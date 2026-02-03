@@ -18,6 +18,7 @@ const nextConfig = {
       { source: "/realisations", destination: "/mes-projets", permanent: true },
       { source: "/nos-projets", destination: "/mes-projets", permanent: true },
       { source: "/nos-projets/:path*", destination: "/mes-projets/:path*", permanent: true },
+      { source: "/blog/allez-vas-y", destination: "/blog/se-lancer-sur-le-web-concretiser-projet-site-internet", permanent: true },
     ];
   },
 };

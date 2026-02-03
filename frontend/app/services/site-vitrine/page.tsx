@@ -111,7 +111,7 @@ const jsonLd = {
     geoMidpoint: { "@type": "GeoCoordinates", latitude: 43.9493, longitude: 4.8059 },
     geoRadius: "50000",
   },
-  url: "https://studiocastel.fr/services/site-vitrine",
+  url: "https://studio-castel.com/services/site-vitrine",
 };
 
 export default function SiteVitrinePage() {
@@ -150,7 +150,7 @@ export default function SiteVitrinePage() {
                   Création et refonte de site vitrine
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
-                  Un site vitrine renforce votre crédibilité, attire les bons visiteurs et les convertit en demandes. Je conçois des sites sur mesure : structure claire, design soigné, textes orientés conversion et SEO intégré dès le départ.
+                  Agence web Avignon : un site vitrine renforce votre crédibilité, attire les bons visiteurs et les convertit en demandes. Je conçois des sites sur mesure : structure claire, design soigné, textes orientés conversion et SEO intégré dès le départ.
                 </p>
                 <p className="mt-4 text-paragraphe text-muted-foreground text-pretty">
                   L’objectif est une vitrine qui valorise votre savoir-faire et qui donne envie de vous contacter.

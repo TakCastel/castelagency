@@ -22,11 +22,11 @@ const comicNeue = Comic_Neue({
 
 export const metadata: Metadata = {
   title: {
-    default: "Studio Castel, agence web à Avignon",
+    default: "Agence web Avignon | Studio Castel",
     template: "%s | Studio Castel"
   },
   description:
-    "Studio Castel, agence web à Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO, contenus et automatisations.",
+    "Agence web Avignon : Studio Castel crée et refait sites vitrines, e‑commerce et applications. UX/UI, branding, SEO, contenus et automatisations. Basé à Avignon.",
   alternates: {
     canonical: "/"
   },
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Studio Castel",
-    title: "Studio Castel, agence web à Avignon",
+    title: "Agence web Avignon | Studio Castel",
     description:
-      "Création et refonte de sites vitrines, e‑commerce et applications à Avignon. UX/UI, branding, SEO, contenus et automatisations."
+      "Agence web Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO. Studio Castel, basé à Avignon."
   },
   twitter: {
     card: "summary_large_image",
-    title: "Studio Castel, agence web à Avignon",
+    title: "Agence web Avignon | Studio Castel",
     description:
-      "Création et refonte de sites vitrines, e‑commerce et applications à Avignon. UX/UI, branding, SEO, contenus et automatisations."
+      "Agence web Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO. Studio Castel."
   }
 };
 

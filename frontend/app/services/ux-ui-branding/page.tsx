@@ -68,7 +68,7 @@ const jsonLd = {
     geoMidpoint: { "@type": "GeoCoordinates", latitude: 43.9493, longitude: 4.8059 },
     geoRadius: "50000",
   },
-  url: "https://studiocastel.fr/services/ux-ui-branding",
+  url: "https://studio-castel.com/services/ux-ui-branding",
 };
 
 export default function UxUiBrandingPage() {

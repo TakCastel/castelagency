@@ -54,7 +54,7 @@ const jsonLd = {
     geoMidpoint: { "@type": "GeoCoordinates", latitude: 43.9493, longitude: 4.8059 },
     geoRadius: "50000",
   },
-  url: "https://studiocastel.fr/services/process-ia",
+  url: "https://studio-castel.com/services/process-ia",
 };
 
 const offres = [

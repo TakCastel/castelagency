@@ -13,11 +13,11 @@ import { TechPanel } from "@/components/landing/TechPanel";
 export const metadata: Metadata = {
   title: "Le Studio",
   description:
-    "Tarik Talhaoui, product builder à Avignon. Conception de sites et d’applications sur mesure : design, front-end, back-end, SEO, accessibilité, product management. Projets à impact, éthique et expériences qui captivent.",
+    "Tarik Talhaoui, product builder et agence web Avignon. Conception de sites et d’applications sur mesure : design, front-end, back-end, SEO, accessibilité, product management. Projets à impact, éthique et expériences qui captivent.",
   openGraph: {
-    title: "Le Studio | Studio Castel",
+    title: "Le Studio | Agence web Avignon – Studio Castel",
     description:
-      "Product builder à Avignon. Sites et applications sur mesure, performance, UX et pérennité. Éthique, humain, expériences qui captivent.",
+      "Product builder et agence web à Avignon. Sites et applications sur mesure, performance, UX et pérennité. Éthique, humain, expériences qui captivent.",
     type: "website",
     locale: "fr_FR",
   },

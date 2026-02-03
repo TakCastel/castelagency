@@ -96,7 +96,7 @@ const jsonLd = {
     geoMidpoint: { "@type": "GeoCoordinates", latitude: 43.9493, longitude: 4.8059 },
     geoRadius: "50000",
   },
-  url: "https://studiocastel.fr/services/applications-sur-mesure",
+  url: "https://studio-castel.com/services/applications-sur-mesure",
 };
 
 export default function ApplicationsSurMesurePage() {
