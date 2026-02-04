@@ -11,13 +11,16 @@ import { Button } from "@/components/ui/button";
 
 const TITLE = "Studio Castel";
 
+/** Courbe cubic-bezier (ease-out) pour les animations hero. */
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
 /** Une seule animation pour tout le bloc hero (perf mobile : moins de main thread). */
 const titleVariants = {
   hidden: { opacity: 0, y: 12 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: easeOut },
   },
 };
 
@@ -25,7 +28,7 @@ const subtitleVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { delay: 0.25, duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: 0.25, duration: 0.35, ease: easeOut },
   },
 };
 
@@ -33,7 +36,7 @@ const restVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { delay: 0.45, duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: 0.45, duration: 0.4, ease: easeOut },
   },
 };
 
