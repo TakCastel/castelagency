@@ -74,6 +74,7 @@ export default function ServicesPage() {
         label="Services"
         title="Mes services"
         description="De la vitrine au e‑commerce, du design à l’IA : une offre claire pour avancer. Je m’occupe de tout, de l’idée à la mise en ligne."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mes services" }]}
         ariaLabel="Mes services"
       />
 

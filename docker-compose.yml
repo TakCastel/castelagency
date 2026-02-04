@@ -41,7 +41,9 @@ services:
     networks:
       - castelagency-network
 
-  # Service frontend (Next.js) avec watch activé
+  # Service frontend (Next.js) : watch activé via bind mount + polling (modifs reflétées sans rebuild).
+  # Si les changements ne s’appliquent pas (ex. meta description), redémarrer : docker-compose restart frontend
+  # ou recréer le cache : docker-compose up -d --force-recreate frontend
   frontend:
     build:
       context: ./frontend
@@ -55,11 +57,12 @@ services:
     environment:
       NODE_ENV: development
       NEXT_PUBLIC_DIRECTUS_URL: http://directus:8055
+      # Polling pour que le watch détecte les changements de fichiers (bind mount Docker)
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     volumes:
       - ./frontend:/app
-      - /app/.next
+      - next_cache:/app/.next
     depends_on:
       - directus
     restart: unless-stopped
@@ -69,6 +72,7 @@ services:
 
 volumes:
   postgres_data:
+  next_cache:
 
 networks:
   castelagency-network:

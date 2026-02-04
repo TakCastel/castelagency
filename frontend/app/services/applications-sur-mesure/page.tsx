@@ -20,6 +20,7 @@ import { FaReact, FaSass } from "react-icons/fa";
 import { IoLogoCapacitor } from "react-icons/io5";
 import { SiPostman, SiStrapi } from "react-icons/si";
 
+import { Breadcrumb } from "@/components/landing/Breadcrumb";
 import { HeroCardPageLayout } from "@/components/landing/HeroCardPageLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -109,7 +110,16 @@ export default function ApplicationsSurMesurePage() {
       <HeroCardPageLayout imageSrc="/assets/illustrations/illu-app.png">
         <article>
           <div className="container px-4 pb-12 pt-4 sm:px-6">
-            <div className="relative mx-auto max-w-3xl rounded-xl border border-border bg-background px-6 py-8 sm:px-8 sm:py-10">
+            <div className="mx-auto max-w-3xl">
+              <Breadcrumb
+                items={[
+                  { label: "Accueil", href: "/" },
+                  { label: "Mes services", href: "/services" },
+                  { label: "Applications sur mesure" },
+                ]}
+              />
+            </div>
+            <div className="relative mx-auto mt-4 max-w-3xl rounded-xl border border-border bg-background px-6 py-8 sm:px-8 sm:py-10">
               <div
                 className="absolute -top-3 right-2 z-10 w-20 origin-top-right overflow-hidden rounded-b-sm border-t-0 border-l border-r border-b border-neutral-200/80 bg-white px-2 pt-3 pb-2 sm:-top-6 sm:right-6 sm:w-32 sm:px-3.5 sm:pt-6 sm:pb-5 dark:border-neutral-600/50 dark:bg-white/95"
                 style={{

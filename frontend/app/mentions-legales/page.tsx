@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Mentions légales",
   description:
     "Mentions légales du site Studio Castel, agence web à Avignon.",
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/mentions-legales" },
 };
 
@@ -18,6 +18,7 @@ export default function MentionsLegalesPage() {
         label="Informations légales"
         title="Mentions légales"
         description="Informations relatives à l’éditeur et à l’hébergement du site."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mentions légales" }]}
         ariaLabel="Mentions légales"
       />
       <div className="container pb-20">

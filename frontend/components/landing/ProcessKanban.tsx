@@ -108,10 +108,18 @@ export function ProcessKanban() {
   useEffect(() => {
     const el = viewportRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setViewportWidth(el.clientWidth));
+    let rafId: number = 0;
+    const ro = new ResizeObserver(() => {
+      rafId = requestAnimationFrame(() => {
+        if (el) setViewportWidth(el.clientWidth);
+      });
+    });
     ro.observe(el);
-    setViewportWidth(el.clientWidth);
-    return () => ro.disconnect();
+    rafId = requestAnimationFrame(() => setViewportWidth(el.clientWidth));
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      ro.disconnect();
+    };
   }, []);
 
   const canvasTranslateX = useMemo(

@@ -18,6 +18,7 @@ export default function PolitiqueConfidentialitePage() {
         label="Vos données"
         title="Politique de confidentialité"
         description="Comment nous collectons, utilisons et protégeons vos données personnelles."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Politique de confidentialité" }]}
         ariaLabel="Politique de confidentialité"
       />
       <div className="container pb-20">

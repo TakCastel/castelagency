@@ -37,6 +37,7 @@ const TOP_THRESHOLD = 20;
 
 const MENU_ANIM_DURATION_MS = 320;
 const MENU_ITEM_STAGGER_MS = 80;
+const HEADER_ENTRANCE_STAGGER_MS = 50; // délai entre chaque élément de la navbar à l’entrée
 
 export function Navbar() {
   const pathname = usePathname();
@@ -45,6 +46,7 @@ export function Navbar() {
   const [menuMounted, setMenuMounted] = useState(false); // true = overlay dans le DOM (pour animation de fermeture)
   const [headerVisible, setHeaderVisible] = useState(true);
   const [atTop, setAtTop] = useState(true); // true = tout en haut, pas de blur ni border
+  const [headerWasHidden, setHeaderWasHidden] = useState(false); // true = on a déjà caché le header en scrollant vers le bas → réafficher avec border/blur au scroll up
   const lastScrollY = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -98,12 +100,14 @@ export function Navbar() {
       const isDesktop = typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
       setAtTop(y <= TOP_THRESHOLD);
       if (y <= TOP_THRESHOLD) {
+        setHeaderWasHidden(false);
         flushSync(showHeader);
       } else if (y < prev) {
         // Scroll vers le haut : réafficher immédiatement (DOM + state)
         flushSync(showHeader);
       } else if (isDesktop && y > prev + SCROLL_THRESHOLD) {
         // Cacher le header uniquement sur desktop au scroll vers le bas
+        setHeaderWasHidden(true);
         hideHeader();
       }
       lastScrollY.current = y;
@@ -277,38 +281,39 @@ export function Navbar() {
   );
 
   // 3 états : invisible (scroll bas) | scrolling up (fond + border) | at top (transparent, pas de border)
+  // border + blur uniquement quand on a déjà caché le header puis scroll up (pas quand on scroll down depuis le haut)
   const isInvisible = !headerVisible && !menuOpen;
   const isAtTop = headerVisible && atTop;
-  const isScrollingUp = headerVisible && !atTop;
+  const isScrollingUp = headerVisible && !atTop && headerWasHidden;
 
   return (
     <>
       <header
         ref={headerRef}
         className={cn(
-          "fixed left-0 right-0 top-0 z-[10000] border-b transition-[transform,background-color,border-color,border-width,backdrop-filter] duration-300 ease-out will-change-transform",
+          "fixed left-0 right-0 top-0 z-[10000] transition-[transform,background-color,backdrop-filter] duration-300 ease-out will-change-transform",
           isInvisible && "-translate-y-full",
-          !isInvisible && "translate-y-0",
-          isAtTop && "border-b-0 bg-transparent",
-          !isAtTop && isScrollingUp && "bg-background/80 border-border backdrop-blur-md"
+          (isAtTop || (headerVisible && !headerWasHidden)) && "border-b-0 bg-transparent",
+          isScrollingUp && "border-b border-border bg-background/80 backdrop-blur-md"
         )}
         style={isInvisible ? { transform: "translateY(-100%)" } : { transform: "translateY(0)" }}
       >
         <div className="container flex h-20 items-center gap-10 lg:h-24 lg:gap-12">
-        {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="Accueil" prefetch={true} onMouseEnter={() => router.prefetch("/")}>
+        {/* Logo puis nav : chaque élément apparaît l’un après l’autre */}
+        <Link href="/" className={cn("flex shrink-0 items-center gap-3", "animate-header-in")} aria-label="Accueil" prefetch={true} onMouseEnter={() => router.prefetch("/")}>
           <BrandMark className="text-foreground" title="Studio Castel" />
         </Link>
 
-        {/* Desktop (xl+) : nav complète à gauche */}
+        {/* Desktop (xl+) : chaque lien avec un délai progressif */}
         <nav className="hidden items-center gap-10 xl:flex xl:gap-12">
           {navItems.map(({ href, label, title, Icon }, i) => {
             const isActive = pathname === href;
+            const delayMs = (i + 1) * HEADER_ENTRANCE_STAGGER_MS;
             return (
               <Link
                 key={href}
                 className={cn(
-                  "inline-flex items-center gap-2.5 text-paragraphe font-medium transition-[color,transform] duration-150 active:scale-95",
+                  "animate-header-in inline-flex items-center gap-2.5 text-paragraphe font-medium transition-[color,transform] duration-150 active:scale-95",
                   isActive ? "text-primary hover:text-primary" : "text-foreground hover:text-foreground/90 dark:text-white dark:hover:text-white/90"
                 )}
                 href={href}
@@ -316,6 +321,7 @@ export function Navbar() {
                 prefetch={true}
                 onMouseEnter={() => router.prefetch(href)}
                 onClick={handleNavClickDesktop(i)}
+                style={{ animationDelay: `${delayMs}ms` }}
               >
                 <Icon ref={refsDesktop[i]} size={24} className="shrink-0 text-inherit" />
                 {label}
@@ -324,10 +330,11 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Tablette (lg à xl) : uniquement les icônes */}
+        {/* Tablette (lg à xl) : chaque icône avec un délai progressif */}
         <nav className="hidden items-center gap-8 lg:flex xl:hidden">
           {navItems.map(({ href, title, Icon }, i) => {
             const isActive = pathname === href;
+            const delayMs = (i + 1) * HEADER_ENTRANCE_STAGGER_MS;
             return (
               <Link
                 key={href}
@@ -336,10 +343,11 @@ export function Navbar() {
                 prefetch={true}
                 onMouseEnter={() => router.prefetch(href)}
                 className={cn(
-                  "rounded-md p-3 transition-[color,transform] duration-150 active:scale-95",
+                  "animate-header-in rounded-md p-3 transition-[color,transform] duration-150 active:scale-95",
                   isActive ? "text-primary hover:text-primary" : "text-foreground hover:bg-foreground/10 hover:text-foreground/90 dark:text-white dark:hover:bg-white/10 dark:hover:text-white/90"
                 )}
                 onClick={handleNavClickTablet(i)}
+                style={{ animationDelay: `${delayMs}ms` }}
               >
                 <Icon ref={refsTablet[i]} size={26} className="text-inherit" />
               </Link>
@@ -347,34 +355,50 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Bouton CTA : tout à droite sur desktop/tablette */}
-        <div className="ml-auto hidden items-center gap-3 lg:flex">
-          <ThemeToggleButton size={22} />
-          <Button asChild size="lg" variant="outline" className="px-6 py-3 text-paragraphe border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
-            <a href="/devis">
-              Demander un devis <ArrowRight className="size-5" />
-            </a>
-          </Button>
-        </div>
+        {/* Desktop/tablette : theme puis CTA, chacun decale */}
+        <>
+          <div className="ml-auto hidden items-center gap-3 lg:flex">
+            <span
+              className="animate-header-in inline-flex"
+              style={{ animationDelay: `${(navItems.length + 1) * HEADER_ENTRANCE_STAGGER_MS}ms` }}
+            >
+              <ThemeToggleButton size={22} />
+            </span>
+            <span
+              className="animate-header-in inline-flex"
+              style={{ animationDelay: `${(navItems.length + 2) * HEADER_ENTRANCE_STAGGER_MS}ms` }}
+            >
+              <Button asChild size="lg" variant="outline" className="px-6 py-3 text-paragraphe border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
+                <a href="/devis">
+                  Demander un devis <ArrowRight className="size-5" />
+                </a>
+              </Button>
+            </span>
+          </div>
 
-        {/* Mobile : bouton burger (même hauteur que le bouton Devis = h-9) */}
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
-          <ThemeToggleButton className="h-9 w-9" size={20} />
-          <Button asChild size="sm" variant="outline" className="border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
-            <a href="/devis">Devis</a>
-          </Button>
+          <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <span className="animate-header-in inline-flex" style={{ animationDelay: `${HEADER_ENTRANCE_STAGGER_MS}ms` }}>
+            <ThemeToggleButton className="h-9 w-9" size={20} />
+          </span>
+          <span className="animate-header-in inline-flex" style={{ animationDelay: `${2 * HEADER_ENTRANCE_STAGGER_MS}ms` }}>
+            <Button asChild size="sm" variant="outline" className="border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
+              <a href="/devis">Devis</a>
+            </Button>
+          </span>
           <button
             ref={menuButtonRef}
             type="button"
             onClick={() => (menuOpen ? closeMenu() : openMenu())}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground touch-manipulation"
+            className="animate-header-in flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground touch-manipulation"
+            style={{ animationDelay: `${3 * HEADER_ENTRANCE_STAGGER_MS}ms` }}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
-        </div>
+          </div>
+        </>
       </div>
       </header>
 

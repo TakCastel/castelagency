@@ -30,6 +30,7 @@ export default function DessinsPage() {
         backLink={{ href: "/creations", label: "Retour aux créations" }}
         title="Dessins"
         description="Galerie d'images et de dessins."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mes créations", href: "/creations" }, { label: "Dessins" }]}
         ariaLabel="Dessins"
       />
 

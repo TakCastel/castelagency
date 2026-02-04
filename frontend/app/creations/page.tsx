@@ -27,6 +27,7 @@ export default function CreationsPage() {
         label="Créations"
         title="Mes créations"
         description="Parfois je dessine, parfois j’écris. Voici quelques créations réalisées sur mon temps libre : dessins et écritures."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mes créations" }]}
         ariaLabel="Mes créations"
       />
 

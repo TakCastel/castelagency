@@ -2,6 +2,12 @@
   "name": "castelagency-frontend",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4"
+  ],
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000",
     "build": "next build",
@@ -17,6 +23,7 @@
     "colorthief": "^2.6.0",
     "hero-patterns": "^2.1.0",
     "lucide-react": "^0.473.0",
+    "maplibre-gl": "^5.17.0",
     "marked": "^17.0.1",
     "motion": "^12.29.2",
     "next": "^15.1.6",

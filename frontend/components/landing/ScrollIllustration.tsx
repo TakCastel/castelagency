@@ -33,16 +33,17 @@ export function ScrollIllustration({ scrollTargetRef, variant = "desktop" }: Scr
         ...(reduceScrollMotion ? { x: 0, rotate: 0, opacity: 1 } : { x, rotate, opacity, willChange: "transform" })
       }}
     >
-      {/* Wrapper avec overflow-hidden uniquement pour les coins arrondis de l'image — ne rogne pas l'illustration */}
-      <div className="h-full w-full overflow-hidden rounded-3xl max-md:shadow-none md:shadow-lg">
+      {/* Wrapper pour coins arrondis uniquement — pas d’ombre pour éviter l’effet « carte » en tablette */}
+      <div className="h-full w-full overflow-hidden rounded-3xl">
         <Image
           src={ILLU_SRC}
           alt="Création web en harmonie avec l'environnement, illustration gravure"
-          width={800}
-          height={500}
+          width={600}
+          height={375}
           className={`h-full w-full object-contain object-center ${variant === "desktop" ? "lg:object-cover lg:min-h-[380px]" : ""}`}
           style={{ borderRadius: "1.5rem" }}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 520px, 33vw"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 520px, 600px"
+          quality={75}
           priority={false}
         />
       </div>

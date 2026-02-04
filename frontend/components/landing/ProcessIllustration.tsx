@@ -33,15 +33,16 @@ export function ProcessIllustration({ scrollTargetRef, variant = "desktop" }: Pr
         ...(reduceScrollMotion ? { x: 0, rotate: 0, opacity: 1 } : { x, rotate, opacity, willChange: "transform" })
       }}
     >
-      <div className="h-full w-full overflow-hidden rounded-3xl max-md:shadow-none md:shadow-lg">
+      <div className="h-full w-full overflow-hidden rounded-3xl">
         <Image
           src={ILLU_SRC}
           alt="Ma méthode, illustration gravure"
-          width={800}
-          height={500}
+          width={600}
+          height={375}
           className={`h-full w-full object-contain object-center ${variant === "desktop" ? "lg:object-cover lg:min-h-[380px]" : ""}`}
           style={{ borderRadius: "1.5rem" }}
-          sizes="(max-width: 767px) 400px, (max-width: 1023px) 520px, 33vw"
+          sizes="(max-width: 767px) 400px, (max-width: 1023px) 520px, 600px"
+          quality={75}
           priority={false}
         />
       </div>

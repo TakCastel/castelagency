@@ -26,6 +26,7 @@ export default function DevisPage() {
         label="Devis"
         title="Demander un devis"
         description="Décrivez votre projet, votre cible et vos objectifs. Je vous recontacte avec un plan simple et une proposition de devis."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Demander un devis" }]}
         ariaLabel="Demander un devis"
       />
 

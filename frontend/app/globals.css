@@ -118,6 +118,10 @@
     content: none;
   }
 
+  /* Carte « Où me trouver » : en thème sombre, assombrir les tuiles (style démo unique) */
+  .map-dark .maplibregl-canvas-container {
+    filter: brightness(0.82) contrast(1.08);
+  }
 }
 
 @layer base {
@@ -352,13 +356,40 @@
     animation: mobile-menu-item-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
+  /* Header : entrée au chargement (haut → bas), décalée : logo+nav → theme → CTA */
+  @keyframes header-item-in {
+    from {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-header-in {
+    animation: header-item-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .animate-header-in-200 {
+    animation: header-item-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: 120ms;
+  }
+  .animate-header-in-400 {
+    animation: header-item-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: 240ms;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-reveal,
     .animate-reveal-200,
     .animate-reveal-400,
     .animate-reveal-600,
     .animate-nav-item,
-    .animate-mobile-menu-item {
+    .animate-mobile-menu-item,
+    .animate-header-in,
+    .animate-header-in-200,
+    .animate-header-in-400 {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;

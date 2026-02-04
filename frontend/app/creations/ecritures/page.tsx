@@ -27,6 +27,7 @@ export default function EcrituresPage() {
         backLink={{ href: "/creations", label: "Retour aux créations" }}
         title="Écritures"
         description="Galerie de livres et d'écrits."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mes créations", href: "/creations" }, { label: "Écritures" }]}
         ariaLabel="Écritures"
       />
 

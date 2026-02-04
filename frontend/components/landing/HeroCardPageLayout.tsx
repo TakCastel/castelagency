@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { BLUR_DATA_URL } from "@/lib/image-placeholder";
+
 export type HeroCardPageLayoutProps = {
   /** URL de l'image de fond du hero (visible derrière le header transparent) */
   imageSrc: string;
@@ -28,6 +30,8 @@ export function HeroCardPageLayout({ imageSrc, children }: HeroCardPageLayoutPro
             className="object-cover object-center opacity-45 blur-xs shadow-[0_0_100px_rgba(0,0,0,0.5)]"
             sizes="100vw"
             priority
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
         </div>

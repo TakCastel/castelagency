@@ -42,6 +42,12 @@ export default async function HommeMasqueVerrePage() {
       backLink={{ href: "/creations/ecritures", label: "Retour aux écritures" }}
       title={TITLE}
       description="Ou la véritable histoire du Kheym. Texte intégral. — 2013"
+      breadcrumb={[
+        { label: "Accueil", href: "/" },
+        { label: "Mes créations", href: "/creations" },
+        { label: "Écritures", href: "/creations/ecritures" },
+        { label: TITLE },
+      ]}
       ariaLabel={TITLE}
       titleSize="small"
     >

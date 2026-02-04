@@ -29,6 +29,7 @@ export default function ModeDeFonctionnementPage() {
         label="Méthode"
         title="Ma méthode"
         description="Pour que vous sachiez toujours où on en est et à quoi s'attendre : des étapes claires, sans zone floue, de la prise de contact jusqu'à la facture."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Ma méthode" }]}
         ariaLabel="Ma méthode"
       />
 

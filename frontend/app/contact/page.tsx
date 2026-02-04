@@ -4,6 +4,7 @@ import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/landing/PageHero";
+import { WhereToFindMap } from "@/components/landing/WhereToFindMap";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function ContactPage() {
         label="Contact"
         title="Me contacter"
         description="Agence web Avignon : premier échange gratuit pour cadrer votre projet. Devis, sites, e‑commerce, applications et SEO."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Contact" }]}
         ariaLabel="Page contact"
       />
 
@@ -92,6 +94,20 @@ export default function ContactPage() {
                   Voir la fiche Google · Castel - Studio numérique
                 </a>
               </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card/50">
+            <CardContent className="p-6 sm:p-8">
+              <h2 className="text-titre-petit font-semibold tracking-tight">
+                Où me trouver
+              </h2>
+              <p className="mt-2 text-paragraphe text-muted-foreground">
+                Studio Castel est basé à Avignon (Vaucluse). Interventions en présentiel dans la région et en remote partout en France.
+              </p>
+              <div className="mt-4">
+                <WhereToFindMap />
+              </div>
             </CardContent>
           </Card>
         </div>

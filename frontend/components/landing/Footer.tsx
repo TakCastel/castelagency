@@ -91,7 +91,7 @@ export function Footer() {
     <footer
       ref={ref}
       className={cn(
-        "relative overflow-hidden",
+        "relative min-h-[380px] overflow-hidden md:min-h-[320px]",
         WHATSAPP_OFFSET
       )}
     >
@@ -104,6 +104,8 @@ export function Footer() {
           fill
           className="object-cover object-bottom"
           sizes="100vw"
+          quality={70}
+          loading="lazy"
         />
         <div
           className="absolute inset-0 opacity-100"

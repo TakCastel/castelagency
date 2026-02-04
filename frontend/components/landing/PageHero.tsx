@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
+import { Breadcrumb, type BreadcrumbItem } from "@/components/landing/Breadcrumb";
+import { BLUR_DATA_URL } from "@/lib/image-placeholder";
 import { ArrowLeft } from "lucide-react";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -16,6 +19,8 @@ export type PageHeroProps = {
   title: string;
   /** Paragraphe de description sous le titre */
   description: string;
+  /** Fil d’Ariane affiché sous la description */
+  breadcrumb?: BreadcrumbItem[];
   /** Accessibilité : aria-label de la section */
   ariaLabel: string;
   /** Image de fond (défaut : hero commun) */
@@ -47,6 +52,7 @@ export function PageHero({
   backLink,
   title,
   description,
+  breadcrumb,
   ariaLabel,
   imageSrc = "/assets/illustrations/hero-background.png",
   minHeight = "default",
@@ -93,6 +99,8 @@ export function PageHero({
           className="object-cover object-center opacity-50"
           sizes="100vw"
           priority
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
       </div>
@@ -123,6 +131,9 @@ export function PageHero({
           <p className="mt-3 max-w-2xl text-paragraphe text-muted-foreground text-pretty">
             {description}
           </p>
+          {breadcrumb && breadcrumb.length > 0 && (
+            <Breadcrumb items={breadcrumb} />
+          )}
         </motion.div>
       </motion.div>
     </section>

@@ -30,6 +30,7 @@ export default function BlogPage() {
         label="Mon blog"
         title="Mon blog"
         description="Réflexions sur le web, l'IA, les agents et la tech. Ce qui est réel, ce qui relève du mythe, et ce qui compte vraiment."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mon blog" }]}
         ariaLabel="Mon blog"
       />
 
@@ -40,6 +41,18 @@ export default function BlogPage() {
           description="Décryptages, mises au point et points de vigilance autour des usages actuels de l’IA et du web."
           textAlignClassName="text-center"
         />
+
+        <p className="mx-auto mt-4 max-w-2xl text-center text-paragraphe text-muted-foreground">
+          Vous avez un projet de site ou d'application ? Découvrez nos{" "}
+          <Link href="/services" className="text-foreground font-medium underline-offset-2 hover:underline">
+            services
+          </Link>
+          {" "}et notre{" "}
+          <Link href="/mode-de-fonctionnement" className="text-foreground font-medium underline-offset-2 hover:underline">
+            méthode
+          </Link>
+          .
+        </p>
 
         <BlogMasonry posts={blogList} />
 

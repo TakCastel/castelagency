@@ -170,6 +170,7 @@ export function Stepper({
               {/* Cercle / icône — animation au hover du bouton rond uniquement */}
               <button
                 type="button"
+                aria-label={`Étape ${i + 1} : ${step.title}`}
                 onClick={() => selectStep(i)}
                 onMouseEnter={() => triggerIconAnimation(i, true)}
                 onMouseLeave={() => triggerIconAnimation(i, false)}
@@ -299,6 +300,7 @@ export function Stepper({
                   {/* Bouton rond : animation au hover du cercle uniquement */}
                   <button
                     type="button"
+                    aria-label={`Étape ${i + 1} : ${step.title}`}
                     onClick={() => selectStep(i)}
                     onMouseEnter={() => triggerIconAnimation(i, true)}
                     onMouseLeave={() => triggerIconAnimation(i, false)}

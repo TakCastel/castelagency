@@ -33,6 +33,7 @@ export default function LeStudioPage() {
         label="Le Studio"
         title="Tarik Talhaoui"
         description="Product builder à Avignon : conception de sites et d’applications sur mesure."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Le Studio" }]}
         ariaLabel="Présentation du studio"
         imageSrc="/assets/illustrations/illu-studio.png"
         minHeight="tall"

@@ -1,9 +1,34 @@
-import { CTA } from "@/components/landing/CTA";
-import { FAQ } from "@/components/landing/FAQ";
-import { FeatureGrid } from "@/components/landing/FeatureGrid";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+
 import { Hero } from "@/components/landing/Hero";
-import { Process } from "@/components/landing/Process";
-import { Testimonials } from "@/components/landing/Testimonials";
+
+/** Chargement différé : réduit le bundle initial et le TBT (Total Blocking Time) sur mobile. */
+const FeatureGrid = dynamic(() => import("@/components/landing/FeatureGrid").then((m) => m.FeatureGrid), { ssr: true });
+const Process = dynamic(() => import("@/components/landing/Process").then((m) => m.Process), { ssr: true });
+const Testimonials = dynamic(() => import("@/components/landing/Testimonials").then((m) => m.Testimonials), { ssr: true });
+const FAQ = dynamic(() => import("@/components/landing/FAQ").then((m) => m.FAQ), { ssr: true });
+const CTA = dynamic(() => import("@/components/landing/CTA").then((m) => m.CTA), { ssr: true });
+
+export const metadata: Metadata = {
+  title: "Agence web Avignon | Studio Castel",
+  description:
+    "Agence web Avignon : Studio Castel crée et refait sites vitrines, e‑commerce et applications. UX/UI, branding, SEO, contenus et automatisations. Basé à Avignon.",
+  openGraph: {
+    title: "Agence web Avignon | Studio Castel",
+    description:
+      "Agence web Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO. Studio Castel, basé à Avignon.",
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Studio Castel",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agence web Avignon | Studio Castel",
+    description:
+      "Agence web Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO. Studio Castel.",
+  },
+};
 
 export default function HomePage() {
   const organizationJsonLd = {

@@ -30,6 +30,7 @@ export default function MesProjetsPage() {
         label="Portfolio"
         title="Mes projets"
         description="Sites vitrines, outils métier, jeux et projets sur mesure réalisés à Avignon et ailleurs."
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Mes projets" }]}
         ariaLabel="Mes projets"
       />
 
@@ -55,7 +56,15 @@ export default function MesProjetsPage() {
             Un projet en tête ?
           </p>
           <p className="mt-2 text-muted-foreground text-pretty">
-            Parlons de vos objectifs et de la meilleure façon de les réaliser.
+            Parlons de vos objectifs et de la meilleure façon de les réaliser. Découvrez nos{" "}
+            <Link href="/services" className="text-foreground font-medium underline-offset-2 hover:underline">
+              services
+            </Link>
+            {" "}ou notre{" "}
+            <Link href="/mode-de-fonctionnement" className="text-foreground font-medium underline-offset-2 hover:underline">
+              méthode
+            </Link>
+            .
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg">

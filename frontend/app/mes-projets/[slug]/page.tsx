@@ -4,8 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
+import { Breadcrumb } from "@/components/landing/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/landing/AnimatedSection";
+import { BLUR_DATA_URL } from "@/lib/image-placeholder";
 import { Separator } from "@/components/ui/separator";
 import { TechIcons } from "@/components/landing/TechIcons";
 import {
@@ -20,10 +22,15 @@ export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
 }
 
+const SITE_URL = "https://studio-castel.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return { title: "Projet introuvable" };
+  const ogImage = project.image.startsWith("http")
+    ? project.image
+    : `${SITE_URL}${project.image}`;
   return {
     title: `${project.title} | Mes projets | Studio Castel`,
     description: project.description,
@@ -32,6 +39,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: project.description,
       type: "website",
       locale: "fr_FR",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: project.imageAlt || project.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Studio Castel`,
+      description: project.description,
+      images: [ogImage],
     },
     alternates: {
       canonical: `/mes-projets/${project.id}`,
@@ -141,6 +155,8 @@ export default async function ProjectPage({ params }: Props) {
             className="object-cover object-center opacity-50"
             sizes="100vw"
             priority
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
         </div>
@@ -159,6 +175,13 @@ export default async function ProjectPage({ params }: Props) {
           <p className="mt-3 max-w-2xl text-paragraphe text-muted-foreground text-pretty">
             {project.description}
           </p>
+          <Breadcrumb
+            items={[
+              { label: "Accueil", href: "/" },
+              { label: "Mes projets", href: "/mes-projets" },
+              { label: project.title },
+            ]}
+          />
         </div>
       </section>
 
@@ -221,12 +244,26 @@ export default async function ProjectPage({ params }: Props) {
           <h2 id="cta-project" className="sr-only">
             Aller sur le site du projet
           </h2>
+          <p className="text-small text-muted-foreground text-pretty mb-6">
+            Un projet similaire ? Consultez nos{" "}
+            <Link href="/services" className="text-foreground font-medium underline-offset-2 hover:underline">
+              services
+            </Link>
+            {" "}(site vitrine, e‑commerce, applications sur mesure, SEO) ou{" "}
+            <Link href="/contact" className="text-foreground font-medium underline-offset-2 hover:underline">
+              contactez-moi
+            </Link>
+            .
+          </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" variant="outline" className="gap-2">
               <Link href="/mes-projets">
                 <ArrowLeft className="h-4 w-4" />
                 Tous mes projets
               </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/services">Voir nos services</Link>
             </Button>
             {project.url && (
               <Button asChild size="lg" className="gap-2">

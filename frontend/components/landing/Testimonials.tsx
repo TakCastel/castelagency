@@ -109,7 +109,7 @@ export function Testimonials() {
                   <div className="absolute bottom-[-90px] right-[-90px] h-[220px] w-[220px] rounded-full bg-gradient-to-tr from-muted-foreground/12 via-muted-foreground/5 to-transparent blur-2xl" />
                 </div>
                 {/* Citation */}
-                <blockquote className="relative z-10 flex-1 text-pretty text-sm text-foreground/90 md:text-base">
+                <blockquote className="relative z-10 flex-1 text-pretty text-sm text-foreground md:text-base">
                   « {t.quote} »
                 </blockquote>
 
@@ -118,7 +118,7 @@ export function Testimonials() {
                   <div
                     className={cn(
                       "flex size-8 shrink-0 items-center justify-center rounded-full",
-                      "bg-muted text-xs font-semibold text-muted-foreground"
+                      "bg-muted text-xs font-semibold text-foreground"
                     )}
                   >
                     {t.initials}
@@ -129,7 +129,7 @@ export function Testimonials() {
                       {t.role}
                       {t.subtitle ? ` · ${t.subtitle}` : ""}
                     </p>
-                    <p className="mt-0.5 text-[11px] text-muted-foreground/80">{t.date}</p>
+                    <p className="mt-0.5 text-xs text-foreground/85">{t.date}</p>
                   </div>
                 </footer>
               </article>
