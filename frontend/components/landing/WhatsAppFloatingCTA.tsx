@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MessageCircleMoreIcon } from "@/components/ui/message-circle-more";
 import { cn } from "@/lib/utils";
+import { trackOutboundClick } from "@/lib/analytics";
 
 const WHATSAPP_URL = "https://wa.me/33608432059";
 
@@ -22,6 +23,7 @@ export function WhatsAppFloatingCTA() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Appelez-moi sur WhatsApp"
+      onClick={() => trackOutboundClick({ link_name: "WhatsApp CTA", link_url: WHATSAPP_URL })}
       className={cn(
         "fixed bottom-6 right-6 z-[9997] flex items-center overflow-hidden rounded-full border shadow-lg shadow-black/20 backdrop-blur-sm transition-[width,box-shadow] duration-200 ease-out hover:shadow-xl hover:shadow-black/25 active:scale-[0.98]",
         "md:bottom-8 md:right-8"

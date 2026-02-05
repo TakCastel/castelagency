@@ -11,6 +11,7 @@ import { GithubIcon } from "@/components/ui/github";
 import { TwitchIcon } from "@/components/ui/twitch";
 import { BrandMark } from "@/components/BrandMark";
 import { cn } from "@/lib/utils";
+import { trackCTAClick, trackOutboundClick } from "@/lib/analytics";
 
 /** Marge droite pour ne pas chevaucher le bouton WhatsApp flottant. */
 const WHATSAPP_OFFSET = "pr-20 sm:pr-24 md:pr-28";
@@ -111,7 +112,7 @@ export function Footer() {
     <footer
       ref={ref}
       className={cn(
-        "relative min-h-[380px] overflow-hidden md:min-h-[320px]",
+        "relative min-h-[320px] overflow-hidden md:min-h-[280px]",
         WHATSAPP_OFFSET
       )}
     >
@@ -144,8 +145,8 @@ export function Footer() {
         />
       </div>
 
-      <div className="container relative py-14 md:py-16">
-        <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1fr_auto_auto_auto] lg:gap-x-12 lg:gap-y-0 xl:gap-x-16">
+      <div className="container relative py-10 md:py-12">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1fr_auto_auto_auto] lg:gap-x-8 lg:gap-y-0 xl:gap-x-12">
           {/* Colonne gauche : marque + NAP + réseaux */}
           <FooterBlock delay={0} reducedMotion={prefersReducedMotion} isInView={isInView}>
             <Link
@@ -176,6 +177,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
+                    onClick={() => trackOutboundClick({ link_name: label, link_url: href })}
                     className={cn(
                       "flex h-10 w-10 items-center justify-center rounded-lg",
                       "text-muted-foreground transition-all duration-200",
@@ -193,7 +195,7 @@ export function Footer() {
             </p>
           </FooterBlock>
 
-          {/* Colonnes droite : navigation par groupes */}
+          {/* Colonnes droite : navigation par groupes — titres en noir (clair) / blanc (sombre) */}
           {footerNavGroups.map((group, groupIndex) => (
             <FooterBlock
               key={group.title}
@@ -201,7 +203,7 @@ export function Footer() {
               reducedMotion={prefersReducedMotion}
               isInView={isInView}
             >
-              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <p className="text-xs font-medium uppercase tracking-wider text-black dark:text-white">
                 {group.title}
               </p>
               <ul className="mt-4 flex flex-col gap-2.5" role="list">
@@ -214,6 +216,7 @@ export function Footer() {
                         "hover:text-foreground hover:underline hover:underline-offset-2",
                         "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
                       )}
+                      onClick={() => trackCTAClick({ link_name: link.label, link_url: link.href, link_location: "footer" })}
                     >
                       {link.label}
                     </Link>

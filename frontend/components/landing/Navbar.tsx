@@ -22,6 +22,7 @@ import type { SparklesIconHandle } from "@/components/ui/sparkles";
 import type { WrenchIconHandle } from "@/components/ui/wrench";
 import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 import { cn } from "@/lib/utils";
+import { trackCTAClick, trackNavClick } from "@/lib/analytics";
 
 const navItems = [
   { href: "/le-studio", label: "Studio", title: "Le Studio", Icon: LaptopMinimalCheckIcon },
@@ -271,7 +272,13 @@ export function Navbar() {
           }
         >
           <Button asChild size="lg" variant="outline" className="w-full touch-manipulation border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
-            <a href="/devis" onClick={closeMenu}>
+            <a
+              href="/devis"
+              onClick={() => {
+                trackCTAClick({ link_name: "Demander un devis", link_url: "/devis", link_location: "navbar" });
+                closeMenu();
+              }}
+            >
               Demander un devis <ArrowRight className="size-5" />
             </a>
           </Button>
@@ -321,7 +328,10 @@ export function Navbar() {
                 title={title}
                 prefetch={true}
                 onMouseEnter={() => router.prefetch(href)}
-                onClick={handleNavClickDesktop(i)}
+                onClick={() => {
+                  handleNavClickDesktop(i)();
+                  trackNavClick({ link_name: label, link_url: href });
+                }}
                 style={{ animationDelay: `${delayMs}ms` }}
               >
                 <Icon ref={refsDesktop[i]} size={24} className="shrink-0 text-inherit" />
@@ -347,7 +357,10 @@ export function Navbar() {
                   "animate-header-in rounded-md p-3 transition-[color,transform] duration-150 active:scale-95",
                   isActive ? "text-primary hover:text-primary" : "text-foreground hover:bg-foreground/10 hover:text-foreground/90 dark:text-white dark:hover:bg-white/10 dark:hover:text-white/90"
                 )}
-                onClick={handleNavClickTablet(i)}
+                onClick={() => {
+                  handleNavClickTablet(i)();
+                  trackNavClick({ link_name: title, link_url: href });
+                }}
                 style={{ animationDelay: `${delayMs}ms` }}
               >
                 <Icon ref={refsTablet[i]} size={26} className="text-inherit" />
@@ -370,7 +383,10 @@ export function Navbar() {
               style={{ animationDelay: `${(navItems.length + 2) * HEADER_ENTRANCE_STAGGER_MS}ms` }}
             >
               <Button asChild size="lg" variant="outline" className="px-6 py-3 text-paragraphe border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
-                <a href="/devis">
+                <a
+                  href="/devis"
+                  onClick={() => trackCTAClick({ link_name: "Demander un devis", link_url: "/devis", link_location: "navbar" })}
+                >
                   Demander un devis <ArrowRight className="size-5" />
                 </a>
               </Button>
@@ -383,7 +399,12 @@ export function Navbar() {
           </span>
           <span className="animate-header-in inline-flex" style={{ animationDelay: `${2 * HEADER_ENTRANCE_STAGGER_MS}ms` }}>
             <Button asChild size="sm" variant="outline" className="border-border bg-background text-foreground hover:bg-muted dark:border-white/30 dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black">
-              <a href="/devis">Devis</a>
+              <a
+                href="/devis"
+                onClick={() => trackCTAClick({ link_name: "Devis", link_url: "/devis", link_location: "navbar" })}
+              >
+                Devis
+              </a>
             </Button>
           </span>
           <button

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { DevisForm } from "@/components/landing/DevisForm";
 import { PageHero } from "@/components/landing/PageHero";
+import { DevisPageViewTracker } from "@/components/landing/DevisPageViewTracker";
 
 export const metadata: Metadata = {
   title: "Demander un devis | Studio Castel",
@@ -30,6 +31,7 @@ export default function DevisPage() {
         ariaLabel="Demander un devis"
       />
 
+      <DevisPageViewTracker />
       <div className="container py-12 md:py-16">
         <div className="mx-auto max-w-2xl">
           <DevisForm />

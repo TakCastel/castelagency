@@ -5,6 +5,9 @@ import "./globals.css";
 import { DeferredFooter, DeferredWhatsAppFloatingCTA } from "@/components/DeferredLayoutParts";
 import { Navbar } from "@/components/landing/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { GoogleTagManager } from "@/components/GoogleTagManager";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -75,10 +78,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
+          <GoogleTagManager />
+          <AnalyticsPageView />
           <Navbar />
-          <main className="pt-20 lg:pt-24">{children}</main>
+          <main className="pt-16 lg:pt-20">{children}</main>
           <DeferredFooter />
           <DeferredWhatsAppFloatingCTA />
+          <CookieConsentBanner />
         </ThemeProvider>
       </body>
     </html>

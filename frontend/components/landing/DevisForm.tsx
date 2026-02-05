@@ -5,6 +5,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { DevisPayload } from "@/app/api/devis/route";
+import { trackDevisSubmitted } from "@/lib/analytics";
 
 const inputClassName =
   "w-full rounded-md border border-input bg-background px-3 py-2 text-paragraphe text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50";
@@ -69,6 +70,10 @@ export function DevisForm() {
       }
 
       setStatus("success");
+      trackDevisSubmitted({
+        project_type: form.projectType || undefined,
+        budget: form.budget || undefined,
+      });
       setForm({ name: "", email: "", phone: "", projectType: "", budget: "", message: "" });
     } catch {
       setStatus("error");
