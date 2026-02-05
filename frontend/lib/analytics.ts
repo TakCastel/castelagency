@@ -1,8 +1,10 @@
 /**
  * Helpers pour pousser des événements vers le dataLayer (Google Tag Manager).
- * À utiliser côté client uniquement ; vérifier le consentement avant d’envoyer
- * si tu appelles ces fonctions en dehors du flux GTM (GTM ne charge GA que si consentement).
+ * Aucun événement n’est envoyé tant que l’utilisateur n’a pas cliqué sur « Tout accepter ».
+ * Si l’utilisateur clique sur « Refuser », aucun traçage n’a lieu.
  */
+
+import { hasAnalyticsConsent } from "@/lib/consent";
 
 declare global {
   interface Window {
@@ -10,9 +12,10 @@ declare global {
   }
 }
 
-/** Push un événement dans dataLayer (no-op si dataLayer absent). */
+/** Push un événement dans dataLayer uniquement si l’utilisateur a accepté les cookies analytics. */
 export function pushToDataLayer(payload: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
+  if (!hasAnalyticsConsent()) return;
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push(payload);
 }
