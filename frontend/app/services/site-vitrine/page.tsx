@@ -157,7 +157,7 @@ export default function SiteVitrinePage() {
                   Service : Site vitrine
                 </p>
                 <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight">
-                  Création et refonte de site vitrine
+                  Création de site internet et refonte à Avignon
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
                   Agence web Avignon : un site vitrine renforce votre crédibilité, attire les bons visiteurs et les convertit en demandes. Je conçois des sites sur mesure : structure claire, design soigné, textes orientés conversion et SEO intégré dès le départ.

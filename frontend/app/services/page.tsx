@@ -7,13 +7,13 @@ import { SectionIntro } from "@/components/landing/SectionIntro";
 import { ServicesList, type ServiceItem } from "@/components/landing/ServicesList";
 
 export const metadata: Metadata = {
-  title: "Mes services | Studio Castel",
+  title: "Services création site web à Avignon | Studio Castel",
   description:
-    "Création de sites : site vitrine, e‑commerce, applications sur mesure, UX/UI & branding, SEO & acquisition, process IA. Stratégie, design, développement, contenu et SEO.",
+    "Agence web Avignon : création de sites vitrine, e‑commerce, applications sur mesure, UX/UI, SEO, process IA. Stratégie, design, développement et référencement à Avignon et Vaucluse.",
   openGraph: {
-    title: "Mes services | Studio Castel",
+    title: "Services création site web à Avignon | Studio Castel",
     description:
-      "Site vitrine, e‑commerce, applications, UX/UI, SEO, process IA. Création de sites. Chaque service peut être pris seul ou combiné selon votre projet.",
+      "Site vitrine, e‑commerce, applications, UX/UI, SEO, process IA à Avignon. Chaque service peut être pris seul ou combiné. Studio Castel.",
     type: "website",
     locale: "fr_FR",
   },
@@ -98,7 +98,11 @@ export default function ServicesPage() {
             Un projet en tête ?
           </p>
           <p className="mt-2 text-muted-foreground text-pretty">
-            Parlons de vos objectifs et de la meilleure façon d’avancer.
+            Parlons de vos objectifs et de la meilleure façon d’avancer. Vous cherchez un{" "}
+            <Link href="/developpeur-web-avignon" className="text-foreground font-medium underline-offset-2 hover:underline">
+              développeur web freelance à Avignon
+            </Link>
+            {" "}en particulier ? C’est par ici.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg">

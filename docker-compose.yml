@@ -50,6 +50,8 @@ services:
       dockerfile: Dockerfile
       target: dev
     container_name: castelagency-frontend
+    stdin_open: true   # Garde stdin ouvert : Next.js ne quitte pas en mode dev
+    tty: true          # Simule un terminal : évite le exit 0 immédiat du serveur
     ports:
       - "3000:3000"
     env_file:
@@ -62,13 +64,16 @@ services:
       WATCHPACK_POLLING: "true"
     volumes:
       - ./frontend:/app
+      # Garde les node_modules du conteneur (Linux) — évite crash / exit si on monte du macOS
+      - /app/node_modules
       - next_cache:/app/.next
     depends_on:
       - directus
     restart: unless-stopped
     networks:
       - castelagency-network
-    command: sh -lc "npm install && npm run dev"
+    # Boucle : si next dev quitte (bug connu Next 15 en Docker), on le relance pour garder le conteneur actif
+    command: sh -c "npm install && while true; do npm run dev; echo 'Redémarrage dans 2s…'; sleep 2; done"
 
 volumes:
   postgres_data:

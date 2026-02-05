@@ -9,6 +9,7 @@ const staticRoutes = [
   "",
   "/contact",
   "/devis",
+  "/developpeur-web-avignon",
   "/le-studio",
   "/mes-projets",
   "/mode-de-fonctionnement",

@@ -8,13 +8,13 @@ import { SectionIntro } from "@/components/landing/SectionIntro";
 import { projectsList } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Mes projets | Studio Castel",
+  title: "Réalisations et études de cas | Studio Castel · Avignon",
   description:
-    "Réalisations Studio Castel : Polinizz, Serpenter, sites vitrines (Florine, Arnaud, Brice), Archéode, Bobithèque, Pavat, Préhistopia. Avignon et en remote.",
+    "Études de cas et réalisations Studio Castel à Avignon : sites vitrines (Florine Clap, Brice Théâte, Arnaud Ban), Polinizz, Serpenter, e‑commerce, applications. Preuves concrètes.",
   openGraph: {
-    title: "Mes projets | Studio Castel",
+    title: "Réalisations et études de cas web | Studio Castel · Avignon",
     description:
-      "Polinizz, Serpenter, sites vitrines, Archéode, Bobithèque, Pavat, Préhistopia. Réalisations web à Avignon.",
+      "Sites vitrines, e‑commerce, applications : études de cas et réalisations à Avignon. Florine Clap, Brice Théâte, Serpenter, Polinizz.",
     type: "website",
     locale: "fr_FR",
   },

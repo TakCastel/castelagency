@@ -118,9 +118,50 @@
     content: none;
   }
 
-  /* Carte « Où me trouver » : en thème sombre, assombrir les tuiles (style démo unique) */
-  .map-dark .maplibregl-canvas-container {
-    filter: brightness(0.82) contrast(1.08);
+  /* Carte « Où me trouver » : thème sombre = même tuiles, rendu assombri (pas d’API tierce, pas de 403). */
+  /* Fond noir, routes blanches : invert d’abord (OSM clair → sombre), puis assombrir le fond */
+  .where-map-dark .maplibregl-canvas-container {
+    filter: grayscale(1) invert(1) brightness(0.88) contrast(1.35);
+  }
+  .where-map-dark .maplibregl-ctrl-group button {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  /* Barre d’attribution en bas : fond noir, texte et symboles en blanc */
+  .where-map-dark .maplibregl-ctrl-attrib {
+    background: rgba(0, 0, 0, 0.85) !important;
+    color: #fff;
+  }
+  .where-map-dark .maplibregl-ctrl-attrib *,
+  .where-map-dark .maplibregl-ctrl-attrib button {
+    color: #fff !important;
+    fill: #fff !important;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .where-map-dark .maplibregl-ctrl-attrib a {
+    color: rgba(255, 255, 255, 0.95) !important;
+    filter: none;
+  }
+  .where-map-dark .maplibregl-ctrl-attrib a:hover {
+    color: #fff !important;
+  }
+  /* Bouton info (i) : icône en blanc (MapLibre utilise background-image SVG) */
+  .where-map-dark .maplibregl-ctrl-attrib-button {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    filter: invert(1);
+  }
+  .where-map-dark .maplibregl-ctrl-attrib.maplibregl-compact::after {
+    filter: invert(1);
+  }
+  .where-map-dark .maplibregl-ctrl-attrib .maplibregl-ctrl-icon {
+    background-color: transparent !important;
+    opacity: 1;
+  }
+  .where-map-dark .maplibregl-ctrl-attrib .maplibregl-ctrl-icon svg {
+    fill: #fff !important;
+  }
+
+  .where-map-light .maplibregl-canvas-container {
+    filter: grayscale(1) brightness(1.02) contrast(1.15);
   }
 }
 

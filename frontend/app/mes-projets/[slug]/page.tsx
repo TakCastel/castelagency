@@ -56,7 +56,57 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function ProjectSections({ project }: { project: ProjectDetail }) {
   return (
     <div className="space-y-12 md:space-y-16">
-      <AnimatedSection>
+      {project.resultsSummary && (
+        <>
+          <AnimatedSection>
+            <section
+              aria-labelledby="results"
+              className="rounded-lg border border-primary/20 bg-primary/5 px-5 py-5 md:px-6 md:py-6"
+            >
+              <h2
+                id="results"
+                className="text-titre-petit font-semibold tracking-tight text-foreground"
+              >
+                Résultats
+              </h2>
+              <p className="mt-3 text-muted-foreground text-pretty leading-relaxed">
+                {project.resultsSummary}
+              </p>
+            </section>
+          </AnimatedSection>
+          <Separator className="my-12 md:my-16" />
+        </>
+      )}
+
+      {(project.objective || project.constraints) && (
+        <>
+          <AnimatedSection delay={project.resultsSummary ? 0.5 : 0}>
+            <section aria-labelledby="contexte">
+              <h2
+                id="contexte"
+                className="text-titre-petit font-semibold tracking-tight text-foreground"
+              >
+                Contexte
+              </h2>
+              {project.objective && (
+                <p className="mt-4 text-muted-foreground text-pretty leading-relaxed">
+                  <span className="font-medium text-foreground">Objectif : </span>
+                  {project.objective}
+                </p>
+              )}
+              {project.constraints && (
+                <p className="mt-3 text-muted-foreground text-pretty leading-relaxed">
+                  <span className="font-medium text-foreground">Contraintes : </span>
+                  {project.constraints}
+                </p>
+              )}
+            </section>
+          </AnimatedSection>
+          <Separator className="my-12 md:my-16" />
+        </>
+      )}
+
+      <AnimatedSection delay={project.resultsSummary || project.objective || project.constraints ? 1 : 0}>
         <section aria-labelledby="use-case">
           <h2
             id="use-case"
@@ -120,7 +170,35 @@ function ProjectSections({ project }: { project: ProjectDetail }) {
 
       <Separator className="my-12 md:my-16" />
 
-      <AnimatedSection delay={4}>
+      {project.testimonial ? (
+        <>
+          <Separator className="my-12 md:my-16" />
+          <AnimatedSection delay={4}>
+            <section
+              aria-labelledby="temoignage"
+              className="rounded-lg border border-border/80 bg-card/50 px-5 py-5 md:px-6 md:py-6"
+            >
+              <h2 id="temoignage" className="sr-only">
+                Témoignage client
+              </h2>
+              <blockquote className="text-muted-foreground text-pretty leading-relaxed italic">
+                « {project.testimonial.quote} »
+              </blockquote>
+              <footer className="mt-4 text-sm text-foreground">
+                — {project.testimonial.author}
+                {project.testimonial.role && (
+                  <span className="text-muted-foreground"> · {project.testimonial.role}</span>
+                )}
+              </footer>
+            </section>
+          </AnimatedSection>
+          <Separator className="my-12 md:my-16" />
+        </>
+      ) : null}
+
+      <Separator className="my-12 md:my-16" />
+
+      <AnimatedSection delay={project.testimonial ? 5 : 4}>
         <section aria-labelledby="technologies">
           <h2
             id="technologies"

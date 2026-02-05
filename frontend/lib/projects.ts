@@ -14,6 +14,13 @@ export type ProjectItem = {
   isMobileApp?: boolean;
 };
 
+/** Témoignage client optionnel pour une étude de cas */
+export type ProjectTestimonial = {
+  quote: string;
+  author: string;
+  role?: string;
+};
+
 export type ProjectDetail = ProjectItem & {
   /** Contexte / cas d’usage du projet */
   useCase: string;
@@ -25,6 +32,14 @@ export type ProjectDetail = ProjectItem & {
   accomplishments: string[];
   /** Technologies utilisées */
   technologies: string[];
+  /** Résumé des résultats (affiché en tête d’étude de cas, optionnel) */
+  resultsSummary?: string;
+  /** Objectif métier du projet (optionnel) */
+  objective?: string;
+  /** Contraintes (délais, budget, technique) (optionnel) */
+  constraints?: string;
+  /** Témoignage client (optionnel) */
+  testimonial?: ProjectTestimonial;
 };
 
 export const projectsDetail: ProjectDetail[] = [
@@ -62,8 +77,12 @@ export const projectsDetail: ProjectDetail[] = [
     image: "/assets/projects/project-florine.png",
     imageAlt: "Aperçu du site de Florine Clap.",
     url: "https://www.florineclap.com/",
+    objective: "Offrir une vitrine professionnelle claire pour présenter les films, médiations et projets de la réalisatrice, avec une mise à jour des contenus en autonomie.",
     useCase:
       "Site de Florine Clap, réalisatrice et artiste à Avignon : films, médiations, vidéos/art, actualités et bio. Vitrine pour faire connaître son travail et ses projets.",
+    constraints: "Budget maîtrisé, besoin d’autonomie sur les contenus sans repasser par un développeur.",
+    resultsSummary:
+      "Site refondu et en ligne avec une structure claire (Films, Médiations, Vidéos/art, Actualités, Bio), un back-office Directus pour gérer les contenus en autonomie, et de bonnes performances (Next.js, SSR).",
     whatIDid: [
       "Refonte complète du site : structure (Films, Médiations, Vidéos/art, Actualités, Bio).",
       "Développement en Next.js avec Directus pour la gestion des contenus.",
@@ -319,8 +338,11 @@ export const projectsDetail: ProjectDetail[] = [
     image: "/assets/projects/project-brice.png",
     imageAlt: "Aperçu du site Brice Théâte.",
     url: "https://bricetheate.fr/",
+    objective: "Vitrine professionnelle pour les professionnels de l’audiovisuel et du cinéma : projets, collaborations et contact.",
     useCase:
       "Site vitrine du scénariste Brice Théâte : présentation des projets, des collaborations et des coordonnées pour les professionnels de l’audiovisuel et du cinéma.",
+    resultsSummary:
+      "Site en ligne, rapide et bien référencé, avec une navigation claire et une expérience adaptée aux professionnels du secteur. SEO et accessibilité intégrés.",
     whatIDid: [
       "Conception et développement du site (structure, pages, contenu).",
       "Design aligné avec l’univers du scénariste et mise en avant des projets.",

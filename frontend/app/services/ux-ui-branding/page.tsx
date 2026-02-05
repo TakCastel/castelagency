@@ -112,7 +112,7 @@ export default function UxUiBrandingPage() {
                   Service : UX, UI & branding
                 </p>
                 <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight">
-                  UX, UI & branding
+                  UX, UI & branding à Avignon
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
                   Une image de marque claire et des interfaces bien pensées aident vos clients à vous faire confiance. Je m’occupe de l’identité visuelle, des maquettes, des visuels pour les réseaux (Instagram, Canva) et des vidéos (YouTube, Reels), en lien avec un réalisateur si besoin.

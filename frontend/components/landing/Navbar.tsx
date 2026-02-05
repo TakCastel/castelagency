@@ -281,7 +281,7 @@ export function Navbar() {
   );
 
   // 3 états : invisible (scroll bas) | scrolling up (fond + border) | at top (transparent, pas de border)
-  // border + blur uniquement quand on a déjà caché le header puis scroll up (pas quand on scroll down depuis le haut)
+  // Mobile : toujours fond blur. Desktop : border + blur uniquement au scroll up après avoir caché le header
   const isInvisible = !headerVisible && !menuOpen;
   const isAtTop = headerVisible && atTop;
   const isScrollingUp = headerVisible && !atTop && headerWasHidden;
@@ -292,9 +292,10 @@ export function Navbar() {
         ref={headerRef}
         className={cn(
           "fixed left-0 right-0 top-0 z-[10000] transition-[transform,background-color,backdrop-filter] duration-300 ease-out will-change-transform",
-          isInvisible && "-translate-y-full",
-          (isAtTop || (headerVisible && !headerWasHidden)) && "border-b-0 bg-transparent",
-          isScrollingUp && "border-b border-border bg-background/80 backdrop-blur-md"
+          "border-b border-border bg-background/80 backdrop-blur-md",
+          "lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none",
+          isScrollingUp && "lg:border-b lg:border-border lg:bg-background/80 lg:backdrop-blur-md",
+          isInvisible && "-translate-y-full"
         )}
         style={isInvisible ? { transform: "translateY(-100%)" } : { transform: "translateY(0)" }}
       >

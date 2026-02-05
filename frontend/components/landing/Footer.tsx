@@ -15,21 +15,41 @@ import { cn } from "@/lib/utils";
 /** Marge droite pour ne pas chevaucher le bouton WhatsApp flottant. */
 const WHATSAPP_OFFSET = "pr-20 sm:pr-24 md:pr-28";
 
-const navLinks = [
-  { href: "/le-studio", label: "Studio" },
-  { href: "/mes-projets", label: "Projets" },
-  { href: "/mode-de-fonctionnement", label: "Méthode" },
-  { href: "/creations", label: "Créations" },
-  { href: "/blog", label: "Blog" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-  { href: "/devis", label: "Devis" },
+/** Liens regroupés par catégorie pour une navigation footer plus lisible */
+const footerNavGroups = [
+  {
+    title: "Découvrir",
+    links: [
+      { href: "/le-studio", label: "Le studio" },
+      { href: "/mes-projets", label: "Projets" },
+      { href: "/creations", label: "Créations" },
+      { href: "/blog", label: "Blog" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { href: "/services", label: "Tous les services" },
+      { href: "/developpeur-web-avignon", label: "Développeur web Avignon" },
+      { href: "/mode-de-fonctionnement", label: "Méthode" },
+    ],
+  },
+  {
+    title: "Contact & légal",
+    links: [
+      { href: "/contact", label: "Contact" },
+      { href: "/devis", label: "Devis" },
+      { href: "/mentions-legales", label: "Mentions légales" },
+      { href: "/politique-de-confidentialite", label: "Politique de confidentialité" },
+    ],
+  },
 ] as const;
 
-const legalLinks = [
-  { href: "/mentions-legales", label: "Mentions légales" },
-  { href: "/politique-de-confidentialite", label: "Politique de confidentialité" },
-] as const;
+/** NAP (Name, Address, Phone) cohérent pour le SEO local — même que la fiche Google et le JSON-LD. */
+const NAP_PHONE = "+33 6 08 43 20 59";
+const NAP_PHONE_TEL = "tel:+33608432059";
+const NAP_CITY = "Avignon";
+const NAP_REGION = "Vaucluse";
 
 const socialLinks = [
   { href: "https://www.linkedin.com/in/tarik-talhaoui-832769110/?locale=fr_FR", label: "LinkedIn", Icon: LinkedinIcon },
@@ -125,8 +145,8 @@ export function Footer() {
       </div>
 
       <div className="container relative py-14 md:py-16">
-        <div className="grid gap-12 md:gap-16 lg:grid-cols-[1fr_auto_auto] lg:gap-20">
-          {/* Colonne gauche : marque + phrase + réseaux */}
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1fr_auto_auto_auto] lg:gap-x-12 lg:gap-y-0 xl:gap-x-16">
+          {/* Colonne gauche : marque + NAP + réseaux */}
           <FooterBlock delay={0} reducedMotion={prefersReducedMotion} isInView={isInView}>
             <Link
               href="/"
@@ -138,6 +158,16 @@ export function Footer() {
             <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">
               Agence web à Avignon. Sites, e‑commerce et applications sur mesure.
             </p>
+            <address className="mt-4 not-italic text-sm text-muted-foreground">
+              <span className="block font-medium text-foreground">{NAP_CITY}</span>
+              <span className="block">{NAP_REGION}, France</span>
+              <a
+                href={NAP_PHONE_TEL}
+                className="mt-1 block font-medium text-foreground hover:underline hover:underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+              >
+                {NAP_PHONE}
+              </a>
+            </address>
             <ul className="mt-6 flex gap-1" role="list">
               {socialLinks.map(({ href, label, Icon }) => (
                 <li key={href}>
@@ -163,51 +193,35 @@ export function Footer() {
             </p>
           </FooterBlock>
 
-          {/* Navigation */}
-          <FooterBlock delay={1} reducedMotion={prefersReducedMotion} isInView={isInView}>
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Navigation
-            </p>
-            <ul className="mt-4 flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "text-sm text-muted-foreground transition-colors",
-                      "hover:text-foreground hover:underline hover:underline-offset-2",
-                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </FooterBlock>
-
-          {/* Légales */}
-          <FooterBlock delay={2} reducedMotion={prefersReducedMotion} isInView={isInView}>
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Légal
-            </p>
-            <ul className="mt-4 flex flex-col gap-3">
-              {legalLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "text-sm text-muted-foreground transition-colors",
-                      "hover:text-foreground hover:underline hover:underline-offset-2",
-                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </FooterBlock>
+          {/* Colonnes droite : navigation par groupes */}
+          {footerNavGroups.map((group, groupIndex) => (
+            <FooterBlock
+              key={group.title}
+              delay={groupIndex + 1}
+              reducedMotion={prefersReducedMotion}
+              isInView={isInView}
+            >
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                {group.title}
+              </p>
+              <ul className="mt-4 flex flex-col gap-2.5" role="list">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        "text-sm text-muted-foreground transition-colors",
+                        "hover:text-foreground hover:underline hover:underline-offset-2",
+                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </FooterBlock>
+          ))}
         </div>
       </div>
     </footer>

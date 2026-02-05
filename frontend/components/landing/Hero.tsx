@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Breadcrumb } from "@/components/landing/Breadcrumb";
 import { BLUR_DATA_URL } from "@/lib/image-placeholder";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
@@ -14,15 +13,33 @@ const TITLE = "Studio Castel";
 /** Courbe cubic-bezier (ease-out) pour les animations hero. */
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
-/** Une seule animation pour tout le bloc hero (perf mobile : moins de main thread). */
-const titleVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: easeOut },
-  },
-};
+/** Effets d’entrée variés sans déplacement (évite que les lettres se chevauchent). */
+const letterEffects = [
+  { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } },
+  { hidden: { opacity: 0, scale: 0.6 }, visible: { opacity: 1, scale: 1 } },
+  { hidden: { opacity: 0, rotate: -14 }, visible: { opacity: 1, rotate: 0 } },
+  { hidden: { opacity: 0, rotate: 14 }, visible: { opacity: 1, rotate: 0 } },
+  { hidden: { opacity: 0, scale: 0.4 }, visible: { opacity: 1, scale: 1 } },
+  { hidden: { opacity: 0, rotate: -8, scale: 0.7 }, visible: { opacity: 1, rotate: 0, scale: 1 } },
+  { hidden: { opacity: 0, rotate: 8, scale: 0.75 }, visible: { opacity: 1, rotate: 0, scale: 1 } },
+  { hidden: { opacity: 0 }, visible: { opacity: 1 } },
+] as const;
+
+/** Variants par lettre : on choisit un effet selon l’index et on applique un stagger. */
+function getLetterVariants(effectIndex: number) {
+  const effect = letterEffects[effectIndex % letterEffects.length];
+  return {
+    hidden: effect.hidden,
+    visible: (i: number) => ({
+      ...effect.visible,
+      transition: {
+        delay: i * 0.032,
+        duration: 0.42,
+        ease: easeOut,
+      },
+    }),
+  };
+}
 
 const subtitleVariants = {
   hidden: { opacity: 0 },
@@ -73,14 +90,20 @@ export function Hero() {
             {reduceMotion ? (
               TITLE
             ) : (
-              <motion.span
-                className="inline-block"
-                variants={titleVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {TITLE}
-              </motion.span>
+              <>
+                {TITLE.split("").map((letter, i) => (
+                  <motion.span
+                    key={`${letter}-${i}`}
+                    className="inline-block"
+                    variants={getLetterVariants(i)}
+                    initial="hidden"
+                    animate="visible"
+                    custom={i}
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </motion.span>
+                ))}
+              </>
             )}
           </h1>
 
@@ -113,10 +136,6 @@ export function Hero() {
               Agence web Avignon : design sur mesure, SEO, création d’applications et de sites. À Avignon, en Vaucluse et en remote.
             </motion.p>
           )}
-
-          <div className="mt-4 flex justify-center">
-            <Breadcrumb items={[{ label: "Accueil" }]} />
-          </div>
 
           {reduceMotion ? (
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">

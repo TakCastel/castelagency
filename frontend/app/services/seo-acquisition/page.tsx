@@ -111,7 +111,7 @@ export default function SeoAcquisitionPage() {
                   Service : SEO & acquisition
                 </p>
                 <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight">
-                  SEO & acquisition
+                  Consultant SEO & acquisition à Avignon
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
                   Être visible sur Google et mesurer ce qui fonctionne, c’est la base d’une acquisition durable. J’accompagne la visibilité de votre site : SEO technique, contenu et maillage, analytics et suivi des performances (Lighthouse, PageSpeed), pour attirer les bons visiteurs et les convertir.

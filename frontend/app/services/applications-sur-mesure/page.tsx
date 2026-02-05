@@ -140,7 +140,7 @@ export default function ApplicationsSurMesurePage() {
                   Service : Applications sur mesure
                 </p>
                 <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight">
-                  Applications web et mobiles sur mesure
+                  Applications web et mobiles sur mesure à Avignon
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
                   Une application sur mesure qui épouse votre métier, vos process et vos utilisateurs. Je conçois des apps web et mobiles de A à Z : design, développement (React, Vue), déploiement sur App Store et Play Store avec Capacitor, intégration d’APIs (Strapi, Directus), modules publicitaires, Google Analytics, et accompagnement tout au long du projet avec une méthodologie agile et une posture Scrum Master / chef de produit.

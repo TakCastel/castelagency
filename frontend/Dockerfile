@@ -4,7 +4,7 @@ WORKDIR /app
 FROM base AS deps
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm \
-    npm ci
+    npm ci --prefer-offline --no-audit
 
 FROM base AS dev
 ENV NODE_ENV=development
@@ -17,6 +17,8 @@ CMD ["npm", "run", "dev"]
 FROM base AS build
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+# Éviter OOM pendant le build Next.js en conteneur
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build

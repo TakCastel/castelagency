@@ -121,7 +121,7 @@ export default function ProcessIaPage() {
                   Service : Process IA
                 </p>
                 <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight">
-                  Process IA
+                  Process IA & accompagnement IA à Avignon
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
                   Plutôt qu’une prestation « tout code », je propose un{" "}

@@ -135,7 +135,7 @@ export default function EcommercePage() {
                   Service : E-commerce
                 </p>
                 <h1 className="mt-2 text-balance text-titre-moyen font-semibold tracking-tight">
-                  Création et refonte de boutique en ligne
+                  Création et refonte de boutique en ligne à Avignon
                 </h1>
                 <p className="mt-6 text-paragraphe text-muted-foreground text-pretty">
                   Une boutique en ligne qui met en avant vos produits, sécurise les paiements et convertit les visiteurs en clients. Je conçois des sites e-commerce sur mesure : catalogue clair, tunnel d’achat optimisé, paiements (Stripe, PayPal) avec implémentation custom, et SEO intégré.
