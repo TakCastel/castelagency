@@ -35,6 +35,15 @@ export const drawings: DrawingItem[] = [
     videoSrc: "/assets/drawings/commission.mp4",
   },
   {
+    id: "ariana-grande",
+    src: "/assets/drawings/riana-grande.png",
+    alt: "Ariana Grande drawing.",
+    width: 500,
+    height: 650,
+    title: "Ariana Grande",
+    date: 2025,
+  },
+  {
     id: "supercureuil",
     src: "/assets/drawings/supercureuil.png",
     alt: "Supercureuil drawing.",
