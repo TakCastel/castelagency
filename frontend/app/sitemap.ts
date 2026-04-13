@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getBlogSlugs } from "@/lib/blog";
 import { getProjectSlugs } from "@/lib/projects";
+import { getChapterSlugs } from "@/lib/training/course";
 
 const BASE_URL = "https://studio-castel.com";
 
@@ -25,6 +26,8 @@ const staticRoutes = [
   "/creations/ecritures",
   "/creations/ecritures/l-homme-au-masque-de-verre",
   "/blog",
+  "/formation-ia",
+  "/formation-ia/feuille-de-route",
   "/mentions-legales",
   "/politique-de-confidentialite",
 ];
@@ -53,5 +56,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...blogEntries, ...projectEntries];
+  const formationChapterSlugs = getChapterSlugs();
+  const formationEntries: MetadataRoute.Sitemap = formationChapterSlugs.map((slug) => ({
+    url: `${BASE_URL}/formation-ia/chapitre/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticEntries, ...blogEntries, ...projectEntries, ...formationEntries];
 }
