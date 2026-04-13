@@ -24,6 +24,11 @@ import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 import { cn } from "@/lib/utils";
 import { trackCTAClick, trackNavClick } from "@/lib/analytics";
 
+function isNavActive(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 const navItems = [
   { href: "/le-studio", label: "Studio", title: "Le Studio", Icon: LaptopMinimalCheckIcon },
   { href: "/services", label: "Services", title: "Mes services", Icon: WrenchIcon },
@@ -230,7 +235,7 @@ export function Navbar() {
       <div className="flex min-h-full flex-1 flex-col items-start justify-center gap-2 px-8 py-24">
         <nav className="flex w-full max-w-sm flex-col items-stretch gap-1 text-left">
           {navItems.map(({ href, label, title, Icon }, i) => {
-            const isActive = pathname === href;
+            const isActive = isNavActive(pathname, href);
             return (
               <Link
                 key={href}
@@ -315,7 +320,7 @@ export function Navbar() {
         {/* Desktop (xl+) : chaque lien avec un délai progressif */}
         <nav className="hidden items-center gap-10 xl:flex xl:gap-12">
           {navItems.map(({ href, label, title, Icon }, i) => {
-            const isActive = pathname === href;
+            const isActive = isNavActive(pathname, href);
             const delayMs = (i + 1) * HEADER_ENTRANCE_STAGGER_MS;
             return (
               <Link
@@ -344,7 +349,7 @@ export function Navbar() {
         {/* Tablette (lg à xl) : chaque icône avec un délai progressif */}
         <nav className="hidden items-center gap-8 lg:flex xl:hidden">
           {navItems.map(({ href, title, Icon }, i) => {
-            const isActive = pathname === href;
+            const isActive = isNavActive(pathname, href);
             const delayMs = (i + 1) * HEADER_ENTRANCE_STAGGER_MS;
             return (
               <Link

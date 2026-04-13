@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, Comic_Neue } from "next/font/google";
 import "./globals.css";
 
-import { DeferredFooter, DeferredWhatsAppFloatingCTA } from "@/components/DeferredLayoutParts";
-import { Navbar } from "@/components/landing/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
@@ -78,12 +77,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
+          <ReadingProgressBar />
           <GoogleTagManager />
           <AnalyticsPageView />
-          <Navbar />
-          <main className="pt-16 lg:pt-20">{children}</main>
-          <DeferredFooter />
-          <DeferredWhatsAppFloatingCTA />
+          {children}
           <CookieConsentBanner />
         </ThemeProvider>
       </body>
