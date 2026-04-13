@@ -11,8 +11,5 @@
     "restart": "docker-compose restart",
     "restart:frontend": "docker-compose restart frontend",
     "clean": "docker-compose down -v && docker-compose build --no-cache"
-  },
-  "devDependencies": {
-    "@types/react-syntax-highlighter": "^15.5.13"
   }
 }
