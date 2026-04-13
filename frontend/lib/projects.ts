@@ -12,6 +12,11 @@ export type ProjectItem = {
   url?: string;
   /** App mobile : affichage en cadre type smartphone */
   isMobileApp?: boolean;
+  /**
+   * Vidéo de couverture (MP4 dans /public). L’`image` sert de poster, d’aperçu Open Graph
+   * et d’échantillon pour la couleur dominante sur la carte.
+   */
+  coverVideo?: string;
 };
 
 /** Témoignage client optionnel pour une étude de cas */
@@ -22,6 +27,8 @@ export type ProjectTestimonial = {
 };
 
 export type ProjectDetail = ProjectItem & {
+  /** Libellé du lien « Voir le site » / CTA (défaut selon isMobileApp) */
+  urlCtaLabel?: string;
   /** Contexte / cas d’usage du projet */
   useCase: string;
   /** Ce que j’ai fait (paragraphes ou puces) */
@@ -69,6 +76,35 @@ export const projectsDetail: ProjectDetail[] = [
       "Base solide pour évolutions (notifications, app mobile, etc.).",
     ],
     technologies: ["Next.js", "React", "TypeScript", "Netlify", "PWA", "Patreon"],
+  },
+  {
+    id: "formation-ia",
+    title: "Formation IA",
+    description:
+      "Parcours en ligne : sécurité, assistants, prompts, BMAD, GEO, intégration produit, TP et QCM.",
+    image: "/assets/illustrations/illu-studio.png",
+    imageAlt: "Aperçu vidéo du parcours formation IA et développement web.",
+    coverVideo: "/assets/projects/project-formation-ia.mp4",
+    url: "/formation-ia",
+    urlCtaLabel: "Voir la formation",
+    objective:
+      "Rendre accessibles des bonnes pratiques IA appliquées au web (sécurité, équipe, produit) via un parcours structuré et auto-guidé.",
+    useCase:
+      "Le parcours public /formation-ia regroupe douze chapitres et une banque de QCM : introduction, sécurité et données, assistants dans l’IDE, prompts et Markdown, BMAD, intégration produit et APIs, GEO, travaux pratiques, synthèse, auto-évaluation et glossaire. Il prolonge le travail du studio par de la pédagogie ouverte, alignée sur les enjeux réels des équipes web.",
+    whatIDid: [
+      "Conception du programme et rédaction des chapitres en Markdown, avec progression et mises en garde sur les sujets sensibles.",
+      "Intégration du parcours dans le site : hub, feuille de route, navigation entre chapitres, recherche et QCM.",
+      "Mise en forme pédagogique : encadrés, schémas, blocs copiables et renvois vers la feuille de route.",
+    ],
+    howIWorked: [
+      "Itérations sur le fond (ordre des notions, clarté) et sur la forme (lisibilité, accessibilité).",
+      "Cohérence avec les pratiques du studio sur Next.js, produit et usage responsable de l’IA.",
+    ],
+    accomplishments: [
+      "Parcours consultable librement, avec feuille de route et enchaînement guidé des chapitres.",
+      "Matériel réutilisable pour monter en compétence en autonomie ou pour appuyer des sessions en entreprise.",
+    ],
+    technologies: ["Next.js", "React", "TypeScript", "Markdown", "Mermaid"],
   },
   {
     id: "florine",
@@ -370,6 +406,7 @@ export const projectsList: ProjectItem[] = projectsDetail.map(
     imageAlt: p.imageAlt,
     url: p.url,
     isMobileApp: p.isMobileApp,
+    coverVideo: p.coverVideo,
   })
 );
 

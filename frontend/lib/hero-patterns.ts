@@ -65,11 +65,21 @@ export function getTintedColorForPattern(
   return rgbToHex(r2, g2, b2);
 }
 
+/**
+ * Motif Hero affiché à partir d’un autre id (même hash que la cible).
+ * Ex. « formation-ia » reprend le motif de « florine » et inversement.
+ */
+const PROJECT_PATTERN_SOURCE_ID: Record<string, string> = {
+  "formation-ia": "florine",
+  florine: "formation-ia",
+};
+
 /** Hash simple sur l’id du projet pour un index de pattern déterministe. */
 export function getPatternIndexForProject(projectId: string): number {
+  const sourceId = PROJECT_PATTERN_SOURCE_ID[projectId] ?? projectId;
   let h = 0;
-  for (let i = 0; i < projectId.length; i++) {
-    h = (h << 5) - h + projectId.charCodeAt(i);
+  for (let i = 0; i < sourceId.length; i++) {
+    h = (h << 5) - h + sourceId.charCodeAt(i);
     h |= 0;
   }
   return Math.abs(h);

@@ -18,6 +18,14 @@ import {
 
 type Props = { params: Promise<{ slug: string }> };
 
+function projectUrlIsInternal(url: string): boolean {
+  return url.startsWith("/");
+}
+
+function getProjectUrlCtaLabel(project: ProjectDetail): string {
+  return project.urlCtaLabel ?? (project.isMobileApp ? "Voir l’app" : "Voir le site");
+}
+
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
 }
@@ -269,14 +277,42 @@ export default async function ProjectPage({ params }: Props) {
           {project.isMobileApp ? (
             <div className="flex flex-col items-center">
               <div className="relative mx-auto aspect-[9/19] w-full max-w-[280px] overflow-hidden rounded-[1.5rem] border-4 border-border bg-muted shadow-xl">
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
-                  className="object-cover object-top"
-                  sizes="280px"
-                  priority
-                />
+                {project.coverVideo ? (
+                  <video
+                    className="absolute inset-0 h-full w-full object-cover object-top"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={project.image}
+                    aria-label={project.imageAlt}
+                  >
+                    <source src={project.coverVideo} type="video/mp4" />
+                  </video>
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="280px"
+                    priority
+                  />
+                )}
+              </div>
+            </div>
+          ) : project.coverVideo ? (
+            <div className="overflow-hidden rounded-xl border border-border/80 bg-muted">
+              <div className="relative aspect-video w-full">
+                <video
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={project.image}
+                  aria-label={project.imageAlt}
+                >
+                  <source src={project.coverVideo} type="video/mp4" />
+                </video>
               </div>
             </div>
           ) : (
@@ -297,19 +333,29 @@ export default async function ProjectPage({ params }: Props) {
             <p className="text-small text-muted-foreground">
               {project.isMobileApp
                 ? "Aperçu de l’application mobile."
-                : `Aperçu du projet ${project.title}.`}
+                : project.coverVideo
+                  ? `Aperçu en vidéo du projet ${project.title}.`
+                  : `Aperçu du projet ${project.title}.`}
             </p>
-            {project.url && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center gap-1.5 text-small font-medium text-primary hover:underline"
-              >
-                {project.isMobileApp ? "Voir l’app" : "Voir le site"}
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-            )}
+            {project.url &&
+              (projectUrlIsInternal(project.url) ? (
+                <Link
+                  href={project.url}
+                  className="mt-2 inline-flex items-center gap-1.5 text-small font-medium text-primary hover:underline"
+                >
+                  {getProjectUrlCtaLabel(project)}
+                </Link>
+              ) : (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-1.5 text-small font-medium text-primary hover:underline"
+                >
+                  {getProjectUrlCtaLabel(project)}
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              ))}
           </figcaption>
         </figure>
 
@@ -343,18 +389,19 @@ export default async function ProjectPage({ params }: Props) {
             <Button asChild size="lg" variant="outline">
               <Link href="/services">Voir nos services</Link>
             </Button>
-            {project.url && (
-              <Button asChild size="lg" className="gap-2">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {project.isMobileApp ? "Voir l’app" : "Voir le site"}
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
-            )}
+            {project.url &&
+              (projectUrlIsInternal(project.url) ? (
+                <Button asChild size="lg" className="gap-2">
+                  <Link href={project.url}>{getProjectUrlCtaLabel(project)}</Link>
+                </Button>
+              ) : (
+                <Button asChild size="lg" className="gap-2">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    {getProjectUrlCtaLabel(project)}
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              ))}
           </div>
         </section>
       </div>

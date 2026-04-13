@@ -72,25 +72,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             project.isMobileApp ? "aspect-square" : "aspect-[4/3]"
           )}
         >
-          {project.isMobileApp ? (
-            <Image
-              src={project.image}
-              alt={project.imageAlt}
-              fill
-              className="project-card-image-engraving object-cover object-top"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              onLoad={handleImageLoad}
-            />
-          ) : (
-            <Image
-              src={project.image}
-              alt={project.imageAlt}
-              fill
-              className="project-card-image-engraving object-cover object-top"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              onLoad={handleImageLoad}
-            />
-          )}
+          <Image
+            src={project.image}
+            alt={project.imageAlt}
+            fill
+            className="project-card-image-engraving object-cover object-top"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            onLoad={handleImageLoad}
+          />
           {overlayColor && (
             <div
               className="pointer-events-none absolute inset-0 rounded-t-xl"
