@@ -1,18 +1,8 @@
 # Chapitre 5 · BMAD-METHOD : cadrer, challenger et livrer avec des agents
 
-Quand on parle de **projet web**, on parle rarement d’un simple morceau de code isolé. Même sur un petit sujet, on peut vite être amené à travailler à plusieurs, à clarifier un besoin, à découper le travail, à arbitrer entre vitesse et qualité, puis à avancer par itérations.
+Un projet web dépasse vite le simple code : besoin à clarifier, arbitrages à poser, itérations à tenir. **BMAD-METHOD** applique cette logique au travail avec des agents IA : au lieu d’un long chat, on organise une chaîne de **rôles**, de **workflows** et d’**artefacts** pour passer d’une idée floue à des décisions relues, puis au code.
 
-C’est pour cela que la logique **agile** revient si souvent dans les équipes produit et techniques. L’idée de fond est assez simple : au lieu de partir dans tous les sens ou de vouloir tout définir d’un coup, on essaie de transformer une intention encore floue en éléments plus clairs, plus petits, plus discutables et plus testables.
-
-**BMAD-METHOD** (*Breakthrough Method for Agile AI Driven Development*) reprend cette logique, mais l’étend au travail avec des agents IA. Il ne s’agit plus seulement de demander "écris-moi ce composant", mais d’installer dans le dépôt une **chaîne de rôles**, de **workflows** et d’**artefacts** pour passer d’une idée floue à un plan, puis à du code, puis à une revue, sans repartir de zéro à chaque session.
-
-Autrement dit, BMAD essaie de répondre à une question très concrète : **comment faire travailler des agents IA comme une mini-équipe de produit et d’ingénierie, sans perdre le contrôle humain ?**
-
-La documentation officielle est sur [docs.bmad-method.org](https://docs.bmad-method.org) et le dépôt source sur [github.com/bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD). Le tutoriel d’entrée utile pour commencer est [Getting Started](https://docs.bmad-method.org/tutorials/getting-started/), et la liste des agents évolue dans la [référence Agents](https://docs.bmad-method.org/reference/agents/).
-
-> **En bref**
->
-> BMAD ne "remplace" pas une équipe. Il outille une façon de travailler où les agents produisent des **documents intermédiaires**, se **challengent** via ces documents, puis aident à **implémenter** et **relire**. Le gain n’est pas seulement la vitesse de code. Le gain est la capacité à garder une trace exploitable du raisonnement produit, technique et qualité.
+La question centrale est simple : **comment faire travailler des agents comme une mini-équipe sans perdre le contrôle humain ?** La documentation officielle reste la source de vérité : [docs.bmad-method.org](https://docs.bmad-method.org), dépôt [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD), tutoriel [Getting Started](https://docs.bmad-method.org/tutorials/getting-started/) et [référence Agents](https://docs.bmad-method.org/reference/agents/).
 
 ---
 
@@ -30,29 +20,21 @@ La documentation officielle est sur [docs.bmad-method.org](https://docs.bmad-met
 
 ## 2. Ce que BMAD change vraiment
 
-Sans cadre, beaucoup d’usages de l’IA finissent par ressembler au même scénario : on parle longtemps dans un chat, l’agent propose du code, on corrige à la main, puis deux jours plus tard personne ne sait plus très bien **pourquoi** cette solution a été choisie.
+Sans cadre, l’usage typique ressemble à ceci : long fil de chat, patchs de code, corrections à la main, et deux jours plus tard **personne ne sait plus** très bien **pourquoi** telle solution a été choisie.
 
-Avec BMAD, on change de niveau. Le dépôt ne sert plus seulement à stocker le code ; il sert aussi à stocker le **raisonnement de projet** : le besoin métier, les hypothèses, les arbitrages, les risques, l’architecture, les épics, les stories et le suivi de mise en oeuvre.
-
-Le résultat attendu n’est donc pas juste "un agent plus malin". Le résultat attendu est une **chaîne de travail plus robuste**. Il faut le redire clairement : **BMAD n’est pas un catalogue d’agents. C’est une méthode de passage de relais entre artefacts, agents et validation humaine.**
+Avec BMAD, le dépôt accueille aussi le **raisonnement de projet** — besoin, hypothèses, arbitrages, risques, architecture, épics, stories, suivi — pas seulement les lignes de code. L’objectif n’est pas « un agent plus malin », mais une **chaîne de travail plus robuste**. **BMAD n’est pas un catalogue d’agents** : c’est une méthode de **passage de relais** entre artefacts, agents et validation humaine.
 
 ### 2.1. Ce que cela permet en pratique
 
-Bien utilisé, BMAD aide à partir d’une **simple idée** pour la transformer en **brief produit**, puis en **PRD**, puis en **architecture**, puis en **épics** et **stories** avec critères d’acceptation. Il guide ensuite l’implémentation story par story, facilite la **revue de code** et la génération de **tests E2E**, et laisse derrière lui une documentation qui permet à la session suivante de repartir de fichiers plutôt que d’un souvenir.
+Bien utilisé, BMAD fait voyager une **idée** vers un **brief**, un **PRD**, une **architecture**, puis des **épics** et **stories** avec critères d’acceptation ; il accompagne l’implémentation pas à pas, la **revue** et les **tests E2E**, et laisse des **fichiers** sur lesquels la session suivante peut s’appuyer.
 
 ### 2.2. Jusqu’où cela peut aller
 
-Le niveau "simple" consiste à accélérer un **POC** ou une **feature bien bornée**.
-
-Le niveau "sérieux" consiste à faire travailler plusieurs angles de vue en parallèle dans le temps : un angle **produit** pour clarifier le besoin, un angle **architecture** pour refuser les solutions fragiles, un angle **développement** pour implémenter, un angle **review** pour chercher les écarts et un angle **documentation** pour consolider ce qui restera dans le dépôt.
-
-Le niveau "avancé" consiste à faire dialoguer ces rôles **par artefacts interposés**. Ce point est essentiel : dans BMAD, les agents collaborent surtout via les fichiers générés et relus, pas parce qu’on les imagine "penser ensemble par magie" dans un même cerveau.
+Du **POC** ou de la **feature bornée** au dispositif « sérieux » où **produit**, **architecture**, **dev**, **review** et **doc** travaillent en parallèle sur des angles différents. Au niveau avancé, ces rôles dialoguent **par artefacts** : dans BMAD, la collaboration passe par les documents relus, pas par l’illusion d’un « cerveau unique » partagé entre agents.
 
 ### 2.3. Ce que BMAD ne fait pas à votre place
 
-BMAD ne retire pas les responsabilités humaines les plus importantes. C’est toujours à vous de décider ce qui a de la valeur métier, d’arbitrer entre vitesse, qualité, coût et dette, de refuser une spec floue, de valider une architecture engageante, de protéger les données et les secrets, puis de décider qu’un POC mérite ou non d’aller plus loin.
-
-Dit autrement : BMAD aide à **formaliser**, **questionner**, **enchaîner** et **produire**. Il ne vous dispense jamais de **juger**.
+Valeur métier, arbitrages vitesse / qualité / coût / dette, refus d’une spec floue, validation d’une architecture lourde, protection des **données** et des **secrets**, décision d’industrialiser ou non un POC : tout cela reste **humain**. BMAD aide à **formaliser**, **questionner**, **enchaîner** et **produire** ; il ne remplace pas le **jugement**.
 
 ---
 
@@ -119,9 +101,7 @@ Un point important du noyau **BMM** par défaut : la **code review** et la **gé
 
 ## 6. Comment invoquer et interroger les agents
 
-Le piège classique consiste à traiter BMAD comme un simple chatbot spécialisé. Or, la documentation officielle présente une mécanique plus cadrée. En pratique, BMAD propose surtout **deux façons de démarrer** : lancer directement un **skill**, ou charger un agent puis utiliser ses **menu triggers**.
-
-Un **skill** lance immédiatement un agent, un workflow ou une tâche. Par exemple, `bmad-help`, `bmad-create-prd` ou `bmad-dev-story`. Un **agent menu trigger**, lui, ne s’utilise qu’une fois l’agent déjà chargé. On tape alors un code court comme `CP`, `CA` ou `DS`, et l’agent déclenche le workflow correspondant sans quitter sa session.
+Éviter le piège « chatbot » : la doc officielle décrit une mécanique **cadrée**. En pratique, **deux entrées** : lancer un **skill** (`bmad-help`, `bmad-create-prd`, `bmad-dev-story`…) ou charger un agent puis ses **menu triggers** (`CP`, `CA`, `DS`… une fois l’agent actif).
 
 ### 6.1. Les trois repères utiles dans la doc officielle
 
@@ -129,15 +109,13 @@ Trois pages de la documentation sont particulièrement utiles. La page [Skills](
 
 ### 6.2. Ce que la doc entend vraiment par "prompting"
 
-Dans la doc BMAD, le prompting libre n’est pas la porte d’entrée principale. Le cas normal reste le **workflow structuré** : on lance un skill ou un trigger, puis l’agent suit les étapes prévues et vous demande les informations utiles au bon moment.
+Le cas normal est le **workflow structuré** (skill ou trigger, puis étapes). Le texte libre sert surtout à :
 
-Le texte libre apparaît surtout dans trois cas :
+1. **`bmad-help`** (question en langage naturel) ;
+2. **vos réponses** quand le workflow demande des précisions ;
+3. certains **triggers conversationnels** (ex. **Technical Writer**), avec une description directe du besoin.
 
-1. avec **`bmad-help`**, qui accepte une question en langage naturel pour vous orienter ;
-2. dans les **réponses que vous donnez pendant un workflow**, quand l’agent vous demande des précisions ;
-3. dans certains **conversational triggers** documentés, surtout côté **Technical Writer**, où il faut fournir directement une description du besoin.
-
-Autrement dit, BMAD n’est pas pensé d’abord comme "j’écris un grand prompt et on voit". Il est pensé comme une suite de **skills**, de **triggers** et d’**artefacts**.
+BMAD = **skills**, **triggers**, **artefacts** — pas « un gros prompt et on verra ».
 
 > **Prudence**
 >
@@ -180,33 +158,20 @@ La doc officielle cite surtout ce cas pour le **Technical Writer**. Par exemple 
 
 ### 6.4.1. Mauvaise demande, meilleure demande
 
-Une mauvaise demande BMAD ressemble souvent à : "fais-moi l’appli" ou "rédige les stories". C’est trop court, trop flou et cela pousse l’agent à inventer. Plus important encore : cela contourne la logique même de BMAD, qui prévoit déjà des **commandes de workflow** pour ces étapes.
+« Fais-moi l’appli » / « rédige les stories » : **flou**, invention, et **contournement** des workflows prévus.
 
-Le meilleur réflexe consiste donc d’abord à lancer le bon workflow, par exemple **`bmad-create-prd`**. Ensuite seulement, si besoin, vous ajoutez une demande comme : "à partir de ce premier cadrage, rends visibles les hypothèses critiques, le hors périmètre et les critères d’acceptation minimum, puis liste les questions auxquelles il faut répondre avant de considérer le PRD comme exploitable."
-
-Une mauvaise demande à l’Architect serait : "propose une architecture moderne". Là aussi, c’est trop vague, et cela contourne l’usage normal d’un workflow comme **`bmad-create-architecture`**.
-
-Une meilleure demande complémentaire serait : "lis l’architecture produite, critique sa faisabilité, sépare ce qui est acceptable pour un POC, ce qui doit être traité proprement malgré tout, et ce qui doit être repoussé après validation."
+- Bon réflexe : **`bmad-create-prd`**, puis si besoin préciser hypothèses, hors périmètre, critères d’acceptation min., questions bloquantes.
+- Côté architecte : éviter « architecture moderne » sans contexte ; partir de **`bmad-create-architecture`**, puis demander une **critique** (POC vs durable vs à repousser).
 
 ### 6.5. Faire challenger explicitement l’agent
 
-Beaucoup de sorties faibles viennent d’un défaut de consigne : on demande à l’agent de produire, mais jamais de **résister**. Quelques formulations simples marchent très bien :
-
-- "cherche les objections les plus fortes" ;
-- "liste ce qui ferait échouer ce POC" ;
-- "si une hypothèse paraît fausse, dis-le franchement" ;
-- "propose une version pessimiste et une version réaliste" ;
-- "qu’est-ce qui semble élégant mais serait une mauvaise décision dans le temps ?".
-
-Cette simple habitude change fortement la qualité des échanges.
+Demander de **produire** sans demander de **résister** donne des sorties molles. Exemples : objections fortes ; échecs du POC ; hypothèses fausses dites clairement ; scénario pessimiste vs réaliste ; idées élégantes mais toxiques long terme.
 
 ---
 
 ## 7. Méthodes utiles pour l’agent Product Owner / Product Manager
 
-Un bon agent PM n’est pas seulement un générateur de user stories. Il peut s’appuyer sur des **méthodes de cadrage reconnues** pour produire des documents plus solides.
-
-Avant de rentrer dans chaque méthode, voici un guide simple :
+Au-delà des user stories, l’agent PM gagne à s’appuyer sur des **méthodes de cadrage** reconnues. Guide rapide :
 
 | Si votre problème ressemble à... | Méthode la plus utile |
 |----------------------------------|------------------------|
@@ -219,47 +184,41 @@ Avant de rentrer dans chaque méthode, voici un guide simple :
 
 ### 7.1. Lean Canvas
 
-Le **Lean Canvas** est utile au tout début parce qu’il force la clarté sur le problème, le segment d’utilisateurs, la proposition de valeur, les solutions possibles, les canaux, les coûts et les bénéfices attendus. C’est un très bon outil quand l’idée est encore trop vague ou trop pensée "solution d’abord".
+**Lean Canvas** : problème, segment, valeur, solutions, canaux, coûts, revenus — idéal quand l’idée est vague ou trop « solution d’abord ».
 
 ### 7.2. JTBD (*Jobs To Be Done*)
 
-Le JTBD aide à sortir du fantasme fonctionnel pour revenir à l’usage réel.
-
-Exemple de question pour l’agent PM :
+Sortir du fantasme fonctionnel : situation, résultat cherché, substitut actuel. Exemple pour l’agent :
 
 > "Au lieu de décrire des fonctionnalités, reformule le besoin en jobs to be done. Dans quelle situation l’utilisateur vient-il ? Qu’essaie-t-il vraiment d’obtenir ? Qu’est-ce qu’il remplace aujourd’hui ?"
 
-Pour un POC, cela évite de construire une usine à gaz là où l’utilisateur veut juste un résultat simple et immédiat.
+Utile en POC pour ne pas sur-construire.
 
 ### 7.3. Story Mapping
 
-Le **Story Mapping** est très utile pour distinguer le **parcours principal**, les cas secondaires, ce qui est nécessaire pour un **MVP** et ce qui peut attendre après validation. L’agent PM peut très bien produire une première carte textuelle du parcours avant même de détailler les stories.
+**Story Mapping** : parcours principal, cas secondaires, **MVP** vs plus tard — souvent une **carte textuelle** du parcours avant le détail des stories.
 
 ### 7.4. MoSCoW ou RICE
 
-Quand tout semble important, rien n’est priorisé. Des cadres comme **MoSCoW** (*Must, Should, Could, Won’t*) ou **RICE** (*Reach, Impact, Confidence, Effort*) aident l’agent PM à proposer un premier tri, à condition que vous relisiez ensuite ce tri avec un vrai regard métier.
+Si tout est prioritaire, rien ne l’est. **MoSCoW** ou **RICE** : premier tri proposé par l’agent, **à relire** avec le métier.
 
 ### 7.5. Riskiest Assumption Test
 
-Le **Riskiest Assumption Test** est très utile pour un POC, car il pose une question simple : quelle est l’hypothèse qui, si elle est fausse, rend le projet peu intéressant ? Dans notre exemple, cela peut être l’envie réelle d’un film "surprise", la qualité d’une API externe, le fait que l’expérience reste amusante après trois utilisations, ou encore le coût d’appel API. Un bon agent PM doit être capable d’identifier ces hypothèses et de proposer le **plus petit test crédible** pour les confronter.
+**Quelle hypothèse, si fausse, tue l’intérêt du POC ?** (besoin réel, API, lassitude, coût…). L’agent doit nommer ces hypothèses et le **plus petit test crédible** pour les confronter.
 
 ### 7.6. PRFAQ
 
-Le format **PRFAQ** (*Press Release + FAQ*) est utile quand vous voulez pousser l’agent à raconter le produit "comme s’il existait déjà", puis à répondre aux objections. C’est un bon outil pour clarifier la promesse, éviter le jargon interne, détecter les promesses non tenables et préparer une base de narration produit.
+Le **PRFAQ** invite à raconter le produit **comme s’il existait déjà**, puis à répondre aux objections : promesse lisible, jargon limité, promesses réalistes, bon socle pour la narration produit.
 
 ---
 
 ## 8. Faire dialoguer les agents entre eux
 
-Le bon modèle n’est pas : "je mets cinq agents dans la même pièce virtuelle et ils vont inventer un chef-d’oeuvre".
-
-Le bon modèle est plus sobre. Un agent produit un artefact, un autre le relit avec un autre angle, un humain arbitre, le document est mis à jour, puis l’agent suivant repart de cette version.
+Inutile d’espérer cinq agents dans le même chat qui « inventent » quelque chose de cohérent. Le schéma sain, c’est plutôt : un **artefact**, une **relecture** sous un autre angle, un **arbitrage** humain, une **mise à jour** du document, puis l’**étape suivante** — toujours en s’appuyant sur ce qui est écrit.
 
 ### 8.1. Chaîne de dialogue utile
 
-Exemple simple : l’**Analyst** produit un brief à partir d’une idée, puis le **PM** transforme ce brief en PRD et en priorisation. L’**Architect** critique ensuite le PRD et remonte les contraintes, après quoi le **PM** le met à jour. Le **Developer** peut alors implémenter une story issue de cette version révisée, lancer une **code review**, puis le **Technical Writer** consolider la documentation finale si besoin.
-
-Vu en schéma, cela ressemble souvent à une chaîne d’**artefacts relus** :
+En résumé : l’**Analyst** produit un **brief**, le **PM** en fait un **PRD**, l’**Architect** remonte **contraintes** et objections, le **PM** met le PRD à jour, le **Developer** prend une **story** puis une **code review**, et le **Technical Writer** intervient si besoin. L’important est la chaîne d’**artefacts relus**, pas le nombre d’agents dans la pièce.
 
 ```mermaid
 flowchart TD
@@ -284,7 +243,7 @@ flowchart TD
 
 ### 8.2. Formulation pratique
 
-Vous pouvez demander explicitement à un agent de relire la sortie d’un autre :
+Relire explicitement la sortie d’un autre rôle, par exemple :
 
 > "Relis le PRD généré par le PM comme un architecte sceptique. Je veux les contradictions, les trous de faisabilité, les dépendances externes et les décisions qui n’ont pas encore été prises."
 
@@ -292,68 +251,44 @@ Puis :
 
 > "Reprends les objections de l’architecte et mets à jour le PRD. Distingue ce qui est accepté, rejeté ou repoussé après le POC."
 
-Cette boucle donne une sensation de "dialogue entre agents", mais elle reste **traçable**, parce qu’elle passe par des fichiers et des décisions visibles.
+**Traçable** : fichiers et décisions visibles, pas seulement le chat.
 
 ### 8.3. Se faire challenger soi-même
 
-L’un des usages les plus intéressants est de retourner les agents contre vos propres idées.
-
-Vous pouvez par exemple poser ce type de questions :
-
-- au PM : "pourquoi ce besoin pourrait-il être artificiel ?" ;
-- à l’architecte : "qu’est-ce que je suis en train de sur-construire ?" ;
-- au développeur : "quelle partie paraît simple mais sera pénible à maintenir ?" ;
-- au reviewer : "qu’est-ce qui manque pour considérer ce POC comme crédible ?".
-
-Cela aide à ne pas tomber amoureux de la première idée séduisante.
+Vous pouvez aussi retourner les rôles contre **vos** propres idées : demander au PM si le besoin est artificiel, à l’architecte ce que vous sur-construisez, au développeur ce qui semble simple mais pénible à maintenir, au reviewer ce qui manque pour croire au POC.
 
 ---
 
 ## 9. Exemple avec un projet test
 
-Prenons un exemple volontairement simple au départ :
+Exemple simple :
 
 > "Je veux une petite application qui me suggère un film au hasard quand je ne sais pas quoi regarder ce soir."
 
-Le but n’est pas de faire compliqué. Le but est de vous montrer **comment** BMAD transforme une idée simple en une suite d’étapes lisibles, avec des documents que le prochain agent peut reprendre.
-
-Si vous suivez cette formation en stage ou en autoformation, le bon réflexe est d’**essayer ce mini-POC chez vous**. Pas pour construire un grand produit, mais pour voir concrètement comment BMAD vous fait passer d’une idée vague à un cadrage, puis à une architecture, puis à des stories, puis à une petite implémentation relue.
+L’objectif est de voir **comment** BMAD fait passer une idée en **artefacts** suffisamment clairs pour que le prochain agent reprenne le fil. En stage ou en autonomie, **refaire ce mini-POC** vous en dira plus long qu’un long discours.
 
 ### 9.1. Comment vous pouvez le faire chez vous
 
-Sur cet exemple, votre déroulé peut ressembler à ceci :
+1. **Analyse** : besoin = gagner du temps à choisir, pas seulement « tirer un titre au hasard ».
+2. **PRD** : suggestion rapide utile ou amusante ; hors scope : compte, reco avancée, paiement.
+3. **Architecture** : faisable sans sur-ingénierie — ex. UI Next.js, API films, fallback local.
+4. **Stories** : suggestion, relance sans reload, genre, fallback API.
+5. **Dev + revue** : une story à la fois, relire et tester avant la suivante.
 
-1. **Analyse** : clarifiez le vrai besoin. Ici, le sujet n’est pas seulement "afficher un film au hasard", mais aider quelqu’un qui perd du temps à choisir.
-2. **PRD** : laissez le PM cadrer le POC. L’objectif peut devenir : valider qu’un utilisateur obtient en quelques secondes une suggestion jugée utile ou amusante. Le hors périmètre exclut par exemple le compte utilisateur, la recommandation personnalisée et le paiement.
-3. **Architecture** : demandez à l’Architect si le POC est faisable sans sur-ingénierie. Dans ce cas, une solution raisonnable serait : interface Next.js, appel simple à une API film, et fallback local si l’API tombe.
-4. **Stories** : découpez le travail en petits blocs. Par exemple : obtenir une suggestion, relancer sans recharger la page, filtrer par genre, puis gérer un fallback local.
-5. **Développement et revue** : laissez le Developer implémenter une story, puis relisez, testez et corrigez avant de passer à la suivante.
-
-À chaque passage, on valide surtout un **artefact** : brief, PRD, architecture, stories, puis code et review.
+À chaque étape : un **artefact** validé (brief, PRD, archi, stories, code).
 
 ### 9.2. Ce que vous devriez obtenir sur cet exemple
 
-Si vous appliquez vraiment cette logique à ce projet test, vous devriez obtenir quelque chose comme :
+- **Problème** : hésitation trop longue.
+- **POC** : suggestion rapide, UI simple.
+- **Archi** : page, « Surprends-moi », appel serveur, fallback, sans auth.
+- **Stories** : suggestion, relance, genre, panne API.
 
-- **Problème** : l’utilisateur hésite trop longtemps avant de choisir un film.
-- **Promesse du POC** : proposer rapidement un film crédible, avec une interface simple à tester.
-- **Architecture raisonnable** : une page, un bouton "Surprends-moi", un appel serveur simple, un fallback local et pas d’authentification.
-- **Premières stories** : afficher une suggestion, relancer une autre proposition, filtrer par genre, gérer le cas où l’API externe échoue.
-
-Si vous faites l’exercice sérieusement, vous verrez vite le bénéfice de BMAD : on ne part pas directement dans le code. On rend d’abord le sujet **plus clair**, **plus borné** et **plus testable**.
+Intérêt : **clarifier et borner** avant le code.
 
 ### 9.3. Objectif réaliste pour votre essai
 
-En 1 à 2 jours, votre objectif n’est pas de sortir un "gros produit". L’objectif est plutôt d’obtenir :
-
-- un **PRD** relu ;
-- une **architecture** assez simple pour coder sans inventer ;
-- quelques **stories** réalistes ;
-- un premier parcours qui fonctionne ;
-- une **review** et quelques **tests** ;
-- une démo déjà **montrable**.
-
-Le gain n’est pas seulement la vitesse. Le gain est d’avoir, dès ce petit essai, quelque chose de plus **propre**, **rejouable** et **réexploitable**.
+En 1–2 jours : viser PRD relu, archi simple, quelques stories, un parcours qui tourne, review + tests, démo montrable — pas un « gros produit ». Gain : base **propre** et **réexploisable**.
 
 ---
 
@@ -409,7 +344,7 @@ Il faut aussi accepter le **coût d’orchestration** de cette méthode. Ouvrir 
 
 ## 12. Données sensibles et usage raisonnable
 
-Les mêmes règles qu’au [chapitre 2](02-securite-ia.md) restent valables ici, avec une vigilance supplémentaire : BMAD incite à produire beaucoup de documents. Il faut donc éviter d’y injecter :
+Les mêmes règles qu’en **sécurité** restent valables ici, avec une vigilance supplémentaire : BMAD incite à produire beaucoup de documents. Il faut donc éviter d’y injecter :
 
 - des secrets ;
 - des données personnelles non autorisées ;
@@ -447,20 +382,9 @@ Les trois réflexes les plus utiles sont :
 - faire expliciter les **hypothèses critiques** ;
 - distinguer clairement **MVP**, **POC**, **suite logique** et **hors périmètre**.
 
-Votre rôle n’est pas de laisser l’agent écrire "à votre place". Votre rôle est de l’utiliser pour mieux formuler le problème, mieux structurer le besoin, mieux faire apparaître les arbitrages et mieux préparer le travail des développeurs.
+Vous n’utilisez pas l’agent pour qu’il **pense à votre place**, mais pour **cadrer** le problème, le besoin, les arbitrages et le handoff dev.
 
-Il faut aussi accepter une réalité importante : **BMAD ne donne pas automatiquement un gain de temps**. Dans beaucoup d’équipes, certaines petites évolutions partaient autrefois presque directement en développement. Avec BMAD, on pousse davantage à **documenter**, à **relire**, à **challenger** et à **faire circuler des artefacts** avant de coder. Sur le moment, cela peut donner l’impression de ralentir.
-
-Mais le bon angle n’est pas "est-ce qu’on tape moins de code en une heure ?". Le bon angle est plutôt : **est-ce qu’on travaille sur une base plus claire, plus transmissible et moins fragile ?** Le vrai gain de BMAD est souvent là : moins de décisions implicites, moins de contexte perdu, moins de recodage à cause d’un besoin mal compris, et une meilleure continuité entre produit, technique et exécution.
-
-Il faut donc éviter deux fantasmes symétriques : croire que BMAD va tout accélérer par magie, ou croire qu’il va **remplacer les développeurs**. Ce n’est ni un bouton "productivité infinie", ni une machine à supprimer l’équipe. C’est un cadre de travail très puissant qui peut aider une équipe à mieux penser, mieux transmettre et mieux exécuter, à condition de rester piloté par des humains compétents.
-
-Un bon PM avec BMAD ne demande donc pas seulement "rédige-moi des stories". Il demande aussi :
-
-- ce que l’équipe essaie réellement de prouver ;
-- quelle hypothèse doit être testée en premier ;
-- ce qui serait inutilement ambitieux à ce stade ;
-- ce qui manque pour qu’un développeur implémente sans inventer le métier.
+**BMAD n’accélère pas tout seul** : plus de doc et d’artefacts avant le code — parfois plus lent tout de suite, mais **base plus claire, transmissible, moins fragile** (moins d’implicite, moins de recodage pour mauvaise compréhension). Ni baguette magique, ni remplacement des devs : cadre **piloté par l’humain**. Au-delà de « rédige des stories » : que **prouver**, quelle **hypothèse** en premier, quoi d’**inutilement ambitieux**, qu’est-ce qui évite que le dev **invente le métier** ?
 
 > **Prudence**
 >

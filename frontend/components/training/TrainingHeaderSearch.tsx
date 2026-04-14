@@ -82,9 +82,9 @@ export function TrainingHeaderSearch({ className }: TrainingHeaderSearchProps) {
             setQuery(event.currentTarget.value);
             setOpen(true);
           }}
-          placeholder="Rechercher dans la formation"
+          placeholder="Rechercher dans le guide pratique"
           className="h-10 w-full rounded-xl border border-border/80 bg-background/80 pl-9 pr-10 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/90 focus:border-primary/60 focus:ring-2 focus:ring-primary/15"
-          aria-label="Rechercher dans la formation IA"
+          aria-label="Rechercher dans le guide pratique IA"
         />
         {query ? (
           <button

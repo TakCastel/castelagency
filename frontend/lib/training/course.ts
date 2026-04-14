@@ -1,5 +1,5 @@
 /**
- * Parcours "Formation IA" : métadonnées alignées sur les chapitres dans docs/training/chapitres.
+ * Parcours "Guide pratique IA" : métadonnées alignées sur les chapitres dans docs/training/chapitres.
  */
 
 export type TrainingChapterMeta = {

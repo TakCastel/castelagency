@@ -79,14 +79,14 @@ export const projectsDetail: ProjectDetail[] = [
   },
   {
     id: "formation-ia",
-    title: "Formation IA",
+    title: "Guide pratique IA",
     description:
       "Parcours en ligne : sécurité, assistants, prompts, BMAD, GEO, intégration produit, TP et QCM.",
     image: "/assets/illustrations/illu-studio.png",
-    imageAlt: "Aperçu vidéo du parcours formation IA et développement web.",
+    imageAlt: "Aperçu vidéo du guide pratique IA et développement web.",
     coverVideo: "/assets/projects/project-formation-ia.mp4",
     url: "/formation-ia",
-    urlCtaLabel: "Voir la formation",
+    urlCtaLabel: "Voir le guide pratique",
     objective:
       "Rendre accessibles des bonnes pratiques IA appliquées au web (sécurité, équipe, produit) via un parcours structuré et auto-guidé.",
     useCase:

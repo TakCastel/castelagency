@@ -11,11 +11,11 @@ import { cn } from "@/lib/utils";
 const SITE_URL = "https://studio-castel.com";
 
 export const metadata: Metadata = {
-  title: "Formation IA & développement web",
+  title: "Guide pratique IA & développement web",
   description:
     "Sécurité, assistants d’édition, prompts, BMAD, GEO, intégration produit, TP et QCM pour le web.",
   openGraph: {
-    title: "Formation IA & développement web | Studio Castel",
+    title: "Guide pratique IA & développement web | Studio Castel",
     description:
       "Sécurité, assistants dans l’éditeur, prompts, BMAD, GEO, intégration produit, TP et QCM pour le web.",
     type: "website",
@@ -40,11 +40,11 @@ export default function FormationIaHubPage() {
             id="formation-hero-title"
             className="mt-2 text-pretty text-titre-petit font-semibold tracking-tight text-foreground sm:text-titre-moyen"
           >
-            Formation IA & développement web
+            Guide pratique IA & développement web
           </h1>
           <p className="mt-4 max-w-2xl text-pretty text-paragraphe leading-relaxed text-muted-foreground">
             Utiliser l’IA dans le code et le produit sans lâcher la sécurité ni la qualité : assistants, prompts,
-            BMAD, GEO, intégration, puis TP, évaluation et QCM. Cette formation est pensée pour l’apprentissage en
+            BMAD, GEO, intégration, puis TP, évaluation et QCM. Ce guide pratique est pensé pour l’apprentissage en
             autonomie : vous avancez chapitre par chapitre, à votre rythme.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

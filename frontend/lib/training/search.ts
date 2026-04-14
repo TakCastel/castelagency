@@ -97,10 +97,10 @@ export async function getTrainingSearchEntries(): Promise<TrainingSearchEntry[]>
   entries.push(
     buildPageEntry({
       id: "hub",
-      title: "Formation IA",
+      title: "Guide pratique IA",
       href: "/formation-ia",
       body: [
-        "Formation IA et développement web.",
+        "Guide pratique IA et développement web.",
         "Sécurité, assistants d’édition, prompts, BMAD, GEO, intégration produit, travaux pratiques, évaluation et QCM.",
         ...TRAINING_CHAPTERS.map((chapter) => `${chapter.title}. ${chapter.cardDescription}`),
       ].join(" "),

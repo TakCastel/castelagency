@@ -2,25 +2,22 @@
 
 ## Contenu de la banque
 
-| Bloc | Chapitre(s) | Questions | Rôle |
-|------|-------------|-----------:|------|
-| **Assistants, agents et Markdown** | [3 : Assistants de code](03-assistants-code-ide.md), [4 : Markdown & agents](04-prompter-agents-markdown.md) | 8 (C1 à C8) | IDE, périmètre, docs versionnées, `AGENTS.md`, `@fichier`, stop conditions. |
-| **Cadrage, BMAD et synthèse** | [5 : BMAD-METHOD](05-bmad-method.md), [9 : Synthèse](09-synthese.md) | 8 (B1 à B8) | stories, critères d’acceptation, DoD, habitudes de travail, vérification. |
-| **Produit IA, APIs et GEO** | [6 : Produit IA & APIs](06-produit-ia-apis.md), [7 : GEO](07-geo.md) | 8 (G1 à G8) | backend, JSON, RAG, coûts, `n8n`, SEO / GEO, sources. |
-| **Fondamentaux et sécurité** | [1 : Introduction](01-introduction.md), [2 : Sécurité](02-securite-ia.md) | 8 (S1 à S8) | LLM, ordre du parcours, vibe coding, secrets, SQL, droits, historique Git. |
+| Bloc | Questions | Rôle |
+|------|-----------:|------|
+| **Assistants, agents et Markdown** | 8 (C1 à C8) | IDE, périmètre, docs versionnées, `AGENTS.md`, `@fichier`, stop conditions. |
+| **Cadrage, BMAD et synthèse** | 8 (B1 à B8) | stories, critères d’acceptation, DoD, habitudes de travail, vérification. |
+| **Produit IA, APIs et GEO** | 8 (G1 à G8) | backend, JSON, RAG, coûts, `n8n`, SEO / GEO, sources. |
+| **Fondamentaux et sécurité** | 8 (S1 à S8) | LLM, cadre du parcours, vibe coding, secrets, SQL, droits, historique Git. |
 
-**Total : 32 questions**, une seule bonne réponse par question. Les **énoncés** seuls sont dans les sections **Module** ci-dessous ; les **réponses** (lettre correcte + explication) sont **à la fin** du fichier, après une ligne de séparation. Les lettres correctes sont **mélangées** avec une répartition équilibrée entre **A**, **B**, **C** et **D** sur l’ensemble de la banque.
+**32 questions**, une bonne réponse chacune. Énoncés dans les modules ci-dessous ; **corrigés** en fin de fichier. Répartition des bonnes réponses **équilibrée** entre **A**, **B**, **C** et **D**.
 
-**Hors banque actuelle** (à évaluer autrement) : les [travaux pratiques du chapitre 8](08-travaux-pratiques.md) et la mise en situation réelle sur votre dépôt ou votre produit. Le [chapitre 10](10-evaluation.md) sert surtout à l’orientation de fin de parcours, pas à un contrôle théorique supplémentaire.
+La **pratique** (dépôt, produit) s’évalue plutôt via les **travaux pratiques**. La page **fin de parcours** oriente la suite, ce n’est pas un second QCM.
 
-**Feuille de réponses** : pour chaque question, noter la lettre **A, B, C ou D** sur une feuille à part ou dans un tableur, sans regarder les corrigés tant que l’épreuve n’est pas terminée.
+**Feuille de réponses** : noter **A, B, C ou D** à part, sans corriger au fil de l’eau.
 
-**Barème suggéré** : **1 point par bonne réponse** sur les questions **retenues** par l’organisme. Pour un repère d’intégration dans une grille sur **100** points : voir la [feuille de route](/formation-ia/feuille-de-route). Si les questions de sécurité sont **notées** dans le QCM, éviter de **doubler** exactement les mêmes critères dans un autre volet d’évaluation.
+**Barème** : **1 point** par bonne réponse sur les questions que vous retenez. Si vous construisez une grille sur **100** points, répartissez vous-même les poids entre ce QCM, les TP et la pratique. Si la **sécurité** est déjà notée ici, évitez de **noter deux fois** les mêmes critères ailleurs.
 
-**Seuils indicatifs** (à adapter) :
-
-- **32 questions** : **23 / 32** (~72 %) ou **24 / 32** (75 %).  
-- **24 questions** (si vous ne retenez qu’une partie de la banque) : **17 / 24** (~71 %) ou **18 / 24** (75 %).
+**Seuils indicatifs** : **23–24 / 32** (~72–75 %) ; si vous ne gardez que **24** questions : **17–18 / 24** (~71–75 %).
 
 ---
 

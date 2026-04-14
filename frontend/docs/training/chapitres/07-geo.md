@@ -1,16 +1,14 @@
 # Chapitre 7 · GEO : rendre ses contenus utiles aux moteurs génératifs
 
-Dans les chapitres précédents, on a surtout parlé d’**IA dans le travail**. Ici, on change d’angle : la question devient *"comment faire en sorte qu’un contenu public soit bien compris, bien résumé et, si possible, bien cité par des interfaces alimentées par l’IA ?"*
+Dans les parties **précédentes** du parcours, on a surtout parlé d’**IA dans le travail**. Ici, on change d’angle : la question devient *"comment faire en sorte qu’un contenu public soit bien compris, bien résumé et, si possible, bien cité par des interfaces alimentées par l’IA ?"*
 
 Le mot **GEO** revient souvent pour nommer cette préoccupation. Il signifie en général **Generative Engine Optimization**. L’idée est simple : le contenu ne doit plus seulement être trouvable ; il doit aussi être **compréhensible, extractible et réutilisable** dans des réponses générées.
 
-Cette logique ne remplace pas le **SEO**. Elle s’y ajoute. Et elle ne concerne pas seulement les médias : une documentation produit, une page service, une FAQ support, une page tarifaire ou un guide métier peuvent aussi être concernés.
+Cette logique ne remplace pas le **SEO** : elle s’y ajoute. Elle ne vise pas non plus seulement les médias : documentation produit, pages service, FAQ, tarifs ou guides métier peuvent être concernés.
 
-> **En bref**
->
-> Le **SEO** aide surtout vos pages à être **trouvées**. Le **GEO** aide surtout vos contenus à être **compris, reformulés et cités** dans des environnements où l’utilisateur ne passe plus toujours par une simple liste de liens.
+En une image : le **SEO** ouvre surtout la porte de la **découvrabilité** ; le **GEO** travaille ce qu’il y a derrière — un texte **assez clair** pour être **compris, reformulé et cité** quand l’utilisateur ne parcourt plus une simple liste de liens.
 
-Si votre sujet porte plutôt sur un **assistant intégré dans votre produit**, ou sur un flux avec **API LLM** côté application, revenez au [chapitre 6 : Produit IA & APIs](06-produit-ia-apis.md). Ici, on reste sur la **visibilité et la qualité éditoriale** de contenus publics.
+Si votre sujet porte plutôt sur un **assistant intégré dans votre produit**, ou sur un flux avec **API LLM** côté application, reprenez la partie **Produit IA & APIs** (**plus haut** dans le parcours). Ici, on reste sur la **visibilité et la qualité éditoriale** de contenus publics.
 
 ---
 
@@ -58,12 +56,7 @@ flowchart TD
     SY --> CI[Citations ou liens si disponibles]
 ```
 
-1. la question de l’utilisateur est souvent découpée en **sous-questions** ;
-2. le système lance une phase de **retrieval** : recherche web, index propriétaire, base documentaire, parfois mélange des trois ;
-3. il récupère des **pages**, mais en pratique travaille souvent sur des **passages** ou des chunks de texte ;
-4. il rerank ces extraits selon plusieurs signaux : adéquation à la question, précision factuelle, fraîcheur, autorité perçue, qualité de la source, cohérence avec d’autres sources ;
-5. il envoie ce contexte au modèle, qui produit une synthèse ;
-6. il ajoute parfois des **citations**, des liens, des cartes, ou rien du tout selon la plateforme.
+En pratique, la question est souvent découpée en sous-questions, puis le système lance un **retrieval** (web, index privé, base doc). Il travaille surtout sur des **passages** de texte, les re-classe, envoie le contexte au modèle, puis affiche une synthèse avec ou sans citations selon la plateforme.
 
 Beaucoup de systèmes de type **RAG** (*retrieval-augmented generation*) ne "lisent" pas une page comme un humain qui ferait défiler tout l’écran. Ils prennent des morceaux de texte, les injectent dans une fenêtre de contexte limitée, puis arbitrent. Cela favorise les blocs :
 
@@ -83,11 +76,7 @@ Le **SEO classique** cherche surtout à rendre une page **visible dans les résu
 
 Le SEO répond plutôt à la question : *"est-ce que ma page peut être trouvée ?"* Le GEO ajoute : *"si elle est reprise par un assistant, restera-t-elle fidèle à ce qu’elle veut dire ?"*
 
-Le lien entre les deux est très fort. Un mauvais SEO technique peut empêcher le reste d’exister : page introuvable, bloquée, lente, mal indexée, dupliquée, `noindex` accidentel. À l’inverse, un site techniquement propre mais rédigé avec des formulations creuses ou des promesses floues peut rester faible dans les interfaces génératives. Le SEO crée le **socle d’accès**. Le GEO travaille ensuite la **qualité de restitution**.
-
-> **En bref**
->
-> Pensez le **SEO** comme le fait d’ouvrir correctement la porte. Pensez le **GEO** comme le fait d’avoir, derrière cette porte, un contenu assez clair pour être repris sans être trahi.
+Le lien entre les deux est très fort. Un mauvais SEO technique peut empêcher le reste d’exister : page introuvable, bloquée, lente, mal indexée, dupliquée, `noindex` accidentel. À l’inverse, un site techniquement propre mais rédigé avec des formulations creuses ou des promesses floues peut rester faible dans les interfaces génératives. Le SEO crée le **socle d’accès** ; le GEO travaille la **qualité de restitution** — la porte ouverte ne suffit pas si la pièce est vide ou floue.
 
 ---
 
@@ -168,50 +157,25 @@ Une formule comme *"nous accompagnons votre transformation digitale avec une app
 
 ## 7. Quelques leviers très concrets
 
-Il n’est pas nécessaire de transformer chaque page en encyclopédie. Quelques leviers simples améliorent déjà beaucoup la situation.
+Pas besoin d’encyclopédie : quelques réflexes suffisent souvent.
 
 ### 7.1. Aligner les titres, le texte et le balisage
 
-Une FAQ dans le JSON-LD mais pas dans la page visible crée du bruit. Une promesse en haut de page que le corps ne démontre jamais crée le même problème.
-
-Le bon réflexe consiste à faire correspondre trois couches :
-
-- le **titre** ou l’intertitre ;
-- le **contenu visible** juste en dessous ;
-- le **balisage** ou schéma éventuel.
-
-Si le `H2` promet une définition, les premières lignes doivent vraiment définir. Si la page se présente comme un guide étape par étape, le corps doit montrer des étapes. Si elle déclare une `FAQPage`, les questions-réponses doivent être visibles à l’écran.
+Même contenu en trois couches : **titre / intertitre**, **texte visible**, **schéma** (si présent). Pas de `FAQPage` ou de promesse de guide si l’écran ne montre pas la FAQ ou les étapes.
 
 ### 7.2. Rendre visibles les éléments de confiance
 
-Qui parle ? Quel est le nom exact de la marque ou de l’auteur ? Quand la page a-t-elle été mise à jour ? Quelle source fait foi ? Ces indices aident à la fois l’utilisateur et les systèmes.
-
-La confiance se joue aussi hors de votre site : profils cohérents, mentions tierces, pages d’avis, annuaires ou publications où votre marque existe clairement. Cela inclut aussi des plateformes où les moteurs génératifs vont souvent chercher des signaux concrets : **Reddit**, **YouTube**, **LinkedIn**, parfois **Instagram**, **TikTok**, des forums spécialisés, ou des sites d’avis comme **G2**, **Capterra**, **Trustpilot** ou **Google Business Profile** selon le secteur. On peut presque parler ici de **citation engineering** : une marque bien décrite sur son site mais floue ailleurs restera plus fragile.
+**Qui** parle, **quelle** marque, **quand** la page est à jour, **quelle** source fait foi — pour l’humain et pour les systèmes. Hors site : profils et mentions **cohérents** (réseaux, avis, annuaires, etc.). Une marque claire sur son site mais **floue** partout ailleurs reste fragile (**citation engineering** : signaux répétés et alignés).
 
 ### 7.3. Travailler les entités et les relations
 
-Une **entité**, ici, c’est une chose identifiable : une personne, une marque, un produit, un service, un lieu, une page. La **relation**, c’est le lien entre elles : qui écrit quoi, qui publie quoi, quel service appartient à quelle entreprise.
+**Entité** = chose identifiable (personne, marque, produit, lieu…). **Relation** = qui publie quoi, qui vend quoi. Le texte et le HTML donnent déjà des indices ; le **JSON-LD** `schema.org` **précise** sans remplacer le contenu.
 
-Les systèmes détectent déjà une partie de ces relations dans le texte lui-même : noms propres répétés, titres, liens, auteurs visibles, données de contact, structure HTML. Le balisage `schema.org` ne remplace donc pas le contenu ; il vient surtout **lever l’ambiguïté**.
+À aligner : visible ↔ schéma ↔ ce que le site dit **ailleurs** sur la même entité.
 
-Un **schéma**, ici, veut simplement dire un **bloc de données structurées** ajouté à la page, le plus souvent en **JSON-LD**.
+**Schémas fréquents** : `Organization` / `LocalBusiness`, `Person`, `Article` / `BlogPosting`, `FAQPage` (si Q/R **à l’écran**), `HowTo` (si vraies étapes). Mêmes noms, URLs canoniques, pas de JSON-LD **trompeur**.
 
-Le plus important n’est pas la syntaxe seule. C’est la correspondance entre :
-
-- ce que la page **dit visiblement** ;
-- ce que le schéma **déclare** ;
-- et ce que le site **répète ailleurs** sur la même entité.
-
-Concrètement, la mise en place rapide ressemble souvent à ceci :
-
-- ajouter un schéma `Organization` ou `LocalBusiness` pour l’entreprise ;
-- ajouter un schéma `Person` pour l’auteur ou l’expert visible ;
-- ajouter `Article` ou `BlogPosting` sur les contenus éditoriaux ;
-- utiliser `FAQPage` si les questions-réponses sont réellement visibles dans la page ;
-- utiliser `HowTo` pour une procédure découpée en étapes explicites ;
-- relier correctement le tout avec les mêmes noms, les mêmes URLs canoniques et des informations cohérentes entre le texte visible et le JSON-LD.
-
-Le point expert n’est donc pas seulement d’ajouter du schéma, mais de clarifier la relation entre vos entités : qui est l’auteur, quelle organisation publie, quel produit ou service est décrit, et dans quel contexte. Au fond, le GEO expert est souvent moins une optimisation de **mots-clés** qu’une optimisation d’**entités et de relations**.
+Le GEO poussé, c’est surtout clarifier **qui fait quoi** dans votre univers de marque — moins une course aux mots-clés qu’à des **entités stables**.
 
 **Exemple : un article**
 
@@ -336,18 +300,11 @@ Le plus important, techniquement, est moins "ajouter un gros JSON-LD" que respec
 
 ### 7.4. Assumer la mise à jour et la vérification technique
 
-Une page sur des prix, une réglementation, un process ou une intégration vieillit vite. Le GEO demande donc un minimum d’entretien éditorial.
+Prix, loi, process, intégrations : ça **vieillit** — prévoir un minimum d’**entretien**.
 
-Pour un profil technique, les points à vérifier ressemblent souvent à une mini-checklist :
+**Checklist technique** : le contenu important est bien présent dans le **HTML** servi ; la hiérarchie des titres (`H1`, puis `H2`, puis `H3`) reste cohérente ; le schéma structuré colle à ce que l’utilisateur voit ; auteur, organisation et produit sont identifiables ; la date de mise à jour est à jour ; si besoin, des logs permettent de voir quels **bots** passent.
 
-- contenu important présent dans le HTML initial ;
-- titres hiérarchisés sans trous (`H1` -> `H2` -> `H3`) ;
-- balisage cohérent avec le visible ;
-- auteur, organisation et produit clairement identifiables ;
-- date de mise à jour visible ;
-- logs ou monitoring permettant de vérifier si certains bots accèdent réellement aux pages.
-
-On voit aussi parfois passer `llms.txt` comme piste émergente pour guider certains systèmes. À ce stade, ce n’est ni un standard solide ni un levier prioritaire : mieux vaut d’abord soigner le contenu visible, sa structure et son accessibilité technique.
+`llms.txt` existe en piste émergente ; ce n’est pas le levier **prioritaire** avant contenu visible, structure et accessibilité.
 
 > **Attention**
 >

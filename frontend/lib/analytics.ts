@@ -5,6 +5,7 @@
  */
 
 import { hasAnalyticsConsent } from "@/lib/consent";
+import { shouldLoadDirectGa } from "@/lib/analytics-config";
 
 declare global {
   interface Window {
@@ -21,20 +22,31 @@ export function pushToDataLayer(payload: Record<string, unknown>): void {
   window.dataLayer.push(payload);
 }
 
-/** Événement personnalisé : page vue (pour SPA / changement de route Next). */
-export function trackPageView(path: string, title?: string): void {
-  const pageTitle = title ?? document.title;
+/** Page vue pour GTM (dataLayer) — peut être appelé avant que gtm.js ait fini de charger. */
+export function pushPageViewDataLayer(path: string, title?: string): void {
+  const pageTitle = title ?? (typeof document !== "undefined" ? document.title : "");
   pushToDataLayer({
     event: "page_view",
     page_path: path,
     page_title: pageTitle,
   });
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", "page_view", {
-      page_path: path,
-      page_title: pageTitle,
-    });
-  }
+}
+
+/** Page vue GA4 via gtag (uniquement si gtag.js est déjà chargé). */
+export function sendGa4PageView(path: string, title?: string): void {
+  if (!shouldLoadDirectGa()) return;
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  const pageTitle = title ?? document.title;
+  window.gtag("event", "page_view", {
+    page_path: path,
+    page_title: pageTitle,
+  });
+}
+
+/** Événement personnalisé : page vue (dataLayer + GA4 direct si actif). */
+export function trackPageView(path: string, title?: string): void {
+  pushPageViewDataLayer(path, title);
+  sendGa4PageView(path, title);
 }
 
 /** Événement : clic sur un CTA (bouton / lien important). */

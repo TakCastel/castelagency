@@ -1,8 +1,8 @@
 # Chapitre 12 : Glossaire et acronymes
 
-Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le parcours. Il s’adresse aux lecteurs qui découvrent une partie du vocabulaire (développeurs d’autres horizons, profils produit, "quidams" curieux). Les définitions sont **pédagogiques** : elles ne remplacent pas la documentation officielle d’un outil ou d’une norme.
+Ce chapitre rassemble le **jargon** du parcours pour qui découvre le vocabulaire (autres stacks, produit, curieux). Les définitions sont **pédagogiques**, pas juridiques ni « doc officielle » d’un éditeur.
 
-**Comment l’utiliser** : recherche dans la page (Ctrl+F / Cmd+F) sur le mot cherché. Les entrées sont regroupées par **première lettre du titre** (en français : *ChatGPT* sous **C**, *JSON-LD* sous **J**, etc.).
+**Usage** : recherche **Ctrl+F / Cmd+F**. Classement par **première lettre** du terme (*ChatGPT* → **C**, *JSON-LD* → **J**, etc.).
 
 ---
 
@@ -12,7 +12,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Acceptation (critères d’)** : Conditions qu’une fonctionnalité doit remplir pour être considérée comme terminée du point de vue métier ; de préférence **testables** ("on peut vérifier que...").
 
-**ACL** (*Access Control List*, liste de contrôle d’accès) : Règles qui indiquent **qui peut lire ou modifier quoi** dans un wiki, une base documentaire, etc. Indispensable quand un moteur "doc + LLM" **réplique** les droits du système source : voir [chapitre 2 : Sécurité](02-securite-ia.md).
+**ACL** (*Access Control List*, liste de contrôle d’accès) : Règles qui indiquent **qui peut lire ou modifier quoi** dans un wiki, une base documentaire, etc. Indispensable quand un moteur "doc + LLM" **réplique** les droits du système source : voir la partie **Sécurité** du parcours.
 
 **ADR** (*Architecture Decision Record*) : Note courte qui enregistre une **décision d’architecture**, son contexte et ses conséquences pour pouvoir la relire plus tard.
 
@@ -26,7 +26,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Anthropic** : Société éditrice des modèles **Claude** ; comparable **en rôle** à **OpenAI** pour le grand public technique (assistants, API).
 
-**API** (*Application Programming Interface*) : Contrat informatique qui permet à deux programmes de communiquer (ex. envoyer une requête HTTP et recevoir des données structurées). Pour **brancher** un LLM depuis une app, l’appel se fait en pratique depuis le **serveur** : voir [chapitre 6 : Produit IA & APIs](06-produit-ia-apis.md).
+**API** (*Application Programming Interface*) : Contrat informatique qui permet à deux programmes de communiquer (ex. envoyer une requête HTTP et recevoir des données structurées). Pour **brancher** un LLM depuis une app, l’appel se fait en pratique depuis le **serveur** : voir la partie **Produit IA & APIs** du parcours.
 
 **App Router** : Système de routage moderne de Next.js, notamment utilisé avec `app/` et les **Route Handlers** côté serveur.
 
@@ -48,7 +48,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **BMAD-METHOD** : Projet open source [**bmad-code-org/BMAD-METHOD**](https://github.com/bmad-code-org/BMAD-METHOD) (*Breakthrough Method for Agile AI Driven Development*) : **développement agile piloté par l’IA** avec **workflows** et **agents** par défaut (analyste, PM, architecte, **développeur**, UX, rédacteur technique ; voir [référence Agents](https://docs.bmad-method.org/reference/agents/)). La documentation sur [docs.bmad-method.org](https://docs.bmad-method.org). En **BMM** de base, la **revue de code** et la **génération de tests E2E** passent par l’**agent Developer** ; le **module TEA** (*Test Architect*) est à part. Après `npx bmad-method install` : dossiers **`_bmad/`** et **`_bmad-output/`**. **BMad** et **BMAD-METHOD** sont des marques de **BMad Code, LLC** (voir le dépôt).
 
-**BMM** (*BMad Method*) : Nom court de la **suite** livrée avec BMAD-METHOD (agents, **workflows**, fichiers générés dans `_bmad-output/`, etc.) ; le détail des rôles est au [chapitre 5 : BMAD-METHOD](05-bmad-method.md).
+**BMM** (*BMad Method*) : Nom court de la **suite** livrée avec BMAD-METHOD (agents, **workflows**, fichiers générés dans `_bmad-output/`, etc.) ; le détail des rôles est dans la partie **BMAD-METHOD** du parcours.
 
 **BM25** : Algorithme classique de **recherche textuelle** par pertinence (souvent utilisé dans les moteurs de recherche "classiques"). Souvent une brique de la phase de **récupération** dans un moteur **doc + LLM**.
 
@@ -58,7 +58,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## C
 
-**Capstone** : Projet de synthèse en fin de parcours qui mobilise plusieurs modules vus précédemment ; dans ce cours : [TP 6 du chapitre 8](08-travaux-pratiques.md).
+**Capstone** : Projet de synthèse en fin de parcours qui mobilise plusieurs modules vus précédemment ; dans ce cours : le **sixième TP** des travaux pratiques.
 
 **CDN** (*Content Delivery Network*) : Réseau de serveurs qui sert les contenus au plus près des utilisateurs ; utile pour la performance, le crawl et certains diagnostics d’accès.
 
@@ -66,7 +66,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **ChatGPT Search** : Mode de recherche de ChatGPT qui combine synthèse et sources externes ; à distinguer d’un simple chat "hors web".
 
-**Chunk** : Morceau de texte découpé pour l’indexation (taille fixe ou par paragraphe) avant **embedding** ou recherche ; notion centrale du **RAG** : voir [chapitre 9 : Synthèse](09-synthese.md).
+**Chunk** : Morceau de texte découpé pour l’indexation (taille fixe ou par paragraphe) avant **embedding** ou recherche ; notion centrale du **RAG** : voir la **synthèse** du parcours.
 
 **CI/CD** (*Continuous Integration / Continuous Deployment*) : Pratiques et outils pour intégrer et déployer le code souvent et de façon automatisée (tests, pipelines).
 
@@ -84,7 +84,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **CNIL** : Autorité française chargée de la protection des données personnelles ; source utile de repères sur le **RGPD** et les usages sensibles de l’IA.
 
-**CPF** (*Compte personnel de formation*) : Dispositif français permettant de financer des actions de formation avec des crédits personnels. **Éligibilité** et mentions légales : dépend du **statut** de l’organisme, du catalogue, etc. ; voir la [feuille de route](/formation-ia/feuille-de-route).
+**CPF** (*Compte personnel de formation*) : Dispositif français permettant de financer certaines actions de formation avec des crédits personnels ; modalités et éligibilité sur les **sources officielles** compétentes. (Ne concerne pas ce parcours proposé **gratuitement** en ligne.)
 
 **CVE** (*Common Vulnerabilities and Exposures*) : Identifiant public d’une vulnérabilité connue, utile dans la veille sécurité et le suivi des dépendances.
 
@@ -102,13 +102,13 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Données personnelles** : Toute information se rapportant à une personne **identifiée** ou **identifiable** (nom, e-mail, adresse IP dans certains cas, etc.). Régime **RGPD** en Union européenne ; prudence avant d’envoyer du contenu à un **LLM** tiers.
 
-**Données structurées** : Métadonnées publiées sur une page Web pour qu’un **programme** (moteur, assistant) comprenne le type de contenu (FAQ, organisation, événement…). Souvent au format **JSON-LD** et vocabulaire **schema.org** ; voir [chapitre 7 : GEO](07-geo.md).
+**Données structurées** : Métadonnées publiées sur une page Web pour qu’un **programme** (moteur, assistant) comprenne le type de contenu (FAQ, organisation, événement…). Souvent au format **JSON-LD** et vocabulaire **schema.org** ; voir la partie **GEO** du parcours.
 
 **Directives d’indexation** : Consignes comme `noindex`, `nofollow` ou `nosnippet` qui disent aux moteurs comment indexer une page, suivre ses liens ou afficher des extraits.
 
 **DPA** (*Data Processing Agreement*) : Accord entre responsable de traitement et sous-traitant encadrant le traitement de **données personnelles** ; utile lorsque l’IA ou l’hébergement est fourni par un **tiers**.
 
-**DPO** (*Data Protection Officer* / **délégué à la protection des données**) : Rôle prévu par le **RGPD** pour conseiller l’organisme sur les traitements de **données personnelles** et coopérer avec la **CNIL** si besoin ; voir [chapitre 2 : Sécurité](02-securite-ia.md).
+**DPO** (*Data Protection Officer* / **délégué à la protection des données**) : Rôle prévu par le **RGPD** pour conseiller le **responsable de traitement** sur les **données personnelles** et coopérer avec la **CNIL** si besoin ; voir la partie **Sécurité** du parcours.
 
 **Diff** : Fichier ou vue qui montre **ligne par ligne** ce qui a changé dans le code ; support essentiel de la **revue** après génération par IA.
 
@@ -118,9 +118,9 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## E
 
-**E2E** (*end-to-end*, de bout en bout) : Tests ou scénarios qui parcourent une **chaîne complète** (souvent de l’interface utilisateur jusqu’aux données). Dans **BMAD-METHOD**, la génération de tests E2E est évoquée côté agent Developer : voir [chapitre 5 : BMAD-METHOD](05-bmad-method.md).
+**E2E** (*end-to-end*, de bout en bout) : Tests ou scénarios qui parcourent une **chaîne complète** (souvent de l’interface utilisateur jusqu’aux données). Dans **BMAD-METHOD**, la génération de tests E2E est évoquée côté agent Developer : voir la partie **BMAD-METHOD** du parcours.
 
-**Embedding** : Représentation **vectorielle** d’un texte : permet la **recherche sémantique** ("textes proches du sens de la requête") dans un **RAG** ; voir [chapitre 9 : Synthèse](09-synthese.md).
+**Embedding** : Représentation **vectorielle** d’un texte : permet la **recherche sémantique** ("textes proches du sens de la requête") dans un **RAG** ; voir la **synthèse** du parcours.
 
 **Entité** : Objet identifiable (marque, personne, lieu, produit, organisation) dont les relations peuvent être rendues explicites dans le contenu et le balisage Web.
 
@@ -146,7 +146,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## G
 
-**GEO** (*Generative Engine Optimization*) : Démarche visant à rendre un contenu **compris, cité ou recommandé** dans des réponses produites par des **moteurs ou assistants** (synthèses), en complément du **SEO** classique. Parcours détaillé : [chapitre 7 : GEO](07-geo.md).
+**GEO** (*Generative Engine Optimization*) : Démarche visant à rendre un contenu **compris, cité ou recommandé** dans des réponses produites par des **moteurs ou assistants** (synthèses), en complément du **SEO** classique. Développée dans la partie **GEO** du parcours.
 
 **Gemini** : Famille de modèles et d’assistants de Google, citée comme exemple de système génératif avec ses propres habitudes de citation et de synthèse.
 
@@ -170,7 +170,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **i18n** (*internationalisation*) : Pratiques qui préparent un logiciel à gérer plusieurs langues, formats de date, monnaies et conventions locales.
 
-**Injection SQL** : Attaque où une **entrée utilisateur** est concaténée dans une requête SQL de façon à en modifier le sens (ex. exfiltrer des données). À chercher dans le code généré par l’IA ; voir [chapitre 2 : Sécurité](02-securite-ia.md).
+**Injection SQL** : Attaque où une **entrée utilisateur** est concaténée dans une requête SQL de façon à en modifier le sens (ex. exfiltrer des données). À chercher dans le code généré par l’IA ; voir la partie **Sécurité** du parcours.
 
 **Inline chat** : Petit chat directement intégré dans l’éditeur, souvent limité à une sélection ou à un fichier précis.
 
@@ -192,7 +192,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## L
 
-**Livrable** : Ce qu’une consigne (surtout un **TP** du [chapitre 8](08-travaux-pratiques.md)) demande de **rendre** : fichier, texte, capture, branche Git, etc.
+**Livrable** : Ce qu’une consigne (surtout un **TP** des travaux pratiques) demande de **rendre** : fichier, texte, capture, branche Git, etc.
 
 **LLM** (*Large Language Model*, grand modèle de langage) : Modèle d’apprentissage profond entraîné sur du texte, capable de générer ou compléter du langage naturel (ou du code). **Ne "comprend" pas** au sens humain : il calcule des probabilités de suites de **tokens**, dans une **fenêtre de contexte** bornée.
 
@@ -202,7 +202,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## M
 
-**Markdown** : Syntaxe de balisage léger (titres `#`, listes, liens, blocs de code) pour rédiger de la documentation dans un dépôt ; utile pour les **prompts** réutilisables et les **agents** : voir [chapitre 4](04-prompter-agents-markdown.md).
+**Markdown** : Syntaxe de balisage léger (titres `#`, listes, liens, blocs de code) pour rédiger de la documentation dans un dépôt ; utile pour les **prompts** réutilisables et les **agents** : voir la partie **Markdown & agents** du parcours.
 
 **MCP** (*Model Context Protocol*) : Protocole destiné à connecter des modèles ou assistants à des outils et à des sources de données de façon standardisée.
 
@@ -210,7 +210,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Mermaid** : Syntaxe textuelle pour produire des **diagrammes** (souvent rendus en image dans Markdown ou outils de doc).
 
-**Mistral AI** : Éditeur français de **LLM** (API cloud, dont **La Plateforme**, et **modèles ouverts** selon les offres). Intégration type : [chapitre 9 : Synthèse](09-synthese.md) ; cadre général **API** : [chapitre 6](06-produit-ia-apis.md).
+**Mistral AI** : Éditeur français de **LLM** (API cloud, dont **La Plateforme**, et **modèles ouverts** selon les offres). Exemple d’intégration dans la **synthèse** du parcours ; cadre général **API** dans la partie **Produit IA & APIs**.
 
 **MLOps** : Ensemble de pratiques pour industrialiser les modèles (déploiement, supervision, versioning, réentraînement, exploitation).
 
@@ -234,11 +234,9 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Observabilité** : Capacité à comprendre l’état d’un système grâce aux logs, métriques, traces, coûts, latences et erreurs.
 
-**Organisme (de formation)** : Entité qui **dispense** une session à des apprenants (école, entreprise, indépendant, etc.). Repères sur les attestations, le barème et le vocabulaire **RNCP / CPF** : [feuille de route](/formation-ia/feuille-de-route).
-
 **ORM** (*Object-Relational Mapping*) : Couche logicielle qui relie objets applicatifs et tables SQL pour éviter d’écrire toutes les requêtes à la main.
 
-**OWASP** : *Open Web Application Security Project* : communauté et guides de référence (dont **Top 10** applications web et **Top 10** risques **LLM**) utiles pour la **revue** et la culture sécurité ; liens utiles en fin du [chapitre 2 : Sécurité](02-securite-ia.md).
+**OWASP** : *Open Web Application Security Project* : communauté et guides de référence (dont **Top 10** applications web et **Top 10** risques **LLM**) utiles pour la **revue** et la culture sécurité ; liens utiles en fin de la partie **Sécurité** du parcours.
 
 ---
 
@@ -268,9 +266,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## Q
 
-**QCM** : Questionnaire à choix multiples : plusieurs réponses proposées, **une seule** est correcte par question. La banque du [chapitre 11](11-banque-qcm.md) comporte **32** questions en **quatre** blocs de 8 ; les **corrigés** sont placés **après** les seuls énoncés dans ce fichier ; l’organisme peut n’en **noter** que **24** (sans le bloc Sécurité).
-
-**Qualiopi** : Référentiel **national** de certification des actions de formation en France (marque déposée). Un organisme **certifié Qualiopi** répond à un cadre qualité ; cela **ne remplace pas** à lui seul une analyse d’**éligibilité CPF** ou d’autres dispositifs.
+**QCM** : Questionnaire à choix multiples : plusieurs réponses proposées, **une seule** est correcte par question. La **banque QCM** comporte **32** questions en **quatre** blocs de 8 ; les **corrigés** sont placés **après** les seuls énoncés dans ce fichier ; vous pouvez n’en **retenir** que **24** pour l’auto-évaluation (sans le bloc Sécurité).
 
 **Quota** : Limite d’usage d’une fonctionnalité, d’un nombre de requêtes ou d’un volume de tokens pour éviter les abus ou maîtriser les coûts.
 
@@ -278,7 +274,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 ## R
 
-**RAG** (*Retrieval-Augmented Generation*, génération augmentée par la récupération) : Approche qui combine **recherche** dans un **corpus** contrôlé et **génération** par **LLM**, pour réduire l’invention (*hallucination*) et ancrer les réponses dans des sources. Un flux **proche** (sources externes ou internes, puis LLM) est décrit au [chapitre 6 : Produit IA & APIs](06-produit-ia-apis.md) ; les **risques** (droits de lecture sur la doc) sont traités au [chapitre 2 : Sécurité](02-securite-ia.md).
+**RAG** (*Retrieval-Augmented Generation*, génération augmentée par la récupération) : Approche qui combine **recherche** dans un **corpus** contrôlé et **génération** par **LLM**, pour réduire l’invention (*hallucination*) et ancrer les réponses dans des sources. Un flux **proche** (sources externes ou internes, puis LLM) est décrit dans la partie **Produit IA & APIs** ; les **risques** (droits de lecture sur la doc) dans la partie **Sécurité**.
 
 **Recette / production** : Environnements où le logiciel tourne pour des utilisateurs réels ; la **production** est l’environnement "live".
 
@@ -302,7 +298,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **RGPD** : Règlement (UE) 2016/679 sur la protection des **données personnelles** ; impose notamment la licéité, la minimisation et la traçabilité des traitements.
 
-**RSSI** : *Responsable de la sécurité des systèmes d’information* : rôle chargé de piloter la **politique de cybersécurité** dans une organisation (intitulés voisins selon les structures) ; voir [chapitre 2 : Sécurité](02-securite-ia.md).
+**RSSI** : *Responsable de la sécurité des systèmes d’information* : rôle chargé de piloter la **politique de cybersécurité** dans une organisation (intitulés voisins selon les structures) ; voir la partie **Sécurité** du parcours.
 
 ---
 
@@ -310,7 +306,7 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Schema.org** : Vocabulaire commun pour décrire des entités sur le Web (événements, FAQ, organisation…) ; base des **données structurées** souvent en JSON-LD.
 
-**Secret** : Donnée qui authentifie ou protège (clé API, mot de passe, token, certificat privé) : **ne pas** la mettre dans le **chat** d’un assistant ni dans un dépôt public ; voir [chapitre 2 : Sécurité](02-securite-ia.md).
+**Secret** : Donnée qui authentifie ou protège (clé API, mot de passe, token, certificat privé) : **ne pas** la mettre dans le **chat** d’un assistant ni dans un dépôt public ; voir la partie **Sécurité** du parcours.
 
 **Secret scanning** : Détection automatisée de secrets (clés API, tokens, mots de passe) dans un dépôt ou un historique Git.
 
@@ -338,9 +334,9 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Token** : Unité sub-linguistique manipulée par un LLM (souvent un morceau de mot) ; sert aussi à mesurer la **taille du contexte** ou le coût d’appel.
 
-**Travail avec un agent IA** : Manière de cadrer une **session avec un agent IA** autour d’un **objectif unique**, de **sources à lire**, d’un **périmètre** et d’une **sortie attendue**. Cette logique est détaillée au [chapitre 4 : Prompter des agents et structurer du Markdown](04-prompter-agents-markdown.md).
+**Travail avec un agent IA** : Manière de cadrer une **session avec un agent IA** autour d’un **objectif unique**, de **sources à lire**, d’un **périmètre** et d’une **sortie attendue**. Cette logique est détaillée dans la partie **Markdown & agents** du parcours.
 
-**TP** : Travail pratique : exercice du parcours avec **énoncé**, **livrable** attendu et **pistes** d’auto-évaluation (sans corrigé séparé au chapitre 8).
+**TP** : Travail pratique : exercice du parcours avec **énoncé**, **livrable** attendu et **pistes** d’auto-évaluation (sans corrigé séparé dans le fichier des TP).
 
 ---
 
@@ -356,9 +352,9 @@ Ce chapitre rassemble les **termes techniques ou de jargon** utilisés dans le p
 
 **Variables d’environnement** : Valeurs injectées au runtime pour configurer une application (secrets, URLs, modes) sans les écrire en dur dans le code.
 
-**VS Code** (*Visual Studio Code*) : Éditeur de code **Microsoft** très répandu ; **GitHub Copilot** s’y intègre en **extension**. Comparaison avec d’autres assistants : [chapitre 3 : Assistants de code](03-assistants-code-ide.md).
+**VS Code** (*Visual Studio Code*) : Éditeur de code **Microsoft** très répandu ; **GitHub Copilot** s’y intègre en **extension**. Comparaison avec d’autres assistants : partie **Assistants de code** du parcours.
 
-**Vibe coding** : Expression **informelle** (anglais) pour désigner du prototypage ou du code "à l’instinct" avec l’IA, sans toujours cadrer. Le parcours vise plutôt une **méthode** (ticket, **prompt**, **diff**, tests) ; le profil "vibe codeur" est évoqué au [chapitre 1 : Introduction](01-introduction.md).
+**Vibe coding** : Expression **informelle** (anglais) pour désigner du prototypage ou du code "à l’instinct" avec l’IA, sans toujours cadrer. Le parcours vise plutôt une **méthode** (ticket, **prompt**, **diff**, tests) ; le profil "vibe codeur" est évoqué en **introduction**.
 
 ---
 

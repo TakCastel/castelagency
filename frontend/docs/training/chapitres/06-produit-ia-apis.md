@@ -1,14 +1,8 @@
 # Chapitre 6 · Produit augmenté par l’IA : chat, APIs et intégration
 
-Dans les chapitres précédents, on a surtout parlé d’**usage de l’IA dans le travail**, de **sécurité** et de **méthode**. Ici, on change encore d’angle : la question devient *"comment intégrer de l’IA dans un vrai produit sans transformer l’application en usine à bugs, à fuite de données ou à facture imprévisible ?"*
+Ici, on passe de l’usage de l’IA dans le travail à l’**intégration dans un vrai produit**. L’enjeu n’est pas seulement de « faire parler un modèle », mais de tenir un flux propre : **backend**, **quotas**, **validation**, **coût**, **latence** et parfois **conformité**.
 
-Le sujet n’est pas seulement de "faire parler un modèle". Il faut penser **flux**, **backend**, **quotas**, **validation**, **observabilité**, **coût**, **latence** et parfois **conformité**. C’est aussi pour cela que ce chapitre est un peu plus technique : on va parler de **Next.js**, de **routes serveur**, de **JSON structuré**, de **modération**, de **scraping**, de **RAG léger**, de **tokens** et d’**outillage d’intégration**.
-
-Les fournisseurs, leurs tarifs et leurs APIs changent vite. Gardez donc un réflexe simple : les idées du chapitre sont **robustes**, mais les noms de modèles, les URLs et les prix exacts doivent toujours être revérifiés dans la **documentation officielle** au moment où vous implémentez.
-
-> **En bref**
->
-> Dans un produit sérieux, le **navigateur** ne parle pas directement au **LLM**. Il parle à **votre backend**. C’est votre code qui choisit le modèle, prépare le contexte, filtre les données, limite les abus, valide la sortie et décide quoi faire ensuite. Le modèle aide ; il ne devient pas le cerveau souverain de l’application.
+Les APIs et les prix changent vite : gardez les principes, revalidez les détails dans la doc officielle. Et dans un produit sérieux, le navigateur parle à **votre backend**, pas directement au LLM : c’est votre code qui filtre, borne et décide.
 
 ---
 
@@ -16,17 +10,17 @@ Les fournisseurs, leurs tarifs et leurs APIs changent vite. Gardez donc un réfl
 
 À la fin de ces pages, vous devriez pouvoir :
 
-1. **Dessiner le flux** minimal d’une feature IA dans un produit web sans exposer vos secrets.
-2. **Distinguer** un usage de type chat, un usage d’extraction structurée et un usage de modération.
-3. **Comprendre** comment brancher l’IA dans un projet `Next.js` avec des routes serveur et une couche interne propre.
-4. **Raisonner en coût** avec des ordres de grandeur en tokens, des quotas et une logique de monétisation ou de limitation.
-5. **Identifier** quand utiliser une API cloud, un outil comme `n8n`, un worker dédié, un petit RAG filtré, ou un modèle auto-hébergé.
+1. **Tracer un flux IA minimal** sans exposer les secrets.
+2. **Distinguer** chat, extraction structurée et modération.
+3. **Brancher proprement** l’IA dans `Next.js` via des routes serveur.
+4. **Raisonner en coût** (tokens, quotas, limites).
+5. **Choisir l’outillage adapté** : API cloud, `n8n`, worker, petit RAG, auto-hébergement.
 
 ---
 
 ## 2. Le schéma minimal qui tient la route
 
-Le schéma minimal reste très simple. Il est même presque banal une fois dessiné. Ce qui change avec l’IA, ce n’est pas tant la forme générale de l’architecture que les **risques** et la **variabilité** de la réponse.
+Le schéma minimal est simple ; ce qui change avec l’IA, ce sont surtout les **risques** et la **variabilité** des réponses.
 
 Vous pouvez aussi le visualiser comme ceci :
 
@@ -133,7 +127,7 @@ Si vous voulez aller plus loin après ce chapitre, le meilleur réflexe est d’
 
 Quelques points d’entrée utiles, surtout si vous voulez "greffer" l’IA à vos outils ou à votre produit :
 
-- `n8n` : vue d’ensemble IA et workflows agents sur [n8n Advanced AI](https://docs.n8n.io/advanced-ai/), puis détail du nœud agent sur [AI Agent node](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/). À lire avec la mise en garde du chapitre : très pratique, mais pas "sécure par défaut".
+- `n8n` : vue d’ensemble IA et workflows agents sur [n8n Advanced AI](https://docs.n8n.io/advanced-ai/), puis détail du nœud agent sur [AI Agent node](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/). À lire avec la mise en garde **de cette partie** : très pratique, mais pas "sécure par défaut".
 - `Mistral` : si vous voulez un exemple européen / français de fournisseur LLM, partez de la doc officielle : [La Plateforme](https://docs.mistral.ai/).
 - `Vercel AI SDK` : bonne porte d’entrée pour un produit `Next.js`, surtout pour le chat et le streaming : [AI SDK docs](https://ai-sdk.dev/docs/introduction).
 - `LangChain` côté JavaScript / TypeScript : utile si vous composez outils, chaînes, agents ou récupération de contexte : [LangChain JS overview](https://docs.langchain.com/oss/javascript/langchain/overview).
@@ -157,7 +151,7 @@ flowchart TD
     L --> R[Reponse]
 ```
 
-Le point clé est le même que dans le [chapitre 2 : Sécurité](02-securite-ia.md) : les **droits d’accès** se gèrent **avant** le prompt, au niveau du retrieval, pas au niveau de la bonne volonté supposée du modèle. Si un stagiaire n’a pas accès aux documents RH dans votre application, le moteur de recherche qui alimente le RAG ne doit jamais remonter ces chunks pour lui.
+Le point clé est le même qu’en **sécurité** : les **droits d’accès** se gèrent **avant** le prompt, au niveau du retrieval, pas au niveau de la bonne volonté supposée du modèle. Si un stagiaire n’a pas accès aux documents RH dans votre application, le moteur de recherche qui alimente le RAG ne doit jamais remonter ces chunks pour lui.
 
 Un montage courant consiste à stocker les embeddings dans Postgres avec `pgvector`, mais en gardant des colonnes de filtrage comme `tenant_id`, `role`, `document_visibility` ou `owner_id`. Le vecteur sert à trouver les passages proches. Les droits, eux, restent gérés comme dans une base de données classique.
 
@@ -199,11 +193,9 @@ Les prix exacts changent souvent. Ce qui compte ici, c’est l’ordre de grande
 
 Le lecteur attentif verra tout de suite le piège : la modération consomme peu, mais peut tourner très souvent. Le chatbot consomme plus par interaction, surtout si vous gardez dix tours complets dans l’historique. Le scraping ou la synthèse documentaire consomme encore plus si vous envoyez des pages entières mal nettoyées.
 
-Prenons un exemple volontairement simple. Si votre chatbot garde huit tours d’historique, ajoute un prompt système assez long, puis injecte plusieurs extraits de documentation, vous pouvez très facilement dépasser quelques milliers de tokens **avant même** que l’utilisateur reçoive une réponse. Ce n’est pas un détail d’implémentation. C’est une décision produit.
+Prenons un exemple volontairement simple. Si votre chatbot garde huit tours d’historique, ajoute un prompt système assez long, puis injecte plusieurs extraits de documentation, vous pouvez très facilement dépasser quelques milliers de tokens **avant même** que l’utilisateur reçoive une réponse. Ce n’est pas un détail d’implémentation : c’est une **décision produit**.
 
-> **En bref**
->
-> Le meilleur moyen de réduire la facture n’est pas de "prompter plus fort". C’est de **moins envoyer**, **mieux choisir le contexte**, **tronquer l’historique**, **cacher** les résultats stables, et **réserver** les modèles les plus coûteux aux cas qui le méritent vraiment.
+Pour maîtriser la facture, la « force » du prompt compte moins que la discipline : **moins envoyer**, **mieux choisir le contexte**, **tronquer l’historique**, **mettre en cache** ce qui est stable, et **réserver** les modèles les plus coûteux aux cas qui le valent.
 
 Dans un produit réel, on retrouve presque toujours les mêmes garde-fous : quota par utilisateur, limitation par feature, taille maximale de texte, désactivation du streaming pour certains plans, file d’attente en cas de charge, instrumentation de `tokens_in` et `tokens_out`, et parfois monétisation explicite de la capacité IA.
 
@@ -231,11 +223,11 @@ Pour un MVP, pour une feature encore incertaine ou pour un volume faible, l’AP
 
 ## 7. Exemples d’implémentation pédagogiques avec Next.js
 
-Les trois cas ci-dessous ne sont pas des snippets "copier-coller production". Ils montrent où vivent les responsabilités dans un projet `Next.js` moderne. On garde volontairement du code lisible, pas un framework caché sous trois couches d’abstraction.
+Trois cas **pédagogiques** (pas du copier-coller prod) : où vit quoi dans un `Next.js` récent — code lisible, responsabilités explicites.
 
 ### 7.1. Cas n°1 : un chatbot intégré au site
 
-Le cas d’usage paraît classique : un visiteur pose une question depuis le site, puis reçoit une réponse fluide. En réalité, c’est un bon exercice d’architecture, car il faut déjà gérer la session, l’historique, le quota, le modèle, les erreurs, et parfois le streaming.
+Du simple « visiteur pose une question, le site répond », il faut déjà penser **session**, **historique**, **quota**, choix de **modèle**, gestion des **erreurs** et parfois **streaming** : c’est un bon exercice d’architecture.
 
 Une architecture de dossier raisonnable ressemble à ceci :
 
@@ -261,7 +253,7 @@ lib/
     enforce-chat-quota.ts
 ```
 
-Le point important est que le composant d’interface ne connaît jamais la clé du fournisseur. Il parle seulement à `POST /api/chat`. C’est cette route qui récupère la session, applique le quota, tronque l’historique, choisit le modèle et appelle la couche `lib/ai`.
+Le front **ne voit jamais** la clé : il appelle `POST /api/chat`. La route fait session, quota, troncature d’historique, choix du modèle, puis `lib/ai`.
 
 ```ts
 // app/api/chat/route.ts
@@ -328,9 +320,9 @@ export async function completeForFeature(
 }
 ```
 
-L’exemple ci-dessus reste volontairement simple : dans un vrai produit, vous ajouteriez aussi **timeout**, **gestion d’erreur**, **journalisation**, **plafond de tokens** et éventuellement **validation de format**. Et comme toujours, vérifiez les détails d’endpoint, de SDK et de modèles dans la **documentation officielle** au moment d’implémenter.
+En prod : **timeouts**, **erreurs**, **logs**, **plafonds**, **validation** — et toujours la **doc officielle** du fournisseur au moment T.
 
-Le rôle de `trimMessages` est beaucoup plus important qu’il n’en a l’air. Sans lui, vous envoyez tout l’historique, puis tout l’historique du précédent tour, puis encore le suivant. En quelques messages, le contexte gonfle et la facture aussi.
+`trimMessages` évite d’envoyer **tout** l’historique à chaque tour : sans ça, contexte et **facture** explosent vite.
 
 ```ts
 // lib/ai/trim-messages.ts
@@ -347,15 +339,15 @@ export function trimMessages(
 }
 ```
 
-Si vous voulez ensuite brancher une documentation produit, vous ne devez pas envoyer "toute la doc du site" dans le prompt. Vous devez d’abord récupérer quelques passages pertinents, déjà filtrés, puis seulement injecter ces extraits. C’est là qu’un petit RAG propre, avec ACL si besoin, devient utile.
+Doc produit : pas "toute la doc" dans le prompt — **extraits** pertinents, filtrés ; souvent un **RAG** avec **ACL** si besoin.
 
-Côté coût, ce cas est souvent le plus piégeux. Un message court de visiteur peut n’occuper que 30 ou 50 tokens. Mais dès que vous ajoutez l’historique, le prompt système et quelques passages de documentation, vous pouvez monter à 1 500, 2 000 ou 4 000 tokens en entrée sans vous en rendre compte. Le bon produit de chat est donc celui qui **répond bien avec peu**.
+**Coût** : un message court peut cacher un **historique** long, un **prompt système** et des **extraits** de doc, et monter vite à des milliers de **tokens** en entrée. L’objectif est de **répondre bien avec peu**.
 
-Une variante fréquente consiste à faire du **streaming** pour améliorer la sensation de vitesse. C’est très bien côté UX, mais cela ne change ni le coût total ni la responsabilité de votre backend. Le streaming est un confort d’affichage, pas une excuse pour oublier les quotas ou la validation.
+**Streaming** : meilleure sensation UX, **même** logique de quota, validation et responsabilité côté **backend**.
 
 ### 7.2. Cas n°2 : une IA de modération pour un réseau social
 
-Ici, le but n’est pas d’écrire une belle réponse. Le but est d’aider le produit à décider si un contenu peut être publié, doit être refusé, ou doit être mis en revue. Le résultat attendu est donc un **contrat machine-lisible**, pas un texte libre.
+Pas de prose jolie : une **décision** (publier / refuser / file humaine) via un **JSON** validé — **contrat machine-lisible**.
 
 Une arborescence simple peut ressembler à cela :
 
@@ -377,7 +369,7 @@ lib/
     posts.ts
 ```
 
-Le modèle produit un JSON borné. Votre code le parse. Puis votre logique métier tranche. C’est exactement ce découplage qui permet de corriger la politique produit sans "réentraîner" quoi que ce soit.
+Le flux typique est : sortie du **modèle** en **JSON**, **parsing**, puis **règles métier** — ce qui permet de faire évoluer la politique sans « réentraîner » toute la chaîne.
 
 ```ts
 // lib/moderation/schema.ts
@@ -445,15 +437,11 @@ export async function POST(req: NextRequest) {
 }
 ```
 
-Le coût unitaire de ce cas est souvent raisonnable, car le texte source est court et la sortie aussi. On peut parfois rester sous quelques centaines de tokens en entrée et quelques dizaines en sortie. En revanche, le volume peut devenir massif. Une plateforme avec beaucoup d’activité peut envoyer des milliers ou millions de contenus à modérer. Le vrai sujet n’est donc pas seulement le coût par appel ; c’est le coût cumulé et la qualité de la politique de seuil.
-
-Il faut aussi accepter une réalité produit : il y aura des **faux positifs** et des **faux négatifs**. C’est pour cela que la file humaine, la traçabilité et le mécanisme de contestation comptent autant que le prompt.
+Coût **par appel** souvent modeste ; en **volume** (millions de posts), le cumul et les **seuils** comptent. Prévoir **faux positifs / négatifs** : file humaine, traçabilité, contestation — pas seulement le prompt.
 
 ### 7.3. Cas n°3 : une IA qui va collecter des informations sur le web
 
-Le mot "scraping" attire souvent parce qu’il donne l’impression d’un assistant capable d’aller chercher tout ce qu’il faut. En pratique, c’est le cas d’usage où il faut le plus de discipline. Sinon, vous envoyez du HTML bruité, vous enfreignez des conditions d’usage, vous ratez vos timeouts et vous payez cher pour un contexte sale.
-
-Le bon montage consiste souvent à faire porter à `Next.js` le point d’entrée et l’auth, puis à déléguer la récupération et le nettoyage à un worker ou à une tâche asynchrone. Le front ne devrait pas attendre 20 secondes pendant qu’un agent parcourt le web.
+**Scraping** = cas où la **discipline** compte : HTML sale, **CGU**, timeouts, **coût** de contexte. `Next.js` pour **entrée + auth** ; **worker** pour fetch + nettoyage — le front n’attend pas 20 s de "navigation libre".
 
 ```bash
 app/
@@ -477,7 +465,7 @@ workers/
   research-worker.ts
 ```
 
-La route `Next.js` reçoit la demande, la valide, puis déclenche un job.
+La route valide et **enqueue** un job.
 
 ```ts
 // app/api/research/start/route.ts
@@ -499,7 +487,7 @@ export async function POST(req: NextRequest) {
 }
 ```
 
-Le worker, lui, effectue le travail sale : vérifier si l’URL est autorisée dans votre politique, respecter `robots.txt` si c’est votre règle, récupérer la page, extraire le texte lisible, puis seulement passer un extrait propre au modèle.
+Le worker : politique d’URL, `robots.txt` si vous vous y tenez, fetch, **texte lisible**, puis **extrait** au modèle — pas le HTML brut entier.
 
 ```ts
 // workers/research-worker.ts
@@ -528,7 +516,7 @@ export async function processResearchJob(url: string) {
 }
 ```
 
-Le rôle du modèle, ici, n’est pas d’aller "naviguer librement". Son rôle est surtout de **structurer**, **résumer** ou **classifier** ce que vous avez déjà récupéré proprement.
+Le modèle **structure / résume / classe** ce que vous lui donnez déjà **nettoyé** — il ne "navigue" pas tout seul sur le web.
 
 ```ts
 // lib/ai/structured-extraction.ts
@@ -566,7 +554,7 @@ export async function extractStructuredFacts(input: {
 >
 > Scraper le web n’autorise ni à ignorer les conditions d’usage des sites, ni à contourner leurs protections, ni à aspirer n’importe quoi pour l’envoyer ensuite à un modèle. Le cadre juridique, contractuel et éthique varie selon les sources, les volumes et les données. Le bon réflexe produit consiste à raisonner en **politique de collecte**, pas en fantasme "d’agent qui peut tout lire".
 
-Sur le plan du coût, ce cas peut devenir très cher si vous injectez du HTML brut, plusieurs pages à la fois ou des chunks mal nettoyés. Ce n’est pas rare de dépasser dix mille tokens sur une seule opération si vous ne coupez rien. D’où l’importance de nettoyer avant, de résumer par étape, de stocker les résultats intermédiaires et d’éviter de refaire le même travail à chaque requête.
+**Coût** : du **HTML** brut ou trop de pages aspirées peuvent dépasser **10k tokens** par tour sans effort. Mieux vaut **nettoyer**, **découper**, **mettre en cache** les étapes intermédiaires et éviter de tout recalculer à chaque clic.
 
 ---
 

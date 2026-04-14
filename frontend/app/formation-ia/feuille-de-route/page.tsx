@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/formation-ia/feuille-de-route",
   },
   openGraph: {
-    title: "Feuille de route · Formation IA | Studio Castel",
+    title: "Feuille de route · Guide pratique IA | Studio Castel",
     description:
       "Guide du parcours : objectifs, prérequis, ordre de lecture, sommaire, accompagnement et formations en entreprise sur devis.",
     type: "article",
@@ -32,7 +32,7 @@ export default async function FormationFeuilleDeRoutePage() {
     <div className={cn(FORMATION_CONTENT_CONTAINER, "py-8 pb-24 md:py-10 md:pb-28")}>
       <nav className="text-small text-muted-foreground">
         <Link href="/formation-ia" className="hover:text-foreground">
-          Formation IA
+          Guide pratique
         </Link>
         <span aria-hidden className="mx-2">
           /
@@ -46,7 +46,7 @@ export default async function FormationFeuilleDeRoutePage() {
           Feuille de route
         </h1>
         <p className="mt-3 max-w-3xl text-pretty text-paragraphe leading-relaxed text-muted-foreground">
-          Cette page rassemble l’essentiel avant de plonger dans les chapitres : à qui s’adresse la formation, ce que
+          Cette page rassemble l’essentiel avant de plonger dans les chapitres : à qui s’adresse le guide pratique, ce que
           vous serez capable de faire, les prérequis et l’ordre de lecture conseillé. Les tableaux et liens ci-dessous
           sont pensés comme une page de cours : vous pouvez les parcourir ici ou ouvrir chaque chapitre quand vous
           êtes prêt.

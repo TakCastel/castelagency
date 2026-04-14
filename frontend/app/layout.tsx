@@ -4,8 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { GoogleTagManager } from "@/components/GoogleTagManager";
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 
@@ -79,8 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
           <ReadingProgressBar />
-          <GoogleTagManager />
-          <GoogleAnalytics />
+          <ConsentAwareAnalytics />
           <AnalyticsPageView />
           {children}
           <CookieConsentBanner />

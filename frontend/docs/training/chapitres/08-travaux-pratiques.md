@@ -1,37 +1,31 @@
 # Chapitre 8 : Travaux pratiques
 
-Ce chapitre propose des **exercices autonomes** à faire dans **votre propre dépôt** (ou celui de votre équipe / formation). Il n’y a **pas** de "bon projet imposé" : vous **choisissez** à chaque fois une zone **réelle** de votre code, de votre site ou de votre doc. Chaque TP indique **ce que vous devez produire** et des **pistes** pour vous guider ; il n’y a **pas** de corrigé séparé : vous jugez vous-même si le livrable est complet au regard des critères.
+Ce chapitre propose des **exercices autonomes** dans **votre dépôt** (ou celui de l’équipe / du guide pratique). Pas de projet imposé : vous **choisissez** une zone **réelle** du code, du site ou de la doc. Chaque TP dit **quoi livrer** et donne des **pistes** ; pas de corrigé séparé — vous validez le livrable contre les critères.
 
-**Comment travailler** : pour chaque TP, lisez d’abord le chapitre indiqué ; rédigez votre livrable dans un fichier texte, une issue ou une branche ; gardez une trace pour votre portfolio ou une revue en équipe.
+**Méthode** : suivre le cours dans l’ordre de la navigation ; rédiger chaque livrable (fichier, issue ou branche) ; garder une trace pour portfolio ou revue.
 
-| TP | Surtout aligné sur… | Durée indicative |
+| TP | Notions principales | Durée indicative |
 |----|---------------------|------------------:|
-| 1 · Sécurité "audit express" | [Chapitre 2 : Sécurité](02-securite-ia.md) | ~30 min |
-| 2 · Assistant : **petite feature** dans votre projet | [Chapitre 3 : Assistants de code](03-assistants-code-ide.md) | ~25 min |
-| 3 · Doc & prompts pour **votre** repo | [Chapitre 4 : Prompter agents & Markdown](04-prompter-agents-markdown.md) | ~20 min |
-| 4 · User stories sur **votre** périmètre | [Chapitre 5 : BMAD-METHOD](05-bmad-method.md) | ~25 min |
-| 5 · GEO sur **votre** contenu | [Chapitre 7 : GEO](07-geo.md) | ~25 min |
-| 6 · Capstone (synthèse) | Parcours **3 à 7** | ~45 min |
+| 1 · Sécurité "audit express" | Secrets, dépôt, audit rapide | ~30 min |
+| 2 · Assistant : **petite feature** dans votre projet | IDE, prompt, diff, tests | ~30 min |
+| 3 · Doc & prompts pour **votre** repo | Markdown, agents, docs versionnées | ~25 min |
+| 4 · User stories sur **votre** périmètre | Stories, cadrage type BMAD | ~30 min |
+| 5 · GEO sur **votre** contenu | Contenu public, visibilité générative | ~25 min |
+| 6 · Capstone (synthèse) | Mise en commun de ce que vous venez de pratiquer | ~40 min |
 
-**Total indicatif du chapitre** : ~2 h 50 si vous réalisez les six TP.
+**Total indicatif du chapitre** : ~3 h si vous réalisez les six TP.
 
 ---
 
 ## TP 1 · Sécurité : mini-audit sur votre projet
 
-**Contexte** : [Chapitre 2 : Sécurité](02-securite-ia.md).
-
 **À faire** sur un dépôt **que vous avez le droit d’analyser** (le vôtre, un fork, un projet de cours) :
 
-1. **Checklist "audit express"** (10 à 15 lignes) : ce que vous vérifiez **avant** de généraliser l’IA (secrets, chat IDE, doc interne, dépendances, etc.). Pour chaque ligne : *oui / non / pas applicable* et, si *non*, **une** action corrective courte.  
-   *Pistes de lignes* : absence de `.env` / `.pem` versionnés sur un dépôt public ; clés d’API chargées depuis l’environnement ou un coffre ; appels LLM via votre backend plutôt que depuis le client ; doc interne indexée avec les bons droits ; suivi des dépendances (alertes CVE) ; etc.
+1. **Checklist audit express** (10–15 points) : vérifiez les bases avant généralisation IA (secrets, chat IDE, doc interne, dépendances). Pour chaque ligne : *oui/non/N.A.* + une action si non.
 
-2. **Recherche de fuites dans l’arbre actuel** : décrivez **comment** vous avez cherché (outils : `rg`, `git grep`, interface de la forge, *secret scanning* si disponible) et **ce que vous avez trouvé** (ou "rien de critique" en listant les dossiers ou motifs inspectés).  
-   *Motifs souvent utiles* : `API_KEY`, `SECRET`, `password`, `token`, `sk-`, `Bearer`, `PRIVATE KEY`, fichiers `.env`, `.env.local`, dossiers `credentials`.  
-   **Important** : si vous trouvez une vraie clé, **ne la recopiez pas** dans votre livrable ; notez seulement l’emplacement (fichier ou règle générique) et l’action prévue (révocation, retrait du dépôt).
+2. **Recherche de fuites** : décrivez votre méthode (`rg`, `git grep`, scanning…) et le résultat. Motifs typiques : `API_KEY`, `SECRET`, `token`, `Bearer`, `.env`. Si vous trouvez une clé réelle, ne l’exposez pas dans le livrable : indiquez l’emplacement et l’action (révocation/retrait).
 
-3. **Historique Git** : expliquez **comment** vous vérifieriez qu’un secret n’a pas été commité **dans le passé** puis retiré du fichier visible (ex. `git log -S'motif'` ou équivalent, historique d’un fichier sur la forge). Vous n’avez pas à lancer d’opération destructive sur le dépôt. Décrivez ce que vous feriez si vous trouviez une clé dans l’historique (rotation, révocation, procédure d’équipe).  
-   *À retenir* : un dépôt "propre" aujourd’hui peut encore contenir un secret dans un **ancien** commit.
+3. **Historique Git** : expliquez comment vérifier qu’un secret n’a pas existé dans d’anciens commits (ex. `git log -S`). Si vous en trouvez un : rotation, révocation et procédure d’équipe.
 
 **Livrable** : un document (Markdown ou texte) qui couvre les **trois** points ci-dessus.
 
@@ -40,8 +34,6 @@ Ce chapitre propose des **exercices autonomes** à faire dans **votre propre dé
 ---
 
 ## TP 2 · Assistant de code : ajouter une petite feature dans votre projet
-
-**Contexte** : [Chapitre 3 : Assistants de code](03-assistants-code-ide.md).
 
 **À faire** : Choisissez **une** fonctionnalité **limitée** (quelques fichiers, un comportement clair) dans **votre** application ou bibliothèque : pas un refactor de tout le dépôt. Exemples **larges** :
 
@@ -53,18 +45,16 @@ Ce chapitre propose des **exercices autonomes** à faire dans **votre propre dé
 
 **Livrable** (idéalement rédigé **avant** d’ouvrir l’assistant) :
 
-1. **Périmètre** : une phrase **"fini quand..."** + liste des **fichiers ou dossiers** probables (même approximative).  
-2. **Prompt** (ou séquence **explorer → plan → changement**) dans **votre** langage et **votre** stack.  
-3. **Relecture** : liste de **au moins cinq** points que vous vérifierez dans le diff (sécurité, cas limites, nommage, tests, perf, etc.).  
-4. *(Optionnel)* Si vous avez implémenté : lien vers la branche ou le diff, et **une** phrase sur ce que vous auriez fait différemment au prompt.
+1. **Périmètre** : une phrase « fini quand… » + fichiers/dossiers probables.
+2. **Prompt** : court, dans votre langage, avec une séquence simple (explorer, plan, changement).
+3. **Relecture** : au moins 5 points de contrôle du diff (sécurité, cas limites, nommage, tests, perf).
+4. *(Optionnel)* Lien vers branche/diff + une phrase de retour sur votre prompt.
 
-**Durée indicative** : ~25 min. **Niveau** : variable (restez **petit**).
+**Durée indicative** : ~30 min. **Niveau** : variable (restez **petit**).
 
 ---
 
 ## TP 3 · Markdown & agent : un fichier utile pour votre dépôt
-
-**Contexte** : [Chapitre 4 : Prompter agents & Markdown](04-prompter-agents-markdown.md).
 
 **À faire** : Créez ou complétez **un** fichier Markdown **dans votre projet** (ou sur une branche dédiée), **un seul** type parmi :
 
@@ -78,13 +68,11 @@ Puis rédigez **une** phrase de prompt qu’un collègue pourrait coller dans un
 
 **Livrable** : le fichier Markdown (chemin dans le repo) + la phrase de prompt.
 
-**Durée indicative** : ~20 min. **Niveau** : facile à intermédiaire.
+**Durée indicative** : ~25 min. **Niveau** : facile à intermédiaire.
 
 ---
 
 ## TP 4 · BMAD / produit : trois user stories sur votre sujet
-
-**Contexte** : [Chapitre 5 : BMAD-METHOD](05-bmad-method.md).
 
 **À faire** : Sans installer obligatoirement BMAD, rédigez **trois** user stories au format *En tant que / je veux / afin de* pour **une** brique produit **de votre choix** dans un logiciel que vous connaissez (perso, pro, cours). Exemples **larges** de briques : compte utilisateur, facturation, recherche, tableau de bord, admin, import, notifications, etc.
 
@@ -93,13 +81,11 @@ Terminez par **4 à 6** tâches techniques possibles pour une itération (sans o
 
 **Livrable** : le texte des trois stories + critères + liste de tâches.
 
-**Durée indicative** : ~25 min. **Niveau** : intermédiaire.
+**Durée indicative** : ~30 min. **Niveau** : intermédiaire.
 
 ---
 
 ## TP 5 · GEO : une page ou doc à vous
-
-**Contexte** : [Chapitre 7 : GEO](07-geo.md).
 
 **À faire** : Choisissez **une** URL ou **un** document public **de votre** site, **de** votre doc utilisateur ou **d**’un projet fictif **détaillé** (sans y coller de secrets). Proposez :
 
@@ -115,8 +101,6 @@ Terminez par **4 à 6** tâches techniques possibles pour une itération (sans o
 
 ## TP 6 · Capstone : votre produit et l’IA
 
-**Contexte** : Synthèse des chapitres **3 à 7**.
-
 **À faire** : Rédigez **une page de synthèse** (format libre) sur un produit **réel ou fictif crédible**.
 
 Vous pouvez suivre ce plan simple :
@@ -129,7 +113,7 @@ Vous pouvez suivre ce plan simple :
 
 **Livrable** : une page de synthèse qui regroupe ces trois blocs.
 
-**Durée indicative** : ~45 min. **Niveau** : avancé.
+**Durée indicative** : ~40 min. **Niveau** : avancé.
 
 ---
 

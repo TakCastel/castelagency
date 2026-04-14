@@ -8,13 +8,13 @@ Il s’adresse d’abord à la **personne qui apprend** : développeur, PO / PM,
 
 ## 1. Comment vous situer à la fin du parcours
 
-Si vous avez lu les chapitres **1 à 9**, vous avez déjà l’essentiel :
+Si vous avez suivi le parcours **jusqu’à la synthèse**, vous avez déjà l’essentiel :
 
 - un **vocabulaire commun** pour parler des LLM, des limites des outils et des usages realistes ;
 - des **réflexes de sécurité** pour ne pas exposer n’importe quoi à un chat ou à un assistant ;
 - une vue plus claire de l’IA dans l’**IDE**, le **cadrage produit**, les **APIs** et la **visibilité** des contenus.
 
-Si vous avez en plus réalisé une partie du [chapitre 8 : Travaux pratiques](08-travaux-pratiques.md), vous êtes passé de la compréhension à une **mise en situation** plus concrète.
+Si vous avez en plus réalisé une partie des **travaux pratiques**, vous êtes passé de la compréhension à une **mise en situation** plus concrète.
 
 **En bref** : la fin du parcours ne veut pas dire "je sais tout". Elle veut dire : **je peux utiliser l’IA avec plus de méthode, plus de recul et moins d’illusions**.
 
@@ -24,8 +24,8 @@ Si vous avez en plus réalisé une partie du [chapitre 8 : Travaux pratiques](08
 
 Le parcours met surtout à votre disposition **deux leviers** :
 
-- le [chapitre 11 : Banque QCM](11-banque-qcm.md), pour vérifier vos acquis sur les notions importantes ;
-- le [chapitre 8 : Travaux pratiques](08-travaux-pratiques.md), pour voir ce que vous arrivez à produire sur un cas plus proche du réel.
+- la **banque QCM**, pour vérifier vos acquis sur les notions importantes ;
+- les **travaux pratiques**, pour voir ce que vous arrivez à produire sur un cas plus proche du réel.
 
 Le QCM ne remplace pas la pratique, et les TP ne remplacent pas une relecture extérieure. Les deux ensemble donnent déjà une image plus honnête de votre niveau.
 
@@ -33,27 +33,17 @@ Le QCM ne remplace pas la pratique, et les TP ne remplacent pas une relecture ex
 
 Vous pouvez considérer que le parcours est **bien avancé** si :
 
-- vous avez lu les chapitres **1 à 9** ;
+- vous avez lu le parcours **jusqu’à la synthèse** ;
 - vous avez fait au moins un passage par le **QCM** ;
 - vous avez testé **un ou plusieurs TP** avec une trace écrite de votre travail.
 
-Ce site ne délivre **ni note automatique**, **ni certificat**, **ni PDF de réussite**. Il vous aide à vous situer, pas à vous attribuer seul un label officiel.
-
-### Cas encadré : entreprise, école, bootcamp
-
-Si vous suivez ce contenu dans une session animée par quelqu’un d’autre, demandez simplement :
-
-- qu’est-ce qui est **vraiment évalué** ;
-- qu’est-ce qui est **optionnel** ;
-- si la validation repose sur le **QCM**, les **TP**, un **oral**, ou un mélange des trois.
-
-Le cadre plus "organisme / attestation / RNCP / CPF" n’est pas le sujet principal de ce chapitre. Il est rappelé sur la [feuille de route](/formation-ia/feuille-de-route), plus adaptée à ce public.
+Ce site ne délivre **ni note automatique**, **ni certificat**, **ni PDF de réussite**. Il vous aide à vous situer, pas à vous attribuer un label officiel.
 
 ---
 
 ## 3. Que faire maintenant ?
 
-Trois suites sont logiques après cette formation.
+Trois suites sont logiques après ce guide pratique.
 
 ### 3.1 Continuer en autonomie
 
@@ -69,16 +59,9 @@ Si vous voulez aller plus loin sur un besoin réel, je peux aussi intervenir com
 
 Pour une demande de cadrage ou de **devis** : [demander un devis](/devis).
 
-### 3.3 Aller vers d’autres formations
+### 3.3 Aller plus loin ailleurs
 
-Si vous cherchez un cadre plus long, plus scolaire, plus certifiant, ou simplement un autre format, voici quelques pistes **sobres et crédibles**.
-
-- **Ressource publique / initiation** : [Objectif IA](https://www.francenum.gouv.fr/formations/objectif-ia-initiez-vous-lintelligence-artificielle), portée par France Num avec OpenClassrooms. C’est utile pour commencer ou reprendre les bases, mais ce n’est **pas** en soi une certification d’État.
-- **Certification RNCP, acteur French Tech** : [Simplon - Développeur en intelligence artificielle](https://www.simplon.co/certification/developpeur-en-intelligence-artificielle) (`RNCP 37827`, niveau 6).
-- **Parcours certifiant, acteur French Tech** : [Jedha - Formation Data Scientist](https://www.jedha.co/formations/formation-data-scientist), formation annoncée comme certifiante et éligible CPF ; la fiche officielle de référence côté France Compétences pour Jedha est notamment [RNCP 41993 - Architecte en intelligence artificielle](https://www.francecompetences.fr/recherche/rncp/41993/).
-- **Bootcamp data / IA, acteur French Tech** : [Le Wagon - Data Science & IA](https://www.lewagon.com/fr/paris/data-science-course), avec certification `RNCP38616` annoncée sur la page de formation.
-
-**Attention** : `CPF`, `Qualiopi`, `certification RNCP` et `diplôme d’État` ne veulent pas dire exactement la même chose. Vérifiez toujours la **session**, l’**éligibilité effective** au moment de l’inscription, et l’**état actif** de la fiche officielle quand une formation met en avant un code RNCP.
+Pour **compléter** ce parcours gratuit, vous pouvez par exemple suivre une **initiation publique** comme [Objectif IA](https://www.francenum.gouv.fr/formations/objectif-ia-initiez-vous-lintelligence-artificielle) (France Num / OpenClassrooms), ou explorer d’**autres parcours** (longs, en présentiel, certifiants…) sur les sites qui les publient — **il n’y en a pas ici** : vérifiez toujours les informations **à jour** sur chaque site.
 
 ---
 

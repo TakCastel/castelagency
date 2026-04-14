@@ -8,7 +8,7 @@ import { FORMATION_CONTENT_CONTAINER } from "@/lib/training/formation-container"
 import { cn } from "@/lib/utils";
 
 /**
- * Parcours formation : hors header / footer du site (standalone, sans lien vers le site vitrine).
+ * Parcours guide pratique : hors header / footer du site (standalone, sans lien vers le site vitrine).
  */
 export default function FormationIaLayout({ children }: { children: ReactNode }) {
   return (
@@ -19,7 +19,7 @@ export default function FormationIaLayout({ children }: { children: ReactNode })
             href="/formation-ia"
             className="min-w-0 flex-1 truncate text-small font-semibold tracking-tight text-foreground hover:text-primary sm:text-paragraphe"
           >
-            Formation IA
+            Guide pratique
           </Link>
           <div className="ml-auto w-full max-w-xs shrink-0 sm:max-w-sm">
             <TrainingHeaderSearch />

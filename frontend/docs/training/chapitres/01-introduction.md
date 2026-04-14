@@ -1,8 +1,8 @@
 # Chapitre 1 · Introduction : contexte et cadre de travail
 
-Les assistants fondés sur de grands modèles de langage sont **entrés dans le quotidien** des équipes : complétions dans l’éditeur, chat à côté du code, parfois réponses directement dans le produit livré au client. La difficulté n’est plus seulement d’y accéder ; c’est d’y travailler **sans perdre le fil** (qualité, sécurité, responsabilité) quand tout incite à aller vite.
+Les assistants fondés sur de grands modèles de langage sont **entrés dans le quotidien** des équipes : complétions dans l’éditeur, chat à côté du code, parfois réponses dans le produit livré au client. La difficulté n’est plus seulement d’y accéder, mais d’y travailler **sans perdre le fil** — qualité, sécurité, responsabilité — quand tout pousse à aller vite.
 
-Cette formation relie **usages concrets**, **méthode** et **garde-fous**. Elle commence par ce que tout le monde peut partager au même niveau : une langue commune pour parler de l’IA dans le travail, une vue d’ensemble du parcours, et un ordre de lecture qui évite de brûler les étapes. Vous y trouverez les définitions (IA générative, LLM, IDE…), puis la suite logique du cours : sécurité, outils dans l’éditeur, prompts, cadrage, intégration produit, GEO.
+Ce guide pratique relie **usages concrets**, **méthode** et **garde-fous**. Il pose d’abord une **langue commune** (IA générative, LLM, IDE…), un **parcours lisible** et un **ordre de lecture** qui évite de brûler les étapes, puis enchaîne sur la sécurité, l’éditeur, les prompts, le cadrage, l’intégration produit et le GEO.
 
 Le parcours s’adresse aux personnes qui développent ou travaillent à côté du code (PO, PM, support, montée en compétences), avec ou sans expérience préalable des assistants. **Aucun prérequis technique lourd** n’est exigé ici. Si un passage vous semble dense, vous pouvez le survoler et y revenir après les sections suivantes.
 
@@ -12,14 +12,12 @@ Le parcours s’adresse aux personnes qui développent ou travaillent à côté 
 
 À la fin de ces pages, vous devriez pouvoir :
 
-1. **Expliquer avec vos mots** ce qu’on entend par **IA générative** et **LLM** dans ce cours : idée générale, usage typique dans un outil, et **limites** (par exemple erreurs possibles, pas de "conscience" au sens humain).
-2. **Reconnaître deux grands usages** : aide dans l’**éditeur de code** (IDE) et aide dans des **produits** (chat, doc, site).
-3. **Reconnaître le piège du "vibe coding"** : aller vite en copiant-collant du code proposé par l’IA **n’est pas interdit** (brouillon, prototype, apprentissage) ; le piège, c’est d’**en rester là** sans **relecture** du diff, **tests** et prudence sur les **données** envoyées aux outils.
-4. **Savoir ce qui arrive ensuite** dans le parcours : un volet **sécurité et données** viendra juste après ; il faudra l’avoir parcouru **avant** de coller du vrai code ou des informations sensibles dans un chat.
+1. **Expliquer simplement** ce qu’est une IA générative / un LLM, avec ses limites.
+2. **Distinguer deux usages** : aide dans l’IDE et aide dans les produits.
+3. **Repérer le piège du vibe coding** : aller vite sans relire le diff, sans tests, sans prudence sur les données.
+4. **Comprendre la suite** : la section sécurité vient juste après, et doit être lue avant tout usage réel.
 
-> **En bref**
->
-> Ce chapitre pose les **repères** : vocabulaire partagé, cadre du cours, ordre de lecture. Les suivants entrent dans la **pratique** (assistants, prompts, BMAD, intégration produit, GEO), avec une même règle : **montrer l’idée et l’exemple**, puis seulement le jargon et les acronymes.
+Les parties suivantes du parcours entrent dans la **pratique** (assistants, prompts, BMAD, intégration produit, GEO) sous la même règle : **montrer l’idée et l’exemple**, puis le jargon et les acronymes.
 
 ---
 
@@ -32,7 +30,7 @@ Une image utile (imparfaite mais pédagogique) : pensez à un **correcteur ortho
 Trois conséquences pratiques pour vous, aujourd’hui :
 
 - **Il ne "comprend" pas** comme un humain : il assemble des régularités de langage vues pendant l’entraînement. Il peut donc être **convaincant** tout en étant **à côté de la plaque**.
-- **Il peut se tromper** ou broder des détails : on parle souvent d’**hallucination** (nuances et définitions : **plus loin**, le glossaire du parcours recense les termes).
+- **Il peut se tromper** ou broder des détails : on parle souvent d’**hallucination** ; le **glossaire** (fin du parcours) précise les nuances.
 - **Il peut aller vite** pour proposer du code, des textes, des plans : d’où l’intérêt pour le développement et le produit, **à condition** de garder la main sur la qualité et la sécurité.
 
 ### 2.1. Trois micro-exemples "comme au bureau"
@@ -48,32 +46,23 @@ Votre terminal affiche une **stack trace** de dix lignes. Vous copiez le message
 
 Ces trois cas sont volontairement **petits** pour fixer les idées.
 
-Plus loin dans le parcours, vous verrez comment enchaîner sur des **axes de développement entiers** avec un assistant dans l’IDE, par exemple :
+Plus loin : chantiers IDE (**i18n**, **a11y**, etc.) avec la même discipline — périmètre, prompt, *diff*, tests — en itérations courtes. Les **assistants** détaillent la méthode ; la **sécurité et les données** viennent **juste après** cette intro.
 
-- **Internationalisation (i18n)** : structure des composants, extraction ou harmonisation des chaînes, conventions de fichiers de traduction ;
-- **Accessibilité (a11y)** : textes alternatifs pertinents, ordre de tabulation, focus visible, audits ciblés sur quelques écrans critiques.
-
-L’objectif est une itération **cadrée** en **quelques minutes** (périmètre, prompt, relecture du *diff*, tests), là où le même type de chantier pouvait encore **mobiliser plusieurs jours** d’équipe il y a quelques années.
-
-La **méthode** (ticket, prompt, relecture du *diff*, tests) est déclinée **plus loin**, quand on entrera dans l’IDE et les assistants. Le **cadre données et secrets** doit être posé **avant** de lancer de gros refactors sur un dépôt réel : on le verra juste après cette introduction.
-
-> **En bref**
->
-> L’IA ici = **outil d’aide à la rédaction et au code**, pas un collègue infallible. **Vous** restez le pilote.
+L’IA reste un **outil d’aide**, pas un collègue infallible : **vous** pilotez.
 
 ---
 
 ## 3. Où intervient-elle concrètement ?
 
-L’IA ne se résume pas à "un chat dans un onglet". Selon le **lieu** (éditeur, application cliente, plateforme Git, automate interne, mail…), ce qui est **à risque** et le **type de données** concernées **changent** : ce n’est pas la même chose de modifier du code dans le dépôt, de répondre à un utilisateur final dans le produit, ou de coller une capture dans un fil de messagerie.
+Pas seulement « un chat dans un onglet » : selon le **lieu** (IDE, produit, Git, automate, mail…), **risques** et **données** ne sont pas les mêmes — dépôt, utilisateur final ou messagerie, ce n’est pas équivalent.
 
-Ce chapitre ne prétend **pas** recenser **tous** les usages possibles (la **data**, le **design**, la **veille**… ont les leurs aussi). Pour une **équipe qui livre du logiciel**, on retrouve surtout les **familles** ci-dessous.
+Ci-dessous, des **familles** utiles pour une équipe qui livre du logiciel (sans viser tous les métiers).
 
 ### Éditeur de code et dépôt
 
 Pour un développeur ou une développeuse, c’est souvent le premier réflexe : **complétions**, **chat** sur les fichiers du projet, **agents** sur plusieurs fichiers, parfois **terminal** ou ligne de commande tant que le fil reste **attaché au dépôt**.
 
-Une même idée reviendra dans tout le parcours : **but clair** (ou petit ticket) → **prompt** → **relecture du diff** → **tests**. Les noms d’outils varient (**Cursor**, **GitHub Copilot**, **Claude Code**, etc.) ; la **discipline** est la même.
+Une même idée reviendra dans tout le parcours : partir d’un **but clair** (ou d’un petit ticket), formuler un **prompt**, **relire le diff**, puis **tester**. Les noms d’outils changent (**Cursor**, **GitHub Copilot**, **Claude Code**, etc.) ; la **discipline** reste la même.
 
 ### Dans le produit et sur vos sites
 
@@ -83,9 +72,7 @@ Ici, l’IA apparaît dans **ce que vous livrez au monde** : **chat** ou assista
 
 ### Hébergement Git : GitHub, GitLab, Bitbucket…
 
-Les plateformes d’hébergement accueillent une part croissante d’**aide à la revue** : **pull requests** / **merge requests**, résumés de changements, commentaires ou suggestions **avant** fusion.
-
-Comme dans l’éditeur, ce que vous **saisissez** ou **collez** peut être **traité hors de votre machine**. C’est le même réflexe de prudence **avant** d’y mettre des **secrets** ou des **données personnelles**.
+**Pull requests** / **merge requests**, résumés de changements, suggestions avant fusion : l’aide à la revue y est de plus en plus présente. Même prudence que dans l’éditeur : saisie et collage peuvent être **traités hors de votre machine** — pas de **secrets** ni de **données personnelles** sans cadre explicite.
 
 ### Automatisation et coulisses
 
@@ -101,9 +88,7 @@ Le **cadre** (qui lit quoi, combien de temps c’est **conservé**, quel pays h�
 
 ### Une même semaine, plusieurs canaux
 
-Il est courant que tout **coexiste** : du **code** assisté dans l’éditeur, des **critères** produit rédigés avec un assistant, une **FAQ** côté support, une **pull request** commentée sur GitHub ou GitLab, plus un **flux** d’automatisation qui résume des tickets.
-
-Quand les **canaux** se multiplient, le piège est de croire qu’"une seule règle" suffit. En pratique, aidez-vous d’une **liste simple** : quel **outil**, quelles **données**, pour **quel public** (interne, client, hébergeur), y compris ce qui passe par le **mail** ou les **automatisations**. Vous gagnerez en clarté **avant** un audit ou un incident.
+IDE, produit, support, PR, automates : tout **coexiste**. Une seule règle globale ne suffit pas — gardez une **grille** (outil, données, public : interne / client / hébergeur) **avant** incident ou audit.
 
 ### Visibilité des contenus et GEO
 
@@ -131,22 +116,19 @@ Le risque, c’est d’**oublier** au passage :
 
 ## 5. Pour les PO / PM : votre rôle dans l’histoire
 
-Vous n’avez pas besoin de savoir écrire le code à la place du développeur. En revanche, vous aidez énormément si vous :
+Vous n’avez pas besoin d’écrire le code à la place du développeur. Vous aidez surtout si vous :
 
-- **formulez clairement** le besoin (qui, quoi, pourquoi, **dans quel contexte** : mobile ? hors ligne ? données personnelles ?) ;
-- **acceptez ou refusez** un livrable en vous appuyant sur des **critères vérifiables** ("on peut tester que...", "la doc utilisateur mentionne...") ;
-- **posez les questions de sécurité** simples mais tenaces : *"Quelles données partent vers quel outil ?"*, *"Qui a accès à quoi dans la doc interne ?"*, *"Que se passe-t-il si l’IA est indisponible ?"*.
+- **formulez** le besoin (qui, quoi, pourquoi, **contexte** : mobile, hors ligne, données perso…) ;
+- **validez ou refusez** avec des **critères vérifiables** (« on peut tester que… », « la doc dit… ») ;
+- **posez** les questions sécurité courtes : *où vont les données et avec quel outil ?*, *qui lit quoi dans la doc interne ?*, *que faire si l’IA est indisponible ?*.
 
-**Exemple classique (mot de passe oublié).**  
-Une phrase du type *"Rendre la connexion plus intelligente avec l’IA"* ne permet ni à l’équipe de **coder**, ni à vous de **valider** quoi que ce soit.
+**Exemple (mot de passe oublié).** *« Connexion plus intelligente avec l’IA »* ne permet ni de **coder** ni de **valider**. Une story **actionnable** :
 
-Une *user story* plus **classique** et **actionnable** ressemble à ceci :
+- *En tant qu’**utilisateur** ayant oublié son mot de passe, je veux **demander un lien de réinitialisation** depuis l’écran de connexion pour **retrouver l’accès** sans le support.*
 
-- *En tant qu’**utilisateur** qui a oublié son mot de passe, je veux **demander un lien de réinitialisation** depuis l’écran de connexion, afin de **retrouver l’accès** à mon compte sans appeler le support.*
+**Critères** (exemples) : un e-mail invalide est refusé ; si l’adresse existe, l’utilisateur voit une confirmation et l’e-mail part en **délai raisonnable** en recette ; le lien est à **usage unique** et **expire** sous 24 h ; si l’adresse n’existe pas, l’interface affiche le **même message** qu’en cas de succès pour éviter l’énumération de comptes.
 
-À partir de là, on peut attacher des **critères vérifiables** (exemples) : le formulaire refuse un e-mail **mal formé** ; si l’adresse correspond à un compte, un message de confirmation s’affiche et un e-mail part dans un **délai raisonnable** sur la recette ; le lien dans l’e-mail ne marche qu’**une fois** et **expire** après 24 h ; si l’adresse n’existe pas, l’interface affiche le **même message** qu’en cas de succès (pour ne pas révéler quels comptes existent).
-
-L’IA peut aider à **rédiger** ou à **compléter** ce genre de texte ; **arbitrer** le fond (métier, légal, sécurité) reste **à vous** et à l’équipe.
+L’IA peut **brouillonner** ce texte ; **métier, légal, sécurité** : **vous** et l’équipe.
 
 ---
 
@@ -176,9 +158,7 @@ Les liens ci-dessous pointent vers des **sources officielles** ou des **cadres**
 | **Risques applicatifs autour des LLM** (vue OWASP, utile en équipe) | [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) |
 | **Cadre européen** (obligations, acteurs, chronologie : à lire avec calme) | [Commission européenne : IA Act / AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) |
 
-> **En bref**
->
-> Ces pages **complètent** le cours ; elles ne le **remplacent** pas. Notre fil conducteur reste **votre** contexte (petit site, startup, grande org) et la **suite du parcours** pour la mise en pratique progressive.
+Ces liens **complètent** le cours sans le remplacer ; le fil conducteur reste **votre** contexte et la **suite du parcours** pour la mise en pratique.
 
 ---
 
@@ -190,7 +170,7 @@ Les liens ci-dessous pointent vers des **sources officielles** ou des **cadres**
 | **Prompt** | La **consigne** que vous écrivez pour obtenir une réponse ("explique...", "corrige..."). |
 | **IDE** | Votre **éditeur de code** (souvent avec terminal, débogueur, extensions). |
 | **GEO** | Faire en sorte que vos contenus soient **utiles et citables** par les assistants ou moteurs "intelligents" ; la stratégie détaillée arrive **plus loin** dans le cours. |
-| **Token** | **Unité** comptée par le modèle (bout de mot, mot entier ou signe) : le texte et le contexte sont découpés en tokens ; cela explique les **limites de taille** ("fenêtre de contexte") et le coût ou la lenteur quand on envoie trop de contenu d’un coup. |
+| **Token** | Unité comptée par le modèle (morceau de mot, mot ou signe). Le texte et le contexte sont découpés en tokens, d’où la **fenêtre de contexte**, le **coût** et la **lenteur** si l’on envoie trop de contenu d’un coup. |
 | **Diff** | (Souvent écrit *diff*.) **Vue des modifications** proposées ou réalisées dans des fichiers, **ligne par ligne** (ajouts / suppressions) : support habituel pour **relire** avant d’accepter du code, y compris généré par l’IA. |
 | **Hallucination** | Réponse **plausible** mais **fausse** ou **inventée** (références bidon, API qui n’existe pas, détail précis sans source) : le modèle "complète" statistiquement ; d’où la règle de **vérifier** par tests, doc ou sources. |
 

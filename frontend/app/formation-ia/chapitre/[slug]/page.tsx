@@ -29,7 +29,7 @@ function firstParagraphExcerpt(markdown: string, max = 180): string {
     if (plain.length <= max) return plain;
     return `${plain.slice(0, max - 1)}…`;
   }
-  return "Chapitre du parcours Formation IA.";
+  return "Chapitre du guide pratique IA.";
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!meta || !md) {
     return { title: "Chapitre introuvable" };
   }
-  const title = `Ch. ${meta.number} : ${meta.title} | Formation IA`;
+  const title = `Ch. ${meta.number} : ${meta.title} | Guide pratique IA`;
   const description = firstParagraphExcerpt(md);
   return {
     title: `${title} | Studio Castel`,
@@ -71,7 +71,7 @@ export default async function FormationChapterPage({ params }: Props) {
     <>
       <nav className="text-small text-muted-foreground">
         <Link href="/formation-ia" className="hover:text-foreground">
-          Formation IA
+          Guide pratique
         </Link>
         <span aria-hidden className="mx-2">
           /

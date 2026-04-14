@@ -10,11 +10,11 @@ import { projectsList } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Réalisations et études de cas | Studio Castel · Avignon",
   description:
-    "Études de cas et réalisations Studio Castel à Avignon : formation IA en ligne, sites vitrines (Florine Clap, Brice Théâte, Arnaud Ban), Polinizz, Serpenter, e‑commerce, applications. Preuves concrètes.",
+    "Études de cas et réalisations Studio Castel à Avignon : guide pratique IA en ligne, sites vitrines (Florine Clap, Brice Théâte, Arnaud Ban), Polinizz, Serpenter, e‑commerce, applications. Preuves concrètes.",
   openGraph: {
     title: "Réalisations et études de cas web | Studio Castel · Avignon",
     description:
-      "Formation IA, sites vitrines, e‑commerce, applications : études de cas et réalisations à Avignon. Florine Clap, Brice Théâte, Serpenter, Polinizz.",
+      "Guide pratique IA, sites vitrines, e‑commerce, applications : études de cas et réalisations à Avignon. Florine Clap, Brice Théâte, Serpenter, Polinizz.",
     type: "website",
     locale: "fr_FR",
   },

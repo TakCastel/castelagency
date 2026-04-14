@@ -8,11 +8,9 @@ Autrement dit : on passe du simple **chat assisté** à une forme de **développ
 
 Vous verrez parfois l’expression **AIDD** (*AI-Driven Development*, développement piloté par l’IA) : l’idée n’est pas de laisser une IA décider à votre place ; l’idée est de faire du **dépôt Git** la mémoire de travail partagée entre humains et agents, au lieu de laisser toute l’intelligence du projet se perdre dans des conversations.
 
-Le [chapitre 5](05-bmad-method.md) montrera un cadre plus outillé avec **BMAD-METHOD**. Ici, on reste sur les **principes génériques** valables dans n’importe quel dépôt versionné.
+**Plus loin**, un cadre plus outillé avec **BMAD-METHOD** complétera tout cela. Ici, on reste sur les **principes génériques** valables dans n’importe quel dépôt versionné.
 
-> **En bref**
->
-> Un bon usage des agents ne repose pas sur un "super prompt" magique. Il repose sur un **objectif unique**, des **docs versionnées**, des **points d’entrée clairs** (`AGENTS.md`, règles projet, `@fichier`) et une **relecture humaine** avant le tour suivant.
+Un bon usage des agents ne tient pas à un « super prompt » : il tient à un **objectif unique**, des **docs versionnées**, des **points d’entrée clairs** (`AGENTS.md`, règles projet, `@fichier`) et une **relecture humaine** avant le tour suivant.
 
 ---
 
@@ -26,19 +24,19 @@ Exemple de cadrage court :
 
 > "Tu es le développeur frontend de ce projet. Mission : implémenter la FAQ de la page devis. Lis `@docs/features/devis.md` et `@docs/architecture/frontend.md`. Ne touche pas au backend. Si une route API doit changer, arrête-toi et propose la liste des fichiers concernés. Je veux un plan court, puis le diff."
 
-Les principes du chapitre 3 restent vrais ici, avec une exigence supplémentaire : **plus l’agent agit, plus il faut borner son axe de travail**.
+Les principes des **assistants dans l’IDE** restent vrais ici, avec une exigence supplémentaire : **plus l’agent agit, plus il faut borner son axe de travail**.
 
 ---
 
 ## 1.1. Quatre réflexes transverses
 
-Au-delà du prompt lui-même, quelques réflexes reviennent dans presque tous les bons usages d’agents de code. Le premier consiste à **ouvrir une nouvelle session quand il le faut** : si le sujet change, si l’agent commence à dériver, ou si la conversation devient trop chargée, repartir proprement est souvent plus efficace que réparer un contexte confus.
+**Nouvelle session** quand le sujet change ou que le fil se salit : repartir à zéro bat souvent une longue conversation à réparer.
 
-Le deuxième réflexe consiste à donner à l’agent un **objectif vérifiable**. Un agent travaille mieux quand il peut savoir s’il a réussi : un test qui passe, un lint sans erreur, un typecheck propre, une checklist observable, un diff qui reste dans le périmètre attendu. Plus la réussite est concrète, moins la sortie repose sur une impression vague.
+**Objectif vérifiable** : test qui passe, lint propre, diff dans le périmètre — la réussite doit être observable, pas seulement « ça a l’air bien ».
 
-Le troisième réflexe consiste à accepter que, sur un sujet important, la première bonne sortie ne soit **pas du code**. Cela peut être un plan, une checklist d’approche, une liste de fichiers à relire, ou une proposition d’étapes. C’est souvent ce qui évite de partir trop vite dans la mauvaise direction.
+**La première bonne sortie peut être du texte** : plan, checklist, liste de fichiers à relire — c’est souvent ce qui évite de coder dans la mauvaise direction.
 
-Le quatrième réflexe consiste à poser des **garde-fous clairs** sur les actions de l’agent. Lire des fichiers, proposer un plan, modifier une vue locale, lancer des tests ciblés, toucher à l’authentification, ajouter une dépendance, modifier une migration ou préparer un déploiement n’ont pas le même niveau de risque. Tout ce qui change fortement le périmètre, les données, la sécurité ou l’exploitation mérite une validation humaine explicite.
+**Garde-fous explicites** : lire des fichiers ou renommer une variable n’a pas le même poids que toucher à l’**auth**, aux **migrations** ou au **déploiement**. Tout ce qui bouge périmètre, données, sécurité ou prod mérite un **go** humain clair.
 
 ---
 
@@ -273,9 +271,7 @@ project/
 
 ### 2.3.2. Ce que chaque niveau apporte
 
-Dans cet exemple, **`AGENTS.md`** à la racine porte les principes généraux, les interdits et les conventions transverses. **`.cursor/rules/project-standards.mdc`** sert de couche de règles projet versionnée et pilotée par Cursor. **`docs/README.md`** joue le rôle d’index pour éviter de chercher à l’aveugle. **`docs/architecture/frontend.md`** explique la structure et les limites techniques, **`docs/testing/e2e-strategy.md`** borne ce qu’un agent QA doit lire avant d’ajouter des tests, **`docs/features/checkout.md`** devient la source de vérité d’une feature précise, et **`frontend/AGENTS.md`** apporte des consignes encore plus proches du code réellement touché.
-
-L’intérêt de cette hiérarchie est qu’elle évite de mélanger dans un seul fichier la vision globale, les règles locales et le besoin du ticket du moment.
+Dans cet exemple, la **racine** porte vision et interdits (`AGENTS.md`, règles `.cursor`), **`docs/README.md`** oriente la lecture, **`docs/architecture`** et **`docs/testing`** bornent la technique et la QA, **`docs/features`** fixe la vérité d’une feature, et **`frontend/AGENTS.md`** rapproche les consignes du code touché. On sépare ainsi **stratégie**, **règles** et **besoin du jour** sans tout empiler dans un seul pavé.
 
 ### 2.3.3. Comment écrire les liens entre docs
 
@@ -351,7 +347,7 @@ Il explique ce qui relève du test unitaire, de l’intégration et du E2E, rapp
 
 ## 4. Exemples de prompts réutilisables par rôle
 
-L’objectif n’est pas d’écrire un prompt "littéraire". L’objectif est de donner un **axe de travail** net à l’agent.
+But : un **axe de travail** net pour l’agent, pas un roman.
 
 ### 4.1. QA E2E
 
@@ -458,7 +454,7 @@ Règle :
 - propose les fichiers supplémentaires à relire
 ```
 
-Ces exemples ont tous le même squelette : un **rôle**, une **mission**, des **docs à lire**, une **source de vérité**, un **périmètre**, des **interdits** et une **sortie attendue**. Ce squelette est volontairement simple, parce qu’un bon prompt d’agent n’a pas besoin d’être impressionnant ; il a besoin d’être **dirigeant**.
+Même **squelette** partout : rôle, mission, docs, vérité, périmètre, interdits, sortie — simple et **dirigeant**.
 
 ---
 
@@ -491,7 +487,7 @@ Des cadres comme **BMAD-METHOD** s’appuient précisément sur cette logique : 
 
 Le point commun avec ce chapitre n’est pas le nom des commandes. C’est la discipline : un workflow laisse une trace dans des fichiers, le workflow suivant repart de ces fichiers, la validation reste humaine, et le dépôt devient la mémoire de projet.
 
-Le détail des **agents**, **skills** et dossiers `_bmad/` est au [chapitre 5 : BMAD-METHOD](05-bmad-method.md).
+Le détail des **agents**, **skills** et dossiers `_bmad/` est dans la partie **BMAD-METHOD**, **plus loin** dans le parcours.
 
 ---
 
@@ -512,37 +508,19 @@ Les erreurs les plus courantes reviennent toujours aux mêmes réflexes. Elles n
 
 ## 8. Pour les PO / PM
 
-Si vous voulez une implémentation fiable, rédigez des **critères d’acceptation testables** dans un fichier versionné, pas seulement dans un échange oral ou un chat. Si une spec est floue, l’agent va soit inventer, soit choisir ce qui lui semble le plus probable.
+Les **critères d’acceptation testables** tiennent mieux dans un **fichier versionné** que dans un oral ou un chat : une spec floue pousse presque toujours l’agent à **inventer**.
 
-Les bonnes questions à poser restent donc très simples : **quelle est la source de vérité ?**, **quel est le hors périmètre ?**, **quelles docs faudra-t-il mettre à jour après livraison ?** En revue métier, ouvrez le **fichier** et le **diff**, pas un copier-coller de conversation ancienne.
+Posez-vous en permanence les mêmes trois questions : **où est la source de vérité**, **où s’arrête le périmètre**, **quels documents actualiser après livraison**. À la revue, travaillez sur le **fichier** et le **diff**, pas sur une vieille conversation exportée.
 
-Pour un PO ou un PM, cela demande aussi de bien comprendre les **rôles réels** dans l’équipe. Un développeur frontend, un développeur backend, un QA, un ops ou un profil accessibilité ne regardent pas la même chose et n’ont pas les mêmes critères de réussite.
+Quand vous savez **qui porte quoi** (front, back, API, tests, accessibilité, ops), les demandes à l’agent deviennent précises ; vous pouvez alors cadrer une **session** par rôle et par document.
 
-Si vous ne savez pas précisément ce que chacun couvre, vous aurez tendance à envoyer des demandes trop vagues à l’agent.
+La doc est un **livrable** à part entière : propre, relue, versionnée. L’IA peut vous aider à structurer une spec, un schéma, des cas de test ou un Mermaid ; elle ne **décide** pas à votre place, elle vous aide à partager plus de **clarté**.
 
-À l’inverse, si vous savez qui porte le rendu visuel, qui porte les contrats API, qui porte la couverture de test et qui porte l’accessibilité, vous pouvez créer des sessions avec un agent IA beaucoup plus nettes.
+**Exemple accessibilité (léger)** : une spec de feature qui fait foi, plus par exemple `docs/accessibility/frontend-checklist.md` (clavier, focus, labels, contrastes, erreurs). La session consiste à lire la feature, la checklist et les composants concernés.
 
-La documentation doit donc être traitée avec exigence, presque comme un livrable produit à part entière. Cela veut dire écrire proprement, relire, versionner, et accepter d’utiliser l’IA pour vous aider à produire cette matière : une spec mieux structurée, un résumé d’architecture, un schéma de données, un tableau de responsabilités, une liste de cas de test, voire un premier diagramme Mermaid.
+> "Tu es le référent accessibilité. Lis `@docs/features/devis.md`, `@docs/accessibility/frontend-checklist.md`, puis les composants de formulaire concernés. Ne change pas le wording métier. Signale les écarts WCAG probables, priorise les correctifs, mets à jour composants et tests si besoin. Si une règle produit doit être arbitrée, arrête-toi et liste les décisions à valider."
 
-L’important n’est pas que l’IA écrive à votre place ; l’important est qu’elle vous aide à produire une documentation plus complète, plus claire et plus exploitable par toute l’équipe.
-
-En pratique, une équipe peut très bien se créer des "agents de rôle" sans infrastructure compliquée. Imaginons une organisation avec un dev front, un dev back et un QA, puis le besoin d’ajouter un angle **accessibilité**.
-
-Le PO peut conserver une spec de feature comme source de vérité, puis ajouter un document du type `docs/accessibility/frontend-checklist.md` avec les attentes sur le clavier, le focus, les labels, les contrastes, les messages d’erreur et les composants sensibles.
-
-À partir de là, il peut lancer une session dédiée avec une consigne simple : la feature d’abord, puis la doc accessibilité, puis la revue ciblée.
-
-Exemple :
-
-> "Tu es le référent accessibilité de ce projet. Lis `@docs/features/devis.md`, puis `@docs/accessibility/frontend-checklist.md`, puis les composants de formulaire concernés. Ne change pas le wording métier. Identifie les écarts WCAG probables, propose les correctifs prioritaires, puis mets à jour les composants concernés et les tests si nécessaire. Si une règle produit doit être arbitrée, arrête-toi et liste les décisions à valider."
-
-Le même principe peut s’appliquer à d’autres rôles. Un agent "dev front" lira d’abord la spec et la doc UI, un agent "dev back" lira la spec, les contrats de données et les règles métier, un agent "QA" lira la spec et la stratégie de tests, et un agent "accessibilité" relira le tout avec un angle plus spécialisé.
-
-Ce ne sont pas forcément quatre outils différents : ce sont surtout **quatre cadrages différents**, appuyés sur des docs différentes.
-
-Vu côté PO / PM, le vrai travail consiste donc à organiser le terrain : savoir **qui relit quoi**, **quel document fait foi**, **quel agent lit quelle doc**, et **ce qui doit être remis à jour** après implémentation.
-
-C’est précisément là que l’AIDD devient utile : l’IA accélère l’exécution, mais c’est la qualité du cadrage et de la documentation qui rend cette accélération durable.
+**Autres rôles** : même logique, **fichiers attachés** différents. Votre levier PO / PM : **terrain documenté** (qui relit quoi, quoi fait foi, quoi actualiser) — c’est ce qui rend l’**AIDD durable**, pas seulement rapide.
 
 ---
 
