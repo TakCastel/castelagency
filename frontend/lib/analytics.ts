@@ -9,6 +9,7 @@ import { hasAnalyticsConsent } from "@/lib/consent";
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -22,11 +23,18 @@ export function pushToDataLayer(payload: Record<string, unknown>): void {
 
 /** Événement personnalisé : page vue (pour SPA / changement de route Next). */
 export function trackPageView(path: string, title?: string): void {
+  const pageTitle = title ?? document.title;
   pushToDataLayer({
     event: "page_view",
     page_path: path,
-    page_title: title ?? document.title,
+    page_title: pageTitle,
   });
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "page_view", {
+      page_path: path,
+      page_title: pageTitle,
+    });
+  }
 }
 
 /** Événement : clic sur un CTA (bouton / lien important). */

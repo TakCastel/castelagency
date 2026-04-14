@@ -18,7 +18,8 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
       PUBLIC_URL: ${PUBLIC_URL:-http://localhost:8055}
       CORS_ENABLED: "true"
-      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      # Doit correspondre à l’URL du front dans le navigateur (voir ports du service frontend).
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3005}
     volumes:
       - ./backend/uploads:/directus/uploads
       - ./backend/extensions:/directus/extensions
@@ -52,8 +53,9 @@ services:
     container_name: castelagency-frontend
     stdin_open: true   # Garde stdin ouvert : Next.js ne quitte pas en mode dev
     tty: true          # Simule un terminal : évite le exit 0 immédiat du serveur
+    # 3005 sur l’hôte pour éviter le conflit avec un autre service sur 3000 ; le conteneur reste en 3000.
     ports:
-      - "3000:3000"
+      - "3005:3000"
     env_file:
       - .env
     environment:

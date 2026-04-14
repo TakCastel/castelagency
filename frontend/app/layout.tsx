@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <ReadingProgressBar />
           <GoogleTagManager />
+          <GoogleAnalytics />
           <AnalyticsPageView />
           {children}
           <CookieConsentBanner />
