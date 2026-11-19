@@ -5,34 +5,31 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MUSIC_ARTIST, type MusicTrack } from "@/data/music";
 
 /**
- * Lecteur audio unique pour toute la page.
- * `queue` = ordre de lecture (morceaux affichés) ; à la fin d'un morceau, le suivant démarre.
+ * Lecteur audio unique pour tout le site (monté par MusicPlayerProvider dans le layout racine).
+ * La file de lecture est fournie par la page qui affiche les musiques (`setQueue`) et conservée
+ * quand on change de page ; à la fin d'un morceau, le suivant démarre.
  */
-export function useMusicPlayer(
-  tracks: MusicTrack[],
-  queueSource: MusicTrack[],
-) {
+export function useMusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [currentId, setCurrentId] = useState<string | null>(null);
+  const [current, setCurrent] = useState<MusicTrack | null>(null);
+  const [queueSource, setQueueSource] = useState<MusicTrack[]>([]);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [error, setError] = useState(false);
+  const currentId = current?.id ?? null;
 
-  // Si le morceau en cours n'est plus dans la liste affichée, on enchaîne sur la discographie complète.
-  // Les morceaux sans audio public (lien vers Suno) sont exclus.
-  const queue = useMemo(
-    () =>
-      (currentId && !queueSource.some((t) => t.id === currentId)
-        ? tracks
-        : queueSource
-      ).filter((t) => t.audio),
-    [queueSource, tracks, currentId],
-  );
-  const current = useMemo(
-    () => tracks.find((t) => t.id === currentId) ?? null,
-    [tracks, currentId],
-  );
+  // Morceaux lisibles de la file (ceux sans audio public renvoient vers Suno). Si le morceau en cours
+  // n'y est plus (recherche, autre filtre), il passe en tête pour que suivant/précédent marchent.
+  const queue = useMemo(() => {
+    const q = queueSource.filter((t) => t.audio);
+    return current && !q.some((t) => t.id === current.id) ? [current, ...q] : q;
+  }, [queueSource, current]);
+
+  /** File de lecture = musiques affichées. Une liste vide (vue Dessins…) ne remplace pas la file en cours. */
+  const setQueue = useCallback((q: MusicTrack[]) => {
+    if (q.length) setQueueSource(q);
+  }, []);
 
   const play = useCallback(() => {
     void audioRef.current?.play().catch(() => setError(true));
@@ -47,7 +44,7 @@ export function useMusicPlayer(
         else audio.pause();
         return;
       }
-      setCurrentId(t.id);
+      setCurrent(t);
       setError(false);
       setTime(0);
       setDuration(t.duration);
@@ -61,7 +58,7 @@ export function useMusicPlayer(
   const cue = useCallback((t: MusicTrack) => {
     const audio = audioRef.current;
     if (!audio || !t.audio) return;
-    setCurrentId(t.id);
+    setCurrent(t);
     setError(false);
     setTime(0);
     setDuration(t.duration);
@@ -96,7 +93,7 @@ export function useMusicPlayer(
     audio?.pause();
     audio?.removeAttribute("src");
     audio?.load();
-    setCurrentId(null);
+    setCurrent(null);
     setPlaying(false);
   }, []);
 
@@ -147,6 +144,7 @@ export function useMusicPlayer(
     error,
     playTrack,
     cue,
+    setQueue,
     step,
     toggle,
     seek,

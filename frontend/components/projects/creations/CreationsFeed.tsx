@@ -39,15 +39,10 @@ import { musicTrackPath, sunoSongUrl, type MusicTrack } from "@/data/music";
 import { clean } from "../text";
 import { DrawingLightbox } from "./DrawingLightbox";
 import { Equalizer } from "./Equalizer";
-import { MusicBar } from "./MusicBar";
-import {
-  PLAY_EVENT,
-  STATE_EVENT,
-  type PlayerStateDetail,
-} from "./playerEvents";
+import { useMusic } from "./MusicPlayerProvider";
 import { shareLink } from "@/lib/share";
 import { TrackStats } from "./TrackStats";
-import { formatTime, useMusicPlayer } from "./useMusicPlayer";
+import { formatTime } from "./useMusicPlayer";
 
 type Kind = "music" | "drawing" | "book";
 type Item =
@@ -231,50 +226,35 @@ export function CreationsFeed({
     () => filtered.flatMap((it) => (it.kind === "drawing" ? [it.drawing] : [])),
     [filtered],
   );
-  const player = useMusicPlayer(tracks, queueTracks);
-  const [expanded, setExpanded] = useState(false);
+  const { player } = useMusic();
+  const { cue, currentId, setQueue } = player;
+  useEffect(() => setQueue(queueTracks), [queueTracks, setQueue]);
 
   // Lien partagé d'un morceau (/creations/musiques/<id>) : on le charge dans la barre (la page affiche sa fiche).
   // Pas de lecture automatique (bloquée par les navigateurs) : un clic sur Lecture suffit.
+  // Si une musique est déjà chargée (lecteur global), on n'y touche pas.
   const sharedId =
     pathname.match(/^\/creations\/musiques\/([^/]+)/)?.[1] ?? null;
-  const { cue, currentId } = player;
   const currentIdRef = useRef(currentId);
   currentIdRef.current = currentId;
   useEffect(() => {
-    // Déjà en cours : c'est nous qui venons de mettre l'URL à jour (ci-dessous), rien à recharger.
-    if (!sharedId || sharedId === currentIdRef.current) return;
+    if (!sharedId || currentIdRef.current) return;
     const t = tracks.find((x) => x.id === sharedId);
     if (!t?.audio) return;
     cue(t);
   }, [sharedId, tracks, cue]);
 
-  // Pont avec la page d'un morceau (TrackHero) : elle demande la lecture, on lui renvoie l'état.
-  const { playTrack, playing } = player;
-  useEffect(() => {
-    const on = (e: Event) => {
-      const t = tracks.find((x) => x.id === (e as CustomEvent<string>).detail);
-      if (t) playTrack(t);
-    };
-    window.addEventListener(PLAY_EVENT, on);
-    return () => window.removeEventListener(PLAY_EVENT, on);
-  }, [tracks, playTrack]);
-  useEffect(() => {
-    window.dispatchEvent(
-      new CustomEvent<PlayerStateDetail>(STATE_EVENT, {
-        detail: { currentId, playing },
-      }),
-    );
-  }, [currentId, playing]);
-
   // Dans la vue Musiques, l'URL suit le morceau en cours (comme YouTube Music) : on peut la copier telle quelle.
   // replaceState : pas d'entrée d'historique par morceau. Hors de cette vue, on ne touche pas à l'URL
   // (elle ferait basculer le filtre). Lecteur fermé : retour à /creations/musiques.
   const inMusic = filter === "music";
-  const hadTrack = useRef(false);
+  // On ne réagit qu'aux changements de morceau : en arrivant sur la page (lecteur global déjà lancé
+  // ailleurs, ou fiche d'un autre morceau), l'URL reste celle qu'on a ouverte.
+  const prevId = useRef(currentId);
   useEffect(() => {
-    const closed = hadTrack.current && !currentId;
-    hadTrack.current = !!currentId;
+    if (prevId.current === currentId) return;
+    const closed = !!prevId.current && !currentId;
+    prevId.current = currentId;
     if (!inMusic) return;
     const target = currentId
       ? musicTrackPath(currentId)
@@ -494,9 +474,7 @@ export function CreationsFeed({
     openDrawing !== null ? shownDrawings[openDrawing] : null;
 
   return (
-    <div className={player.current ? "pb-24" : undefined}>
-      <audio {...player.audioProps} />
-
+    <div>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <nav aria-label="Filtrer par type" className="flex flex-wrap gap-2">
           {creationSections.map((s) => {
@@ -613,17 +591,6 @@ export function CreationsFeed({
           </button>
         </div>
       )}
-
-      {mounted && player.current
-        ? createPortal(
-            <MusicBar
-              player={player}
-              expanded={expanded}
-              setExpanded={setExpanded}
-            />,
-            document.body,
-          )
-        : null}
       {mounted && currentDrawing
         ? createPortal(
             <DrawingLightbox

@@ -14,6 +14,7 @@ import {
 import { shareLink } from "@/lib/share";
 
 import {
+  getPlayerState,
   requestPlay,
   STATE_EVENT,
   type PlayerStateDetail,
@@ -30,6 +31,7 @@ export function TrackHero({ track }: { track: MusicTrack }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    setState(getPlayerState());
     const on = (e: Event) =>
       setState((e as CustomEvent<PlayerStateDetail>).detail);
     window.addEventListener(STATE_EVENT, on);
@@ -46,7 +48,7 @@ export function TrackHero({ track }: { track: MusicTrack }) {
 
   const play = () =>
     playable
-      ? requestPlay(track.id)
+      ? requestPlay(track)
       : window.open(sunoSongUrl(track.id), "_blank", "noopener");
 
   return (

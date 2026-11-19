@@ -7,6 +7,7 @@ import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 import { PageTransition } from "@/components/site/PageTransition";
 import { KonamiEgg } from "@/components/KonamiEgg";
+import { MusicPlayerProvider } from "@/components/projects/creations/MusicPlayerProvider";
 import { JsonLd, organizationJsonLd } from "@/lib/jsonld";
 import { socialMeta } from "@/lib/seo";
 
@@ -38,7 +39,12 @@ export const metadata: Metadata = {
   },
   description,
   // Pas de canonical ici : il serait hérité par toutes les pages et les ferait pointer vers l'accueil.
-  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+  },
   formatDetection: { telephone: true, email: true },
   other: {
     "geo.region": "FR-84",
@@ -53,14 +59,22 @@ export const viewport: Viewport = {
   themeColor: "#FF2B2B",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="fr" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html
+      lang="fr"
+      className={`${poppins.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-castel-ink font-sans text-white antialiased">
         <JsonLd data={organizationJsonLd()} />
         <ConsentAwareAnalytics />
         <AnalyticsPageView />
-        {children}
+        <MusicPlayerProvider>{children}</MusicPlayerProvider>
         <PageTransition />
         <CookieConsentBanner />
         <KonamiEgg />
