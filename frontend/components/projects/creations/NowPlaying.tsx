@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Check, Share2 } from "lucide-react";
+import { Check, Pause, Play, Share2 } from "lucide-react";
 
 import { MUSIC_ARTIST, musicTrackPath } from "@/data/music";
 import { shareLink } from "@/lib/share";
 
+import { Equalizer } from "./Equalizer";
 import { TrackStats } from "./TrackStats";
 import { formatTime, type MusicPlayerState } from "./useMusicPlayer";
 
@@ -21,7 +22,7 @@ export function NowPlaying({
   player: MusicPlayerState;
   onClose: () => void;
 }) {
-  const { current, queue, currentId, playing, playTrack } = player;
+  const { current, queue, currentId, playing, playTrack, toggle } = player;
   const listRef = useRef<HTMLOListElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -37,11 +38,23 @@ export function NowPlaying({
     };
   }, [onClose]);
 
-  // Le morceau en cours reste visible dans la file.
+  // Le morceau en cours reste visible dans la file. On ne fait défiler que la liste, et seulement
+  // quand elle a son propre défilement (ordinateur) : sur mobile, scrollIntoView faisait descendre
+  // toute la vue et coupait la pochette.
   useEffect(() => {
-    listRef.current
-      ?.querySelector('[aria-current="true"]')
-      ?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    const list = listRef.current;
+    const el = list?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (!list || !el || list.scrollHeight <= list.clientHeight) return;
+    const top = el.offsetTop;
+    if (
+      top < list.scrollTop ||
+      top + el.offsetHeight > list.scrollTop + list.clientHeight
+    ) {
+      list.scrollTo({
+        top: top - list.clientHeight / 2 + el.offsetHeight / 2,
+        behavior: "smooth",
+      });
+    }
   }, [currentId]);
 
   if (!current) return null;
@@ -74,7 +87,14 @@ export function NowPlaying({
 
       <div className="relative mx-auto flex h-full max-w-7xl flex-col gap-6 overflow-y-auto px-4 py-6 sm:px-8 lg:flex-row lg:gap-12 lg:overflow-hidden lg:py-10">
         <div className="flex shrink-0 flex-col items-center justify-center lg:flex-1">
-          <div className="relative aspect-square w-full max-w-[min(72vw,320px)] overflow-hidden rounded-lg shadow-2xl shadow-black/60 sm:max-w-[400px] lg:max-w-[min(560px,calc(100vh-260px))]">
+          {/* Pochette = bouton lecture/pause, comme sur YouTube Music. shrink-0 : la colonne ne doit jamais
+              l'écraser ; sa taille laisse la place au titre, aux stats et au bouton (≈ 390 px avec barre et marges). */}
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={playing ? "Pause" : "Lecture"}
+            className="group relative aspect-square w-full max-w-[min(72vw,320px)] shrink-0 overflow-hidden rounded-lg shadow-2xl shadow-black/60 sm:max-w-[400px] lg:max-w-[clamp(200px,calc(100vh-390px),560px)]"
+          >
             <Image
               key={current.id}
               src={current.imageLarge}
@@ -84,7 +104,19 @@ export function NowPlaying({
               className="object-cover"
               priority
             />
-          </div>
+            <span
+              className={`absolute inset-0 flex items-center justify-center bg-black/35 transition-opacity duration-200 ${playing ? "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100" : "opacity-100"}`}
+              aria-hidden="true"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-castel-ink shadow-lg transition-transform group-hover:scale-105 group-active:scale-95">
+                {playing ? (
+                  <Pause className="h-7 w-7" fill="currentColor" />
+                ) : (
+                  <Play className="ml-1 h-7 w-7" fill="currentColor" />
+                )}
+              </span>
+            </span>
+          </button>
           <h2 className="mt-6 max-w-full truncate text-center font-display text-2xl font-bold sm:text-3xl">
             {current.title}
           </h2>
@@ -126,7 +158,7 @@ export function NowPlaying({
           </h3>
           <ol
             ref={listRef}
-            className="mt-2 flex-1 space-y-1 p-0 lg:overflow-y-auto lg:pr-2"
+            className="relative mt-2 flex-1 space-y-1 p-0 lg:min-h-0 lg:overflow-y-auto lg:pr-2"
           >
             {queue.map((t, i) => {
               const active = t.id === currentId;
@@ -138,14 +170,29 @@ export function NowPlaying({
                     aria-current={active ? "true" : undefined}
                     className={`group flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors ${active ? "bg-white/15" : "hover:bg-white/10"}`}
                   >
-                    <span className="w-6 shrink-0 text-center text-sm tabular-nums text-white/40">
-                      {active ? (
-                        <span className="text-castel-red">
-                          {playing ? "▶" : "❚❚"}
-                        </span>
-                      ) : (
-                        i + 1
-                      )}
+                    {/* Numéro, ou égaliseur pour le morceau qui joue ; au survol, l'action du clic. */}
+                    <span className="relative flex h-6 w-6 shrink-0 items-center justify-center text-sm tabular-nums text-white/40">
+                      <span className="group-hover:invisible">
+                        {active ? (
+                          playing ? (
+                            <Equalizer playing />
+                          ) : (
+                            <Play
+                              className="h-4 w-4 text-castel-red"
+                              fill="currentColor"
+                            />
+                          )
+                        ) : (
+                          i + 1
+                        )}
+                      </span>
+                      <span className="invisible absolute inset-0 flex items-center justify-center text-white group-hover:visible">
+                        {active && playing ? (
+                          <Pause className="h-4 w-4" fill="currentColor" />
+                        ) : (
+                          <Play className="h-4 w-4" fill="currentColor" />
+                        )}
+                      </span>
                     </span>
                     <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded bg-white/5">
                       <Image

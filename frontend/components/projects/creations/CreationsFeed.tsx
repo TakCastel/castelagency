@@ -38,6 +38,7 @@ import { DRAWING_BLUR_DATA_URL, type DrawingItem } from "@/data/drawings";
 import { musicTrackPath, sunoSongUrl, type MusicTrack } from "@/data/music";
 import { clean } from "../text";
 import { DrawingLightbox } from "./DrawingLightbox";
+import { Equalizer } from "./Equalizer";
 import { MusicBar } from "./MusicBar";
 import { shareLink } from "@/lib/share";
 import { TrackStats } from "./TrackStats";
@@ -158,27 +159,6 @@ function Overlay({
       className={`absolute inset-0 flex items-center justify-center bg-castel-ink/35 transition-opacity ${visible ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"}`}
     >
       {children}
-    </span>
-  );
-}
-
-function Equalizer({ playing }: { playing: boolean }) {
-  return (
-    <span
-      className="flex h-3.5 shrink-0 items-end gap-[2px]"
-      aria-hidden="true"
-    >
-      {[0, 1, 2].map((i) => (
-        <span
-          key={i}
-          className={`w-[3px] rounded-sm bg-castel-red ${playing ? "animate-[eq_0.9s_ease-in-out_infinite]" : "h-1"}`}
-          style={
-            playing
-              ? { animationDelay: `${i * 0.18}s`, height: "100%" }
-              : undefined
-          }
-        />
-      ))}
     </span>
   );
 }
