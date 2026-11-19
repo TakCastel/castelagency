@@ -331,7 +331,7 @@ export function CreationsFeed({
               <span className="tabular-nums">{formatTime(t.duration)}</span>
               {t.tags && <span className="truncate">· {t.tags}</span>}
             </span>
-            <TrackStats track={t} className="mt-1 text-sm text-white/55" />
+            <TrackStats track={t} className="mt-1" />
           </span>
         </>
       );

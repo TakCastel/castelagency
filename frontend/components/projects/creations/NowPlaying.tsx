@@ -86,7 +86,7 @@ export function NowPlaying({
           {tags.length > 0 && (
             <p className="mt-1 text-center text-white/60">{tags.join(" · ")}</p>
           )}
-          <TrackStats track={current} className="mt-3 text-white/70" />
+          <TrackStats track={current} variant="hero" className="mt-5" />
         </div>
 
         <section
@@ -135,7 +135,7 @@ export function NowPlaying({
                       >
                         {t.title}
                       </span>
-                      <TrackStats track={t} className="text-sm text-white/50" />
+                      <TrackStats track={t} className="mt-0.5" />
                     </span>
                     <span className="shrink-0 text-sm tabular-nums text-white/45">
                       {formatTime(t.duration)}
