@@ -6,6 +6,7 @@ import { showcaseProjects, type ProjectKind } from "@/data/showcase";
 import { ProjectVisual } from "@/components/projects/ProjectVisual";
 import { Button } from "@/components/site/Button";
 import { ContactForm } from "@/components/site/ContactForm";
+import { ContactIntro } from "@/components/site/ContactIntro";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { Hero } from "@/components/site/home/Hero";
@@ -138,10 +139,7 @@ export default function HomePage() {
       <section id="contact" className="scroll-mt-20 bg-castel-red px-5 py-20 text-castel-ink sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <Reveal>
-            <h2 className={`${h2} text-white`}>On discute&nbsp;?</h2>
-            <p className="mt-6 max-w-md text-lg font-medium">
-              Une question sur un jeu, un projet d&apos;app ou de site : écris-moi, je réponds sous 48&nbsp;h.
-            </p>
+            <ContactIntro />
           </Reveal>
           <Reveal>
             <ContactForm />

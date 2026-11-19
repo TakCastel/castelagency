@@ -2,17 +2,16 @@
 
 import { useId, useState } from "react";
 
-import { CONTACT_EMAIL } from "@/data/games";
 import { PROJECT_TYPES, type ContactPayload } from "@/data/contact";
 import { trackDevisSubmitted } from "@/lib/analytics";
 
 const EMPTY: ContactPayload = { name: "", email: "", projectType: "", message: "", website: "" };
 
 const field =
-  "w-full rounded-2xl border-2 border-castel-ink bg-white px-4 py-3 text-base text-castel-ink placeholder:text-[#71717A] focus:outline-none focus-visible:ring-4 focus-visible:ring-castel-ink/30 disabled:opacity-60";
-const label = "mb-2 block font-display text-sm font-semibold";
+  "w-full rounded-2xl border border-white/10 bg-castel-surface px-5 py-4 text-base text-white placeholder:text-white/30 transition-colors duration-200 hover:border-white/20 focus:border-castel-red focus:outline-none disabled:opacity-60";
+const label = "mb-2.5 block text-xs font-medium uppercase tracking-[0.08em] text-white/50";
 
-/** Formulaire de contact, pensé pour être posé sur le fond rouge du studio. */
+/** Formulaire de contact : panneau noir posé sur le rouge du studio. */
 export function ContactForm() {
   const id = useId();
   const [form, setForm] = useState<ContactPayload>(EMPTY);
@@ -35,7 +34,7 @@ export function ContactForm() {
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
         setStatus("error");
-        setError(data.error ?? "Une erreur est survenue.");
+        setError(data.error ?? "Une erreur est survenue. Réessaie dans un instant.");
         return;
       }
       trackDevisSubmitted({ project_type: form.projectType || undefined });
@@ -43,19 +42,24 @@ export function ContactForm() {
       setStatus("success");
     } catch {
       setStatus("error");
-      setError("Impossible d'envoyer le message. Réessaie plus tard.");
+      setError("Impossible d'envoyer le message. Réessaie dans un instant.");
     }
   }
 
+  const panel = "rounded-[2rem] bg-castel-ink p-6 text-white shadow-[0_30px_80px_-30px_rgba(9,9,11,0.6)] sm:p-10";
+
   if (status === "success") {
     return (
-      <div className="rounded-3xl bg-castel-ink p-8 text-white sm:p-10" role="status">
-        <p className="font-display text-3xl font-bold">Message envoyé, merci !</p>
-        <p className="mt-3 max-w-md text-white/80">Je te réponds sous 48 h ouvrées, sur l&apos;adresse que tu m&apos;as laissée.</p>
+      <div className={`${panel} flex min-h-[420px] flex-col items-start justify-center`} role="status">
+        <span aria-hidden="true" className="flex h-14 w-14 items-center justify-center rounded-full bg-castel-red text-2xl text-castel-ink">
+          ✓
+        </span>
+        <p className="mt-6 font-display text-4xl font-bold tracking-[-0.02em]">Bien reçu, merci&nbsp;!</p>
+        <p className="mt-3 max-w-sm text-lg text-white/65">Je te réponds sous 48&nbsp;h ouvrées.</p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 font-semibold text-castel-red underline underline-offset-4 hover:no-underline"
+          className="mt-8 font-medium text-white/50 underline underline-offset-4 transition-colors hover:text-white"
         >
           Envoyer un autre message
         </button>
@@ -66,8 +70,8 @@ export function ContactForm() {
   const busy = status === "loading";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 text-castel-ink" noValidate={false}>
-      <div className="grid gap-6 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className={`${panel} space-y-7`}>
+      <div className="grid gap-7 sm:grid-cols-2">
         <div>
           <label htmlFor={`${id}-name`} className={label}>
             Ton nom
@@ -102,15 +106,17 @@ export function ContactForm() {
       </div>
 
       <fieldset>
-        <legend className={label}>C&apos;est pour…</legend>
-        <div className="flex flex-wrap gap-2">
+        <legend className={label}>C&apos;est pour</legend>
+        <div className="flex flex-wrap gap-2.5">
           {PROJECT_TYPES.map((t) => {
             const active = form.projectType === t.value;
             return (
               <label
                 key={t.value}
-                className={`cursor-pointer rounded-full border-2 border-castel-ink px-5 py-2 font-display text-sm font-semibold transition-colors has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-castel-ink/30 ${
-                  active ? "bg-castel-ink text-white" : "bg-transparent hover:bg-castel-ink/10"
+                className={`cursor-pointer rounded-full border px-5 py-2.5 font-display text-sm font-semibold transition-colors duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-castel-red ${
+                  active
+                    ? "border-castel-red bg-castel-red text-castel-ink"
+                    : "border-white/10 bg-castel-surface text-white/75 hover:border-white/25 hover:text-white"
                 }`}
               >
                 <input
@@ -140,7 +146,7 @@ export function ContactForm() {
           value={form.message}
           onChange={set("message")}
           disabled={busy}
-          className={`${field} min-h-[140px] resize-y`}
+          className={`${field} min-h-[160px] resize-y`}
           placeholder="Ton idée, ce que tu as déjà, tes délais…"
         />
       </div>
@@ -154,29 +160,24 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="rounded-2xl bg-castel-ink px-4 py-3 text-sm font-medium text-white">
-          {error}{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4">
-            {CONTACT_EMAIL}
-          </a>
+        <p role="alert" className="rounded-2xl border border-castel-red/40 bg-castel-red/10 px-5 py-3 text-sm font-medium text-white">
+          {error}
         </p>
       )}
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-        <button
-          type="submit"
-          disabled={busy}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-castel-ink px-8 py-3 font-display text-base font-semibold text-white transition-colors duration-200 hover:bg-castel-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-castel-ink disabled:opacity-60"
+      <button
+        type="submit"
+        disabled={busy}
+        className="group flex min-h-14 w-full items-center justify-between gap-4 rounded-full bg-castel-red py-2 pl-7 pr-2 font-display text-lg font-semibold text-castel-ink transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-castel-red disabled:opacity-60"
+      >
+        {busy ? "Envoi…" : "Envoyer le message"}
+        <span
+          aria-hidden="true"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-castel-ink text-xl text-white transition-transform duration-200 group-hover:translate-x-0.5"
         >
-          {busy ? "Envoi…" : "Envoyer"}
-        </button>
-        <p className="text-sm font-medium">
-          ou directement à{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="break-all underline underline-offset-4 hover:no-underline">
-            {CONTACT_EMAIL}
-          </a>
-        </p>
-      </div>
+          →
+        </span>
+      </button>
     </form>
   );
 }
