@@ -103,7 +103,7 @@ export function SiteHeader() {
         </Link>
 
         <div className="hidden items-center justify-end gap-6 md:flex">
-          <Link href="/#contact" className="font-medium text-white/65 transition-colors hover:text-white">
+          <Link href="/contact" className="font-medium text-white/65 transition-colors hover:text-white">
             Contact
           </Link>
           <Link
@@ -129,7 +129,7 @@ export function SiteHeader() {
 
       {open && (
         <nav id="menu-mobile" aria-label="Navigation mobile" className="flex flex-col gap-1 px-5 pb-6 md:hidden">
-          {[...navLinks.map((l) => ({ href: l.href, label: l.label })), { href: "/#contact", label: "Contact" }].map((l) => (
+          {[...navLinks.map((l) => ({ href: l.href, label: l.label })), { href: "/contact", label: "Contact" }].map((l) => (
             <Link key={l.href} href={l.href} className="py-3 font-display text-3xl font-bold text-white" onClick={() => setOpen(false)}>
               {l.label}
             </Link>

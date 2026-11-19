@@ -41,7 +41,7 @@ const nextConfig = {
   },
   /**
    * Ancien site d'agence web : toutes les anciennes pages publiques renvoient vers l'accueil
-   * (l'ancre #contact ne peut pas être portée par une redirection serveur).
+   * (sauf /devis, qui renvoie vers la page /contact).
    */
   async redirects() {
     const legacyRoutes = [
@@ -51,13 +51,12 @@ const nextConfig = {
       "/blog",
       "/blog/:path*",
       "/le-studio",
-      "/contact",
-      "/devis",
       "/mode-de-fonctionnement",
     ];
     const toHome = legacyRoutes.map((source) => ({ source, destination: "/", permanent: true }));
     return [
       // Ordre : les règles précises d'abord.
+      { source: "/devis", destination: "/contact", permanent: true },
       // Anciennes pages de services : vers la page de services locale (qui a repris l'URL /developpeur-web-avignon).
       { source: "/services", destination: "/developpeur-web-avignon", permanent: true },
       { source: "/services/:path*", destination: "/developpeur-web-avignon", permanent: true },

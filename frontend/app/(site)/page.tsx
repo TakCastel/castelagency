@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CONTACT_EMAIL, games } from "@/data/games";
+import { games } from "@/data/games";
 import { coreServices } from "@/data/local-seo";
 import { showcaseProjects, type ProjectKind } from "@/data/showcase";
 import { ProjectVisual } from "@/components/projects/ProjectVisual";
 import { Button } from "@/components/site/Button";
+import { ContactForm } from "@/components/site/ContactForm";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { Hero } from "@/components/site/home/Hero";
@@ -134,19 +135,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="bg-castel-red px-5 py-20 text-castel-ink sm:px-8 sm:py-28">
-        <div className="mx-auto max-w-7xl">
+      <section id="contact" className="scroll-mt-20 bg-castel-red px-5 py-20 text-castel-ink sm:px-8 sm:py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <Reveal>
-            <h2 className={`${h2} text-white`}>On discute ?</h2>
-            <p className="mt-6 max-w-xl text-lg font-medium">
-              Une question sur un jeu, un projet d&apos;app ou de site : écris-moi.
+            <h2 className={`${h2} text-white`}>On discute&nbsp;?</h2>
+            <p className="mt-6 max-w-md text-lg font-medium">
+              Une question sur un jeu, un projet d&apos;app ou de site : écris-moi, je réponds sous 48&nbsp;h.
             </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-4 inline-block break-all text-lg font-semibold underline underline-offset-4 hover:no-underline"
-            >
-              {CONTACT_EMAIL}
-            </a>
+          </Reveal>
+          <Reveal>
+            <ContactForm />
           </Reveal>
         </div>
       </section>

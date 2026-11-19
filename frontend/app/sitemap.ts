@@ -12,6 +12,7 @@ const staticRoutes = [
   "/projets",
   "/creations",
   "/creations/ecritures/l-homme-au-masque-de-verre",
+  "/contact",
   "/mentions-legales",
   "/politique-de-confidentialite",
   "/formation-ia",
