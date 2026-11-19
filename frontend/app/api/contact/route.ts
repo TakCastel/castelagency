@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   if (!RESEND_API_KEY || !CONTACT_TO?.trim()) {
     console.error("[Contact] RESEND_API_KEY ou CONTACT_EMAIL/DEVIS_EMAIL manquant");
     return NextResponse.json(
-      { error: "L'envoi n'est pas disponible pour le moment. Écris-moi directement par email." },
+      { error: "L'envoi n'est pas disponible pour le moment. Réessaie un peu plus tard." },
       { status: 503 }
     );
   }
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     if (error) {
       console.error("[Contact] Resend error:", error);
       return NextResponse.json(
-        { error: "Le message n'a pas pu partir. Réessaie plus tard ou écris-moi directement par email." },
+        { error: "Le message n'a pas pu partir. Réessaie un peu plus tard." },
         { status: 502 }
       );
     }
