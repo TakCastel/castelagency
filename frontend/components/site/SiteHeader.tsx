@@ -3,27 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
+import { Gamepad2, LayoutGrid } from "lucide-react";
 import { Logo } from "./Logo";
 
 const iconCls = "h-[18px] w-[18px]";
 
-const GamepadIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M6 8h12a4 4 0 0 1 4 4v1a3 3 0 0 1-5.4 1.8L15.5 14h-7l-1.1.8A3 3 0 0 1 2 13v-1a4 4 0 0 1 4-4Z" />
-    <path d="M7 11v2M6 12h2" />
-    <circle cx="16" cy="11.5" r="0.6" fill="currentColor" />
-    <circle cx="18" cy="12.5" r="0.6" fill="currentColor" />
-  </svg>
-);
+const GamepadIcon = <Gamepad2 className={iconCls} strokeWidth={2} aria-hidden="true" />;
 
-const GridIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="currentColor" aria-hidden="true">
-    <rect x="3" y="3" width="8" height="8" rx="2" />
-    <rect x="13" y="3" width="8" height="8" rx="2" />
-    <rect x="3" y="13" width="8" height="8" rx="2" />
-    <rect x="13" y="13" width="8" height="8" rx="2" />
-  </svg>
-);
+const GridIcon = <LayoutGrid className={iconCls} strokeWidth={2} aria-hidden="true" />;
 
 const WrenchIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
