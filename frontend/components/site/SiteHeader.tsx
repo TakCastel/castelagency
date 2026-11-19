@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
-import { Gamepad2, LayoutGrid, Sparkles } from "lucide-react";
+import { Gamepad2, LayoutGrid } from "lucide-react";
 import { Logo } from "./Logo";
 
 const iconCls = "h-[18px] w-[18px]";
@@ -11,8 +11,6 @@ const iconCls = "h-[18px] w-[18px]";
 const GamepadIcon = <Gamepad2 className={iconCls} strokeWidth={2} aria-hidden="true" />;
 
 const GridIcon = <LayoutGrid className={iconCls} strokeWidth={2} aria-hidden="true" />;
-
-const SparklesIcon = <Sparkles className={iconCls} strokeWidth={2} aria-hidden="true" />;
 
 const WrenchIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -23,7 +21,6 @@ const WrenchIcon = (
 const navLinks: { href: string; label: string; icon: ReactNode; match: string }[] = [
   { href: "/#jeux", label: "Jeux", icon: GamepadIcon, match: "/jeux" },
   { href: "/projets", label: "Projets", icon: GridIcon, match: "/projets" },
-  { href: "/creations", label: "Créations", icon: SparklesIcon, match: "/creations" },
   { href: "/developpeur-web-avignon", label: "Services", icon: WrenchIcon, match: "/developpeur-web-avignon" },
 ];
 
