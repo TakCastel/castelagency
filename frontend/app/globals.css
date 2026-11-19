@@ -82,3 +82,47 @@ html[data-transitioning] {
     scroll-behavior: auto !important;
   }
 }
+
+/* Lecteur de musique (/creations) : barres de l'égaliseur et barre de progression. */
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+[class*="animate-[eq"] {
+  transform-origin: bottom;
+}
+.music-seek::-webkit-slider-runnable-track {
+  height: 3px;
+  background: linear-gradient(to right, #ff2b2b var(--p, 0%), rgb(255 255 255 / 0.15) var(--p, 0%));
+}
+.music-seek::-moz-range-track {
+  height: 3px;
+  background: linear-gradient(to right, #ff2b2b var(--p, 0%), rgb(255 255 255 / 0.15) var(--p, 0%));
+}
+.music-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4.5px;
+  border-radius: 9999px;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+.music-seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: #fff;
+  opacity: 0;
+}
+.music-seek:hover::-webkit-slider-thumb,
+.music-seek:focus-visible::-webkit-slider-thumb {
+  opacity: 1;
+}
+.music-seek:hover::-moz-range-thumb,
+.music-seek:focus-visible::-moz-range-thumb {
+  opacity: 1;
+}

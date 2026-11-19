@@ -38,6 +38,8 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // Qualités utilisées via <Image quality={…}> dans le code (requis à partir de Next 16)
     qualities: [70, 75, 90],
+    // Pochettes des musiques Suno (/creations), redimensionnées depuis leur CDN.
+    remotePatterns: [{ protocol: "https", hostname: "cdn2.suno.ai", pathname: "/**" }],
   },
   /**
    * Ancien site d'agence web : toutes les anciennes pages publiques renvoient vers l'accueil

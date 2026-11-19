@@ -65,7 +65,7 @@ export function SiteFooter() {
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#A1A1AA]">Studio</h2>
           <ul className="flex flex-col gap-2.5 xl:whitespace-nowrap">
             <li><Link href="/projets" className={linkCls}>Projets</Link></li>
-            <li><Link href="/creations" className={linkCls}>Écrits et dessins</Link></li>
+            <li><Link href="/creations" className={linkCls}>Créations</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} className={linkCls}>{CONTACT_EMAIL}</a></li>
             <li><Link href="/mentions-legales" className={linkCls}>Mentions légales</Link></li>
             <li><Link href="/politique-de-confidentialite" className={linkCls}>Confidentialité</Link></li>
