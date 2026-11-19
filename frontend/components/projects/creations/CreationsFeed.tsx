@@ -24,21 +24,21 @@ type Item =
 
 const PAGE = 36;
 
-/** Libellé, icône et couleur de badge par type : c'est ce qui permet de distinguer les cartes d'un coup d'œil. */
-const KINDS: Record<Kind, { label: string; plural: string; icon: typeof Music2; badge: string }> = {
-  music: { label: "Musique", plural: "Musiques", icon: Music2, badge: "bg-castel-red text-castel-ink" },
-  drawing: { label: "Dessin", plural: "Dessins", icon: PenLine, badge: "bg-white text-castel-ink" },
-  book: { label: "Écrit", plural: "Écrits", icon: BookOpen, badge: "bg-castel-ink/85 text-white ring-1 ring-white/25" },
+/** Libellé et icône par type. */
+const KINDS: Record<Kind, { label: string; plural: string; icon: typeof Music2 }> = {
+  music: { label: "Musique", plural: "Musiques", icon: Music2 },
+  drawing: { label: "Dessin", plural: "Dessins", icon: PenLine },
+  book: { label: "Écrit", plural: "Écrits", icon: BookOpen },
 };
 
+/**
+ * Étiquette de type (vue « Tout » seulement) : même style pour tous, seuls l'icône et le libellé changent.
+ * En bas à gauche : en haut, elle masquerait le titre imprimé sur les couvertures de livres.
+ */
 function Badge({ kind }: { kind: Kind }) {
-  // En bas pour les écrits : en haut, le badge masquerait le titre imprimé sur la couverture.
-  const pos = kind === "book" ? "bottom-3 left-3" : "left-3 top-3";
-  const { label, icon: Icon, badge } = KINDS[kind];
+  const { label, icon: Icon } = KINDS[kind];
   return (
-    <span
-      className={`absolute ${pos} z-10 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold shadow-md backdrop-blur ${badge}`}
-    >
+    <span className="absolute bottom-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-castel-ink/80 px-2.5 py-1 text-xs font-semibold text-white shadow-md ring-1 ring-white/20 backdrop-blur">
       <Icon className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
       {label}
     </span>
