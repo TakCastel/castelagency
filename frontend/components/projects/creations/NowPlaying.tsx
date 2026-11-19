@@ -51,6 +51,29 @@ export function NowPlaying({
     list.scrollTo({ top: Math.max(0, el.offsetTop - 8) });
   }, []);
 
+  // Quand le morceau change (clic sur une suggestion, qui remonte après les écoutés ; suivant…),
+  // on fait défiler juste assez pour le garder visible. S'il est déjà à l'écran, rien ne bouge.
+  const shownId = current?.id;
+  const firstRender = useRef(true);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    const list = listRef.current;
+    const el = list?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (!list || !el || list.scrollHeight <= list.clientHeight) return;
+    const top = el.offsetTop;
+    const bottom = top + el.offsetHeight;
+    if (top < list.scrollTop)
+      list.scrollTo({ top: Math.max(0, top - 8), behavior: "smooth" });
+    else if (bottom > list.scrollTop + list.clientHeight)
+      list.scrollTo({
+        top: bottom - list.clientHeight + 8,
+        behavior: "smooth",
+      });
+  }, [shownId]);
+
   if (!current) return null;
   const tags = current.tags
     .split(",")
