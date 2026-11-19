@@ -4,7 +4,7 @@ import type { Metadata } from "next";
  * Open Graph / Twitter d'une page.
  * Next.js ne fusionne pas `openGraph` avec celui du layout : dès qu'une page en déclare un,
  * tout ce qui n'y est pas (images comprises) disparaît. On passe donc toujours par ici,
- * et l'image du studio sert quand la page n'a pas la sienne.
+ * et toutes les pages partagent le logo du studio.
  */
 export const DEFAULT_OG_IMAGE = {
   url: "/og-logo-with-text.png",
@@ -13,22 +13,17 @@ export const DEFAULT_OG_IMAGE = {
   alt: "Studio Castel, jeux, apps et sites",
 };
 
-type OgImage = { url: string; width?: number; height?: number; alt?: string };
-
 export function socialMeta({
   title,
   description,
   path,
-  images,
   type = "website",
 }: {
   title: string;
   description?: string;
   path?: string;
-  images?: OgImage[];
   type?: "website" | "article";
 }): Pick<Metadata, "openGraph" | "twitter"> {
-  const imgs = images?.length ? images : [DEFAULT_OG_IMAGE];
   return {
     openGraph: {
       type,
@@ -37,13 +32,13 @@ export function socialMeta({
       title,
       description,
       ...(path ? { url: path } : {}),
-      images: imgs,
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: imgs.map((i) => i.url),
+      images: [DEFAULT_OG_IMAGE.url],
     },
   };
 }

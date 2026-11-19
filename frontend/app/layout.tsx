@@ -8,6 +8,7 @@ import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 import { PageTransition } from "@/components/site/PageTransition";
 import { KonamiEgg } from "@/components/KonamiEgg";
 import { JsonLd, organizationJsonLd } from "@/lib/jsonld";
+import { socialMeta } from "@/lib/seo";
 
 const poppins = Poppins({
   weight: ["600", "700"],
@@ -24,9 +25,6 @@ const inter = Inter({
 });
 
 const siteUrl = "https://studio-castel.com";
-
-const defaultOgImage = `${siteUrl}/og-logo-with-text.png`;
-const defaultOgImageLogoOnly = `${siteUrl}/og-logo-only.png`;
 
 const title = "Studio Castel, création de sites, apps et jeux à Avignon";
 const description =
@@ -48,23 +46,7 @@ export const metadata: Metadata = {
     "geo.position": "43.9511;4.8113",
     ICBM: "43.9511, 4.8113",
   },
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    siteName: "Studio Castel",
-    title,
-    description,
-    images: [
-      { url: defaultOgImage, width: 1200, height: 630, alt: "Studio Castel, jeux, apps et sites" },
-      { url: defaultOgImageLogoOnly, width: 600, height: 600, alt: "Studio Castel" },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [defaultOgImage],
-  },
+  ...socialMeta({ title, description, path: "/" }),
 };
 
 export const viewport: Viewport = {

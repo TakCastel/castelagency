@@ -17,7 +17,6 @@ export const metadata: Metadata = {
     title: book.title,
     description: book.description,
     path: book.internalPath,
-    images: [{ url: book.image, alt: book.imageAlt }],
   }),
 };
 

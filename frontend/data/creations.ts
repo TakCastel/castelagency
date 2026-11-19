@@ -3,6 +3,7 @@
  * chacune avec son titre, son texte et sa description pour les moteurs de recherche.
  */
 import type { Metadata } from "next";
+import { socialMeta } from "@/lib/seo";
 
 import { books } from "./books";
 import { drawings } from "./drawings";
@@ -29,8 +30,6 @@ export type CreationSection = {
   metaTitle: string;
   /** Meta description (≈ 150 caractères). */
   description: string;
-  /** Image de partage (réseaux sociaux). */
-  ogImage: string;
 };
 
 export const creationSections: CreationSection[] = [
@@ -42,7 +41,6 @@ export const creationSections: CreationSection[] = [
     intro: "Composer, dessiner, écrire : les mêmes histoires, par d'autres chemins.",
     metaTitle: "Créations : musiques, dessins et écrits",
     description: `${tracks.length} musiques originales à écouter, ${drawings.length} dessins au crayon et à l'encre, des romans et univers de fiction à lire : les créations de Studio Castel.`,
-    ogImage: "/og-logo-with-text.png",
   },
   {
     filter: "music",
@@ -52,7 +50,6 @@ export const creationSections: CreationSection[] = [
     intro: `${tracks.length} morceaux composés avec Suno, entre psytrance, phonk, chœurs et orchestres.`,
     metaTitle: "Musiques originales à écouter",
     description: `Écouter ${tracks.length} morceaux originaux composés avec Suno : psytrance, phonk, électro, orchestral et chœurs. Lecture directe sur le site, du plus écouté au moins écouté.`,
-    ogImage: tracks[0]?.imageLarge ?? "/og-logo-with-text.png",
   },
   {
     filter: "drawing",
@@ -62,7 +59,6 @@ export const creationSections: CreationSection[] = [
     intro: `Portraits, personnages et études au crayon et à l'encre, de ${firstDrawingYear} à ${lastDrawingYear}.`,
     metaTitle: "Dessins : portraits, personnages et études",
     description: `${drawings.length} dessins originaux au crayon et à l'encre, de ${firstDrawingYear} à ${lastDrawingYear} : portraits, personnages, études et commandes. À voir en grand sur le site.`,
-    ogImage: drawings[0]?.src ?? "/og-logo-with-text.png",
   },
   {
     filter: "book",
@@ -72,7 +68,6 @@ export const creationSections: CreationSection[] = [
     intro: "Romans, nouvelles et univers de fiction, de la science-fiction au wiki de jeu.",
     metaTitle: "Écrits : romans, nouvelles et univers",
     description: `${books.length} écrits de fiction à lire en ligne : romans de science-fiction, nouvelles et univers de jeu, sur le site ou sur Wattpad.`,
-    ogImage: books[0]?.image ?? "/og-logo-with-text.png",
   },
 ];
 
@@ -92,15 +87,6 @@ export function creationMetadata(s: CreationSection): Metadata {
     title: s.metaTitle,
     description: s.description,
     alternates: { canonical: url },
-    openGraph: {
-      type: "website",
-      locale: "fr_FR",
-      siteName: "Studio Castel",
-      title: `${s.metaTitle} | Studio Castel`,
-      description: s.description,
-      url,
-      images: [{ url: s.ogImage, alt: s.heading }],
-    },
-    twitter: { card: "summary_large_image", title: `${s.metaTitle} | Studio Castel`, description: s.description, images: [s.ogImage] },
+    ...socialMeta({ title: `${s.metaTitle} | Studio Castel`, description: s.description, path: url }),
   };
 }

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: p.title,
     description,
     alternates: { canonical: `/projets/${p.id}` },
-    ...socialMeta({ title: p.title, description, path: `/projets/${p.id}`, images: [{ url: p.image, alt: p.imageAlt }] }),
+    ...socialMeta({ title: p.title, description, path: `/projets/${p.id}` }),
   };
 }
 

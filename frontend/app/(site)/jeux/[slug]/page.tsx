@@ -32,9 +32,6 @@ export async function generateMetadata({
       title: game.name,
       description,
       path: `/jeux/${game.slug}`,
-      images: game.cover
-        ? [{ url: game.cover.src, width: game.cover.width, height: game.cover.height, alt: game.cover.alt }]
-        : undefined,
     }),
   };
 }
