@@ -25,15 +25,7 @@ export function NowPlaying({
   /** Animation de fermeture en cours (le parent démonte la vue juste après). */
   closing?: boolean;
 }) {
-  const {
-    current,
-    history,
-    listenedAfter,
-    autoplay,
-    currentId,
-    playing,
-    toggle,
-  } = player;
+  const { current, history, listenedAfter, autoplay, playing, toggle } = player;
   const listRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -49,20 +41,15 @@ export function NowPlaying({
     };
   }, [onClose]);
 
-  // Le morceau en cours se cale en haut de la liste (les déjà écoutés juste au-dessus) :
-  // d'un coup à l'ouverture, en douceur quand le morceau change. Seulement quand la liste
-  // a son propre défilement (ordinateur) : sur mobile, c'est la vue entière qui défile.
-  const firstScroll = useRef(true);
+  // À l'ouverture seulement, la liste se cale sur le morceau en cours (les déjà écoutés juste
+  // au-dessus). Ensuite on ne la fait plus défiler : cliquer un morceau le lance, sans saut.
+  // Seulement quand la liste a son propre défilement (ordinateur) : sur mobile, toute la vue défile.
   useEffect(() => {
     const list = listRef.current;
     const el = list?.querySelector<HTMLElement>('[aria-current="true"]');
     if (!list || !el || list.scrollHeight <= list.clientHeight) return;
-    list.scrollTo({
-      top: Math.max(0, el.offsetTop - 8),
-      behavior: firstScroll.current ? "auto" : "smooth",
-    });
-    firstScroll.current = false;
-  }, [currentId]);
+    list.scrollTo({ top: Math.max(0, el.offsetTop - 8) });
+  }, []);
 
   if (!current) return null;
   const tags = current.tags
