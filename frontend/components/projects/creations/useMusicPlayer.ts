@@ -94,32 +94,41 @@ export function useMusicPlayer() {
   );
 
   /**
-   * Choix d'un morceau. Déjà écouté (dans la partie écoutée de la file) : on y retourne, rien ne bouge.
-   * Sinon il passe juste après les morceaux écoutés : depuis la file, le reste de la lecture
-   * automatique est conservé (`keepAuto`) ; depuis une carte ou une fiche, une nouvelle lecture
-   * automatique part de lui. Rien n'est jamais compté comme écouté sans l'avoir été.
+   * Choix d'un morceau.
+   * - Depuis la file (`fromQueue`) : déjà écouté → on y retourne, rien ne bouge ; dans la lecture
+   *   automatique → il passe juste après les écoutés, la suite est gardée. Rien n'est compté
+   *   écouté sans l'avoir été.
+   * - Depuis le catalogue (carte, fiche, lien partagé) : on repart de zéro, ce morceau puis
+   *   sa propre lecture automatique.
    */
   const startFrom = useCallback(
-    (t: MusicTrack, autoplay: boolean, keepAuto = false) => {
+    (t: MusicTrack, autoplay: boolean, fromQueue = false) => {
+      if (!fromQueue) {
+        if (!load(t, autoplay)) return;
+        setItems([t, ...autoAfter(t, [t], mode)]);
+        setPos(0);
+        setReached(0);
+        setAutoMode(mode);
+        return;
+      }
       const lastHeard = Math.max(reached, pos);
       const i = items.findIndex((x) => x.id === t.id);
       if (i >= 0 && i <= lastHeard) return goTo(i, autoplay);
       if (!load(t, autoplay)) return;
       const kept = [...items.slice(0, lastHeard + 1), t];
-      const rest = keepAuto
-        ? items.slice(lastHeard + 1).filter((x) => x.id !== t.id)
-        : autoAfter(t, kept, mode);
-      setItems([...kept, ...rest]);
+      setItems([
+        ...kept,
+        ...items.slice(lastHeard + 1).filter((x) => x.id !== t.id),
+      ]);
       setPos(kept.length - 1);
       setReached(kept.length - 1);
-      if (!keepAuto) setAutoMode(mode);
     },
     [items, reached, pos, mode, load, goTo, autoAfter],
   );
 
   /**
-   * Clic sur un morceau : en cours → lecture/pause. `fromQueue` : clic dans la file
-   * (la suite de la lecture automatique est gardée), sinon carte / fiche.
+   * Clic sur un morceau : en cours → lecture/pause. `fromQueue` : clic dans la file,
+   * sinon catalogue (carte, fiche) → la file repart de zéro.
    */
   const playTrack = useCallback(
     (t: MusicTrack, fromQueue = false) => {
