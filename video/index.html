@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Studio Castel, vidéo de présentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=block" rel="stylesheet" />
+<style>
+  :root {
+    --red: #FF2B2B; --red-deep: #D61F1F; --ink: #09090B; --surface: #16161A;
+    --paper: #FFFFFF; --warm: #F6F4F0; --gray: #A1A1AA; --gray-l: #52525B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #000; overflow: hidden; }
+  #stage {
+    position: relative; width: 1920px; height: 1080px; overflow: hidden;
+    background: var(--ink); font-family: Inter, system-ui, sans-serif; color: var(--paper);
+    transform-origin: 0 0;
+  }
+  .scene { position: absolute; inset: 0; overflow: hidden; display: none; }
+  .abs { position: absolute; }
+  .display { font-family: Poppins, system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.02; }
+  .label { font-size: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .pill { display: inline-block; border-radius: 999px; padding: 14px 30px; font-weight: 500; }
+  .mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .mask > span { display: inline-block; will-change: transform; }
+  .ch { display: inline-block; will-change: transform; white-space: pre; }
+  .chwrap { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+  img { display: block; }
+  .shot { border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.45); background: #111; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .redsq { background: var(--red); border-radius: 64px; display: flex; align-items: center; justify-content: center; }
+
+  /* HUD */
+  #hud { position: absolute; inset: 0; pointer-events: none; z-index: 50; }
+  #hud .label { position: absolute; font-size: 18px; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1. INTRO -->
+  <section class="scene" id="s1">
+    <div class="abs" id="s1-sq-wrap" style="left:960px; top:470px; width:0; height:0;">
+      <div class="abs redsq" id="s1-sq" style="width:260px; height:260px; left:-130px; top:-130px;">
+        <img id="s1-c" src="../frontend/public/brand/studio-castel-c-blanc.svg" style="width:250px; height:250px;" />
+      </div>
+    </div>
+    <div class="abs display" id="s1-word" style="left:0; right:0; top:660px; text-align:center; font-size:120px;"></div>
+    <div class="abs" style="left:0; right:0; top:820px; text-align:center;">
+      <span class="pill" id="s1-pill" style="background:var(--red); color:var(--ink); font-size:28px;">Studio indépendant à Avignon</span>
+    </div>
+  </section>
+
+  <!-- 2. MANIFESTE -->
+  <section class="scene" id="s2">
+    <div class="abs" id="s2-bg" style="inset:0;"></div>
+    <div class="abs display" id="s2-big" style="left:0; right:0; top:50%; text-align:center; font-size:400px; font-weight:800;"></div>
+    <div class="abs display" id="s2-head" style="left:0; right:0; top:120px; text-align:center; font-size:128px;">
+      <span class="mask"><span>Jeux, apps et sites</span></span>
+      <span class="mask"><span>faits avec le <span style="color:var(--red)">cœur.</span></span></span>
+    </div>
+    <div class="abs" id="s2-fan" style="left:960px; top:1080px; width:0; height:0;"></div>
+  </section>
+
+  <!-- 3. JEUX -->
+  <section class="scene" id="s3"></section>
+
+  <!-- 4. APPS ET SITES -->
+  <section class="scene" id="s4" style="background:var(--warm); color:var(--ink);">
+    <div class="abs" style="inset:0; perspective:1800px;">
+      <div class="abs" id="s4-wall" style="left:50%; top:50%; width:0; height:0; transform-style:preserve-3d;"></div>
+    </div>
+    <div class="abs" id="s4-veil" style="inset:0; background:linear-gradient(90deg, var(--warm) 0%, var(--warm) 34%, rgba(246,244,240,0.0) 62%);"></div>
+    <div class="abs" id="s4-veil2" style="inset:0; background:var(--warm); opacity:0;"></div>
+    <div class="abs display" id="s4-title" style="left:120px; top:250px; font-size:180px; color:var(--ink);">
+      <span class="mask"><span>Apps</span></span>
+      <span class="mask"><span>et sites</span></span>
+    </div>
+    <div class="abs" id="s4-sub" style="left:126px; top:660px; width:560px; font-size:38px; line-height:1.35; color:var(--gray-l); font-weight:500;">Sur mesure, de l'idée à la mise en ligne.</div>
+    <div class="abs" id="s4-cards" style="left:0; top:0;"></div>
+  </section>
+
+  <!-- 5. LE STUDIO -->
+  <section class="scene" id="s5" style="background:var(--ink);">
+    <div class="abs display" id="s5-head" style="left:120px; top:250px; font-size:190px;">
+      <span class="mask"><span>Un studio,</span></span>
+      <span class="mask"><span style="color:var(--red)">une personne.</span></span>
+    </div>
+    <div class="abs" id="s5-list" style="left:120px; top:150px;"></div>
+    <div class="abs" id="s5-foot" style="left:126px; top:870px; font-size:44px; color:var(--gray); font-weight:500;">De A à Z, sans intermédiaire.</div>
+    <div class="abs" id="s5-sticker" style="right:150px; top:190px; width:560px; height:700px;"></div>
+  </section>
+
+  <!-- 6. AVIGNON -->
+  <section class="scene" id="s6" style="background:var(--red); color:var(--ink);">
+    <div class="abs display" id="s6-word" style="left:110px; top:120px; font-size:330px; font-weight:800;"></div>
+    <div class="abs" id="s6-sub" style="left:126px; top:500px; font-size:46px; font-weight:500;">Vaucluse et toute la région PACA</div>
+    <div class="abs" id="s6-band1" style="left:-200px; top:690px; width:2400px; height:150px; background:var(--ink); transform:rotate(-5deg); overflow:hidden;">
+      <div class="abs display" id="s6-t1" style="top:22px; left:0; white-space:nowrap; font-size:84px; color:#fff;"></div>
+    </div>
+    <div class="abs" id="s6-band2" style="left:-200px; top:850px; width:2400px; height:130px; background:var(--warm); transform:rotate(3deg); overflow:hidden;">
+      <div class="abs display" id="s6-t2" style="top:20px; left:0; white-space:nowrap; font-size:72px; color:var(--ink);"></div>
+    </div>
+  </section>
+
+  <!-- 7. OUTRO -->
+  <section class="scene" id="s7" style="background:var(--ink);">
+    <div class="abs" style="left:960px; top:360px; width:0; height:0;">
+      <div class="abs redsq" id="s7-sq" style="width:240px; height:240px; left:-120px; top:-120px;">
+        <img id="s7-c" src="../frontend/public/brand/studio-castel-c-blanc.svg" style="width:230px; height:230px;" />
+      </div>
+    </div>
+    <div class="abs display" id="s7-word" style="left:0; right:0; top:530px; text-align:center; font-size:110px;"></div>
+    <div class="abs" id="s7-line" style="left:0; right:0; top:680px; text-align:center; font-size:40px; color:var(--gray); font-weight:500;">Jeux, apps et sites, faits à Avignon.</div>
+    <div class="abs" id="s7-cta" style="left:0; right:0; top:790px; text-align:center;">
+      <span class="pill display" style="background:var(--red); color:var(--ink); font-size:40px; padding:22px 52px; font-weight:700; letter-spacing:-0.01em;">On discute ?</span>
+      <div style="margin-top:34px; font-size:34px; font-weight:500; color:#fff;">studio-castel.com</div>
+    </div>
+    <div class="abs" id="s7-black" style="inset:0; background:#000; opacity:0;"></div>
+  </section>
+
+  <div id="hud">
+    <div class="label" id="hud-tl" style="left:56px; top:44px;">Studio Castel</div>
+    <div class="label" id="hud-tr" style="right:56px; top:44px;">Avignon, France</div>
+    <div class="label" id="hud-bl" style="left:56px; bottom:44px;"></div>
+    <div class="label" id="hud-br" style="right:56px; bottom:44px;">studio-castel.com</div>
+  </div>
+</div>
+
+<script>
+/* ---------- utilitaires ---------- */
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  outExpo: (p) => (p >= 1 ? 1 : 1 - Math.pow(2, -10 * p)),
+  inExpo: (p) => (p <= 0 ? 0 : Math.pow(2, 10 * p - 10)),
+  outCubic: (p) => 1 - Math.pow(1 - p, 3),
+  inCubic: (p) => p * p * p,
+  inOutCubic: (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2),
+  inOutExpo: (p) => (p <= 0 ? 0 : p >= 1 ? 1 : p < 0.5 ? Math.pow(2, 20 * p - 10) / 2 : (2 - Math.pow(2, -20 * p + 10)) / 2),
+  outBack: (p, s = 1.70158) => 1 + (s + 1) * Math.pow(p - 1, 3) + s * Math.pow(p - 1, 2),
+  outQuint: (p) => 1 - Math.pow(1 - p, 5),
+};
+const P = "../frontend/public";
+
+/** Découpe un texte en lettres masquées. */
+function letters(el, text) {
+  el.innerHTML = "";
+  const spans = [];
+  for (const word of text.split(/(\s+)/)) {
+    if (!word) continue;
+    const w = document.createElement("span");
+    w.className = "chwrap";
+    for (const c of word) {
+      const s = document.createElement("span");
+      s.className = "ch";
+      s.textContent = c;
+      w.appendChild(s);
+      spans.push(s);
+    }
+    el.appendChild(w);
+  }
+  return spans;
+}
+/** Anime des lettres qui montent, avec décalage. */
+function riseLetters(spans, t, start, stagger = 0.025, dur = 0.55) {
+  spans.forEach((s, i) => {
+    const p = E.outExpo(seg(t, start + i * stagger, start + i * stagger + dur));
+    s.style.transform = `translateY(${(1 - p) * 110}%) rotate(${(1 - p) * 8}deg)`;
+  });
+}
+function riseMasks(container, t, start, stagger = 0.12, dur = 0.7) {
+  [...container.querySelectorAll(".mask > span")].forEach((s, i) => {
+    const p = E.outExpo(seg(t, start + i * stagger, start + i * stagger + dur));
+    s.style.transform = `translateY(${(1 - p) * 105}%)`;
+  });
+}
+function exitMasks(container, t, start, stagger = 0.06, dur = 0.45) {
+  [...container.querySelectorAll(".mask > span")].forEach((s, i) => {
+    const p = E.inExpo(seg(t, start + i * stagger, start + i * stagger + dur));
+    if (p > 0) s.style.transform = `translateY(${-p * 110}%)`;
+  });
+}
+const wobble = (t, f = 0.6, a = 1, ph = 0) => Math.sin((t * f + ph) * Math.PI * 2) * a;
+
+/* ---------- données ---------- */
+const GAMES = [
+  { name: "Decalco", tint: "#22B8F0", card: "decalco", cover: "decalco/cover.webp", pitch: "Des décalcomanies à frotter du bout du doigt." },
+  { name: "Pavat", tint: "#7C4DFF", card: "pavat", cover: "pavat/cover.webp", pitch: "Des tuiles, une grille, des lignes à former." },
+  { name: "Godsing", tint: "#14C98B", card: "godsing", cover: "godsing/cover.webp", pitch: "Une planète entière générée à chaque partie." },
+  { name: "Préhistopia", tint: "#FF8A1F", card: "prehistopia", cover: "prehistopia/cover.webp", pitch: "Un city builder au néolithique." },
+];
+const FAN = [
+  { card: "bobitheque", tint: "#FF4FA3" },
+  { card: "pavat", tint: "#7C4DFF" },
+  { card: "decalco", tint: "#22B8F0" },
+  { card: "godsing", tint: "#14C98B" },
+  { card: "prehistopia", tint: "#FF8A1F" },
+];
+const WALL = ["polinizz", "archeode", "florine", "subscrivo", "123soleil", "serpenter", "arnaud", "randex", "brice"];
+const HIGHLIGHTS = [
+  { id: "polinizz", name: "Polinizz", kind: "App", color: "#FFFFFF", shot: "project-polinizz.png" },
+  { id: "bobitheque", name: "Bobithèque", kind: "App", color: "#FF4FA3", shot: "project-bobitheque.png" },
+  { id: "123soleil", name: "1, 2, 3 Soleil", kind: "Site", color: "#1E88E5", shot: "project-123soleil.png" },
+];
+
+/* ---------- construction ---------- */
+const s1Word = letters($("s1-word"), "Studio Castel");
+const s7Word = letters($("s7-word"), "Studio Castel");
+const s6Word = letters($("s6-word"), "Avignon");
+$("s6-t1").textContent = "Sites internet  •  Applications  •  Jeux vidéo  •  ".repeat(6);
+$("s6-t2").textContent = "L'idée  •  Le design  •  Le code  •  ".repeat(8);
+
+// éventail
+const fanEls = FAN.map((f) => {
+  const d = document.createElement("div");
+  d.className = "abs";
+  d.style.cssText = `width:300px; height:400px; left:-150px; top:-200px; border-radius:30px; background:${f.tint}; box-shadow:0 30px 60px rgba(0,0,0,0.45); overflow:visible;`;
+  d.innerHTML = `<div class="abs" style="inset:0; border-radius:30px; background:repeating-linear-gradient(135deg, rgba(255,255,255,0.10) 0 6px, transparent 6px 22px);"></div>
+    <img src="${P}/games/cards/${f.card}.png" class="abs" style="width:330px; left:-15px; bottom:24px;" />`;
+  $("s2-fan").appendChild(d);
+  return d;
+});
+
+// jeux
+const gameEls = GAMES.map((g, i) => {
+  const L = document.createElement("div");
+  L.className = "abs";
+  L.style.cssText = `inset:0; background:${g.tint}; color:var(--ink);`;
+  L.innerHTML = `
+    <div class="abs" style="inset:0; background:repeating-linear-gradient(135deg, rgba(255,255,255,0.07) 0 8px, transparent 8px 34px);"></div>
+    <div class="abs display g-marq" style="top:230px; left:0; white-space:nowrap; font-size:520px; font-weight:800; color:rgba(255,255,255,0.16);">${(g.name + " ").repeat(4)}</div>
+    <div class="abs label g-top" style="left:120px; top:132px; font-size:24px;">Jeu ${String(i + 1).padStart(2, "0")} / ${String(GAMES.length).padStart(2, "0")}</div>
+    <div class="abs display g-name" style="left:114px; top:170px; font-size:150px;"></div>
+    <div class="abs" style="left:120px; top:380px; perspective:1400px;">
+      <div class="shot g-shot" style="width:960px; height:540px; transform-origin:0% 50%;"><img src="${P}/games/${g.cover}" /></div>
+    </div>
+    <div class="abs g-pitch" style="left:122px; top:956px; font-size:40px; font-weight:500;">${g.pitch}</div>
+    <div class="abs g-card" style="left:1150px; top:180px; width:640px; height:760px; display:flex; align-items:center; justify-content:center;">
+      <img src="${P}/games/cards/${g.card}.png" style="max-width:600px; max-height:700px; filter:drop-shadow(0 40px 50px rgba(0,0,0,0.30));" />
+    </div>`;
+  $("s3").appendChild(L);
+  return {
+    L, marq: L.querySelector(".g-marq"), top: L.querySelector(".g-top"), shot: L.querySelector(".g-shot"),
+    pitch: L.querySelector(".g-pitch"), card: L.querySelector(".g-card"),
+    name: letters(L.querySelector(".g-name"), g.name),
+  };
+});
+
+// mur de captures
+const wallRows = [0, 1, 2].map((r) => {
+  const row = document.createElement("div");
+  row.className = "abs";
+  row.style.cssText = `left:0; top:${(r - 1) * 400 - 175}px; display:flex; gap:40px; white-space:nowrap;`;
+  const list = [...WALL.slice(r * 3), ...WALL.slice(0, r * 3), ...WALL];
+  row.innerHTML = list
+    .map((id) => `<div class="shot" style="flex:none; width:560px; height:350px; box-shadow:0 24px 40px rgba(0,0,0,0.18); background:#fff;"><img src="${P}/assets/projects/project-${id}.png" /></div>`)
+    .join("");
+  $("s4-wall").appendChild(row);
+  return row;
+});
+const hlEls = HIGHLIGHTS.map((h, i) => {
+  const d = document.createElement("div");
+  d.className = "abs";
+  const x = 800 + i * 360;
+  d.style.cssText = `left:${x}px; top:230px; width:330px; height:560px; border-radius:30px; background:#fff; box-shadow:0 30px 60px rgba(0,0,0,0.22); overflow:visible;`;
+  d.innerHTML = `
+    <div class="abs" style="left:0; right:0; top:0; height:400px; border-radius:30px 30px 0 0; overflow:hidden; background:${h.color};">
+      <img src="${P}/assets/projects/${h.shot}" style="width:100%; height:100%; object-fit:cover; object-position:top; opacity:0.28;" />
+    </div>
+    <img src="${P}/games/cards/${h.id}.png" class="abs" style="width:300px; left:15px; top:-40px; filter:drop-shadow(0 20px 24px rgba(0,0,0,0.25));" />
+    <div class="abs" style="left:26px; top:424px;"><span class="pill" style="background:var(--ink); color:#fff; font-size:18px; padding:7px 16px;">${h.kind}</span></div>
+    <div class="abs display" style="left:26px; top:474px; font-size:40px; color:var(--ink);">${h.name}</div>`;
+  $("s4-cards").appendChild(d);
+  return d;
+});
+
+// le studio
+const STEPS = ["L'idée.", "Le design.", "Le code."];
+const stepEls = STEPS.map((w, i) => {
+  const row = document.createElement("div");
+  row.className = "abs";
+  row.style.cssText = `left:0; top:${i * 215}px; width:1100px; height:200px;`;
+  row.innerHTML = `
+    <div class="abs display s-num" style="left:0; top:24px; font-size:40px; color:var(--red);">0${i + 1}</div>
+    <div class="abs s-bar" style="left:110px; top:178px; height:16px; width:0; border-radius:8px; background:var(--red);"></div>
+    <div class="abs display s-word" style="left:110px; top:0; font-size:160px; white-space:nowrap;">${w}</div>`;
+  $("s5-list").appendChild(row);
+  return { row, num: row.querySelector(".s-num"), bar: row.querySelector(".s-bar"), word: row.querySelector(".s-word") };
+});
+const STICKERS = ["decalco", "polinizz", "godsing"];
+const stickerEls = STICKERS.map((id, i) => {
+  const im = document.createElement("img");
+  im.src = `${P}/games/cards/${id}.png`;
+  im.className = "abs";
+  im.style.cssText = `width:440px; left:60px; top:${60 + i * 10}px; filter:drop-shadow(0 30px 40px rgba(0,0,0,0.5));`;
+  $("s5-sticker").appendChild(im);
+  return im;
+});
+
+/* ---------- timeline ---------- */
+const SC = [
+  { id: "s1", a: 0, b: 3.0, label: "" },
+  { id: "s2", a: 3.0, b: 7.0, label: "01  Manifeste" },
+  { id: "s3", a: 7.0, b: 15.0, label: "02  Jeux" },
+  { id: "s4", a: 15.0, b: 21.0, label: "03  Apps et sites" },
+  { id: "s5", a: 21.0, b: 26.0, label: "04  Le studio" },
+  { id: "s6", a: 26.0, b: 29.0, label: "05  Avignon" },
+  { id: "s7", a: 29.0, b: 34.0, label: "" },
+];
+const DURATION = 34;
+const WIPE = 0.6;
+
+function diagWipe(el, p, skew = 18) {
+  // bord oblique qui balaie de gauche à droite
+  const x = lerp(-skew, 100 + skew, p);
+  el.style.clipPath = p >= 1 ? "none" : `polygon(0 0, ${x + skew}% 0, ${x}% 100%, 0 100%)`;
+}
+
+function renderS1(t) {
+  const sqIn = E.outBack(seg(t, 0.15, 0.85), 2.2);
+  const out = E.inExpo(seg(t, 2.3, 3.0));
+  const lift = E.inOutCubic(seg(t, 0.95, 1.5));
+  const scale = sqIn * (1 + out * 11);
+  $("s1-sq-wrap").style.transform = `translateY(${-lift * 70 * (1 - out) + out * 70}px)`;
+  $("s1-sq").style.transform = `scale(${scale}) rotate(${(1 - sqIn) * -90}deg)`;
+  $("s1-sq").style.borderRadius = `${64 * (1 - out * 0.9)}px`;
+  const cIn = E.outBack(seg(t, 0.45, 1.0), 2);
+  $("s1-c").style.transform = `scale(${0.2 + 0.8 * cIn}) rotate(${(1 - cIn) * 40}deg)`;
+  $("s1-c").style.opacity = clamp(cIn * 2) * (1 - seg(t, 2.35, 2.55));
+  riseLetters(s1Word, t, 1.05, 0.03);
+  $("s1-word").style.opacity = 1 - seg(t, 2.25, 2.45);
+  $("s1-word").style.transform = `translateY(${-E.inCubic(seg(t, 2.2, 2.5)) * 40}px)`;
+  const pl = E.outBack(seg(t, 1.6, 2.0));
+  $("s1-pill").style.transform = `scale(${pl})`;
+  $("s1-pill").style.opacity = clamp(pl) * (1 - seg(t, 2.2, 2.4));
+}
+
+function renderS2(t) {
+  // t local : 0..4
+  const phase = t < 0.5 ? 0 : t < 1.0 ? 1 : t < 1.5 ? 2 : 3;
+  const bgs = ["var(--red)", "var(--ink)", "var(--warm)", "var(--ink)"];
+  $("s2-bg").style.background = bgs[phase];
+  const big = $("s2-big");
+  if (phase < 3) {
+    const words = ["Jeux.", "Apps.", "Sites."];
+    const cols = ["#fff", "var(--red)", "var(--ink)"];
+    const lt = t - phase * 0.5;
+    big.style.display = "block";
+    big.textContent = words[phase];
+    big.style.color = cols[phase];
+    const p = E.outExpo(seg(lt, 0, 0.3));
+    big.style.transform = `translateY(-50%) scale(${1.35 - 0.35 * p}) rotate(${(1 - p) * (phase % 2 ? 4 : -4)}deg)`;
+    big.style.letterSpacing = `${-0.02 - (1 - p) * 0.06}em`;
+  } else big.style.display = "none";
+
+  const head = $("s2-head");
+  head.style.display = phase === 3 ? "block" : "none";
+  riseMasks(head, t, 1.5, 0.18, 0.8);
+  const hs = E.inOutCubic(seg(t, 2.1, 2.9));
+  head.style.transform = `translateY(${-hs * 20}px) scale(${1 - hs * 0.06})`;
+
+  // éventail
+  $("s2-fan").style.display = phase === 3 ? "block" : "none";
+  fanEls.forEach((el, i) => {
+    const k = i - 2;
+    const p = E.outBack(seg(t, 2.05 + Math.abs(k) * 0.08 + (k > 0 ? 0.02 : 0), 2.85 + Math.abs(k) * 0.08), 1.3);
+    const x = k * 290 * (0.4 + 0.6 * p);
+    const yEnd = -300 + Math.abs(k) * 40 - (k === 0 ? 30 : 0);
+    const y = lerp(250, yEnd, p) + wobble(t, 0.5, 8, i * 0.2);
+    const rot = k * 7 * p;
+    el.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(${k === 0 ? 1.12 : 1})`;
+    el.style.zIndex = String(10 - Math.abs(k));
+  });
+}
+
+function renderS3(t) {
+  // t local : 0..8 ; un jeu toutes les 2 s
+  gameEls.forEach((G, i) => {
+    const u = t - i * 2;
+    const visible = u >= 0 && u < 2 + WIPE;
+    G.L.style.display = visible ? "block" : "none";
+    if (!visible) return;
+    G.L.style.zIndex = String(i + 1);
+    diagWipe(G.L, E.inOutCubic(seg(u, 0, 0.5)));
+    G.marq.style.transform = `translateX(${-200 - u * 260}px)`;
+    riseLetters(G.name, u, 0.25, 0.035, 0.6);
+    G.top.style.opacity = seg(u, 0.25, 0.5);
+    const sp = E.outExpo(seg(u, 0.18, 1.0));
+    G.shot.style.transform = `translateX(${(1 - sp) * -260}px) rotateY(${lerp(38, 14, sp) - u * 1.5}deg) rotateX(3deg) scale(${0.85 + 0.15 * sp})`;
+    G.shot.style.opacity = clamp(sp * 1.6);
+    const cp = E.outBack(seg(u, 0.4, 1.0), 2.0);
+    G.card.style.transform = `translate(${(1 - cp) * 140}px, ${(1 - cp) * 60 + wobble(u, 0.45, 10)}px) scale(${0.35 + 0.65 * cp}) rotate(${lerp(14, -4, cp) + wobble(u, 0.3, 1.5)}deg)`;
+    G.card.style.opacity = clamp(cp * 3);
+    const pp = E.outExpo(seg(u, 0.6, 1.1));
+    G.pitch.style.transform = `translateY(${(1 - pp) * 30}px)`;
+    G.pitch.style.opacity = pp;
+  });
+}
+
+function renderS4(t) {
+  // révélation en cercle
+  const r = E.inOutCubic(seg(t, 0, 0.6));
+  $("s4").style.clipPath = r >= 1 ? "none" : `circle(${r * 120}% at 50% 50%)`;
+  const wallIn = E.outExpo(seg(t, 0, 1.4));
+  $("s4-wall").style.transform = `translateX(${220 + (1 - wallIn) * 300}px) rotateX(24deg) rotateY(-14deg) rotateZ(-8deg) scale(${1.25 + (1 - wallIn) * 0.3})`;
+  wallRows.forEach((row, i) => {
+    const dir = i % 2 ? 1 : -1;
+    row.style.transform = `translateX(${-1600 + dir * (t * 140 + (1 - wallIn) * 300)}px)`;
+  });
+  riseMasks($("s4-title"), t, 0.35, 0.12, 0.8);
+  const sub = E.outExpo(seg(t, 0.8, 1.4));
+  $("s4-sub").style.opacity = sub;
+  $("s4-sub").style.transform = `translateY(${(1 - sub) * 24}px)`;
+  $("s4-veil2").style.opacity = 0.82 * E.inOutCubic(seg(t, 2.6, 3.1));
+  hlEls.forEach((el, i) => {
+    const p = E.outBack(seg(t, 2.8 + i * 0.2, 3.5 + i * 0.2), 1.6);
+    const y = (1 - p) * 700 + wobble(t, 0.4, 7, i * 0.3) + (i === 1 ? -26 : 0);
+    el.style.transform = `translateY(${y}px) rotate(${(1 - p) * (i - 1) * 12 + (i - 1) * 2.5}deg)`;
+  });
+}
+
+function renderS5(t) {
+  const p = E.inOutExpo(seg(t, 0, 0.55));
+  $("s5").style.clipPath = p >= 1 ? "none" : `inset(${(1 - p) * 100}% 0 0 0)`;
+  const head = $("s5-head");
+  riseMasks(head, t, 0.3, 0.2, 0.8);
+  exitMasks(head, t, 1.6, 0.08, 0.4);
+  head.style.display = t < 2.15 ? "block" : "none";
+  stepEls.forEach((S, i) => {
+    const st = 2.25 + i * 0.5;
+    const p = E.outExpo(seg(t, st, st + 0.35));
+    S.word.style.transform = `translateX(${(1 - p) * 80}px) scale(${1.25 - 0.25 * p})`;
+    S.word.style.transformOrigin = "0 50%";
+    S.word.style.opacity = clamp(p * 2);
+    S.num.style.opacity = seg(t, st, st + 0.2);
+    const bp = E.outExpo(seg(t, st + 0.15, st + 0.7));
+    S.bar.style.width = `${bp * [470, 700, 600][i]}px`;
+  });
+  const f = E.outExpo(seg(t, 3.75, 4.3));
+  $("s5-foot").style.opacity = f;
+  $("s5-foot").style.transform = `translateY(${(1 - f) * 24}px)`;
+  stickerEls.forEach((im, i) => {
+    const st = 2.25 + i * 0.5;
+    const pin = E.outBack(seg(t, st, st + 0.5), 1.8);
+    const pout = seg(t, st + 0.5, st + 0.62);
+    const last = i === stickerEls.length - 1;
+    const op = last ? clamp(pin * 3) : clamp(pin * 3) * (1 - pout);
+    im.style.opacity = op;
+    im.style.transform = `translateY(${(1 - pin) * 200 + wobble(t, 0.4, 8)}px) rotate(${lerp(-18, [6, -5, 4][i], pin)}deg) scale(${0.5 + 0.5 * pin})`;
+  });
+}
+
+function renderS6(t) {
+  diagWipe($("s6"), E.inOutCubic(seg(t, 0, 0.5)), 0);
+  riseLetters(s6Word, t, 0.25, 0.045, 0.6);
+  const s = E.outExpo(seg(t, 0.75, 1.25));
+  $("s6-sub").style.opacity = s;
+  $("s6-sub").style.transform = `translateY(${(1 - s) * 24}px)`;
+  const b1 = E.outExpo(seg(t, 0.35, 1.1));
+  const b2 = E.outExpo(seg(t, 0.55, 1.3));
+  $("s6-band1").style.transform = `rotate(-5deg) translateX(${(1 - b1) * -2400}px)`;
+  $("s6-band2").style.transform = `rotate(3deg) translateX(${(1 - b2) * 2400}px)`;
+  $("s6-t1").style.transform = `translateX(${-300 - t * 260}px)`;
+  $("s6-t2").style.transform = `translateX(${-1500 + t * 220}px)`;
+}
+
+function renderS7(t) {
+  const sp = E.outExpo(seg(t, 0, 0.9));
+  const scale = lerp(14, 1, sp);
+  $("s7-sq").style.transform = `scale(${scale}) rotate(${(1 - sp) * 25}deg)`;
+  $("s7-sq").style.borderRadius = `${lerp(4, 64, sp)}px`;
+  const cIn = E.outBack(seg(t, 0.55, 1.05), 2);
+  $("s7-c").style.transform = `scale(${0.2 + 0.8 * cIn})`;
+  $("s7-c").style.opacity = clamp(cIn * 2);
+  riseLetters(s7Word, t, 0.95, 0.03);
+  const l = E.outExpo(seg(t, 1.5, 2.0));
+  $("s7-line").style.opacity = l;
+  $("s7-line").style.transform = `translateY(${(1 - l) * 20}px)`;
+  const c = E.outBack(seg(t, 1.9, 2.4), 1.8);
+  $("s7-cta").style.opacity = clamp(c * 2);
+  $("s7-cta").style.transform = `translateY(${(1 - c) * 40}px)`;
+  $("s7-black").style.opacity = seg(t, 4.4, 5.0);
+}
+
+const RENDER = { s1: renderS1, s2: renderS2, s3: renderS3, s4: renderS4, s5: renderS5, s6: renderS6, s7: renderS7 };
+
+function hudColor(t) {
+  if (t < 3) return null;
+  if (t < 3.5) return "#09090B";
+  if (t < 4.0) return "#fff";
+  if (t < 4.5) return "#09090B";
+  if (t < 7.0) return "#fff";
+  if (t < 15.0) return "#09090B";
+  if (t < 21.0) return "#09090B";
+  if (t < 26.0) return "#fff";
+  if (t < 29.0) return "#09090B";
+  return null;
+}
+
+function render(t) {
+  SC.forEach((s, i) => {
+    const el = $(s.id);
+    const next = SC[i + 1];
+    const end = next ? next.a + WIPE : s.b;
+    const on = t >= s.a && t < end;
+    el.style.display = on ? "block" : "none";
+    el.style.zIndex = String(i + 1);
+    if (on) RENDER[s.id](t - s.a);
+  });
+  const col = hudColor(t);
+  const hud = $("hud");
+  hud.style.opacity = col ? 1 : 0;
+  if (col) hud.style.color = col;
+  const cur = SC.find((s) => t >= s.a && t < s.b);
+  $("hud-bl").textContent = cur ? cur.label : "";
+  // l'éventail du manifeste occupe le bas de l'image
+  const low = t >= 4.5 && t < 7.0 ? 0 : 1;
+  $("hud-bl").style.opacity = low;
+  $("hud-br").style.opacity = low;
+}
+
+window.DURATION = DURATION;
+window.render = render;
+window.ready = (async () => {
+  await Promise.all(["600", "700", "800"].map((w) => document.fonts.load(`${w} 100px Poppins`)).concat(["400", "500", "600"].map((w) => document.fonts.load(`${w} 40px Inter`))));
+  await document.fonts.ready;
+  await Promise.all([...document.images].map((im) => (im.complete ? im.decode().catch(() => {}) : new Promise((r) => { im.onload = im.onerror = r; }).then(() => im.decode().catch(() => {})))));
+  return true;
+})();
+
+// Aperçu dans un navigateur : lecture en boucle, mise à l'échelle de la fenêtre. ?t=12.5 fige une image.
+if (!navigator.webdriver) {
+  const fit = () => { const k = Math.min(innerWidth / 1920, innerHeight / 1080); $("stage").style.transform = `scale(${k})`; };
+  addEventListener("resize", fit); fit();
+  const q = new URLSearchParams(location.search);
+  window.ready.then(() => {
+    if (q.has("t")) return render(parseFloat(q.get("t")));
+    const t0 = performance.now();
+    const loop = () => { render(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); };
+    loop();
+  });
+}
+</script>
+</body>
+</html>
