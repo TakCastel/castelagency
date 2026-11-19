@@ -15,6 +15,7 @@ import { autoplayFrom, type AutoplayMode } from "./suggestions";
  * des musiques (`setCatalog`) et conservé quand on change de page.
  */
 const HISTORY_MAX = 50;
+const MODE_KEY = "castel:autoplay-mode";
 
 export function useMusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -22,6 +23,15 @@ export function useMusicPlayer() {
   const [current, setCurrent] = useState<MusicTrack | null>(null);
   const [seed, setSeed] = useState<MusicTrack | null>(null);
   const [mode, setModeState] = useState<AutoplayMode>("selection");
+  // Le choix Sélection / Aléatoire est mémorisé dans le navigateur : il survit au rechargement
+  // de la page (lien de morceau ouvert, nouvelle version du site…).
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(MODE_KEY) === "shuffle") setModeState("shuffle");
+    } catch {
+      // stockage indisponible (navigation privée…) : on garde Sélection
+    }
+  }, []);
   const [history, setHistory] = useState<MusicTrack[]>([]);
   const [upcoming, setUpcoming] = useState<MusicTrack[]>([]);
   const [playing, setPlaying] = useState(false);
@@ -111,6 +121,11 @@ export function useMusicPlayer() {
   const setMode = useCallback(
     (m: AutoplayMode) => {
       setModeState(m);
+      try {
+        localStorage.setItem(MODE_KEY, m);
+      } catch {
+        // stockage indisponible : le choix vaut pour cette visite
+      }
       if (!current) return;
       setSeed(current);
       setUpcoming(
