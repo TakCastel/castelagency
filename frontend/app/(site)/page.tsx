@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+/** Libellés courts des services sur l'accueil (le libellé complet reste dans aria-label). */
+const SERVICE_SHORT: Record<string, string> = {
+  "creation-site-internet-avignon": "Sites internet",
+  "developpement-application-avignon": "Applications",
+  "developpement-jeu-video-avignon": "Jeux vidéo",
+};
+
 const kindLabel: Record<ProjectKind, string> = { app: "App", client: "Site", guide: "Guide" };
 
 const h2 = "font-display text-4xl font-bold sm:text-6xl lg:text-7xl";
@@ -101,25 +108,30 @@ export default function HomePage() {
               <p>Pas d&apos;intermédiaire : la personne à qui tu écris est celle qui fabrique.</p>
             </div>
           </Reveal>
-          <ul className="mt-14 grid gap-6 md:grid-cols-3">
+          <ul className="mt-16 border-b-4 border-castel-ink">
             {coreServices.map((s) => (
-              <li key={s.slug}>
+              <li key={s.slug} className="border-t-4 border-castel-ink">
                 <Link
                   href={`/${s.slug}`}
-                  className="flex h-full flex-col gap-3 rounded-card bg-white p-7 transition-transform duration-200 hover:-translate-y-1.5"
+                  aria-label={s.h1}
+                  className="group flex items-center justify-between gap-6 py-7 sm:py-9"
                 >
-                  <h3 className="font-display text-2xl font-bold">{s.h1}</h3>
-                  <p className="text-[#52525B]">{s.teaser}</p>
-                  <span className="mt-auto pt-2 font-medium text-castel-red-deep underline underline-offset-4">En savoir plus</span>
+                  <span className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-10">
+                    <span className="font-display text-4xl font-bold tracking-[-0.02em] transition-colors duration-200 group-hover:text-castel-red-deep sm:text-6xl">
+                      {SERVICE_SHORT[s.slug]}
+                    </span>
+                    <span className="max-w-sm text-[#52525B]">{s.teaser}</span>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-castel-ink text-2xl text-white transition-all duration-200 group-hover:translate-x-1 group-hover:bg-castel-red group-hover:text-castel-ink sm:h-16 sm:w-16"
+                  >
+                    →
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
-          <p className="mt-8">
-            <Link href="/developpeur-web-avignon" className="font-medium text-castel-red-deep underline underline-offset-4 hover:no-underline">
-              Développeur web à Avignon : comment je travaille
-            </Link>
-          </p>
         </div>
       </section>
 
