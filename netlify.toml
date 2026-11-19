@@ -12,3 +12,26 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Cache navigateur des images : sans ça Netlify renvoie max-age=0 et chaque visite
+# re-télécharge / revalide toutes les images. Fichiers non hashés : 1 jour frais,
+# puis resservis tout de suite pendant qu'ils se revalident en arrière-plan (7 jours).
+[[headers]]
+  for = "/_next/image"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/games/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
