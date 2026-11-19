@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { MUSIC_ARTIST, type MusicTrack } from "@/data/music";
 
-import { suggestFrom } from "./suggestions";
+import { autoplayFrom, type AutoplayMode } from "./suggestions";
 
 /**
  * Lecteur audio unique pour tout le site (monté par MusicPlayerProvider dans le layout racine).
@@ -21,6 +21,7 @@ export function useMusicPlayer() {
   const [catalog, setCatalogState] = useState<MusicTrack[]>([]);
   const [current, setCurrent] = useState<MusicTrack | null>(null);
   const [seed, setSeed] = useState<MusicTrack | null>(null);
+  const [mode, setModeState] = useState<AutoplayMode>("selection");
   const [history, setHistory] = useState<MusicTrack[]>([]);
   const [upcoming, setUpcoming] = useState<MusicTrack[]>([]);
   const [playing, setPlaying] = useState(false);
@@ -73,9 +74,9 @@ export function useMusicPlayer() {
       pushHistory(current);
       setSeed(t);
       const played = new Set([...history.map((x) => x.id), current?.id ?? ""]);
-      setUpcoming(suggestFrom(t, catalog, played));
+      setUpcoming(autoplayFrom(t, catalog, played, mode));
     },
-    [load, pushHistory, current, history, catalog],
+    [load, pushHistory, current, history, catalog, mode],
   );
 
   /**
@@ -106,6 +107,19 @@ export function useMusicPlayer() {
     [currentId, upcoming, history, current, play, load, startFrom, pushHistory],
   );
 
+  /** Sélection (par genre) ou Aléatoire : la suite est recalculée depuis le morceau en cours, sans couper le son. */
+  const setMode = useCallback(
+    (m: AutoplayMode) => {
+      setModeState(m);
+      if (!current) return;
+      setSeed(current);
+      setUpcoming(
+        autoplayFrom(current, catalog, new Set(history.map((x) => x.id)), m),
+      );
+    },
+    [current, catalog, history],
+  );
+
   /** Charge un morceau sans le lancer (lien partagé : le navigateur interdit la lecture automatique). */
   const cue = useCallback((t: MusicTrack) => startFrom(t, false), [startFrom]);
 
@@ -128,10 +142,11 @@ export function useMusicPlayer() {
       let rest = upcoming.slice(1);
       if (!next && current) {
         // Fin de la lecture automatique : on repart du morceau en cours.
-        const fresh = suggestFrom(
+        const fresh = autoplayFrom(
           current,
           catalog,
           new Set(history.map((x) => x.id)),
+          mode,
         );
         next = fresh[0];
         rest = fresh.slice(1);
@@ -140,7 +155,7 @@ export function useMusicPlayer() {
       pushHistory(current);
       setUpcoming(rest);
     },
-    [history, upcoming, current, catalog, load, pushHistory],
+    [history, upcoming, current, catalog, mode, load, pushHistory],
   );
 
   const toggle = useCallback(() => {
@@ -214,6 +229,8 @@ export function useMusicPlayer() {
     history,
     upcoming,
     seed,
+    mode,
+    setMode,
     current,
     currentId,
     playing,

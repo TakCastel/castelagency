@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Check, Pause, Play, Share2 } from "lucide-react";
+import { Check, ListMusic, Pause, Play, Share2, Shuffle } from "lucide-react";
 
 import { MUSIC_ARTIST, musicTrackPath, type MusicTrack } from "@/data/music";
 import { shareLink } from "@/lib/share";
@@ -171,10 +171,34 @@ export function NowPlaying({
             <ol className="mt-1 p-0">
               <Row t={current} player={player} />
             </ol>
-            <div className="mt-5 px-2 pb-2">
+            <div className="mt-5 flex items-center justify-between gap-3 px-2 pb-2">
               <p className="font-display font-semibold text-white">
                 Lecture automatique
               </p>
+              <div
+                role="radiogroup"
+                aria-label="Ordre de la lecture automatique"
+                className="inline-flex shrink-0 rounded-full border border-white/15 p-0.5"
+              >
+                {(
+                  [
+                    ["selection", "Sélection", ListMusic],
+                    ["shuffle", "Aléatoire", Shuffle],
+                  ] as const
+                ).map(([m, label, Icon]) => (
+                  <button
+                    key={m}
+                    type="button"
+                    role="radio"
+                    aria-checked={player.mode === m}
+                    onClick={() => player.setMode(m)}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-colors ${player.mode === m ? "bg-white text-castel-ink" : "text-white/65 hover:text-white"}`}
+                  >
+                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
             <ol aria-label="Lecture automatique" className="space-y-1 p-0">
               {upcoming.map((t) => (

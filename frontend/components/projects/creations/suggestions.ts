@@ -48,3 +48,23 @@ export function suggestFrom(
     .sort((x, y) => y.s - x.s || popularity(y.t) - popularity(x.t))
     .map((x) => x.t);
 }
+
+export type AutoplayMode = "selection" | "shuffle";
+
+/** Suite de la lecture automatique : par genre (« Sélection ») ou tout le catalogue mélangé (« Aléatoire »). */
+export function autoplayFrom(
+  seed: MusicTrack,
+  catalog: MusicTrack[],
+  exclude: Set<string>,
+  mode: AutoplayMode,
+): MusicTrack[] {
+  if (mode === "selection") return suggestFrom(seed, catalog, exclude);
+  const pool = catalog.filter(
+    (t) => t.audio && t.id !== seed.id && !exclude.has(t.id),
+  );
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool;
+}
