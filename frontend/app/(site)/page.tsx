@@ -114,17 +114,16 @@ export default function HomePage() {
                 <Link
                   href={`/${s.slug}`}
                   aria-label={s.h1}
-                  className="group flex items-center justify-between gap-6 py-7 sm:py-9"
+                  className="group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 py-7 sm:py-9 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-x-10"
                 >
-                  <span className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-10">
-                    <span className="font-display text-4xl font-bold tracking-[-0.02em] transition-colors duration-200 group-hover:text-castel-red-deep sm:text-6xl">
-                      {SERVICE_SHORT[s.slug]}
-                    </span>
-                    <span className="max-w-sm text-[#52525B]">{s.teaser}</span>
+                  {/* Grille : titre | texte | flèche, pour que les textes partent tous de la même colonne. */}
+                  <span className="font-display text-4xl font-bold tracking-[-0.02em] transition-colors duration-200 group-hover:text-castel-red-deep sm:text-6xl">
+                    {SERVICE_SHORT[s.slug]}
                   </span>
+                  <span className="max-w-md text-[#52525B] md:col-start-2 md:row-start-1 md:text-lg">{s.teaser}</span>
                   <span
                     aria-hidden="true"
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-castel-ink text-2xl text-white transition-all duration-200 group-hover:translate-x-1 group-hover:bg-castel-red group-hover:text-castel-ink sm:h-16 sm:w-16"
+                    className="col-start-2 row-span-2 row-start-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full md:col-start-3 md:row-span-1 bg-castel-ink text-2xl text-white transition-all duration-200 group-hover:translate-x-1 group-hover:bg-castel-red group-hover:text-castel-ink sm:h-16 sm:w-16"
                   >
                     →
                   </span>
