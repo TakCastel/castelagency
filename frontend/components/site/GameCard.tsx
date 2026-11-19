@@ -1,10 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Game } from "@/data/games";
+import { ArtOverImage, cardArt } from "@/components/projects/ProjectVisual";
 import { Button } from "./Button";
 
-/** Visuel 16:9 d'un jeu, ou emplacement vide avec le nom. */
+/** Visuel 16:9 d'un jeu : illustration devant la cover si elle existe, sinon la cover, sinon le nom. */
 export function GameVisual({ game, sizes, priority }: { game: Game; sizes: string; priority?: boolean }) {
+  const art = cardArt(game.slug);
+  if (art && game.cover) {
+    return (
+      <ArtOverImage
+        art={art}
+        color={game.tint}
+        image={game.cover.src}
+        alt={game.cover.alt}
+        sizes={sizes}
+        priority={priority}
+        className="aspect-video w-full"
+      />
+    );
+  }
   if (game.cover) {
     return (
       <div className="relative aspect-video w-full overflow-hidden" style={{ backgroundColor: game.tint }}>

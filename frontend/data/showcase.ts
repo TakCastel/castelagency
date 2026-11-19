@@ -38,6 +38,21 @@ const KIND: Record<string, ProjectKind> = {
   arnaud: "client",
 };
 
+/** Couleur de la carte derrière l'illustration (public/games/cards/<id>.png). */
+export const CARD_COLOR: Record<string, string> = {
+  polinizz: "#FFFFFF",
+  bobitheque: "#FF4FA3",
+  serpenter: "#6D5BFF",
+  randex: "#2DBE6C",
+  apasnap: "#FF6B5A",
+  subscrivo: "#C6F432",
+  archeode: "#C62848",
+  "123soleil": "#1E88E5",
+  florine: "#E040FB",
+  arnaud: "#00B8D9",
+  "formation-ia": "#1F2A44",
+};
+
 export type ShowcaseProject = ProjectDetail & { kind: ProjectKind; featured: boolean };
 
 export const showcaseProjects: ShowcaseProject[] = SHOWN_IDS.map((id) => {

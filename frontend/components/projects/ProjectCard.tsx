@@ -1,22 +1,19 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import type { ShowcaseProject } from "@/data/showcase";
+import { ProjectVisual } from "./ProjectVisual";
 import { clean, KIND_LABEL } from "./text";
 
 /** Visuel d'un projet dans une carte : les apps mobiles (portrait) sont contenues, le reste remplit. */
 export function ProjectThumb({ project, sizes, priority }: { project: ShowcaseProject; sizes: string; priority?: boolean }) {
   return (
-    <div className="relative aspect-[16/10] overflow-hidden bg-castel-surface">
-      <Image
-        src={project.image}
-        alt={project.imageAlt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className={project.isMobileApp ? "object-contain p-4" : "object-cover object-top"}
-      />
-    </div>
+    <ProjectVisual
+      project={project}
+      sizes={sizes}
+      priority={priority}
+      className="bg-castel-surface"
+      screenshotClassName={project.isMobileApp ? "object-contain p-4" : "object-cover object-top"}
+    />
   );
 }
 

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { CONTACT_EMAIL, games } from "@/data/games";
 import { showcaseProjects, type ProjectKind } from "@/data/showcase";
+import { ProjectVisual } from "@/components/projects/ProjectVisual";
 import { Button } from "@/components/site/Button";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
@@ -54,15 +54,7 @@ export default function HomePage() {
                 <Button href={`/projets/${featured.id}`} variant="white">En savoir plus</Button>
               </div>
             </div>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-card bg-castel-ink">
-              <Image
-                src={featured.image}
-                alt={featured.imageAlt}
-                fill
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className="object-cover object-top"
-              />
-            </div>
+            <ProjectVisual project={featured} sizes="(min-width: 1024px) 600px, 100vw" className="rounded-card bg-castel-ink" />
           </Reveal>
         </section>
       )}
@@ -82,9 +74,7 @@ export default function HomePage() {
                   href={`/projets/${p.id}`}
                   className="group flex h-full flex-col overflow-hidden rounded-card bg-white transition-transform duration-200 hover:-translate-y-1.5"
                 >
-                  <div className="relative aspect-[16/10] bg-castel-paper-warm">
-                    <Image src={p.image} alt={p.imageAlt} fill sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" className="object-cover object-top" />
-                  </div>
+                  <ProjectVisual project={p} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" className="bg-castel-paper-warm" />
                   <div className="flex flex-1 flex-col gap-2 p-6">
                     <span className="w-fit rounded-full bg-castel-ink px-3 py-1 text-xs font-medium text-white">{kindLabel[p.kind]}</span>
                     <h3 className="font-display text-2xl font-bold">{p.title}</h3>
@@ -104,7 +94,7 @@ export default function HomePage() {
             <div className="mt-10 max-w-2xl space-y-5 text-lg text-[#52525B]">
               <p>Studio Castel est un studio indépendant installé à Avignon.</p>
               <p>Des jeux, des apps et des sites, faits de A à Z par une seule personne : l&apos;idée, le design, le code.</p>
-              <p>Les jeux sont la partie la plus visible. Les apps et les sites reçoivent le même soin.</p>
+              <p>Pas d&apos;intermédiaire : la personne à qui tu écris est celle qui fabrique.</p>
             </div>
           </Reveal>
         </div>
@@ -115,7 +105,7 @@ export default function HomePage() {
           <Reveal>
             <h2 className={`${h2} text-white`}>On discute ?</h2>
             <p className="mt-6 max-w-xl text-lg font-medium">
-              Une question sur un jeu, un projet d&apos;app ou de site : écris-nous.
+              Une question sur un jeu, un projet d&apos;app ou de site : écris-moi.
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
