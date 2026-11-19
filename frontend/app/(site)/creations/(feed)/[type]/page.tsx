@@ -11,14 +11,23 @@ export function generateStaticParams() {
   return creationSections.filter((s) => s.slug).map((s) => ({ type: s.slug }));
 }
 
-const find = (slug: string) => creationSections.find((s) => s.slug && s.slug === slug);
+const find = (slug: string) =>
+  creationSections.find((s) => s.slug && s.slug === slug);
 
-export async function generateMetadata({ params }: { params: Promise<{ type: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}): Promise<Metadata> {
   const section = find((await params).type);
   return section ? creationMetadata(section) : {};
 }
 
-export default async function CreationsTypePage({ params }: { params: Promise<{ type: string }> }) {
+export default async function CreationsTypePage({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}) {
   const section = find((await params).type);
   if (!section) notFound();
   return <SectionIntro section={section} />;

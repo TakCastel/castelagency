@@ -37,7 +37,13 @@ const slugify = (s: string) =>
 
 /** Fichier du dépôt : on retire quand même script, style et attributs on*. Ajoute des ancres aux chapitres. */
 async function loadStory() {
-  const file = path.join(process.cwd(), "data", "content", "ecritures", "l-homme-au-masque-de-verre.html");
+  const file = path.join(
+    process.cwd(),
+    "data",
+    "content",
+    "ecritures",
+    "l-homme-au-masque-de-verre.html",
+  );
   let html = await readFile(file, "utf8");
   html = html
     .replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, "")
@@ -75,18 +81,25 @@ export default async function StoryPage() {
         >
           Retour aux créations
         </Link>
-        <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-[-0.02em] sm:text-6xl">{book.title}</h1>
+        <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-[-0.02em] sm:text-6xl">
+          {book.title}
+        </h1>
         <p className="mt-4 text-sm font-medium uppercase tracking-[0.08em] text-[#52525B]">
           Roman{book.year ? `, ${book.year}` : ""}
         </p>
 
         {chapters.length > 0 && (
           <details className="mt-10 rounded-card bg-white p-6">
-            <summary className="cursor-pointer font-display text-lg font-semibold">Chapitres ({chapters.length})</summary>
+            <summary className="cursor-pointer font-display text-lg font-semibold">
+              Chapitres ({chapters.length})
+            </summary>
             <ol className="mt-4 columns-1 gap-8 text-base sm:columns-2">
               {chapters.map((c) => (
                 <li key={c.id} className="mb-2 break-inside-avoid">
-                  <a href={`#${c.id}`} className="text-castel-red-deep underline underline-offset-4 hover:text-castel-ink">
+                  <a
+                    href={`#${c.id}`}
+                    className="text-castel-red-deep underline underline-offset-4 hover:text-castel-ink"
+                  >
                     {c.title}
                   </a>
                 </li>
@@ -95,7 +108,10 @@ export default async function StoryPage() {
           </details>
         )}
 
-        <div className={`mt-12 ${prose}`} dangerouslySetInnerHTML={{ __html: html }} />
+        <div
+          className={`mt-12 ${prose}`}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
 
         <Link
           href="/creations"

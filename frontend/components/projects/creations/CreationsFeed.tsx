@@ -40,6 +40,11 @@ import { clean } from "../text";
 import { DrawingLightbox } from "./DrawingLightbox";
 import { Equalizer } from "./Equalizer";
 import { MusicBar } from "./MusicBar";
+import {
+  PLAY_EVENT,
+  STATE_EVENT,
+  type PlayerStateDetail,
+} from "./playerEvents";
 import { shareLink } from "@/lib/share";
 import { TrackStats } from "./TrackStats";
 import { formatTime, useMusicPlayer } from "./useMusicPlayer";
@@ -229,7 +234,7 @@ export function CreationsFeed({
   const player = useMusicPlayer(tracks, queueTracks);
   const [expanded, setExpanded] = useState(false);
 
-  // Lien partagé d'un morceau (/creations/musiques/<id>) : on le charge et on déplie la vue « En cours ».
+  // Lien partagé d'un morceau (/creations/musiques/<id>) : on le charge dans la barre (la page affiche sa fiche).
   // Pas de lecture automatique (bloquée par les navigateurs) : un clic sur Lecture suffit.
   const sharedId =
     pathname.match(/^\/creations\/musiques\/([^/]+)/)?.[1] ?? null;
@@ -242,8 +247,25 @@ export function CreationsFeed({
     const t = tracks.find((x) => x.id === sharedId);
     if (!t?.audio) return;
     cue(t);
-    setExpanded(true);
   }, [sharedId, tracks, cue]);
+
+  // Pont avec la page d'un morceau (TrackHero) : elle demande la lecture, on lui renvoie l'état.
+  const { playTrack, playing } = player;
+  useEffect(() => {
+    const on = (e: Event) => {
+      const t = tracks.find((x) => x.id === (e as CustomEvent<string>).detail);
+      if (t) playTrack(t);
+    };
+    window.addEventListener(PLAY_EVENT, on);
+    return () => window.removeEventListener(PLAY_EVENT, on);
+  }, [tracks, playTrack]);
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent<PlayerStateDetail>(STATE_EVENT, {
+        detail: { currentId, playing },
+      }),
+    );
+  }, [currentId, playing]);
 
   // Dans la vue Musiques, l'URL suit le morceau en cours (comme YouTube Music) : on peut la copier telle quelle.
   // replaceState : pas d'entrée d'historique par morceau. Hors de cette vue, on ne touche pas à l'URL

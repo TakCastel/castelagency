@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getTrack, MUSIC_ARTIST, musicTrackPath, tracks } from "@/data/music";
+import { TrackHero } from "@/components/projects/creations/TrackHero";
 import { socialMeta } from "@/lib/seo";
 
 /**
@@ -58,28 +58,5 @@ export async function generateMetadata({
 export default async function TrackPage({ params }: { params: Params }) {
   const t = await find(params);
   if (!t) notFound();
-  const genres = t.tags
-    .split(",")
-    .map((g) => g.trim())
-    .filter(Boolean)
-    .slice(0, 3)
-    .join(" · ");
-  return (
-    <>
-      <Link
-        href="/creations/musiques"
-        scroll={false}
-        className="text-sm font-medium text-white/60 hover:text-white"
-      >
-        ← Toutes les musiques
-      </Link>
-      <h1 className="mt-4 font-display text-[44px] font-bold leading-[1.05] tracking-[-0.02em] sm:text-7xl lg:text-[88px]">
-        {t.title}
-      </h1>
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed">
-        Un morceau de {MUSIC_ARTIST}
-        {genres ? `, ${genres}` : ""}.
-      </p>
-    </>
-  );
+  return <TrackHero track={t} />;
 }
