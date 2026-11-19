@@ -57,6 +57,17 @@ export function useMusicPlayer(
     [currentId, play],
   );
 
+  /** Charge un morceau sans le lancer (lien partagé : le navigateur interdit la lecture automatique). */
+  const cue = useCallback((t: MusicTrack) => {
+    const audio = audioRef.current;
+    if (!audio || !t.audio) return;
+    setCurrentId(t.id);
+    setError(false);
+    setTime(0);
+    setDuration(t.duration);
+    audio.src = t.audio;
+  }, []);
+
   const step = useCallback(
     (d: number) => {
       if (!queue.length) return;
@@ -135,6 +146,7 @@ export function useMusicPlayer(
     duration,
     error,
     playTrack,
+    cue,
     step,
     toggle,
     seek,

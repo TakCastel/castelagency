@@ -1,7 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Check, Share2 } from "lucide-react";
+
+import { MUSIC_ARTIST, musicTrackPath } from "@/data/music";
+import { shareLink } from "@/lib/share";
 
 import { TrackStats } from "./TrackStats";
 import { formatTime, type MusicPlayerState } from "./useMusicPlayer";
@@ -19,6 +23,7 @@ export function NowPlaying({
 }) {
   const { current, queue, currentId, playing, playTrack } = player;
   const listRef = useRef<HTMLOListElement>(null);
+  const [copied, setCopied] = useState(false);
 
   // Échap pour fermer, page figée derrière.
   useEffect(() => {
@@ -87,6 +92,28 @@ export function NowPlaying({
             <p className="mt-1 text-center text-white/60">{tags.join(" · ")}</p>
           )}
           <TrackStats track={current} variant="hero" className="mt-5" />
+          <button
+            type="button"
+            onClick={async () => {
+              const res = await shareLink(
+                window.location.origin + musicTrackPath(current.id),
+                `${current.title} · ${MUSIC_ARTIST}`,
+              );
+              if (res === "copied") {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }
+            }}
+            aria-live="polite"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:border-white hover:bg-white hover:text-castel-ink"
+          >
+            {copied ? (
+              <Check className="h-4 w-4 text-castel-red" aria-hidden="true" />
+            ) : (
+              <Share2 className="h-4 w-4" aria-hidden="true" />
+            )}
+            {copied ? "Lien copié" : "Partager ce morceau"}
+          </button>
         </div>
 
         <section

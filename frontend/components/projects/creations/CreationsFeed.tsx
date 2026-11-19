@@ -38,6 +38,7 @@ import { sunoSongUrl, type MusicTrack } from "@/data/music";
 import { clean } from "../text";
 import { DrawingLightbox } from "./DrawingLightbox";
 import { MusicBar } from "./MusicBar";
+import { shareLink } from "@/lib/share";
 import { TrackStats } from "./TrackStats";
 import { formatTime, useMusicPlayer } from "./useMusicPlayer";
 
@@ -245,6 +246,19 @@ export function CreationsFeed({
     [filtered],
   );
   const player = useMusicPlayer(tracks, queueTracks);
+  const [expanded, setExpanded] = useState(false);
+
+  // Lien partagé d'un morceau (/creations/musiques/<id>) : on le charge et on déplie la vue « En cours ».
+  // Pas de lecture automatique (bloquée par les navigateurs) : un clic sur Lecture suffit.
+  const sharedId =
+    pathname.match(/^\/creations\/musiques\/([^/]+)/)?.[1] ?? null;
+  const { cue } = player;
+  useEffect(() => {
+    const t = sharedId ? tracks.find((x) => x.id === sharedId) : undefined;
+    if (!t?.audio) return;
+    cue(t);
+    setExpanded(true);
+  }, [sharedId, tracks, cue]);
 
   // Répartition dans la colonne la plus courte : les cartes déjà affichées ne bougent pas quand on en charge d'autres.
   const cols = useMemo(() => {
@@ -273,23 +287,11 @@ export function CreationsFeed({
   // Partage natif sur mobile, sinon copie du lien de la vue en cours.
   const share = async () => {
     const url = window.location.origin + creationPath(section);
-    const nav = navigator as Navigator & {
-      share?: (d: ShareData) => Promise<void>;
-    };
-    if (nav.share && window.matchMedia("(pointer: coarse)").matches) {
-      try {
-        await nav.share({ title: `${section.heading} | Studio Castel`, url });
-        return;
-      } catch {
-        // partage annulé : on retombe sur la copie
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url);
+    if (
+      (await shareLink(url, `${section.heading} | Studio Castel`)) === "copied"
+    ) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch {
-      window.prompt("Lien à copier :", url);
     }
   };
 
@@ -588,7 +590,14 @@ export function CreationsFeed({
       )}
 
       {mounted && player.current
-        ? createPortal(<MusicBar player={player} />, document.body)
+        ? createPortal(
+            <MusicBar
+              player={player}
+              expanded={expanded}
+              setExpanded={setExpanded}
+            />,
+            document.body,
+          )
         : null}
       {mounted && currentDrawing
         ? createPortal(

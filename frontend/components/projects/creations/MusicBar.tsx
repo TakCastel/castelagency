@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useCallback, type Dispatch, type SetStateAction } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -24,11 +24,19 @@ const iconBtn =
  * Barre de lecture collée en bas de l'écran (rendue dans <body> par le parent).
  * Un clic dessus (hors boutons) déplie la vue « En cours de lecture » avec la file.
  */
-export function MusicBar({ player }: { player: MusicPlayerState }) {
+export function MusicBar({
+  player,
+  expanded,
+  setExpanded,
+}: {
+  player: MusicPlayerState;
+  /** Vue « En cours de lecture » dépliée (pilotée par le fil : un lien de morceau l'ouvre d'office). */
+  expanded: boolean;
+  setExpanded: Dispatch<SetStateAction<boolean>>;
+}) {
   const { current, playing, time, duration, error, toggle, step, seek, close } =
     player;
-  const [expanded, setExpanded] = useState(false);
-  const collapse = useCallback(() => setExpanded(false), []);
+  const collapse = useCallback(() => setExpanded(false), [setExpanded]);
   if (!current) return null;
   const progress = duration ? Math.min(100, (time / duration) * 100) : 0;
 

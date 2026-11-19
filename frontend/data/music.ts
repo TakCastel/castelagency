@@ -30,5 +30,8 @@ export type MusicTrack = {
 export const MUSIC_ARTIST = "Kira Valentine";
 export const MUSIC_PROFILE_URL = "https://suno.com/@kiravalentine";
 export const sunoSongUrl = (id: string) => `https://suno.com/song/${id}`;
+/** Page partageable d'un morceau (pochette en aperçu de partage). */
+export const musicTrackPath = (id: string) => `/creations/musiques/${id}`;
+export const getTrack = (id: string) => data.find((t) => t.id === id) as MusicTrack | undefined;
 
 export const tracks: MusicTrack[] = data;

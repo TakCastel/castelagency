@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { games } from "@/data/games";
+import { musicTrackPath, tracks } from "@/data/music";
 import { servicePages } from "@/data/local-seo";
 import { showcaseProjects } from "@/data/showcase";
 import { getChapterSlugs } from "@/lib/training/course";
@@ -51,12 +52,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const formationEntries: MetadataRoute.Sitemap = getChapterSlugs().map((slug) => ({
-    url: `${BASE_URL}/formation-ia/chapitre/${slug}`,
-    lastModified: new Date(),
+  const formationEntries: MetadataRoute.Sitemap = getChapterSlugs().map(
+    (slug) => ({
+      url: `${BASE_URL}/formation-ia/chapitre/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    }),
+  );
+
+  const trackEntries: MetadataRoute.Sitemap = tracks.map((t) => ({
+    url: `${BASE_URL}${musicTrackPath(t.id)}`,
+    lastModified: t.createdAt ? new Date(t.createdAt) : new Date(),
     changeFrequency: "monthly" as const,
-    priority: 0.65,
+    priority: 0.5,
   }));
 
-  return [...staticEntries, ...serviceEntries, ...gameEntries, ...projectEntries, ...formationEntries];
+  return [
+    ...staticEntries,
+    ...serviceEntries,
+    ...gameEntries,
+    ...projectEntries,
+    ...formationEntries,
+    ...trackEntries,
+  ];
 }

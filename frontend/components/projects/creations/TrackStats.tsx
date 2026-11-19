@@ -41,11 +41,7 @@ export function TrackStats({
         <div className="w-px bg-white/15" aria-hidden="true" />
         <div className="flex flex-col items-center">
           <dt className="order-2 mt-1 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
-            <Heart
-              className="h-3.5 w-3.5 text-castel-red"
-              fill="currentColor"
-              aria-hidden="true"
-            />
+            <Heart className="h-3.5 w-3.5" aria-hidden="true" />
             likes
           </dt>
           <dd className="order-1 font-display text-3xl font-bold tabular-nums text-white">
@@ -71,11 +67,7 @@ export function TrackStats({
         {compact.format(track.plays)}
       </span>
       <span className="inline-flex items-center gap-1">
-        <Heart
-          className="h-3.5 w-3.5 shrink-0 text-castel-red"
-          fill="currentColor"
-          aria-hidden="true"
-        />
+        <Heart className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden="true" />
         {compact.format(track.likes)}
       </span>
     </span>
