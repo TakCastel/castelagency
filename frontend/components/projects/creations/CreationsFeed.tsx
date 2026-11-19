@@ -204,7 +204,7 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
               quality={70}
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <Badge kind="music" />
+            {filter === "all" && <Badge kind="music" />}
             <Overlay visible={active}>
               <span className="flex h-14 w-14 items-center justify-center rounded-full bg-castel-red text-castel-ink shadow-lg">
                 {!t.audio ? (
@@ -268,7 +268,7 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
               blurDataURL={DRAWING_BLUR_DATA_URL}
               className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
             />
-            <Badge kind="drawing" />
+            {filter === "all" && <Badge kind="drawing" />}
             <Overlay visible={false}>
               <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-castel-ink shadow-lg">
                 <Maximize2 className="h-6 w-6" />
@@ -295,7 +295,7 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
             sizes="(min-width: 1024px) 300px, (min-width: 640px) 33vw, 50vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          <Badge kind="book" />
+          {filter === "all" && <Badge kind="book" />}
         </span>
         <span className="block px-3.5 pb-3.5 pt-3">
           <span className="block font-display font-semibold leading-snug text-white">{clean(b.title)}</span>
