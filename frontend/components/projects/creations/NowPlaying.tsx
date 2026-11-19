@@ -22,15 +22,7 @@ export function NowPlaying({
   player: MusicPlayerState;
   onClose: () => void;
 }) {
-  const {
-    current,
-    history,
-    upcoming,
-    seed,
-    currentId,
-    playing,
-    toggle,
-  } = player;
+  const { current, history, upcoming, currentId, playing, toggle } = player;
   const listRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -179,11 +171,6 @@ export function NowPlaying({
             <div className="mt-5 px-2 pb-2">
               <p className="font-display font-semibold text-white">
                 Lecture automatique
-              </p>
-              <p className="mt-0.5 text-sm text-white/50">
-                {seed && seed.id !== current.id
-                  ? `Dans la veine de « ${seed.title} », puis de plus en plus varié`
-                  : "Le même genre d'abord, puis de plus en plus varié"}
               </p>
             </div>
             <ol aria-label="Lecture automatique" className="space-y-1 p-0">
