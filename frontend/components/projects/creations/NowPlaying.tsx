@@ -25,7 +25,15 @@ export function NowPlaying({
   /** Animation de fermeture en cours (le parent démonte la vue juste après). */
   closing?: boolean;
 }) {
-  const { current, history, upcoming, currentId, playing, toggle } = player;
+  const {
+    current,
+    history,
+    listenedAfter,
+    autoplay,
+    currentId,
+    playing,
+    toggle,
+  } = player;
   const listRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -171,6 +179,17 @@ export function NowPlaying({
             <ol className="mt-1 p-0">
               <Row t={current} player={player} />
             </ol>
+            {/* Déjà écoutés après celui-ci (on est revenu en arrière) : ils gardent leur place. */}
+            {listenedAfter.length > 0 && (
+              <ol
+                aria-label="Déjà écoutés, à suivre"
+                className="mt-1 space-y-1 p-0"
+              >
+                {listenedAfter.map((t) => (
+                  <Row key={t.id} t={t} player={player} />
+                ))}
+              </ol>
+            )}
             <div className="mt-5 flex items-center justify-between gap-3 px-2 pb-2">
               <p className="font-display font-semibold text-white">
                 Lecture automatique
@@ -201,7 +220,7 @@ export function NowPlaying({
               </div>
             </div>
             <ol aria-label="Lecture automatique" className="space-y-1 p-0">
-              {upcoming.map((t) => (
+              {autoplay.map((t) => (
                 <Row key={t.id} t={t} player={player} />
               ))}
             </ol>
@@ -220,7 +239,7 @@ function Row({ t, player }: { t: MusicTrack; player: MusicPlayerState }) {
     <li className="list-none">
       <button
         type="button"
-        onClick={() => playTrack(t)}
+        onClick={() => playTrack(t, true)}
         aria-current={active ? "true" : undefined}
         className={`group flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors ${active ? "bg-white/15" : "hover:bg-white/10"}`}
       >

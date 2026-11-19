@@ -9,35 +9,41 @@ import { autoplayFrom, type AutoplayMode } from "./suggestions";
 /**
  * Lecteur audio unique pour tout le site (monté par MusicPlayerProvider dans le layout racine).
  *
- * File façon YouTube Music : `history` (déjà écoutés, en haut), `current`, puis `upcoming`,
- * une lecture automatique calculée depuis le morceau choisi (`seed`) : même genre d'abord,
- * puis de plus en plus éloigné (voir suggestions.ts). Le catalogue est fourni par la page
- * des musiques (`setCatalog`) et conservé quand on change de page.
+ * File façon YouTube Music : une seule liste ordonnée `items` et un curseur `pos` (morceau en cours).
+ * - avant le curseur : déjà écoutés ; cliquer dessus déplace le curseur, la liste ne bouge pas ;
+ * - entre le curseur et `reached` (le plus loin écouté) : écoutés après, ils restent à leur place ;
+ * - après `reached` : la lecture automatique (Sélection par genre ou Aléatoire, voir suggestions.ts),
+ *   seule partie recalculée quand on change de mode.
+ * Le catalogue vient de la page des musiques (`setCatalog`) et reste connu en changeant de page.
  */
-const HISTORY_MAX = 50;
 const MODE_KEY = "castel:autoplay-mode";
 
 export function useMusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [catalog, setCatalogState] = useState<MusicTrack[]>([]);
-  const [current, setCurrent] = useState<MusicTrack | null>(null);
-  const [seed, setSeed] = useState<MusicTrack | null>(null);
-  const [mode, setModeState] = useState<AutoplayMode>("selection");
-  // Le choix Sélection / Aléatoire est mémorisé dans le navigateur : il survit au rechargement
-  // de la page (lien de morceau ouvert, nouvelle version du site…).
-  useEffect(() => {
+  const [items, setItems] = useState<MusicTrack[]>([]);
+  const [pos, setPos] = useState(-1);
+  const [reached, setReached] = useState(-1);
+  // Choix Sélection / Aléatoire mémorisé dans le navigateur, lu dès le premier rendu (le mode
+  // n'apparaît pas dans le HTML serveur, pas de souci d'hydratation).
+  const [mode, setModeState] = useState<AutoplayMode>(() => {
+    if (typeof window === "undefined") return "selection";
     try {
-      if (localStorage.getItem(MODE_KEY) === "shuffle") setModeState("shuffle");
+      return localStorage.getItem(MODE_KEY) === "shuffle"
+        ? "shuffle"
+        : "selection";
     } catch {
-      // stockage indisponible (navigation privée…) : on garde Sélection
+      return "selection"; // stockage indisponible (navigation privée…)
     }
-  }, []);
-  const [history, setHistory] = useState<MusicTrack[]>([]);
-  const [upcoming, setUpcoming] = useState<MusicTrack[]>([]);
+  });
+  /** Mode avec lequel la lecture automatique a été calculée : s'il diffère du mode coché, on recalcule. */
+  const [autoMode, setAutoMode] = useState<AutoplayMode>(mode);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [error, setError] = useState(false);
+
+  const current = pos >= 0 ? (items[pos] ?? null) : null;
   const currentId = current?.id ?? null;
 
   /** Toutes les musiques (suggestions). Une liste vide ne remplace pas celle déjà connue. */
@@ -54,12 +60,11 @@ export function useMusicPlayer() {
     });
   }, []);
 
-  /** Bas niveau : met `t` dans le lecteur (sans toucher à la file). */
+  /** Bas niveau : met `t` dans l'élément audio. */
   const load = useCallback(
     (t: MusicTrack, autoplay: boolean) => {
       const audio = audioRef.current;
       if (!audio || !t.audio) return false;
-      setCurrent(t);
       setError(false);
       setTime(0);
       setDuration(t.duration);
@@ -70,31 +75,54 @@ export function useMusicPlayer() {
     [play],
   );
 
-  const pushHistory = useCallback((t: MusicTrack | null) => {
-    if (!t) return;
-    setHistory((h) =>
-      [...h.filter((x) => x.id !== t.id), t].slice(-HISTORY_MAX),
-    );
-  }, []);
+  /** Lecture automatique après les morceaux `kept`, à partir de `seedTrack`. */
+  const autoAfter = useCallback(
+    (seedTrack: MusicTrack, kept: MusicTrack[], m: AutoplayMode) =>
+      autoplayFrom(seedTrack, catalog, new Set(kept.map((x) => x.id)), m),
+    [catalog],
+  );
 
-  /** Nouveau point de départ : le morceau choisi + sa lecture automatique. */
-  const startFrom = useCallback(
-    (t: MusicTrack, autoplay: boolean) => {
-      if (!load(t, autoplay)) return;
-      pushHistory(current);
-      setSeed(t);
-      const played = new Set([...history.map((x) => x.id), current?.id ?? ""]);
-      setUpcoming(autoplayFrom(t, catalog, played, mode));
+  /** Saute à l'index `i` de la file, sans rien réordonner. */
+  const goTo = useCallback(
+    (i: number, autoplay = true) => {
+      const t = items[i];
+      if (!t || !load(t, autoplay)) return;
+      setPos(i);
+      setReached((r) => Math.max(r, i));
     },
-    [load, pushHistory, current, history, catalog, mode],
+    [items, load],
   );
 
   /**
-   * Clic sur un morceau. Déjà en cours : lecture/pause. Dans la file (« À suivre » ou
-   * déjà écouté) : on y saute sans recalculer. Ailleurs (cartes, fiche) : nouvelle lecture automatique.
+   * Choix d'un morceau. Déjà écouté (dans la partie écoutée de la file) : on y retourne, rien ne bouge.
+   * Sinon il passe juste après les morceaux écoutés : depuis la file, le reste de la lecture
+   * automatique est conservé (`keepAuto`) ; depuis une carte ou une fiche, une nouvelle lecture
+   * automatique part de lui. Rien n'est jamais compté comme écouté sans l'avoir été.
+   */
+  const startFrom = useCallback(
+    (t: MusicTrack, autoplay: boolean, keepAuto = false) => {
+      const lastHeard = Math.max(reached, pos);
+      const i = items.findIndex((x) => x.id === t.id);
+      if (i >= 0 && i <= lastHeard) return goTo(i, autoplay);
+      if (!load(t, autoplay)) return;
+      const kept = [...items.slice(0, lastHeard + 1), t];
+      const rest = keepAuto
+        ? items.slice(lastHeard + 1).filter((x) => x.id !== t.id)
+        : autoAfter(t, kept, mode);
+      setItems([...kept, ...rest]);
+      setPos(kept.length - 1);
+      setReached(kept.length - 1);
+      if (!keepAuto) setAutoMode(mode);
+    },
+    [items, reached, pos, mode, load, goTo, autoAfter],
+  );
+
+  /**
+   * Clic sur un morceau : en cours → lecture/pause. `fromQueue` : clic dans la file
+   * (la suite de la lecture automatique est gardée), sinon carte / fiche.
    */
   const playTrack = useCallback(
-    (t: MusicTrack) => {
+    (t: MusicTrack, fromQueue = false) => {
       const audio = audioRef.current;
       if (!audio || !t.audio) return;
       if (t.id === currentId) {
@@ -102,22 +130,26 @@ export function useMusicPlayer() {
         else audio.pause();
         return;
       }
-      const inUpcoming = upcoming.some((x) => x.id === t.id);
-      const inHistory = history.some((x) => x.id === t.id);
-      if (!inUpcoming && !inHistory) return startFrom(t, true);
-      if (!load(t, true)) return;
-      if (inUpcoming) {
-        pushHistory(current);
-        setUpcoming((u) => u.filter((x) => x.id !== t.id));
-      } else {
-        setHistory((h) => h.filter((x) => x.id !== t.id));
-        if (current) setUpcoming((u) => [current, ...u]);
-      }
+      startFrom(t, true, fromQueue);
     },
-    [currentId, upcoming, history, current, play, load, startFrom, pushHistory],
+    [currentId, play, startFrom],
   );
 
-  /** Sélection (par genre) ou Aléatoire : la suite est recalculée depuis le morceau en cours, sans couper le son. */
+  /** Charge un morceau sans le lancer (lien partagé : le navigateur interdit la lecture automatique). */
+  const cue = useCallback((t: MusicTrack) => startFrom(t, false), [startFrom]);
+
+  /** Recalcule la lecture automatique (après les morceaux écoutés) avec le mode `m`. */
+  const refillAuto = useCallback(
+    (m: AutoplayMode) => {
+      if (!current) return;
+      const kept = items.slice(0, Math.max(reached, pos) + 1);
+      setItems([...kept, ...autoAfter(current, kept, m)]);
+      setAutoMode(m);
+    },
+    [current, items, reached, pos, autoAfter],
+  );
+
+  /** Sélection (par genre) ou Aléatoire, sans couper le son ni toucher aux morceaux écoutés. */
   const setMode = useCallback(
     (m: AutoplayMode) => {
       setModeState(m);
@@ -126,51 +158,41 @@ export function useMusicPlayer() {
       } catch {
         // stockage indisponible : le choix vaut pour cette visite
       }
-      if (!current) return;
-      setSeed(current);
-      setUpcoming(
-        autoplayFrom(current, catalog, new Set(history.map((x) => x.id)), m),
-      );
+      refillAuto(m);
     },
-    [current, catalog, history],
+    [refillAuto],
   );
 
-  /** Charge un morceau sans le lancer (lien partagé : le navigateur interdit la lecture automatique). */
-  const cue = useCallback((t: MusicTrack) => startFrom(t, false), [startFrom]);
+  // Filet de sécurité : la lecture automatique affichée correspond toujours au mode coché.
+  useEffect(() => {
+    if (current && autoMode !== mode) refillAuto(mode);
+  }, [current, autoMode, mode, refillAuto]);
 
   const step = useCallback(
     (d: number) => {
       const audio = audioRef.current;
       if (d < 0) {
-        // Comme partout : on revient au début du morceau, ou au précédent s'il vient de commencer.
+        // Comme partout : début du morceau s'il a dépassé 3 s, sinon le précédent.
         if (audio && audio.currentTime > 3) {
           audio.currentTime = 0;
           return;
         }
-        const prev = history[history.length - 1];
-        if (!prev || !load(prev, true)) return;
-        setHistory((h) => h.slice(0, -1));
-        if (current) setUpcoming((u) => [current, ...u]);
+        if (pos > 0) goTo(pos - 1);
         return;
       }
-      let next = upcoming[0];
-      let rest = upcoming.slice(1);
-      if (!next && current) {
-        // Fin de la lecture automatique : on repart du morceau en cours.
-        const fresh = autoplayFrom(
-          current,
-          catalog,
-          new Set(history.map((x) => x.id)),
-          mode,
-        );
-        next = fresh[0];
-        rest = fresh.slice(1);
-      }
+      if (pos + 1 < items.length) return goTo(pos + 1);
+      // Fin de la file : on prolonge la lecture automatique depuis le morceau en cours
+      // (et si tout a été écouté, on repart sur tout le catalogue).
+      if (!current) return;
+      let more = autoAfter(current, items, mode);
+      if (!more.length) more = autoAfter(current, [current], mode);
+      const next = more[0];
       if (!next || !load(next, true)) return;
-      pushHistory(current);
-      setUpcoming(rest);
+      setItems((list) => [...list, ...more]);
+      setPos(items.length);
+      setReached(items.length);
     },
-    [history, upcoming, current, catalog, mode, load, pushHistory],
+    [pos, items, current, mode, goTo, autoAfter, load],
   );
 
   const toggle = useCallback(() => {
@@ -193,12 +215,16 @@ export function useMusicPlayer() {
     audio?.pause();
     audio?.removeAttribute("src");
     audio?.load();
-    setCurrent(null);
-    setSeed(null);
-    setHistory([]);
-    setUpcoming([]);
+    setItems([]);
+    setPos(-1);
+    setReached(-1);
     setPlaying(false);
   }, []);
+
+  // Découpage pour l'affichage de la file.
+  const history = pos > 0 ? items.slice(0, pos) : [];
+  const listenedAfter = pos >= 0 ? items.slice(pos + 1, reached + 1) : [];
+  const autoplay = items.slice(Math.max(reached, pos) + 1);
 
   // Écran verrouillé / touches multimédia du clavier.
   useEffect(() => {
@@ -242,8 +268,8 @@ export function useMusicPlayer() {
   return {
     audioProps,
     history,
-    upcoming,
-    seed,
+    listenedAfter,
+    autoplay,
     mode,
     setMode,
     current,
