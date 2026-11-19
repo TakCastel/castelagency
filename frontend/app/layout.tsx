@@ -5,6 +5,7 @@ import "./globals.css";
 import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
+import { PageTransition } from "@/components/site/PageTransition";
 
 const poppins = Poppins({
   weight: ["600", "700"],
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ConsentAwareAnalytics />
         <AnalyticsPageView />
         {children}
+        <PageTransition />
         <CookieConsentBanner />
       </body>
     </html>
