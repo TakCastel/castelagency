@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, type Dispatch, type SetStateAction } from "react";
+import {
+  useCallback,
+  useEffect,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -37,6 +42,29 @@ export function MusicBar({
   const { current, playing, time, duration, error, toggle, step, seek, close } =
     player;
   const collapse = useCallback(() => setExpanded(false), [setExpanded]);
+
+  // Espace = lecture/pause, partout sur la page tant qu'un morceau est chargé (comme YouTube Music).
+  // Sauf en tapant du texte (recherche). preventDefault : ni défilement de la page, ni clic du bouton
+  // qui aurait gardé le focus (« suivant » enchaînerait un morceau en plus de la pause).
+  const hasTrack = !!current;
+  useEffect(() => {
+    if (!hasTrack) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code !== "Space" || e.repeat || e.ctrlKey || e.metaKey || e.altKey)
+        return;
+      const el = e.target as HTMLElement | null;
+      const typing =
+        el?.isContentEditable ||
+        el?.tagName === "TEXTAREA" ||
+        el?.tagName === "SELECT" ||
+        (el?.tagName === "INPUT" && (el as HTMLInputElement).type !== "range");
+      if (typing) return;
+      e.preventDefault();
+      toggle();
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [hasTrack, toggle]);
   if (!current) return null;
   const progress = duration ? Math.min(100, (time / duration) * 100) : 0;
 
