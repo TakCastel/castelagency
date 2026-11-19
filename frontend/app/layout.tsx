@@ -6,6 +6,7 @@ import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 import { PageTransition } from "@/components/site/PageTransition";
+import { KonamiEgg } from "@/components/KonamiEgg";
 import { JsonLd, organizationJsonLd } from "@/lib/jsonld";
 
 const poppins = Poppins({
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <PageTransition />
         <CookieConsentBanner />
+        <KonamiEgg />
       </body>
     </html>
   );
