@@ -10,8 +10,7 @@ import { getAllChapterSlugs, getChapterMarkdown } from "@/lib/training/load-mark
 import { parseQcmFromMarkdown } from "@/lib/training/parse-qcm-from-markdown";
 import { FORMATION_CHAPTER_OUTER } from "@/lib/training/formation-container";
 import { cn } from "@/lib/utils";
-
-const SITE_URL = "https://studio-castel.com";
+import { socialMeta } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -44,13 +43,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | Studio Castel`,
     description,
-    openGraph: {
+    ...socialMeta({
       title: `${title} | Studio Castel`,
       description,
+      path: `/formation-ia/chapitre/${slug}`,
       type: "article",
-      locale: "fr_FR",
-      url: `${SITE_URL}/formation-ia/chapitre/${slug}`,
-    },
+    }),
     alternates: {
       canonical: `/formation-ia/chapitre/${slug}`,
     },

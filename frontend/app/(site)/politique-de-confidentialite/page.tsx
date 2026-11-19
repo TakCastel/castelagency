@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
 import { CONTACT_EMAIL } from "@/data/games";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description: "Politique de confidentialité et protection des données personnelles, Studio Castel.",
   robots: { index: true, follow: true },
   alternates: { canonical: "/politique-de-confidentialite" },
+  ...socialMeta({
+    title: "Politique de confidentialité | Studio Castel",
+    description:
+      "Politique de confidentialité et protection des données personnelles, Studio Castel.",
+    path: "/politique-de-confidentialite",
+  }),
 };
 
 const linkCls = "text-[#D61F1F] underline underline-offset-4";

@@ -5,8 +5,7 @@ import { TrainingProse } from "@/components/training/TrainingProse";
 import { getPageDeGardeMarkdown } from "@/lib/training/load-markdown";
 import { FORMATION_CONTENT_CONTAINER } from "@/lib/training/formation-container";
 import { cn } from "@/lib/utils";
-
-const SITE_URL = "https://studio-castel.com";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Feuille de route du parcours",
@@ -15,14 +14,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/formation-ia/feuille-de-route",
   },
-  openGraph: {
+  ...socialMeta({
     title: "Feuille de route · Guide pratique IA | Studio Castel",
     description:
       "Guide du parcours : objectifs, prérequis, ordre de lecture, sommaire, accompagnement et formations en entreprise sur devis.",
+    path: "/formation-ia/feuille-de-route",
     type: "article",
-    locale: "fr_FR",
-    url: `${SITE_URL}/formation-ia/feuille-de-route`,
-  },
+  }),
 };
 
 export default async function FormationFeuilleDeRoutePage() {

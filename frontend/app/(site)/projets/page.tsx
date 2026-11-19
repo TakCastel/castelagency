@@ -3,11 +3,18 @@ import Link from "next/link";
 
 import { FeaturedProjectCard, ProjectCard } from "@/components/projects/ProjectCard";
 import { showcaseProjects, type ProjectKind } from "@/data/showcase";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Les projets",
   description: "Les apps, les sites et le guide faits par Studio Castel, en plus des jeux.",
   alternates: { canonical: "/projets" },
+  ...socialMeta({
+    title: "Les projets | Studio Castel",
+    description:
+      "Les apps, les sites et le guide faits par Studio Castel, en plus des jeux.",
+    path: "/projets",
+  }),
 };
 
 const GROUPS: { kind: ProjectKind; title: string }[] = [

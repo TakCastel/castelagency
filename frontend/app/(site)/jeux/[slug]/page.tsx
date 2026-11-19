@@ -7,6 +7,7 @@ import { GameCover } from "@/components/site/GameCover";
 import { ScreenshotGallery } from "@/components/site/ScreenshotGallery";
 import { games, getGame } from "@/data/games";
 import { gameJsonLd, JsonLd } from "@/lib/jsonld";
+import { socialMeta } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -27,29 +28,14 @@ export async function generateMetadata({
     title: game.name,
     description,
     alternates: { canonical: `/jeux/${game.slug}` },
-    openGraph: {
+    ...socialMeta({
       title: game.name,
       description,
-      type: "website",
-      ...(game.cover
-        ? {
-            images: [
-              {
-                url: game.cover.src,
-                width: game.cover.width,
-                height: game.cover.height,
-                alt: game.cover.alt,
-              },
-            ],
-          }
-        : {}),
-    },
-    twitter: {
-      card: game.cover ? "summary_large_image" : "summary",
-      title: game.name,
-      description,
-      ...(game.cover ? { images: [game.cover.src] } : {}),
-    },
+      path: `/jeux/${game.slug}`,
+      images: game.cover
+        ? [{ url: game.cover.src, width: game.cover.width, height: game.cover.height, alt: game.cover.alt }]
+        : undefined,
+    }),
   };
 }
 

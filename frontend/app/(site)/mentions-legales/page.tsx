@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 
 import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
 import { CONTACT_EMAIL } from "@/data/games";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site Studio Castel, studio indépendant (jeux, apps et sites) à Avignon.",
   robots: { index: false, follow: true },
   alternates: { canonical: "/mentions-legales" },
+  ...socialMeta({
+    title: "Mentions légales | Studio Castel",
+    description:
+      "Mentions légales du site Studio Castel, studio indépendant (jeux, apps et sites) à Avignon.",
+    path: "/mentions-legales",
+  }),
 };
 
 export default function MentionsLegalesPage() {

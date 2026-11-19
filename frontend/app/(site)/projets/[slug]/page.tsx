@@ -10,6 +10,7 @@ import { clean, KIND_LABEL } from "@/components/projects/text";
 import { Button } from "@/components/site/Button";
 import { getShowcaseProject, showcaseProjects } from "@/data/showcase";
 import { JsonLd, projectJsonLd } from "@/lib/jsonld";
+import { socialMeta } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -26,8 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: p.title,
     description,
     alternates: { canonical: `/projets/${p.id}` },
-    openGraph: { title: p.title, description, type: "website", images: [{ url: p.image, alt: p.imageAlt }] },
-    twitter: { card: "summary_large_image", title: p.title, description, images: [p.image] },
+    ...socialMeta({ title: p.title, description, path: `/projets/${p.id}`, images: [{ url: p.image, alt: p.imageAlt }] }),
   };
 }
 

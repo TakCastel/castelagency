@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/site/ContactForm";
 import { ContactIntro } from "@/components/site/ContactIntro";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Écrire à Studio Castel, studio indépendant à Avignon : un projet de jeu, d'app ou de site, une question sur un jeu. Réponse sous 48 h.",
   alternates: { canonical: "/contact" },
+  ...socialMeta({
+    title: "Contact | Studio Castel",
+    description:
+      "Écrire à Studio Castel, studio indépendant à Avignon : un projet de jeu, d'app ou de site, une question sur un jeu. Réponse sous 48 h.",
+    path: "/contact",
+  }),
 };
 
 export default function ContactPage() {

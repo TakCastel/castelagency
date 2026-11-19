@@ -13,6 +13,7 @@ import { games } from "@/data/games";
 import { BUSINESS, getServicePage, NEARBY_CITIES, REGION_CITIES, servicePages } from "@/data/local-seo";
 import { showcaseProjects } from "@/data/showcase";
 import { breadcrumbJsonLd, faqJsonLd, JsonLd, serviceJsonLd } from "@/lib/jsonld";
+import { socialMeta } from "@/lib/seo";
 
 type Params = { service: string };
 
@@ -30,8 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: page.metaTitle,
     description: page.metaDescription,
     alternates: { canonical: `/${page.slug}` },
-    openGraph: { title: page.metaTitle, description: page.metaDescription, type: "website", url: `/${page.slug}` },
-    twitter: { card: "summary_large_image", title: page.metaTitle, description: page.metaDescription },
+    ...socialMeta({ title: page.metaTitle, description: page.metaDescription, path: `/${page.slug}` }),
   };
 }
 

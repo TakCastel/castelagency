@@ -7,21 +7,18 @@ import { Button } from "@/components/ui/button";
 import { TRAINING_CHAPTERS } from "@/lib/training/course";
 import { FORMATION_CONTENT_CONTAINER } from "@/lib/training/formation-container";
 import { cn } from "@/lib/utils";
-
-const SITE_URL = "https://studio-castel.com";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Guide pratique IA & développement web",
   description:
     "Sécurité, assistants d’édition, prompts, BMAD, GEO, intégration produit, TP et QCM pour le web.",
-  openGraph: {
+  ...socialMeta({
     title: "Guide pratique IA & développement web | Studio Castel",
     description:
       "Sécurité, assistants dans l’éditeur, prompts, BMAD, GEO, intégration produit, TP et QCM pour le web.",
-    type: "website",
-    locale: "fr_FR",
-    url: `${SITE_URL}/formation-ia`,
-  },
+    path: "/formation-ia",
+  }),
   alternates: {
     canonical: "/formation-ia",
   },

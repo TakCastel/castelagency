@@ -10,12 +10,19 @@ import { ContactIntro } from "@/components/site/ContactIntro";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { Hero } from "@/components/site/home/Hero";
+import { socialMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { absolute: "Studio Castel, création de sites, apps et jeux à Avignon" },
   description:
     "Studio indépendant à Avignon (Vaucluse) : création de sites internet, développement d'applications web et mobiles et de jeux vidéo, de A à Z. Pour Avignon, le Vaucluse et toute la région PACA.",
   alternates: { canonical: "/" },
+  ...socialMeta({
+    title: "Studio Castel, création de sites, apps et jeux à Avignon",
+    description:
+      "Studio indépendant à Avignon (Vaucluse) : création de sites internet, développement d'applications web et mobiles et de jeux vidéo, de A à Z. Pour Avignon, le Vaucluse et toute la région PACA.",
+    path: "/",
+  }),
 };
 
 /** Libellés courts des services sur l'accueil (le libellé complet reste dans aria-label). */

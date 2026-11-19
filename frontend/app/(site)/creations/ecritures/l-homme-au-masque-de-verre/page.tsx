@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { books } from "@/data/books";
+import { socialMeta } from "@/lib/seo";
 
 const book = books.find((b) => b.id === "homme-masque-verre")!;
 
@@ -12,7 +13,12 @@ export const metadata: Metadata = {
   title: book.title,
   description: book.description,
   alternates: { canonical: book.internalPath },
-  openGraph: { title: book.title, description: book.description, images: [{ url: book.image, alt: book.imageAlt }] },
+  ...socialMeta({
+    title: book.title,
+    description: book.description,
+    path: book.internalPath,
+    images: [{ url: book.image, alt: book.imageAlt }],
+  }),
 };
 
 const decode = (s: string) =>
