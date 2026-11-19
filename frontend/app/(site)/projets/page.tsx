@@ -34,7 +34,7 @@ export default function ProjetsPage() {
           Les projets
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white">
-          Des apps et des sites conçus et développés de A à vignon. Les jeux ont leur propre page.{" "}
+          Des apps et des sites conçus et développés de A à Z. Les jeux ont leur propre page.{" "}
           <Link href="/#jeux" className="underline underline-offset-4 hover:text-castel-red">
             Voir les jeux
           </Link>
