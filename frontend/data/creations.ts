@@ -49,7 +49,7 @@ export const creationSections: CreationSection[] = [
     heading: "Musiques",
     intro: `${tracks.length} morceaux composés avec Suno, entre psytrance, phonk, chœurs et orchestres.`,
     metaTitle: "Musiques originales à écouter",
-    description: `Écouter ${tracks.length} morceaux originaux composés avec Suno : psytrance, phonk, électro, orchestral et chœurs. Lecture directe sur le site, du plus écouté au moins écouté.`,
+    description: `Écouter ${tracks.length} morceaux originaux composés avec Suno : psytrance, phonk, électro, orchestral et chœurs. Lecture directe sur le site, des plus aimés aux moins aimés.`,
   },
   {
     filter: "drawing",

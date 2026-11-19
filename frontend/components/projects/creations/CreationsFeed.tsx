@@ -3,17 +3,42 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 import { createPortal } from "react-dom";
-import { ArrowRight, ArrowUpRight, BookOpen, Check, ExternalLink, Maximize2, Music2, Pause, PenLine, Play, Search, Share2 } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  Check,
+  ExternalLink,
+  Maximize2,
+  Music2,
+  Pause,
+  PenLine,
+  Play,
+  Search,
+  Share2,
+} from "lucide-react";
 
 import type { BookItem } from "@/data/books";
-import { creationPath, creationSections, sectionByPath } from "@/data/creations";
+import {
+  creationPath,
+  creationSections,
+  sectionByPath,
+} from "@/data/creations";
 import { DRAWING_BLUR_DATA_URL, type DrawingItem } from "@/data/drawings";
 import { sunoSongUrl, type MusicTrack } from "@/data/music";
 import { clean } from "../text";
 import { DrawingLightbox } from "./DrawingLightbox";
 import { MusicBar } from "./MusicBar";
+import { TrackStats } from "./TrackStats";
 import { formatTime, useMusicPlayer } from "./useMusicPlayer";
 
 type Kind = "music" | "drawing" | "book";
@@ -25,7 +50,10 @@ type Item =
 const PAGE = 36;
 
 /** Libellé et icône par type. */
-const KINDS: Record<Kind, { label: string; plural: string; icon: typeof Music2 }> = {
+const KINDS: Record<
+  Kind,
+  { label: string; plural: string; icon: typeof Music2 }
+> = {
   music: { label: "Musique", plural: "Musiques", icon: Music2 },
   drawing: { label: "Dessin", plural: "Dessins", icon: PenLine },
   book: { label: "Écrit", plural: "Écrits", icon: BookOpen },
@@ -64,34 +92,65 @@ function estimateHeight(item: Item) {
   return item.drawing.height / item.drawing.width + 0.25;
 }
 
-/** Musiques triées par écoutes ; dessins et écrits (du plus récent au plus ancien) glissés toutes les 3 cartes. */
-function weave(tracks: MusicTrack[], drawings: DrawingItem[], books: BookItem[]): Item[] {
-  const music: Item[] = tracks.map((track) => ({ kind: "music", key: `m-${track.id}`, track }));
+/** Musiques triées par un mix likes + écoutes ; dessins et écrits (du plus récent au plus ancien) glissés toutes les 3 cartes. */
+function weave(
+  tracks: MusicTrack[],
+  drawings: DrawingItem[],
+  books: BookItem[],
+): Item[] {
+  const music: Item[] = tracks.map((track) => ({
+    kind: "music",
+    key: `m-${track.id}`,
+    track,
+  }));
   const others: (Item & { year: number })[] = [
-    ...drawings.map((drawing) => ({ kind: "drawing" as const, key: `d-${drawing.id}`, drawing, year: drawing.date ?? 0 })),
-    ...books.map((book) => ({ kind: "book" as const, key: `b-${book.id}`, book, year: book.year ?? 0 })),
+    ...drawings.map((drawing) => ({
+      kind: "drawing" as const,
+      key: `d-${drawing.id}`,
+      drawing,
+      year: drawing.date ?? 0,
+    })),
+    ...books.map((book) => ({
+      kind: "book" as const,
+      key: `b-${book.id}`,
+      book,
+      year: book.year ?? 0,
+    })),
   ].sort((a, b) => b.year - a.year);
   const out: Item[] = [];
   let m = 0;
   let o = 0;
   while (m < music.length || o < others.length) {
-    if ((out.length % 3 === 1 && o < others.length) || m >= music.length) out.push(others[o++]);
+    if ((out.length % 3 === 1 && o < others.length) || m >= music.length)
+      out.push(others[o++]);
     else out.push(music[m++]);
   }
   return out;
 }
 
 const matches = (item: Item, q: string) => {
-  if (item.kind === "music") return `${item.track.title} ${item.track.tags}`.toLowerCase().includes(q);
-  if (item.kind === "drawing") return `${item.drawing.title ?? ""} ${item.drawing.alt}`.toLowerCase().includes(q);
-  return `${item.book.title} ${item.book.description}`.toLowerCase().includes(q);
+  if (item.kind === "music")
+    return `${item.track.title} ${item.track.tags}`.toLowerCase().includes(q);
+  if (item.kind === "drawing")
+    return `${item.drawing.title ?? ""} ${item.drawing.alt}`
+      .toLowerCase()
+      .includes(q);
+  return `${item.book.title} ${item.book.description}`
+    .toLowerCase()
+    .includes(q);
 };
 
 const cardCls =
   "group relative block w-full overflow-hidden rounded-chip bg-castel-surface text-left ring-2 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
 
 /** Gros bouton rond au centre de l'image, visible au survol (ou en permanence pour le morceau en cours). */
-function Overlay({ visible, children }: { visible: boolean; children: ReactNode }) {
+function Overlay({
+  visible,
+  children,
+}: {
+  visible: boolean;
+  children: ReactNode;
+}) {
   return (
     <span
       className={`absolute inset-0 flex items-center justify-center bg-castel-ink/35 transition-opacity ${visible ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"}`}
@@ -103,19 +162,34 @@ function Overlay({ visible, children }: { visible: boolean; children: ReactNode 
 
 function Equalizer({ playing }: { playing: boolean }) {
   return (
-    <span className="flex h-3.5 shrink-0 items-end gap-[2px]" aria-hidden="true">
+    <span
+      className="flex h-3.5 shrink-0 items-end gap-[2px]"
+      aria-hidden="true"
+    >
       {[0, 1, 2].map((i) => (
         <span
           key={i}
           className={`w-[3px] rounded-sm bg-castel-red ${playing ? "animate-[eq_0.9s_ease-in-out_infinite]" : "h-1"}`}
-          style={playing ? { animationDelay: `${i * 0.18}s`, height: "100%" } : undefined}
+          style={
+            playing
+              ? { animationDelay: `${i * 0.18}s`, height: "100%" }
+              : undefined
+          }
         />
       ))}
     </span>
   );
 }
 
-export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[]; drawings: DrawingItem[]; books: BookItem[] }) {
+export function CreationsFeed({
+  tracks,
+  drawings,
+  books,
+}: {
+  tracks: MusicTrack[];
+  drawings: DrawingItem[];
+  books: BookItem[];
+}) {
   // Le filtre vient de l'URL (/creations/musiques…) : chaque vue est une vraie page, partageable et indexée.
   const pathname = usePathname();
   const section = sectionByPath(pathname);
@@ -129,21 +203,38 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
 
   useEffect(() => setMounted(true), []);
 
-  const all = useMemo(() => weave(tracks, drawings, books), [tracks, drawings, books]);
+  const all = useMemo(
+    () => weave(tracks, drawings, books),
+    [tracks, drawings, books],
+  );
   const counts = useMemo(
-    () => ({ all: all.length, music: tracks.length, drawing: drawings.length, book: books.length }),
+    () => ({
+      all: all.length,
+      music: tracks.length,
+      drawing: drawings.length,
+      book: books.length,
+    }),
     [all.length, tracks.length, drawings.length, books.length],
   );
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return all.filter((it) => (filter === "all" || it.kind === filter) && (!q || matches(it, q)));
+    return all.filter(
+      (it) =>
+        (filter === "all" || it.kind === filter) && (!q || matches(it, q)),
+    );
   }, [all, filter, query]);
   const shown = filtered.slice(0, visible);
 
   // File de lecture = musiques de la liste filtrée ; flèches de la modale = dessins de la liste filtrée.
-  const queueTracks = useMemo(() => filtered.flatMap((it) => (it.kind === "music" ? [it.track] : [])), [filtered]);
-  const shownDrawings = useMemo(() => filtered.flatMap((it) => (it.kind === "drawing" ? [it.drawing] : [])), [filtered]);
+  const queueTracks = useMemo(
+    () => filtered.flatMap((it) => (it.kind === "music" ? [it.track] : [])),
+    [filtered],
+  );
+  const shownDrawings = useMemo(
+    () => filtered.flatMap((it) => (it.kind === "drawing" ? [it.drawing] : [])),
+    [filtered],
+  );
   const player = useMusicPlayer(tracks, queueTracks);
 
   // Répartition dans la colonne la plus courte : les cartes déjà affichées ne bougent pas quand on en charge d'autres.
@@ -160,7 +251,10 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
 
   const closeDrawing = useCallback(() => setOpenDrawing(null), []);
   const stepDrawing = useCallback(
-    (d: number) => setOpenDrawing((i) => (i === null ? i : (i + d + shownDrawings.length) % shownDrawings.length)),
+    (d: number) =>
+      setOpenDrawing((i) =>
+        i === null ? i : (i + d + shownDrawings.length) % shownDrawings.length,
+      ),
     [shownDrawings.length],
   );
 
@@ -170,7 +264,9 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
   // Partage natif sur mobile, sinon copie du lien de la vue en cours.
   const share = async () => {
     const url = window.location.origin + creationPath(section);
-    const nav = navigator as Navigator & { share?: (d: ShareData) => Promise<void> };
+    const nav = navigator as Navigator & {
+      share?: (d: ShareData) => Promise<void>;
+    };
     if (nav.share && window.matchMedia("(pointer: coarse)").matches) {
       try {
         await nav.share({ title: `${section.heading} | Studio Castel`, url });
@@ -220,13 +316,22 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
           <span className="block px-3.5 pb-3.5 pt-3">
             <span className="flex items-center gap-2">
               {active && <Equalizer playing={isPlaying} />}
-              <span className={`truncate font-display font-semibold ${active ? "text-castel-red" : "text-white"}`}>{t.title}</span>
+              <span
+                className={`truncate font-display font-semibold ${active ? "text-castel-red" : "text-white"}`}
+              >
+                {t.title}
+              </span>
             </span>
             <span className="mt-0.5 flex items-center gap-1.5 text-sm text-white/55">
-              <Play className="h-3 w-3 shrink-0" fill="currentColor" aria-hidden="true" />
+              <Play
+                className="h-3 w-3 shrink-0"
+                fill="currentColor"
+                aria-hidden="true"
+              />
               <span className="tabular-nums">{formatTime(t.duration)}</span>
               {t.tags && <span className="truncate">· {t.tags}</span>}
             </span>
+            <TrackStats track={t} className="mt-1 text-sm text-white/55" />
           </span>
         </>
       );
@@ -242,7 +347,13 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
           {media}
         </button>
       ) : (
-        <a href={sunoSongUrl(t.id)} target="_blank" rel="noopener noreferrer" aria-label={`Musique : écouter ${t.title} sur Suno`} className={cls}>
+        <a
+          href={sunoSongUrl(t.id)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Musique : écouter ${t.title} sur Suno`}
+          className={cls}
+        >
           {media}
         </a>
       );
@@ -253,7 +364,9 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
       return (
         <button
           type="button"
-          onClick={() => setOpenDrawing(shownDrawings.findIndex((x) => x.id === d.id))}
+          onClick={() =>
+            setOpenDrawing(shownDrawings.findIndex((x) => x.id === d.id))
+          }
           aria-label={`Dessin : agrandir ${d.title ?? d.alt}`}
           className={`${cardCls} ring-transparent hover:ring-white/25`}
         >
@@ -276,8 +389,12 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
             </Overlay>
           </span>
           <span className="flex items-baseline justify-between gap-2 px-3.5 pb-3.5 pt-3">
-            <span className="truncate font-display font-semibold text-white">{d.title ?? "Sans titre"}</span>
-            {d.date && <span className="shrink-0 text-sm text-white/55">{d.date}</span>}
+            <span className="truncate font-display font-semibold text-white">
+              {d.title ?? "Sans titre"}
+            </span>
+            {d.date && (
+              <span className="shrink-0 text-sm text-white/55">{d.date}</span>
+            )}
           </span>
         </button>
       );
@@ -298,30 +415,47 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
           {filter === "all" && <Badge kind="book" />}
         </span>
         <span className="block px-3.5 pb-3.5 pt-3">
-          <span className="block font-display font-semibold leading-snug text-white">{clean(b.title)}</span>
+          <span className="block font-display font-semibold leading-snug text-white">
+            {clean(b.title)}
+          </span>
           <span className="mt-0.5 block text-sm text-white/55">
             {[b.source, b.year].filter(Boolean).join(" · ")}
           </span>
           <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-sm font-semibold text-castel-ink transition-colors group-hover:bg-castel-red">
             Lire
-            {internal ? <ArrowRight className="h-4 w-4" aria-hidden="true" /> : <ArrowUpRight className="h-4 w-4" aria-hidden="true" />}
+            {internal ? (
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            )}
           </span>
         </span>
       </>
     );
     const cls = `${cardCls} ring-transparent hover:ring-white/25`;
     return internal ? (
-      <Link href={b.internalPath!} aria-label={`Écrit : lire ${clean(b.title)}`} className={cls}>
+      <Link
+        href={b.internalPath!}
+        aria-label={`Écrit : lire ${clean(b.title)}`}
+        className={cls}
+      >
         {inner}
       </Link>
     ) : (
-      <a href={b.url} target="_blank" rel="noopener noreferrer" aria-label={`Écrit : lire ${clean(b.title)} (nouvel onglet)`} className={cls}>
+      <a
+        href={b.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Écrit : lire ${clean(b.title)} (nouvel onglet)`}
+        className={cls}
+      >
         {inner}
       </a>
     );
   };
 
-  const currentDrawing = openDrawing !== null ? shownDrawings[openDrawing] : null;
+  const currentDrawing =
+    openDrawing !== null ? shownDrawings[openDrawing] : null;
 
   return (
     <div className={player.current ? "pb-24" : undefined}>
@@ -343,7 +477,11 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
               >
                 {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
                 {s.label}
-                <span className={`text-sm tabular-nums ${active ? "text-castel-ink/60" : "text-white/45"}`}>{counts[k]}</span>
+                <span
+                  className={`text-sm tabular-nums ${active ? "text-castel-ink/60" : "text-white/45"}`}
+                >
+                  {counts[k]}
+                </span>
               </Link>
             );
           })}
@@ -353,13 +491,20 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
             aria-live="polite"
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
           >
-            {copied ? <Check className="h-4 w-4 text-castel-red" aria-hidden="true" /> : <Share2 className="h-4 w-4" aria-hidden="true" />}
+            {copied ? (
+              <Check className="h-4 w-4 text-castel-red" aria-hidden="true" />
+            ) : (
+              <Share2 className="h-4 w-4" aria-hidden="true" />
+            )}
             {copied ? "Lien copié" : "Partager"}
           </button>
         </nav>
         <label className="relative block w-full lg:w-72">
           <span className="sr-only">Chercher</span>
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" aria-hidden="true" />
+          <Search
+            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+            aria-hidden="true"
+          />
           <input
             type="search"
             value={query}
@@ -378,7 +523,10 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
       ) : (
         <div className="mt-8 flex items-start gap-3 sm:gap-4 lg:gap-5">
           {cols.map((col, i) => (
-            <ul key={i} className="flex min-w-0 flex-1 flex-col gap-3 p-0 sm:gap-4 lg:gap-5">
+            <ul
+              key={i}
+              className="flex min-w-0 flex-1 flex-col gap-3 p-0 sm:gap-4 lg:gap-5"
+            >
               {col.map((it) => (
                 <li key={it.key} className="list-none">
                   {renderItem(it)}
@@ -401,10 +549,17 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
         </div>
       )}
 
-      {mounted && player.current ? createPortal(<MusicBar player={player} />, document.body) : null}
+      {mounted && player.current
+        ? createPortal(<MusicBar player={player} />, document.body)
+        : null}
       {mounted && currentDrawing
         ? createPortal(
-            <DrawingLightbox drawing={currentDrawing} hasSiblings={shownDrawings.length > 1} onClose={closeDrawing} onStep={stepDrawing} />,
+            <DrawingLightbox
+              drawing={currentDrawing}
+              hasSiblings={shownDrawings.length > 1}
+              onClose={closeDrawing}
+              onStep={stepDrawing}
+            />,
             document.body,
           )
         : null}

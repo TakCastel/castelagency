@@ -84,7 +84,10 @@ export function DrawingLightbox({
           </button>
         </>
       )}
-      <figure className="flex max-h-full max-w-full flex-col items-center gap-3" onClick={(e) => e.stopPropagation()}>
+      <figure
+        className="flex max-h-full max-w-full flex-col items-center gap-3"
+        onClick={(e) => e.stopPropagation()}
+      >
         {drawing.videoSrc ? (
           <video
             key={drawing.id}

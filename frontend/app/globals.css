@@ -126,3 +126,20 @@ html[data-transitioning] {
 .music-seek:focus-visible::-moz-range-thumb {
   opacity: 1;
 }
+
+/* Vue « En cours de lecture » du lecteur de musiques : monte depuis la barre. */
+@keyframes np-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [aria-label="En cours de lecture"] {
+    animation: none !important;
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * Musiques de Kira Valentine (Suno), du plus écouté au moins écouté.
+ * Musiques de Kira Valentine (Suno), triées par un mix likes + écoutes (un like = 10 écoutes).
  * La liste est générée par `node scripts/fetch-suno.mjs` dans music.json :
  * audio et pochettes restent sur les CDN de Suno.
  */
@@ -21,6 +21,8 @@ export type MusicTrack = {
   date: string;
   /** Nombre d'écoutes sur Suno au moment de la récupération. */
   plays: number;
+  /** Nombre de likes sur Suno au moment de la récupération. */
+  likes: number;
 };
 
 export const MUSIC_ARTIST = "Kira Valentine";

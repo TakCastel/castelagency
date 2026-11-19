@@ -8,7 +8,10 @@ import { MUSIC_ARTIST, type MusicTrack } from "@/data/music";
  * Lecteur audio unique pour toute la page.
  * `queue` = ordre de lecture (morceaux affichés) ; à la fin d'un morceau, le suivant démarre.
  */
-export function useMusicPlayer(tracks: MusicTrack[], queueSource: MusicTrack[]) {
+export function useMusicPlayer(
+  tracks: MusicTrack[],
+  queueSource: MusicTrack[],
+) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentId, setCurrentId] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -19,10 +22,17 @@ export function useMusicPlayer(tracks: MusicTrack[], queueSource: MusicTrack[]) 
   // Si le morceau en cours n'est plus dans la liste affichée, on enchaîne sur la discographie complète.
   // Les morceaux sans audio public (lien vers Suno) sont exclus.
   const queue = useMemo(
-    () => (currentId && !queueSource.some((t) => t.id === currentId) ? tracks : queueSource).filter((t) => t.audio),
+    () =>
+      (currentId && !queueSource.some((t) => t.id === currentId)
+        ? tracks
+        : queueSource
+      ).filter((t) => t.audio),
     [queueSource, tracks, currentId],
   );
-  const current = useMemo(() => tracks.find((t) => t.id === currentId) ?? null, [tracks, currentId]);
+  const current = useMemo(
+    () => tracks.find((t) => t.id === currentId) ?? null,
+    [tracks, currentId],
+  );
 
   const play = useCallback(() => {
     void audioRef.current?.play().catch(() => setError(true));
@@ -85,7 +95,9 @@ export function useMusicPlayer(tracks: MusicTrack[], queueSource: MusicTrack[]) 
     navigator.mediaSession.metadata = new MediaMetadata({
       title: current.title,
       artist: MUSIC_ARTIST,
-      artwork: [{ src: current.imageLarge, sizes: "512x512", type: "image/jpeg" }],
+      artwork: [
+        { src: current.imageLarge, sizes: "512x512", type: "image/jpeg" },
+      ],
     });
     navigator.mediaSession.setActionHandler("previoustrack", () => step(-1));
     navigator.mediaSession.setActionHandler("nexttrack", () => step(1));
@@ -101,7 +113,8 @@ export function useMusicPlayer(tracks: MusicTrack[], queueSource: MusicTrack[]) 
     preload: "none" as const,
     onPlay: () => setPlaying(true),
     onPause: () => setPlaying(false),
-    onTimeUpdate: (e: React.SyntheticEvent<HTMLAudioElement>) => setTime(e.currentTarget.currentTime),
+    onTimeUpdate: (e: React.SyntheticEvent<HTMLAudioElement>) =>
+      setTime(e.currentTarget.currentTime),
     onLoadedMetadata: (e: React.SyntheticEvent<HTMLAudioElement>) => {
       const d = e.currentTarget.duration;
       if (Number.isFinite(d)) setDuration(d);
@@ -112,7 +125,21 @@ export function useMusicPlayer(tracks: MusicTrack[], queueSource: MusicTrack[]) 
     },
   };
 
-  return { audioProps, current, currentId, playing, time, duration, error, playTrack, step, toggle, seek, close };
+  return {
+    audioProps,
+    queue,
+    current,
+    currentId,
+    playing,
+    time,
+    duration,
+    error,
+    playTrack,
+    step,
+    toggle,
+    seek,
+    close,
+  };
 }
 
 export type MusicPlayerState = ReturnType<typeof useMusicPlayer>;
