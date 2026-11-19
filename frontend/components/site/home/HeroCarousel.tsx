@@ -32,8 +32,10 @@ const innerLight = [
   "inset 0 -14px 28px rgba(0,0,0,0.16)",
 ].join(", ");
 
-/** Emplacements sur l'anneau : chaque carte apparaît deux fois, pour garnir le cercle. */
-const COPIES = 2;
+/** Emplacements sur l'anneau : chaque carte apparaît plusieurs fois, pour garnir le cercle.
+ *  Plus de copies = anneau plus grand (desktop). */
+const COPIES_MOBILE = 2;
+const COPIES_DESKTOP = 3;
 const EASE = "cubic-bezier(.22,1,.36,1)";
 const DURATION = 650;
 
@@ -45,16 +47,25 @@ const DURATION = 650;
  */
 export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; initial?: number }) {
   const n = cards.length;
-  const slots = n * COPIES;
+  const [copies, setCopies] = useState(COPIES_MOBILE);
+  const slots = n * copies;
   const angle = 360 / slots;
   const [pos, setPos] = useState(initial); // emplacement actif, non borné
   const [drag, setDrag] = useState(0); // déplacement en cours, en px
   const [dragging, setDragging] = useState(false);
   const [w, setW] = useState(300); // largeur d'une carte, en px
   const stageRef = useRef<HTMLDivElement>(null);
-  const suppressClick = useRef(false);
-  // Point où le pointeur a été enfoncé : un clic qui en est loin est un glissé, pas un clic.
-  const downAt = useRef<{ x: number; y: number } | null>(null);
+  // Pendant un glissé et juste après, le carrousel porte `data-suppress-click` :
+  // la transition de page globale (PageTransition) ignore alors le clic qui suit.
+  const suppressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const setSuppress = (on: boolean) => {
+    const el = wheelRef.current;
+    if (!el) return;
+    if (suppressTimer.current) clearTimeout(suppressTimer.current);
+    if (on) el.setAttribute("data-suppress-click", "");
+    else suppressTimer.current = setTimeout(() => el.removeAttribute("data-suppress-click"), 300);
+  };
+  const suppressing = () => wheelRef.current?.hasAttribute("data-suppress-click") ?? false;
   const gesture = useRef<{ x: number; y: number; t: number; locked: boolean | null } | null>(null);
 
   // Rayon : deux cartes voisines ne se touchent pas (pas d'intersection 3D).
@@ -67,6 +78,14 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
   const activeSlot = ((pos % slots) + slots) % slots;
   const live = pos - (dragging ? drag / stepPx() : 0); // position continue
   const go = (delta: number) => setPos((p) => p + Math.round(delta));
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setCopies(mq.matches ? COPIES_DESKTOP : COPIES_MOBILE);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const el = stageRef.current;
@@ -85,7 +104,10 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
       const dy = e.clientY - g.y;
       if (g.locked === null && Math.hypot(dx, dy) > 8) {
         g.locked = Math.abs(dx) > Math.abs(dy);
-        if (g.locked) setDragging(true);
+        if (g.locked) {
+          setSuppress(true);
+          setDragging(true);
+        }
       }
       if (g.locked) setDrag(dx);
     };
@@ -98,18 +120,7 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
       let delta = -Math.round(dx / stepPx());
       // Un petit coup de doigt rapide suffit pour passer à la suivante.
       if (delta === 0 && (Math.abs(dx) > 30 || Math.abs(velocity) > 0.4)) delta = dx < 0 ? 1 : -1;
-      // Le clic qui suit un glissé ne doit jamais ouvrir une carte : on l'avale
-      // en phase de capture, où qu'il tombe, puis on retire l'écouteur.
-      suppressClick.current = true;
-      const swallow = (ev: MouseEvent) => {
-        ev.preventDefault();
-        ev.stopPropagation();
-      };
-      window.addEventListener("click", swallow, true);
-      setTimeout(() => {
-        window.removeEventListener("click", swallow, true);
-        suppressClick.current = false;
-      }, 250);
+      setSuppress(false);
       setDragging(false);
       setDrag(0);
       setPos((p) => p + delta);
@@ -172,9 +183,8 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
       }}
     >
       <div
-        className="relative mx-auto touch-pan-y select-none [perspective:1100px] md:[perspective:1700px]"
+        className="relative mx-auto touch-pan-y select-none [perspective:1100px] md:[perspective:1700px] lg:[perspective:2400px]"
         onPointerDown={(e) => {
-          downAt.current = { x: e.clientX, y: e.clientY };
           if (e.pointerType === "mouse" && e.button !== 0) return;
           gesture.current = { x: e.clientX, y: e.clientY, t: performance.now(), locked: null };
         }}
@@ -182,13 +192,13 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
       >
         <div
           ref={stageRef}
-          className={`relative mx-auto aspect-[3/4] w-[52vw] max-w-[300px] [transform-style:preserve-3d] sm:w-[42vw] md:w-[300px] lg:w-[330px] lg:max-w-[330px] ${
+          className={`pointer-events-none relative mx-auto aspect-[3/4] w-[52vw] max-w-[300px] [transform-style:preserve-3d] sm:w-[42vw] md:w-[300px] lg:w-[330px] lg:max-w-[330px] ${
             dragging ? "cursor-grabbing" : "cursor-grab"
           }`}
         >
           {/* L'anneau : il recule de son rayon puis tourne. */}
           <div
-            className="absolute inset-0 [transform-style:preserve-3d] motion-reduce:!transition-none"
+            className="pointer-events-none absolute inset-0 [transform-style:preserve-3d] motion-reduce:!transition-none"
             style={{
               transform: `translateZ(${-radius}px) rotateY(${-live * angle}deg)`,
               transition,
@@ -200,7 +210,7 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
               const d = wrapSlot(s - live); // distance au centre, en emplacements
               const ad = Math.abs(d);
               const isActive = s === activeSlot && !dragging;
-              const hidden = ad > 2.4; // au-delà de ~90°, la carte tourne le dos
+              const hidden = ad > 2.5; // 5 cartes visibles, pas une de plus
               return (
                 <Link
                   key={`${c.key}-${s}`}
@@ -209,12 +219,11 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
                   tabIndex={isActive ? 0 : -1}
                   aria-hidden={isActive ? undefined : true}
                   aria-label={`${c.name} : en savoir plus`}
+                  // Carte latérale : un clic l'amène au centre, il n'ouvre pas la page.
+                  data-suppress-click={s === activeSlot ? undefined : ""}
                   onClick={(e) => {
-                    const from = downAt.current;
-                    const moved = from ? Math.hypot(e.clientX - from.x, e.clientY - from.y) > 6 : false;
-                    if (suppressClick.current || moved || dragging) {
+                    if (suppressing() || dragging) {
                       e.preventDefault();
-                      e.stopPropagation();
                       return;
                     }
                     if (s !== activeSlot) {
@@ -226,8 +235,9 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
                     transform: `rotateY(${s * angle}deg) translateZ(${radius}px)`,
                     boxShadow: depth(c.color),
                     opacity: hidden ? 0 : 1,
-                    pointerEvents: hidden ? "none" : undefined,
-                    transition: "opacity 200ms ease",
+                    // Le conteneur 3D est coplanaire à la carte de face : seules les cartes captent le pointeur.
+                    pointerEvents: hidden ? "none" : "auto",
+                    transition: dragging ? "opacity 150ms ease" : `opacity ${DURATION * 0.6}ms ease`,
                     backfaceVisibility: "hidden",
                     WebkitBackfaceVisibility: "hidden",
                   }}
@@ -293,7 +303,7 @@ export function HeroCarousel({ cards, initial = 0 }: { cards: CarouselCard[]; in
                     {/* Les cartes qui s'éloignent s'assombrissent (sans filter, qui casse la 3D). */}
                     <div
                       className="pointer-events-none absolute inset-0 bg-black"
-                      style={{ opacity: Math.min(ad, 2) * 0.14, transition: dragging ? "none" : `opacity ${DURATION}ms ${EASE}` }}
+                      style={{ opacity: Math.min(ad, 3) * 0.12, transition: dragging ? "none" : `opacity ${DURATION}ms ${EASE}` }}
                     />
                   </div>
                 </Link>

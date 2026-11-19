@@ -19,6 +19,8 @@ import { useCallback, useEffect, useRef } from "react";
  *
  * `prefers-reduced-motion` : aucune interception, navigation instantanée.
  * Un lien peut se soustraire avec l'attribut `data-no-transition`.
+ * Un lien (ou un de ses parents) marqué `data-suppress-click` est ignoré : c'est à son
+ * composant de décider (ex. carrousel qui vient d'être glissé).
  */
 
 const EASE_IN_OUT: [number, number, number, number] = [0.76, 0, 0.24, 1];
@@ -83,6 +85,8 @@ function transitionTarget(e: MouseEvent): URL | null {
   const a = (e.target as Element | null)?.closest?.("a");
   if (!a || !(a instanceof HTMLAnchorElement)) return null;
   if (a.hasAttribute("download") || a.hasAttribute("data-no-transition")) return null;
+  // Clic à ignorer complètement (ex. clic qui termine un glissé dans un carrousel).
+  if (a.closest("[data-suppress-click]")) return null;
   if (a.target && a.target !== "_self") return null;
   const href = a.getAttribute("href");
   if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return null;
