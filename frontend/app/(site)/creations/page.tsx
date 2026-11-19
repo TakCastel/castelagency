@@ -7,7 +7,7 @@ import { tracks } from "@/data/music";
 
 export const metadata: Metadata = {
   title: "Créations",
-  description: "À côté des jeux : des musiques, des dessins et des écrits.",
+  description: "Musiques, dessins et écrits de Studio Castel."
   alternates: { canonical: "/creations" },
 };
 
@@ -19,7 +19,7 @@ export default function CreationsPage() {
           Créations
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed">
-          À côté des jeux : des musiques à écouter, des dessins à agrandir, des écrits à lire.
+          Des musiques à écouter, des dessins à agrandir, des écrits à lire.
         </p>
         <div className="mt-12">
           <CreationsFeed tracks={tracks} drawings={drawings} books={books} />
