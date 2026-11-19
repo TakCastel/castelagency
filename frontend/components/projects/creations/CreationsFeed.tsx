@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   useSyncExternalStore,
   type ReactNode,
@@ -34,7 +35,7 @@ import {
   sectionByPath,
 } from "@/data/creations";
 import { DRAWING_BLUR_DATA_URL, type DrawingItem } from "@/data/drawings";
-import { sunoSongUrl, type MusicTrack } from "@/data/music";
+import { musicTrackPath, sunoSongUrl, type MusicTrack } from "@/data/music";
 import { clean } from "../text";
 import { DrawingLightbox } from "./DrawingLightbox";
 import { MusicBar } from "./MusicBar";
@@ -252,13 +253,35 @@ export function CreationsFeed({
   // Pas de lecture automatique (bloquée par les navigateurs) : un clic sur Lecture suffit.
   const sharedId =
     pathname.match(/^\/creations\/musiques\/([^/]+)/)?.[1] ?? null;
-  const { cue } = player;
+  const { cue, currentId } = player;
+  const currentIdRef = useRef(currentId);
+  currentIdRef.current = currentId;
   useEffect(() => {
-    const t = sharedId ? tracks.find((x) => x.id === sharedId) : undefined;
+    // Déjà en cours : c'est nous qui venons de mettre l'URL à jour (ci-dessous), rien à recharger.
+    if (!sharedId || sharedId === currentIdRef.current) return;
+    const t = tracks.find((x) => x.id === sharedId);
     if (!t?.audio) return;
     cue(t);
     setExpanded(true);
   }, [sharedId, tracks, cue]);
+
+  // Dans la vue Musiques, l'URL suit le morceau en cours (comme YouTube Music) : on peut la copier telle quelle.
+  // replaceState : pas d'entrée d'historique par morceau. Hors de cette vue, on ne touche pas à l'URL
+  // (elle ferait basculer le filtre). Lecteur fermé : retour à /creations/musiques.
+  const inMusic = filter === "music";
+  const hadTrack = useRef(false);
+  useEffect(() => {
+    const closed = hadTrack.current && !currentId;
+    hadTrack.current = !!currentId;
+    if (!inMusic) return;
+    const target = currentId
+      ? musicTrackPath(currentId)
+      : closed
+        ? "/creations/musiques"
+        : null;
+    if (target && window.location.pathname !== target)
+      window.history.replaceState(window.history.state, "", target);
+  }, [currentId, inMusic]);
 
   // Répartition dans la colonne la plus courte : les cartes déjà affichées ne bougent pas quand on en charge d'autres.
   const cols = useMemo(() => {
