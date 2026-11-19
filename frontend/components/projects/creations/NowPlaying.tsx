@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Check, Pause, Play, Share2 } from "lucide-react";
 
-import { MUSIC_ARTIST, musicTrackPath } from "@/data/music";
+import { MUSIC_ARTIST, musicTrackPath, type MusicTrack } from "@/data/music";
 import { shareLink } from "@/lib/share";
 
 import { Equalizer } from "./Equalizer";
@@ -22,8 +22,16 @@ export function NowPlaying({
   player: MusicPlayerState;
   onClose: () => void;
 }) {
-  const { current, queue, currentId, playing, playTrack, toggle } = player;
-  const listRef = useRef<HTMLOListElement>(null);
+  const {
+    current,
+    history,
+    upcoming,
+    seed,
+    currentId,
+    playing,
+    toggle,
+  } = player;
+  const listRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
   // Échap pour fermer, page figée derrière.
@@ -38,23 +46,19 @@ export function NowPlaying({
     };
   }, [onClose]);
 
-  // Le morceau en cours reste visible dans la file. On ne fait défiler que la liste, et seulement
-  // quand elle a son propre défilement (ordinateur) : sur mobile, scrollIntoView faisait descendre
-  // toute la vue et coupait la pochette.
+  // Le morceau en cours se cale en haut de la liste (les déjà écoutés juste au-dessus) :
+  // d'un coup à l'ouverture, en douceur quand le morceau change. Seulement quand la liste
+  // a son propre défilement (ordinateur) : sur mobile, c'est la vue entière qui défile.
+  const firstScroll = useRef(true);
   useEffect(() => {
     const list = listRef.current;
     const el = list?.querySelector<HTMLElement>('[aria-current="true"]');
     if (!list || !el || list.scrollHeight <= list.clientHeight) return;
-    const top = el.offsetTop;
-    if (
-      top < list.scrollTop ||
-      top + el.offsetHeight > list.scrollTop + list.clientHeight
-    ) {
-      list.scrollTo({
-        top: top - list.clientHeight / 2 + el.offsetHeight / 2,
-        behavior: "smooth",
-      });
-    }
+    list.scrollTo({
+      top: Math.max(0, el.offsetTop - 8),
+      behavior: firstScroll.current ? "auto" : "smooth",
+    });
+    firstScroll.current = false;
   }, [currentId]);
 
   if (!current) return null;
@@ -153,74 +157,98 @@ export function NowPlaying({
           className="flex min-h-0 flex-col lg:w-[420px] lg:shrink-0"
         >
           <h3 className="border-b border-white/15 pb-3 font-display text-sm font-semibold uppercase tracking-[0.12em] text-white/70">
-            À suivre{" "}
-            <span className="tabular-nums text-white/40">· {queue.length}</span>
+            À suivre
           </h3>
-          <ol
+          <div
             ref={listRef}
-            className="relative mt-2 flex-1 space-y-1 p-0 lg:min-h-0 lg:overflow-y-auto lg:pr-2"
+            className="relative mt-2 flex-1 p-0 lg:min-h-0 lg:overflow-y-auto lg:pr-2"
           >
-            {queue.map((t, i) => {
-              const active = t.id === currentId;
-              return (
-                <li key={t.id} className="list-none">
-                  <button
-                    type="button"
-                    onClick={() => playTrack(t)}
-                    aria-current={active ? "true" : undefined}
-                    className={`group flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors ${active ? "bg-white/15" : "hover:bg-white/10"}`}
-                  >
-                    {/* Numéro, ou égaliseur pour le morceau qui joue ; au survol, l'action du clic. */}
-                    <span className="relative flex h-6 w-6 shrink-0 items-center justify-center text-sm tabular-nums text-white/40">
-                      <span className="group-hover:invisible">
-                        {active ? (
-                          playing ? (
-                            <Equalizer playing />
-                          ) : (
-                            <Play
-                              className="h-4 w-4 text-castel-red"
-                              fill="currentColor"
-                            />
-                          )
-                        ) : (
-                          i + 1
-                        )}
-                      </span>
-                      <span className="invisible absolute inset-0 flex items-center justify-center text-white group-hover:visible">
-                        {active && playing ? (
-                          <Pause className="h-4 w-4" fill="currentColor" />
-                        ) : (
-                          <Play className="h-4 w-4" fill="currentColor" />
-                        )}
-                      </span>
-                    </span>
-                    <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded bg-white/5">
-                      <Image
-                        src={t.image}
-                        alt=""
-                        fill
-                        sizes="44px"
-                        className="object-cover"
-                      />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span
-                        className={`block truncate font-medium ${active ? "text-white" : "text-white/85"}`}
-                      >
-                        {t.title}
-                      </span>
-                      <TrackStats track={t} className="mt-0.5" />
-                    </span>
-                    <span className="shrink-0 text-sm tabular-nums text-white/45">
-                      {formatTime(t.duration)}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
+            {history.length > 0 && (
+              <ol
+                aria-label="Déjà écoutés"
+                className="space-y-1 p-0 opacity-60 transition-opacity hover:opacity-100"
+              >
+                {history.map((t) => (
+                  <Row key={t.id} t={t} player={player} />
+                ))}
+              </ol>
+            )}
+            <ol className="mt-1 p-0">
+              <Row t={current} player={player} />
+            </ol>
+            <div className="mt-5 px-2 pb-2">
+              <p className="font-display font-semibold text-white">
+                Lecture automatique
+              </p>
+              <p className="mt-0.5 text-sm text-white/50">
+                {seed && seed.id !== current.id
+                  ? `Dans la veine de « ${seed.title} », puis de plus en plus varié`
+                  : "Le même genre d'abord, puis de plus en plus varié"}
+              </p>
+            </div>
+            <ol aria-label="Lecture automatique" className="space-y-1 p-0">
+              {upcoming.map((t) => (
+                <Row key={t.id} t={t} player={player} />
+              ))}
+            </ol>
+          </div>
         </section>
       </div>
     </div>
+  );
+}
+
+/** Une ligne de la file : égaliseur / icône lecture-pause au survol, pochette, titre, stats, durée. */
+function Row({ t, player }: { t: MusicTrack; player: MusicPlayerState }) {
+  const active = t.id === player.currentId;
+  const { playing, playTrack } = player;
+  return (
+    <li className="list-none">
+      <button
+        type="button"
+        onClick={() => playTrack(t)}
+        aria-current={active ? "true" : undefined}
+        className={`group flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors ${active ? "bg-white/15" : "hover:bg-white/10"}`}
+      >
+        <span className="relative flex h-6 w-6 shrink-0 items-center justify-center text-white/40">
+          <span className="group-hover:invisible">
+            {active ? (
+              playing ? (
+                <Equalizer playing />
+              ) : (
+                <Play className="h-4 w-4 text-castel-red" fill="currentColor" />
+              )
+            ) : null}
+          </span>
+          <span className="invisible absolute inset-0 flex items-center justify-center text-white group-hover:visible">
+            {active && playing ? (
+              <Pause className="h-4 w-4" fill="currentColor" />
+            ) : (
+              <Play className="h-4 w-4" fill="currentColor" />
+            )}
+          </span>
+        </span>
+        <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded bg-white/5">
+          <Image
+            src={t.image}
+            alt=""
+            fill
+            sizes="44px"
+            className="object-cover"
+          />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span
+            className={`block truncate font-medium ${active ? "text-white" : "text-white/85"}`}
+          >
+            {t.title}
+          </span>
+          <TrackStats track={t} className="mt-0.5" />
+        </span>
+        <span className="shrink-0 text-sm tabular-nums text-white/45">
+          {formatTime(t.duration)}
+        </span>
+      </button>
+    </li>
   );
 }

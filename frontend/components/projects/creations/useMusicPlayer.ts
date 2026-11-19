@@ -1,40 +1,87 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { MUSIC_ARTIST, type MusicTrack } from "@/data/music";
 
+import { suggestFrom } from "./suggestions";
+
 /**
  * Lecteur audio unique pour tout le site (monté par MusicPlayerProvider dans le layout racine).
- * La file de lecture est fournie par la page qui affiche les musiques (`setQueue`) et conservée
- * quand on change de page ; à la fin d'un morceau, le suivant démarre.
+ *
+ * File façon YouTube Music : `history` (déjà écoutés, en haut), `current`, puis `upcoming`,
+ * une lecture automatique calculée depuis le morceau choisi (`seed`) : même genre d'abord,
+ * puis de plus en plus éloigné (voir suggestions.ts). Le catalogue est fourni par la page
+ * des musiques (`setCatalog`) et conservé quand on change de page.
  */
+const HISTORY_MAX = 50;
+
 export function useMusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [catalog, setCatalogState] = useState<MusicTrack[]>([]);
   const [current, setCurrent] = useState<MusicTrack | null>(null);
-  const [queueSource, setQueueSource] = useState<MusicTrack[]>([]);
+  const [seed, setSeed] = useState<MusicTrack | null>(null);
+  const [history, setHistory] = useState<MusicTrack[]>([]);
+  const [upcoming, setUpcoming] = useState<MusicTrack[]>([]);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [error, setError] = useState(false);
   const currentId = current?.id ?? null;
 
-  // Morceaux lisibles de la file (ceux sans audio public renvoient vers Suno). Si le morceau en cours
-  // n'y est plus (recherche, autre filtre), il passe en tête pour que suivant/précédent marchent.
-  const queue = useMemo(() => {
-    const q = queueSource.filter((t) => t.audio);
-    return current && !q.some((t) => t.id === current.id) ? [current, ...q] : q;
-  }, [queueSource, current]);
-
-  /** File de lecture = musiques affichées. Une liste vide (vue Dessins…) ne remplace pas la file en cours. */
-  const setQueue = useCallback((q: MusicTrack[]) => {
-    if (q.length) setQueueSource(q);
+  /** Toutes les musiques (suggestions). Une liste vide ne remplace pas celle déjà connue. */
+  const setCatalog = useCallback((c: MusicTrack[]) => {
+    if (c.length) setCatalogState(c);
   }, []);
 
   const play = useCallback(() => {
-    void audioRef.current?.play().catch(() => setError(true));
+    // AbortError (pause juste après lecture, changement de morceau) et NotAllowedError (lecture
+    // automatique refusée) ne sont pas des pannes : seul un format illisible affiche l'erreur.
+    void audioRef.current?.play().catch((e: unknown) => {
+      if (e instanceof DOMException && e.name === "NotSupportedError")
+        setError(true);
+    });
   }, []);
 
+  /** Bas niveau : met `t` dans le lecteur (sans toucher à la file). */
+  const load = useCallback(
+    (t: MusicTrack, autoplay: boolean) => {
+      const audio = audioRef.current;
+      if (!audio || !t.audio) return false;
+      setCurrent(t);
+      setError(false);
+      setTime(0);
+      setDuration(t.duration);
+      audio.src = t.audio;
+      if (autoplay) play();
+      return true;
+    },
+    [play],
+  );
+
+  const pushHistory = useCallback((t: MusicTrack | null) => {
+    if (!t) return;
+    setHistory((h) =>
+      [...h.filter((x) => x.id !== t.id), t].slice(-HISTORY_MAX),
+    );
+  }, []);
+
+  /** Nouveau point de départ : le morceau choisi + sa lecture automatique. */
+  const startFrom = useCallback(
+    (t: MusicTrack, autoplay: boolean) => {
+      if (!load(t, autoplay)) return;
+      pushHistory(current);
+      setSeed(t);
+      const played = new Set([...history.map((x) => x.id), current?.id ?? ""]);
+      setUpcoming(suggestFrom(t, catalog, played));
+    },
+    [load, pushHistory, current, history, catalog],
+  );
+
+  /**
+   * Clic sur un morceau. Déjà en cours : lecture/pause. Dans la file (« À suivre » ou
+   * déjà écouté) : on y saute sans recalculer. Ailleurs (cartes, fiche) : nouvelle lecture automatique.
+   */
   const playTrack = useCallback(
     (t: MusicTrack) => {
       const audio = audioRef.current;
@@ -44,44 +91,67 @@ export function useMusicPlayer() {
         else audio.pause();
         return;
       }
-      setCurrent(t);
-      setError(false);
-      setTime(0);
-      setDuration(t.duration);
-      audio.src = t.audio;
-      play();
+      const inUpcoming = upcoming.some((x) => x.id === t.id);
+      const inHistory = history.some((x) => x.id === t.id);
+      if (!inUpcoming && !inHistory) return startFrom(t, true);
+      if (!load(t, true)) return;
+      if (inUpcoming) {
+        pushHistory(current);
+        setUpcoming((u) => u.filter((x) => x.id !== t.id));
+      } else {
+        setHistory((h) => h.filter((x) => x.id !== t.id));
+        if (current) setUpcoming((u) => [current, ...u]);
+      }
     },
-    [currentId, play],
+    [currentId, upcoming, history, current, play, load, startFrom, pushHistory],
   );
 
   /** Charge un morceau sans le lancer (lien partagé : le navigateur interdit la lecture automatique). */
-  const cue = useCallback((t: MusicTrack) => {
-    const audio = audioRef.current;
-    if (!audio || !t.audio) return;
-    setCurrent(t);
-    setError(false);
-    setTime(0);
-    setDuration(t.duration);
-    audio.src = t.audio;
-  }, []);
+  const cue = useCallback((t: MusicTrack) => startFrom(t, false), [startFrom]);
 
   const step = useCallback(
     (d: number) => {
-      if (!queue.length) return;
-      const i = queue.findIndex((t) => t.id === currentId);
-      playTrack(queue[(i + d + queue.length) % queue.length]);
+      const audio = audioRef.current;
+      if (d < 0) {
+        // Comme partout : on revient au début du morceau, ou au précédent s'il vient de commencer.
+        if (audio && audio.currentTime > 3) {
+          audio.currentTime = 0;
+          return;
+        }
+        const prev = history[history.length - 1];
+        if (!prev || !load(prev, true)) return;
+        setHistory((h) => h.slice(0, -1));
+        if (current) setUpcoming((u) => [current, ...u]);
+        return;
+      }
+      let next = upcoming[0];
+      let rest = upcoming.slice(1);
+      if (!next && current) {
+        // Fin de la lecture automatique : on repart du morceau en cours.
+        const fresh = suggestFrom(
+          current,
+          catalog,
+          new Set(history.map((x) => x.id)),
+        );
+        next = fresh[0];
+        rest = fresh.slice(1);
+      }
+      if (!next || !load(next, true)) return;
+      pushHistory(current);
+      setUpcoming(rest);
     },
-    [queue, currentId, playTrack],
+    [history, upcoming, current, catalog, load, pushHistory],
   );
 
   const toggle = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
     if (!current) {
-      if (queue[0]) playTrack(queue[0]);
+      const first = catalog.find((t) => t.audio);
+      if (first) startFrom(first, true);
     } else if (audio.paused) play();
     else audio.pause();
-  }, [current, queue, playTrack, play]);
+  }, [current, catalog, startFrom, play]);
 
   const seek = useCallback((s: number) => {
     if (audioRef.current) audioRef.current.currentTime = s;
@@ -94,6 +164,9 @@ export function useMusicPlayer() {
     audio?.removeAttribute("src");
     audio?.load();
     setCurrent(null);
+    setSeed(null);
+    setHistory([]);
+    setUpcoming([]);
     setPlaying(false);
   }, []);
 
@@ -119,7 +192,10 @@ export function useMusicPlayer() {
   const audioProps = {
     ref: audioRef,
     preload: "none" as const,
-    onPlay: () => setPlaying(true),
+    onPlay: () => {
+      setPlaying(true);
+      setError(false);
+    },
     onPause: () => setPlaying(false),
     onTimeUpdate: (e: React.SyntheticEvent<HTMLAudioElement>) =>
       setTime(e.currentTarget.currentTime),
@@ -135,7 +211,9 @@ export function useMusicPlayer() {
 
   return {
     audioProps,
-    queue,
+    history,
+    upcoming,
+    seed,
     current,
     currentId,
     playing,
@@ -144,7 +222,7 @@ export function useMusicPlayer() {
     error,
     playTrack,
     cue,
-    setQueue,
+    setCatalog,
     step,
     toggle,
     seek,

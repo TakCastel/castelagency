@@ -217,18 +217,15 @@ export function CreationsFeed({
   }, [all, filter, query]);
   const shown = filtered.slice(0, visible);
 
-  // File de lecture = musiques de la liste filtrée ; flèches de la modale = dessins de la liste filtrée.
-  const queueTracks = useMemo(
-    () => filtered.flatMap((it) => (it.kind === "music" ? [it.track] : [])),
-    [filtered],
-  );
+  // Flèches de la modale = dessins de la liste filtrée.
   const shownDrawings = useMemo(
     () => filtered.flatMap((it) => (it.kind === "drawing" ? [it.drawing] : [])),
     [filtered],
   );
-  const { player } = useMusic();
-  const { cue, currentId, setQueue } = player;
-  useEffect(() => setQueue(queueTracks), [queueTracks, setQueue]);
+  const { player, setExpanded } = useMusic();
+  const { cue, currentId, setCatalog } = player;
+  // Le lecteur global pioche ses suggestions (lecture automatique) dans tout le catalogue.
+  useEffect(() => setCatalog(tracks), [tracks, setCatalog]);
 
   // Lien partagé d'un morceau (/creations/musiques/<id>) : on le charge dans la barre (la page affiche sa fiche).
   // Pas de lecture automatique (bloquée par les navigateurs) : un clic sur Lecture suffit.
@@ -287,6 +284,22 @@ export function CreationsFeed({
   );
 
   const reset = () => setVisible(PAGE);
+
+  // Charge la page suivante quand le repère en bas de liste approche de l'écran (800 px avant).
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const hasMore = visible < filtered.length;
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el || !hasMore) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) setVisible((v) => v + PAGE);
+      },
+      { rootMargin: "0px 0px 800px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasMore, visible]);
   useEffect(() => setVisible(PAGE), [filter]);
 
   // Partage natif sur mobile, sinon copie du lien de la vue en cours.
@@ -318,7 +331,10 @@ export function CreationsFeed({
             />
             {filter === "all" && <Badge kind="music" />}
             <Overlay visible={active}>
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-castel-red text-castel-ink shadow-lg">
+              <span
+                data-playpause
+                className="flex h-14 w-14 items-center justify-center rounded-full bg-castel-red text-castel-ink shadow-lg"
+              >
                 {!t.audio ? (
                   <ExternalLink className="h-6 w-6" />
                 ) : isPlaying ? (
@@ -355,8 +371,20 @@ export function CreationsFeed({
       return t.audio ? (
         <button
           type="button"
-          onClick={() => player.playTrack(t)}
-          aria-label={`Musique : ${isPlaying ? "mettre en pause" : "écouter"} ${t.title}`}
+          onClick={(e) => {
+            // Morceau déjà lancé : la carte ouvre le lecteur, seul le rond lecture/pause agit sur le son.
+            if (
+              active &&
+              !(e.target as HTMLElement).closest("[data-playpause]")
+            )
+              setExpanded(true);
+            else player.playTrack(t);
+          }}
+          aria-label={
+            active
+              ? `Musique en cours : ouvrir le lecteur, ${t.title}`
+              : `Musique : écouter ${t.title}`
+          }
           aria-pressed={active}
           className={cls}
         >
@@ -580,15 +608,14 @@ export function CreationsFeed({
         </div>
       )}
 
+      {/* Défilement infini : en approchant du bas, la suite se charge toute seule. */}
       {visible < filtered.length && (
-        <div className="mt-10 flex justify-center">
-          <button
-            type="button"
-            onClick={() => setVisible((v) => v + PAGE)}
-            className="rounded-full border border-white/20 px-6 py-3 font-display font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-castel-ink"
-          >
-            Voir plus ({filtered.length - visible} restants)
-          </button>
+        <div
+          ref={sentinelRef}
+          aria-hidden="true"
+          className="mt-10 flex justify-center py-6"
+        >
+          <span className="h-6 w-6 animate-spin rounded-full border-2 border-white/15 border-t-white/60" />
         </div>
       )}
       {mounted && currentDrawing
