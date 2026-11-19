@@ -45,8 +45,6 @@ const nextConfig = {
    */
   async redirects() {
     const legacyRoutes = [
-      "/services",
-      "/services/:path*",
       "/nos-projets",
       "/nos-projets/:path*",
       "/realisations",
@@ -56,11 +54,13 @@ const nextConfig = {
       "/contact",
       "/devis",
       "/mode-de-fonctionnement",
-      "/developpeur-web-avignon",
     ];
     const toHome = legacyRoutes.map((source) => ({ source, destination: "/", permanent: true }));
     return [
       // Ordre : les règles précises d'abord.
+      // Anciennes pages de services : vers la page de services locale (qui a repris l'URL /developpeur-web-avignon).
+      { source: "/services", destination: "/developpeur-web-avignon", permanent: true },
+      { source: "/services/:path*", destination: "/developpeur-web-avignon", permanent: true },
       { source: "/mes-projets/pavat", destination: "/jeux/pavat", permanent: true },
       { source: "/mes-projets/prehistopia", destination: "/jeux/prehistopia", permanent: true },
       { source: "/mes-projets/brice", destination: "/projets", permanent: true },

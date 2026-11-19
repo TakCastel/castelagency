@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTACT_EMAIL, games } from "@/data/games";
+import { coreServices } from "@/data/local-seo";
 import { showcaseProjects, type ProjectKind } from "@/data/showcase";
 import { ProjectVisual } from "@/components/projects/ProjectVisual";
 import { Button } from "@/components/site/Button";
@@ -9,9 +10,9 @@ import { Reveal } from "@/components/site/Reveal";
 import { Hero } from "@/components/site/home/Hero";
 
 export const metadata: Metadata = {
-  title: { absolute: "Studio Castel, jeux, apps et sites" },
+  title: { absolute: "Studio Castel, création de sites, apps et jeux à Avignon" },
   description:
-    "Studio Castel est un studio indépendant à Avignon qui conçoit des jeux, des apps et des sites, de A à Z. Decalco, Pavat, Godsing, Préhistopia, Polinizz, Bobithèque et d'autres.",
+    "Studio indépendant à Avignon (Vaucluse) : création de sites internet, développement d'applications web et mobiles et de jeux vidéo, de A à Z. Pour Avignon, le Vaucluse et toute la région PACA.",
   alternates: { canonical: "/" },
 };
 
@@ -92,11 +93,33 @@ export default function HomePage() {
           <Reveal>
             <h2 className={h2}>Un studio, une personne.</h2>
             <div className="mt-10 max-w-2xl space-y-5 text-lg text-[#52525B]">
-              <p>Studio Castel est un studio indépendant installé à Avignon.</p>
+              <p>
+                Studio Castel est un studio indépendant installé à Avignon, qui travaille pour des clients du Vaucluse et
+                de toute la région PACA.
+              </p>
               <p>Des jeux, des apps et des sites, faits de A à Z par une seule personne : l&apos;idée, le design, le code.</p>
               <p>Pas d&apos;intermédiaire : la personne à qui tu écris est celle qui fabrique.</p>
             </div>
           </Reveal>
+          <ul className="mt-14 grid gap-6 md:grid-cols-3">
+            {coreServices.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/${s.slug}`}
+                  className="flex h-full flex-col gap-3 rounded-card bg-white p-7 transition-transform duration-200 hover:-translate-y-1.5"
+                >
+                  <h3 className="font-display text-2xl font-bold">{s.h1}</h3>
+                  <p className="text-[#52525B]">{s.teaser}</p>
+                  <span className="mt-auto pt-2 font-medium text-castel-red-deep underline underline-offset-4">En savoir plus</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8">
+            <Link href="/developpeur-web-avignon" className="font-medium text-castel-red-deep underline underline-offset-4 hover:no-underline">
+              Développeur web à Avignon : comment je travaille
+            </Link>
+          </p>
         </div>
       </section>
 

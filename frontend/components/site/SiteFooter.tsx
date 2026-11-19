@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CookieSettingsButton } from "./CookieSettingsButton";
 import { CONTACT_EMAIL, games } from "@/data/games";
+import { BUSINESS, servicePages } from "@/data/local-seo";
 import { Logo } from "./Logo";
 
 const linkCls = "text-[#A1A1AA] hover:text-white hover:underline underline-offset-4";
@@ -9,13 +10,31 @@ export function SiteFooter() {
   const stores = games.flatMap((g) => g.links.map((l) => ({ ...l, game: g.name })));
   return (
     <footer className="bg-castel-ink px-5 py-14 text-white sm:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-5">
         <div className="flex flex-col gap-4">
           <Link href="/" className="flex items-center gap-3" aria-label="Studio Castel, accueil">
             <Logo size={40} />
             <span className="font-display text-xl font-bold tracking-tight">Studio Castel</span>
           </Link>
-          <p className="text-[#A1A1AA]">Studio indépendant à Avignon. Jeux, apps et sites.</p>
+          <p className="text-[#A1A1AA]">Studio indépendant à Avignon. Jeux, apps et sites pour le Vaucluse et la région PACA.</p>
+          <address className="not-italic text-[#A1A1AA]">
+            {BUSINESS.street}
+            <br />
+            {BUSINESS.postalCode} {BUSINESS.city}
+            <br />
+            <a href={`tel:${BUSINESS.phone}`} className={linkCls}>{BUSINESS.phoneDisplay}</a>
+          </address>
+        </div>
+
+        <div>
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#A1A1AA]">Services</h2>
+          <ul className="flex flex-col gap-2">
+            {servicePages.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/${s.slug}`} className={linkCls}>{s.h1}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div>

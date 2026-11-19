@@ -16,7 +16,7 @@ export function Hero() {
           <br />faits avec le cœur.
         </h1>
         <p className="mt-6 max-w-xl text-base text-[#A1A1AA] sm:text-xl">
-          Studio Castel conçoit et développe des jeux, des apps et des sites, de A à Z.
+          Studio Castel conçoit et développe des jeux, des apps et des sites à Avignon, de A à Z.
         </p>
         <div className="mt-8">
           <Button href="#jeux" variant="red">Voir les jeux</Button>

@@ -27,9 +27,9 @@ const siteUrl = "https://studio-castel.com";
 const defaultOgImage = `${siteUrl}/og-logo-with-text.png`;
 const defaultOgImageLogoOnly = `${siteUrl}/og-logo-only.png`;
 
-const title = "Studio Castel, jeux, apps et sites";
+const title = "Studio Castel, création de sites, apps et jeux à Avignon";
 const description =
-  "Studio Castel est un studio indépendant à Avignon qui conçoit des jeux, des apps et des sites, de A à Z. Decalco, Pavat, Godsing, Préhistopia, Polinizz, Bobithèque et d'autres.";
+  "Studio indépendant à Avignon (Vaucluse) : création de sites internet, développement d'applications web et mobiles et de jeux vidéo, de A à Z. Pour Avignon, le Vaucluse et toute la région PACA.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -38,8 +38,15 @@ export const metadata: Metadata = {
     template: "%s | Studio Castel",
   },
   description,
-  alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  // Pas de canonical ici : il serait hérité par toutes les pages et les ferait pointer vers l'accueil.
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  formatDetection: { telephone: true, email: true },
+  other: {
+    "geo.region": "FR-84",
+    "geo.placename": "Avignon",
+    "geo.position": "43.9511;4.8113",
+    ICBM: "43.9511, 4.8113",
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",

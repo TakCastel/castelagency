@@ -1,10 +1,10 @@
 /**
  * Données structurées schema.org (JSON-LD) pour Google.
- * Organization + WebSite sur tout le site, VideoGame sur les pages jeux,
+ * ProfessionalService (LocalBusiness) + WebSite sur tout le site, Service/FAQ/fil d'Ariane sur les pages de services, VideoGame sur les pages jeux,
  * SoftwareApplication / CreativeWork sur les pages projets.
  */
 import type { Game } from "@/data/games";
-import { CONTACT_EMAIL } from "@/data/games";
+import { BUSINESS, coreServices, NEARBY_CITIES, type FaqItem, type ServicePage } from "@/data/local-seo";
 import type { ShowcaseProject } from "@/data/showcase";
 
 export const SITE_URL = "https://studio-castel.com";
@@ -24,23 +24,64 @@ export function JsonLd({ data }: { data: Json | Json[] }) {
   );
 }
 
+const postalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: BUSINESS.street,
+  postalCode: BUSINESS.postalCode,
+  addressLocality: BUSINESS.city,
+  addressRegion: BUSINESS.region,
+  addressCountry: "FR",
+};
+
+const areaServed = [
+  { "@type": "City", name: "Avignon" },
+  ...NEARBY_CITIES.filter((c) => c !== "Avignon").map((name) => ({ "@type": "City", name })),
+  { "@type": "AdministrativeArea", name: "Vaucluse" },
+  { "@type": "AdministrativeArea", name: "Provence-Alpes-Côte d'Azur" },
+  { "@type": "Country", name: "France" },
+];
+
 export function organizationJsonLd(): Json[] {
   return [
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      // ProfessionalService est un LocalBusiness : c'est ce type que Google lit pour la recherche locale.
+      "@type": "ProfessionalService",
       "@id": ORG_ID,
-      name: "Studio Castel",
+      name: BUSINESS.name,
+      alternateName: "Studio Castel Avignon",
+      description:
+        "Studio indépendant à Avignon : création de sites internet, développement d'applications web et mobiles et de jeux vidéo, pour Avignon, le Vaucluse et la région PACA.",
       url: SITE_URL,
       logo: `${SITE_URL}/og-logo-only.png`,
-      email: CONTACT_EMAIL,
-      founder: { "@type": "Person", name: "Tarik Talhaoui" },
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "3 rue Portail Bienson",
-        postalCode: "84000",
-        addressLocality: "Avignon",
-        addressCountry: "FR",
+      image: `${SITE_URL}/og-logo-with-text.png`,
+      email: BUSINESS.email,
+      telephone: BUSINESS.phone,
+      founder: { "@type": "Person", name: BUSINESS.founder, jobTitle: "Développeur web et de jeux vidéo" },
+      address: postalAddress,
+      geo: { "@type": "GeoCoordinates", ...BUSINESS.geo },
+      hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        `${BUSINESS.name}, ${BUSINESS.street}, ${BUSINESS.postalCode} ${BUSINESS.city}`,
+      )}`,
+      areaServed,
+      knowsLanguage: "fr",
+      knowsAbout: [
+        "Création de site internet",
+        "Développement web",
+        "Développement d'application mobile",
+        "Développement de jeu vidéo",
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Référencement naturel (SEO)",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Services de Studio Castel",
+        itemListElement: coreServices.map((s) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: s.serviceType, url: `${SITE_URL}/${s.slug}` },
+        })),
       },
       identifier: { "@type": "PropertyValue", propertyID: "SIRET", value: "85316573600028" },
     },
@@ -54,6 +95,45 @@ export function organizationJsonLd(): Json[] {
       publisher: { "@id": ORG_ID },
     },
   ];
+}
+
+export function serviceJsonLd(page: ServicePage): Json {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: page.h1,
+    serviceType: page.serviceType,
+    description: page.metaDescription,
+    url: `${SITE_URL}/${page.slug}`,
+    provider: { "@id": ORG_ID },
+    areaServed,
+    inLanguage: "fr-FR",
+  };
+}
+
+export function faqJsonLd(items: FaqItem[]): Json {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]): Json {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: abs(it.path),
+    })),
+  };
 }
 
 export function gameJsonLd(game: Game): Json {

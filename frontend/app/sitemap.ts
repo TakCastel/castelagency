@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { games } from "@/data/games";
+import { servicePages } from "@/data/local-seo";
 import { showcaseProjects } from "@/data/showcase";
 import { getChapterSlugs } from "@/lib/training/course";
 
@@ -25,6 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
+  const serviceEntries: MetadataRoute.Sitemap = servicePages.map((s) => ({
+    url: `${BASE_URL}/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.95,
+  }));
+
   const gameEntries: MetadataRoute.Sitemap = games.map((game) => ({
     url: `${BASE_URL}/jeux/${game.slug}`,
     lastModified: new Date(),
@@ -46,5 +54,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticEntries, ...gameEntries, ...projectEntries, ...formationEntries];
+  return [...staticEntries, ...serviceEntries, ...gameEntries, ...projectEntries, ...formationEntries];
 }
