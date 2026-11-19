@@ -1,90 +1,10 @@
 # Studio Castel
 
-Site web de Studio Castel, avec un backend Directus + un frontend Next.js.
+Site du Studio Castel, studio de jeux vidéo indépendant basé à Avignon. Une page d'accueil qui présente les jeux, une page par jeu, les pages légales, et le parcours `/formation-ia` (accessible par son adresse, hors menu).
 
-## Structure du projet
+Direction artistique : `frontend/docs/DA-studio-castel.md`.
 
-- **`backend/`** : Configuration backend (Directus + PostgreSQL)
-  - `uploads/` : Fichiers uploadés par Directus
-  - `extensions/` : Extensions Directus
-  - `init-collections.js` : Script d'initialisation des collections
-  
-- **`frontend/`** : Code source du frontend Next.js
-  - App Router (`app/`)
-  - Ce dossier est monté en volume dans le conteneur Docker pour le watch
-
-- **`docker-compose.yml`** : Orchestration de tous les services (à la racine)
-
-## Démarrage rapide
-
-Tous les services sont dockerisés et peuvent être lancés d'un coup depuis la racine :
-
-```bash
-# Depuis la racine du projet
-npm run dev
-# ou
-docker-compose up --build
-```
-
-### Variables d’environnement
-
-Crée un fichier `.env` à la racine (utilisé par Docker Compose) :
-
-```bash
-cp .env.example .env
-npm run dev
-```
-
-Les services seront accessibles sur :
-- **Frontend Next.js** : http://localhost:3000 (avec watch activé)
-- **Directus Admin** : http://localhost:8055
-
-**Note** : Le frontend watch automatiquement les modifications dans `frontend/` grâce au volume monté.
-
-## Collections Directus recommandées
-
-Après la première connexion à Directus, créez les collections suivantes :
-
-- **services** : Services proposés par l'agence
-- **projects** : Projets réalisés
-- **partners** : Partenaires
-- **contacts** : Messages de contact
-- **pages** : Contenu des pages (agence, méthodologie, etc.)
-
-## Technologies utilisées
-
-- **Next.js** : Framework React pour le frontend
-- **shadcn/ui + Tailwind CSS** : Composants UI et styles
-- **Directus** : CMS headless pour la gestion de contenu
-- **TypeScript** : Typage statique
-- **Docker** : Containerisation de tous les services
-
-## Développement
-
-### Tous les services avec Docker (recommandé)
-
-Depuis la racine du projet :
-
-```bash
-npm run dev              # Démarrer tous les services avec watch
-npm run down             # Arrêter tous les services
-npm run logs             # Voir tous les logs
-npm run logs:frontend     # Logs du frontend uniquement
-npm run logs:backend     # Logs de Directus uniquement
-npm run restart:frontend # Redémarrer uniquement le frontend
-```
-
-Ou avec docker-compose directement :
-
-```bash
-docker-compose up --build    # Démarrer avec rebuild
-docker-compose down          # Arrêter
-docker-compose logs -f       # Voir les logs
-```
-
-### Frontend en local (sans Docker)
-
-Si vous préférez développer le frontend en local :
+## Démarrage
 
 ```bash
 cd frontend
@@ -92,10 +12,18 @@ npm install
 npm run dev
 ```
 
-**Note** : Assurez-vous que le backend (Directus) tourne pour que le frontend puisse s'y connecter.
+Le site est servi sur http://localhost:3000. Déploiement : Netlify (`netlify.toml`, base `frontend`).
 
-## Notes
+## Structure de `frontend/`
 
-- Assurez-vous que les variables d'environnement sont correctement configurées
-- Pour la production, configurez les URLs et les secrets dans les fichiers `.env`
-- Le watch du frontend fonctionne grâce au volume monté dans Docker
+- `app/` : routes (App Router). `(site)/` contient l'accueil, `jeux/[slug]`, `mentions-legales` et `politique-de-confidentialite`. `formation-ia/` est isolée (layout, thème et CSS propres).
+- `components/site/` : composants du site. `components/training/` et `components/ui/` : formation IA.
+- `data/` : contenus en TypeScript. `games.ts` pilote l'accueil et les pages jeux. `projects.ts`, `drawings.ts`, `blog.ts`, `books.ts`, `book-pages.ts` et `content/` conservent les anciens contenus (non affichés pour l'instant).
+- `lib/` : utilitaires, analytics et consentement, formation (`lib/training/`).
+- `public/` : images (`games/`, `brand/`, `assets/`).
+
+Les anciennes URLs de l'agence web (services, projets, blog, contact, devis...) redirigent vers `/` (voir `frontend/next.config.js`).
+
+## Legacy
+
+`backend/` (Directus + PostgreSQL) et `docker-compose.yml` datent de l'ancien site d'agence et ne sont plus utilisés par le frontend.

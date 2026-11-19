@@ -1,0 +1,155 @@
+/*
+ * Styles de la section /formation-ia, isolés du reste du site.
+ * Tout est scopé sous .formation-root (posé par app/formation-ia/layout.tsx).
+ * Pas de @layer ici (Tailwind 3 l'exige avec @tailwind) : les règles de base utilisent :where() pour garder une spécificité faible.
+ * Mode sombre : classe "dark" sur <html> (ThemeProvider) ; les îlots
+ * .theme-light / .theme-dark servent au calque de transition du thème.
+ */
+
+.formation-root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+
+  /* Typo sémantique : titre gros, titre moyen, titre petit, paragraphe, small */
+  --text-titre-gros: clamp(3.25rem, 10vw, 7.25rem);
+  --text-titre-gros-leading: 1.1;
+  --text-titre-moyen: clamp(2.125rem, 4vw, 3.25rem);
+  --text-titre-moyen-leading: 1.2;
+  --text-titre-petit: clamp(1.5rem, 2.5vw, 2rem);
+  --text-titre-petit-leading: 1.3;
+  --text-paragraphe: 1.125rem;
+  --text-paragraphe-leading: 1.6;
+  --text-small: 0.9375rem;
+  --text-small-leading: 1.5;
+
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+
+  /* Couleur primaire : OKLCH (violet) */
+  --primary: 45.7% 0.24 277.023;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+
+  --radius: 0.75rem;
+}
+
+.dark .formation-root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 92.4% 0.12 95.746;
+  --primary-foreground: 0 0% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+}
+
+/* Îlots de thème (calque de transition ajouté au <body>, hors .formation-root) */
+.theme-light,
+.theme-light .formation-root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 45.7% 0.24 277.023;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+}
+.theme-dark,
+.theme-dark .formation-root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 92.4% 0.12 95.746;
+  --primary-foreground: 0 0% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+}
+
+:where(.formation-root),
+:where(.formation-root) * {
+  @apply border-border;
+}
+
+:where(.formation-root) {
+  @apply bg-background text-foreground;
+  font-size: var(--text-paragraphe);
+  line-height: var(--text-paragraphe-leading);
+}
+
+/* polices des titres */
+:where(.formation-root) h1,
+:where(.formation-root) h2,
+:where(.formation-root) h3 {
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+:where(.formation-root) h1 {
+  @apply font-semibold tracking-tight;
+  font-size: var(--text-titre-gros);
+  line-height: var(--text-titre-gros-leading);
+  letter-spacing: -0.025em;
+}
+
+:where(.formation-root) h2 {
+  @apply font-semibold tracking-tight;
+  font-size: var(--text-titre-moyen);
+  line-height: var(--text-titre-moyen-leading);
+  letter-spacing: -0.025em;
+}
+
+:where(.formation-root) h3 {
+  @apply font-medium tracking-tight;
+  font-size: var(--text-titre-petit);
+  line-height: var(--text-titre-petit-leading);
+  letter-spacing: -0.025em;
+}

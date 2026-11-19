@@ -127,7 +127,7 @@ export function TrainingHeaderSearch({ className }: TrainingHeaderSearchProps) {
             </div>
           ) : (
             <div className="px-4 py-4 text-sm text-muted-foreground">
-              Aucun résultat pour <span className="font-medium text-foreground">"{query}"</span>.
+              Aucun résultat pour <span className="font-medium text-foreground">«&nbsp;{query}&nbsp;»</span>.
             </div>
           )}
         </div>

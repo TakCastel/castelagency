@@ -2,13 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Cookie } from "lucide-react";
 import {
   hasConsentChoice,
   acceptAnalytics,
   refuseAnalytics,
 } from "@/lib/consent";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const DELAY_MS = 2800;
@@ -59,60 +57,43 @@ export function CookieConsentBanner() {
     <div
       role="dialog"
       aria-label="Choix des cookies"
-      className={cn(
-        "fixed left-0 right-0 bottom-0 z-[9999] p-0 sm:p-5",
-        "md:left-6 md:right-auto md:bottom-6 md:max-w-2xl md:p-0"
-      )}
+      className="fixed inset-x-0 bottom-0 z-[9999] p-3 sm:p-5 md:inset-x-auto md:left-6 md:bottom-6 md:max-w-xl md:p-0"
     >
       <div
         className={cn(
-          "flex max-w-2xl flex-col overflow-hidden rounded-t-xl border-x border-t border-border border-b-0 bg-background shadow-xl shadow-black/10 backdrop-blur-md transition-all ease-out",
-          "sm:rounded-2xl sm:border sm:border-b md:shadow-2xl",
+          "flex flex-col gap-4 rounded-card bg-castel-ink p-5 text-white shadow-card transition-all ease-out sm:p-6",
           hasEntered ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         )}
         style={{ transitionDuration: `${ANIM_DURATION_MS}ms` }}
       >
-        {/* Icône + bloc texte */}
-        <div className="flex gap-3 px-4 py-3 sm:gap-4 sm:p-5 md:gap-5">
-          <div
-            className={cn(
-              "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary",
-              "sm:h-14 sm:w-14 sm:rounded-2xl"
-            )}
+        <div className="space-y-2">
+          <h3 className="font-display text-xl font-bold">Cookies et confidentialité</h3>
+          <p className="text-sm leading-relaxed text-[#A1A1AA]">
+            Nous utilisons des cookies pour mesurer l’audience et comprendre comment vous utilisez le site
+            (pages vues, clics). Aucune publicité.
+          </p>
+          <Link
+            href="/politique-de-confidentialite"
+            className="inline-block text-sm font-medium text-white underline underline-offset-2 hover:no-underline"
           >
-            <Cookie className="h-5 w-5 sm:h-7 sm:w-7" strokeWidth={1.75} />
-          </div>
-          <div className="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
-            <h3 className="text-sm font-semibold text-foreground sm:text-titre-petit">
-              Cookies & confidentialité
-            </h3>
-            <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-              Nous utilisons des cookies pour mesurer l’audience et comprendre comment vous utilisez le site
-              (pages vues, clics, demandes de devis). Aucune publicité.
-            </p>
-            <Link
-              href="/politique-de-confidentialite"
-              className="inline-block text-xs font-medium text-primary underline underline-offset-2 hover:no-underline sm:text-sm"
-            >
-              Politique de confidentialité
-            </Link>
-          </div>
+            Politique de confidentialité
+          </Link>
         </div>
-
-        {/* Boutons Refuser / Tout accepter */}
-        <div className="flex flex-row items-center justify-end gap-2 border-t border-border bg-muted/30 px-4 py-3 sm:gap-3 sm:px-5 sm:py-4">
-          <Button
+        <div className="flex flex-row gap-3">
+          <button
             type="button"
-            variant="outline"
-            size="sm"
             onClick={refuse}
-            className="min-w-[5.5rem] border-border sm:min-w-[7rem]"
+            className="min-h-11 flex-1 rounded-full bg-castel-surface px-5 font-display text-sm font-semibold text-white transition-colors hover:bg-white hover:text-castel-ink sm:flex-none sm:min-w-[7rem]"
           >
             Refuser
-          </Button>
-          <Button type="button" size="sm" onClick={accept} className="min-w-[5.5rem] sm:min-w-[7rem]">
+          </button>
+          <button
+            type="button"
+            onClick={accept}
+            className="min-h-11 flex-1 rounded-full bg-castel-red px-5 font-display text-sm font-semibold text-castel-ink transition-colors hover:bg-white sm:flex-none sm:min-w-[7rem]"
+          >
             Tout accepter
-          </Button>
+          </button>
         </div>
       </div>
     </div>

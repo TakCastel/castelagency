@@ -58,3 +58,11 @@ export function onConsentUpdate(callback: (analytics: boolean) => void): () => v
   window.addEventListener(CONSENT_EVENT, handler);
   return () => window.removeEventListener(CONSENT_EVENT, handler);
 }
+
+/** Efface le choix enregistré : la bannière se réaffiche au rechargement. */
+export function resetConsent(): void {
+  if (typeof document === "undefined") return;
+  document.cookie = `${CONSENT_COOKIE_NAME}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
+  dispatchConsentUpdate(false);
+  window.location.reload();
+}

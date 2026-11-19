@@ -9,19 +9,50 @@ const nextConfig = {
   transpilePackages: ["motion"],
   // Racine pour le tracing (évite le warning lockfiles sur Netlify quand base = "frontend")
   outputFileTracingRoot: path.join(__dirname),
+  // Le roman est lu avec fs au rendu : on s'assure qu'il est embarqué au déploiement.
+  outputFileTracingIncludes: {
+    "/creations/ecritures/l-homme-au-masque-de-verre": ["./data/content/ecritures/**/*"],
+  },
   /** Formats servis par l’optimiseur d’images (grille + zoom modale). */
   images: {
     formats: ["image/avif", "image/webp"],
     // Tailles mobiles en premier pour LCP plus léger sur mobile (Lighthouse)
     deviceSizes: [375, 414, 640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Qualités utilisées via <Image quality={…}> dans le code (requis à partir de Next 16)
+    qualities: [70, 75, 90],
   },
+  /**
+   * Ancien site d'agence web : toutes les anciennes pages publiques renvoient vers l'accueil
+   * (l'ancre #contact ne peut pas être portée par une redirection serveur).
+   */
   async redirects() {
+    const legacyRoutes = [
+      "/services",
+      "/services/:path*",
+      "/nos-projets",
+      "/nos-projets/:path*",
+      "/realisations",
+      "/blog",
+      "/blog/:path*",
+      "/le-studio",
+      "/contact",
+      "/devis",
+      "/mode-de-fonctionnement",
+      "/developpeur-web-avignon",
+    ];
+    const toHome = legacyRoutes.map((source) => ({ source, destination: "/", permanent: true }));
     return [
-      { source: "/realisations", destination: "/mes-projets", permanent: true },
-      { source: "/nos-projets", destination: "/mes-projets", permanent: true },
-      { source: "/nos-projets/:path*", destination: "/mes-projets/:path*", permanent: true },
-      { source: "/blog/allez-vas-y", destination: "/blog/se-lancer-sur-le-web-concretiser-projet-site-internet", permanent: true },
+      // Ordre : les règles précises d'abord.
+      { source: "/mes-projets/pavat", destination: "/jeux/pavat", permanent: true },
+      { source: "/mes-projets/prehistopia", destination: "/jeux/prehistopia", permanent: true },
+      { source: "/mes-projets/brice", destination: "/projets", permanent: true },
+      { source: "/mes-projets", destination: "/projets", permanent: true },
+      { source: "/mes-projets/:slug", destination: "/projets/:slug", permanent: true },
+      { source: "/dessins", destination: "/creations", permanent: true },
+      { source: "/creations/dessins", destination: "/creations", permanent: true },
+      { source: "/creations/ecritures", destination: "/creations", permanent: true },
+      ...toHome,
     ];
   },
 };

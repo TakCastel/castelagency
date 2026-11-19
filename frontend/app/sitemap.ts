@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getBlogSlugs } from "@/lib/blog";
-import { getProjectSlugs } from "@/lib/projects";
+import { games } from "@/data/games";
+import { showcaseProjects } from "@/data/showcase";
 import { getChapterSlugs } from "@/lib/training/course";
 
 const BASE_URL = "https://studio-castel.com";
@@ -8,28 +8,13 @@ const BASE_URL = "https://studio-castel.com";
 /** Pages statiques principales */
 const staticRoutes = [
   "",
-  "/contact",
-  "/devis",
-  "/developpeur-web-avignon",
-  "/le-studio",
-  "/mes-projets",
-  "/mode-de-fonctionnement",
-  "/services",
-  "/services/site-vitrine",
-  "/services/ecommerce",
-  "/services/applications-sur-mesure",
-  "/services/ux-ui-branding",
-  "/services/seo-acquisition",
-  "/services/process-ia",
+  "/projets",
   "/creations",
-  "/creations/dessins",
-  "/creations/ecritures",
   "/creations/ecritures/l-homme-au-masque-de-verre",
-  "/blog",
-  "/formation-ia",
-  "/formation-ia/feuille-de-route",
   "/mentions-legales",
   "/politique-de-confidentialite",
+  "/formation-ia",
+  "/formation-ia/feuille-de-route",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -40,29 +25,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const blogSlugs = getBlogSlugs();
-  const blogEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
+  const gameEntries: MetadataRoute.Sitemap = games.map((game) => ({
+    url: `${BASE_URL}/jeux/${game.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
+
+  const projectEntries: MetadataRoute.Sitemap = showcaseProjects.map((p) => ({
+    url: `${BASE_URL}/projets/${p.id}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const projectSlugs = getProjectSlugs();
-  const projectEntries: MetadataRoute.Sitemap = projectSlugs.map((slug) => ({
-    url: `${BASE_URL}/mes-projets/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  const formationChapterSlugs = getChapterSlugs();
-  const formationEntries: MetadataRoute.Sitemap = formationChapterSlugs.map((slug) => ({
+  const formationEntries: MetadataRoute.Sitemap = getChapterSlugs().map((slug) => ({
     url: `${BASE_URL}/formation-ia/chapitre/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
 
-  return [...staticEntries, ...blogEntries, ...projectEntries, ...formationEntries];
+  return [...staticEntries, ...gameEntries, ...projectEntries, ...formationEntries];
 }

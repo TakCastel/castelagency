@@ -1,18 +1,33 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { Outfit } from "next/font/google";
 
+import "./formation-legacy.css";
+
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { BuyMeACoffeeFloating } from "@/components/training/BuyMeACoffeeFloating";
 import { TrainingHeaderSearch } from "@/components/training/TrainingHeaderSearch";
 import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 import { FORMATION_CONTENT_CONTAINER } from "@/lib/training/formation-container";
 import { cn } from "@/lib/utils";
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+/** Anti-flash : applique le thème enregistré (clair/sombre, sombre par défaut) avant l'hydratation. */
+const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('studio-castel-theme');var d=document.documentElement;d.classList.remove('light','dark');d.classList.add(t==='light'?'light':'dark');}catch(e){}})();`;
+
 /**
  * Parcours guide pratique : hors header / footer du site (standalone, sans lien vers le site vitrine).
  */
 export default function FormationIaLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-muted/40 via-background to-background dark:from-muted/10">
+    <ThemeProvider>
+      <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      <div className={cn(outfit.variable, "formation-root flex min-h-screen flex-col bg-gradient-to-b from-muted/40 via-background to-background dark:from-muted/10")}>
       <header className="fixed inset-x-0 top-0 z-[10001] shrink-0 border-b border-border/80 bg-background/90 backdrop-blur-md">
         <div className={cn(FORMATION_CONTENT_CONTAINER, "flex h-14 items-center gap-3")}>
           <Link
@@ -29,6 +44,7 @@ export default function FormationIaLayout({ children }: { children: ReactNode })
       </header>
       <div className="flex min-h-0 flex-1 flex-col pt-14">{children}</div>
       <BuyMeACoffeeFloating />
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }

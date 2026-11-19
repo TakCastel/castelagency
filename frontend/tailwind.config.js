@@ -22,12 +22,29 @@ module.exports = {
         paragraphe: ["var(--text-paragraphe)", { lineHeight: "var(--text-paragraphe-leading)" }],
         small: ["var(--text-small)", { lineHeight: "var(--text-small-leading)" }]
       },
+      fontFamily: {
+        display: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"]
+      },
+      boxShadow: {
+        card: "0 30px 60px rgba(0,0,0,0.45)"
+      },
       borderRadius: {
+        card: "30px",
+        chip: "16px",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)"
       },
       colors: {
+        castel: {
+          red: "#FF2B2B",
+          "red-deep": "#D61F1F",
+          ink: "#09090B",
+          surface: "#16161A",
+          paper: "#FFFFFF",
+          "paper-warm": "#F6F4F0"
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

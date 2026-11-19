@@ -1,19 +1,14 @@
 import type { ReactNode } from "react";
 
-import { DeferredFooter, DeferredWhatsAppFloatingCTA } from "@/components/DeferredLayoutParts";
-import { Navbar } from "@/components/landing/Navbar";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
-/**
- * Pages du site principal : navigation, pied de page, CTA WhatsApp.
- * Le parcours /formation-ia est hors de ce groupe (standalone).
- */
-export default function SiteChromeLayout({ children }: { children: ReactNode }) {
+export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Navbar />
-      <main className="pt-16 lg:pt-20">{children}</main>
-      <DeferredFooter />
-      <DeferredWhatsAppFloatingCTA />
+      <SiteHeader />
+      <main id="contenu">{children}</main>
+      <SiteFooter />
     </>
   );
 }

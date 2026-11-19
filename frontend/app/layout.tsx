@@ -1,90 +1,75 @@
-import type { Metadata } from "next";
-import { Outfit, Comic_Neue } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 
-const outfit = Outfit({
+const poppins = Poppins({
+  weight: ["600", "700"],
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-poppins",
   display: "swap",
 });
 
-const comicNeue = Comic_Neue({
-  weight: ["400", "700"],
+const inter = Inter({
+  weight: ["400", "500"],
   subsets: ["latin"],
-  variable: "--font-comic-neue",
+  variable: "--font-inter",
   display: "swap",
 });
 
 const siteUrl = "https://studio-castel.com";
 
-/** Image par défaut pour le partage social (logo + texte). Format recommandé 1200×630. */
 const defaultOgImage = `${siteUrl}/og-logo-with-text.png`;
 const defaultOgImageLogoOnly = `${siteUrl}/og-logo-only.png`;
+
+const title = "Studio Castel, jeux, apps et sites";
+const description =
+  "Studio Castel est un studio indépendant à Avignon qui conçoit des jeux, des apps et des sites, de A à Z. Decalco, Pavat, Godsing, Préhistopia, Polinizz, Bobithèque et d'autres.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Agence web Avignon | Studio Castel",
-    template: "%s | Studio Castel"
+    default: title,
+    template: "%s | Studio Castel",
   },
-  description:
-    "Agence web Avignon : Studio Castel crée et refait sites vitrines, e‑commerce et applications. UX/UI, branding, SEO, contenus et automatisations. Basé à Avignon.",
-  alternates: {
-    canonical: "/"
-  },
-  robots: {
-    index: true,
-    follow: true
-  },
+  description,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "Studio Castel",
-    title: "Agence web Avignon | Studio Castel",
-    description:
-      "Agence web Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO. Studio Castel, basé à Avignon.",
+    title,
+    description,
     images: [
-      { url: defaultOgImage, width: 1200, height: 630, alt: "Studio Castel – Agence web Avignon" },
+      { url: defaultOgImage, width: 1200, height: 630, alt: "Studio Castel, jeux, apps et sites" },
       { url: defaultOgImageLogoOnly, width: 600, height: 600, alt: "Studio Castel" },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agence web Avignon | Studio Castel",
-    description:
-      "Agence web Avignon : création et refonte de sites vitrines, e‑commerce et applications. UX/UI, branding, SEO. Studio Castel.",
+    title,
+    description,
     images: [defaultOgImage],
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#FF2B2B",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${outfit.variable} ${comicNeue.variable}`} suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href={siteUrl} />
-        <link rel="dns-prefetch" href={siteUrl} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('studio-castel-theme');var d=document.documentElement;d.classList.remove('light','dark');d.classList.add(t==='light'?'light':'dark');})();`,
-          }}
-        />
-      </head>
-      <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-background font-sans text-foreground antialiased">
-        <ThemeProvider>
-          <ReadingProgressBar />
-          <ConsentAwareAnalytics />
-          <AnalyticsPageView />
-          {children}
-          <CookieConsentBanner />
-        </ThemeProvider>
+    <html lang="fr" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-castel-ink font-sans text-white antialiased">
+        <ConsentAwareAnalytics />
+        <AnalyticsPageView />
+        {children}
+        <CookieConsentBanner />
       </body>
     </html>
   );
 }
-
