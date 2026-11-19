@@ -9,6 +9,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { clean, KIND_LABEL } from "@/components/projects/text";
 import { Button } from "@/components/site/Button";
 import { getShowcaseProject, showcaseProjects } from "@/data/showcase";
+import { JsonLd, projectJsonLd } from "@/lib/jsonld";
 
 type Params = { slug: string };
 
@@ -62,6 +63,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
   return (
     <div className="bg-castel-ink font-sans text-white">
+      <JsonLd data={projectJsonLd(p, clean(p.description))} />
       <section
         className="px-4 pt-28 sm:px-8 sm:pt-32"
         style={p.isMobileApp ? undefined : { background: "linear-gradient(to bottom, #16161A 0 50%, #09090B 50% 100%)" }}

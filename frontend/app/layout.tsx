@@ -6,6 +6,7 @@ import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 import { PageTransition } from "@/components/site/PageTransition";
+import { JsonLd, organizationJsonLd } from "@/lib/jsonld";
 
 const poppins = Poppins({
   weight: ["600", "700"],
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-castel-ink font-sans text-white antialiased">
+        <JsonLd data={organizationJsonLd()} />
         <ConsentAwareAnalytics />
         <AnalyticsPageView />
         {children}

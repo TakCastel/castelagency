@@ -18,12 +18,15 @@ Le site est servi sur http://localhost:3000. Déploiement : Netlify (`netlify.to
 
 - `app/` : routes (App Router). `(site)/` contient l'accueil, `jeux/[slug]`, `mentions-legales` et `politique-de-confidentialite`. `formation-ia/` est isolée (layout, thème et CSS propres).
 - `components/site/` : composants du site. `components/training/` et `components/ui/` : formation IA.
-- `data/` : contenus en TypeScript. `games.ts` pilote l'accueil et les pages jeux. `projects.ts`, `drawings.ts`, `blog.ts`, `books.ts`, `book-pages.ts` et `content/` conservent les anciens contenus (non affichés pour l'instant).
+- `data/` : contenus en TypeScript. `games.ts` pilote l'accueil et les pages jeux, `showcase.ts` (sur la base de `projects.ts`) les projets. `books.ts`, `drawings.ts` et `content/` servent à `/creations`.
 - `lib/` : utilitaires, analytics et consentement, formation (`lib/training/`).
 - `public/` : images (`games/`, `brand/`, `assets/`).
 
 Les anciennes URLs de l'agence web (services, projets, blog, contact, devis...) redirigent vers `/` (voir `frontend/next.config.js`).
 
-## Legacy
+## Production
 
-`backend/` (Directus + PostgreSQL) et `docker-compose.yml` datent de l'ancien site d'agence et ne sont plus utilisés par le frontend.
+- Domaine : https://studio-castel.com (Netlify). `www` redirige vers le domaine nu.
+- En-têtes de sécurité : `headers()` dans `frontend/next.config.js`.
+- Données structurées (JSON-LD) : `frontend/lib/jsonld.tsx` (Organization, VideoGame, SoftwareApplication / CreativeWork).
+- Variables d'environnement : `frontend/.env.example` (analytics uniquement), à recopier dans Netlify.

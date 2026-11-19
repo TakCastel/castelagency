@@ -3,4 +3,5 @@
 Contenus conservés lors de la refonte « studio de jeux » (novembre 2026).
 
 - `games.ts` : les jeux affichés sur le site (source unique).
-- `projects.ts`, `drawings.ts`, `blog.ts`, `books.ts`, `book-pages.ts`, `content/` : anciens contenus (réalisations, dessins, articles, écritures). Plus routés, gardés comme données. Les images associées restent dans `public/assets/`.
+- `projects.ts` : fiches détaillées des projets, filtrées et ordonnées par `showcase.ts`.
+- `books.ts`, `drawings.ts`, `content/` : écritures et dessins de `/creations`. Images dans `public/assets/`.

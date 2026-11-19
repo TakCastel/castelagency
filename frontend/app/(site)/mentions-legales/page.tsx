@@ -19,14 +19,21 @@ export default function MentionsLegalesPage() {
     >
       <LegalSection title="Éditeur du site">
         <p>
-          Studio Castel, Tarik Talhaoui
+          Studio Castel est le nom commercial de Tarik Talhaoui, entrepreneur individuel (micro-entreprise),
+          immatriculé au registre du commerce et des sociétés sous le numéro 853 165 736 R.C.S. Avignon.
           <br />
-          Avignon, France
+          SIRET : 853 165 736 00028
           <br />
-          Contact :{" "}
+          Adresse : 3 rue Portail Bienson, 84000 Avignon, France
+          <br />
+          Téléphone : 06 08 43 20 59
+          <br />
+          E-mail :{" "}
           <a href={`mailto:${CONTACT_EMAIL}`} className="text-[#D61F1F] underline underline-offset-4">
             {CONTACT_EMAIL}
           </a>
+          <br />
+          TVA non applicable, article 293 B du Code général des impôts.
         </p>
       </LegalSection>
 
@@ -35,7 +42,7 @@ export default function MentionsLegalesPage() {
       </LegalSection>
       <LegalSection title="Hébergement">
         <p>
-          Ce site est hébergé par Netlify, Inc., 2325 3rd Street, Suite 296, San Francisco, California 94107, USA.
+          Ce site est hébergé par Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis (netlify.com).
         </p>
       </LegalSection>
       <LegalSection title="Propriété intellectuelle">

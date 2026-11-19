@@ -6,6 +6,7 @@ import { GameCardCompact } from "@/components/site/GameCardCompact";
 import { GameCover } from "@/components/site/GameCover";
 import { ScreenshotGallery } from "@/components/site/ScreenshotGallery";
 import { games, getGame } from "@/data/games";
+import { gameJsonLd, JsonLd } from "@/lib/jsonld";
 
 type Params = { slug: string };
 
@@ -68,6 +69,7 @@ export default async function GamePage({
 
   return (
     <div className="bg-castel-ink font-sans text-white">
+      <JsonLd data={gameJsonLd(game)} />
       {/* Bandeau teinté : la moitié haute prend la teinte du jeu, la carte déborde sur le noir. */}
       <section
         className="px-4 pt-28 sm:px-8 sm:pt-32"
