@@ -13,7 +13,7 @@ export function Hero() {
         </span>
         <h1 className="mt-6 font-display text-[44px] font-bold text-white sm:text-7xl lg:text-[96px]">
           Jeux, apps et sites
-          <br />faits à la main.
+          <br />faits avec le cœur.
         </h1>
         <p className="mt-6 max-w-xl text-base text-[#A1A1AA] sm:text-xl">
           Studio Castel conçoit et développe des jeux, des apps et des sites, de A à Z.
