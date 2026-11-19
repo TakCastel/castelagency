@@ -7,7 +7,7 @@ import { tracks } from "@/data/music";
 
 export const metadata: Metadata = {
   title: "Créations",
-  description: "Musiques, dessins et écrits de Studio Castel."
+  description: "Musiques, dessins et écrits de Studio Castel.",
   alternates: { canonical: "/creations" },
 };
 
