@@ -4,6 +4,8 @@ import Image from "next/image";
 import {
   useCallback,
   useEffect,
+  useRef,
+  useState,
   type Dispatch,
   type SetStateAction,
 } from "react";
@@ -43,6 +45,51 @@ export function MusicBar({
     player;
   const collapse = useCallback(() => setExpanded(false), [setExpanded]);
 
+  // Vue « En cours » : reste montée le temps de son animation de fermeture.
+  const NP_OUT_MS = 280;
+  const [npMounted, setNpMounted] = useState(expanded);
+  const [npClosing, setNpClosing] = useState(false);
+  useEffect(() => {
+    if (expanded) {
+      setNpMounted(true);
+      setNpClosing(false);
+      return;
+    }
+    setNpClosing(true);
+    const id = setTimeout(() => {
+      setNpMounted(false);
+      setNpClosing(false);
+    }, NP_OUT_MS);
+    return () => clearTimeout(id);
+  }, [expanded]);
+
+  // Fermeture du lecteur : le son baisse en fondu pendant que la barre descend, puis on coupe.
+  const CLOSE_MS = 600;
+  const [closing, setClosing] = useState(false);
+  const raf = useRef(0);
+  const fadeOutAndClose = () => {
+    if (closing) return;
+    setClosing(true);
+    setExpanded(false);
+    const audio = player.audioProps.ref.current;
+    const start = audio?.volume ?? 1;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const k = Math.min(1, (now - t0) / CLOSE_MS);
+      // Courbe douce : baisse rapide au début, comme un fondu de console.
+      if (audio) audio.volume = start * (1 - k) * (1 - k);
+      if (k < 1) {
+        raf.current = requestAnimationFrame(tick);
+        return;
+      }
+      close();
+      if (audio) audio.volume = start; // prêt pour le prochain morceau
+      setClosing(false);
+    };
+    raf.current = requestAnimationFrame(tick);
+  };
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
+
   // Espace = lecture/pause, partout sur la page tant qu'un morceau est chargé (comme YouTube Music).
   // Sauf en tapant du texte (recherche). preventDefault : ni défilement de la page, ni clic du bouton
   // qui aurait gardé le focus (« suivant » enchaînerait un morceau en plus de la pause).
@@ -70,7 +117,9 @@ export function MusicBar({
 
   return (
     <>
-      {expanded && <NowPlaying player={player} onClose={collapse} />}
+      {npMounted && (
+        <NowPlaying player={player} onClose={collapse} closing={npClosing} />
+      )}
       <div
         onClick={(e) => {
           if (!(e.target as HTMLElement).closest("button, a, input"))
@@ -78,7 +127,7 @@ export function MusicBar({
         }}
         role="region"
         aria-label="Lecteur audio"
-        className="fixed inset-x-0 bottom-0 z-[140] cursor-pointer border-t border-white/10 bg-castel-surface/95 font-sans text-white backdrop-blur-md"
+        className={`fixed inset-x-0 bottom-0 z-[140] cursor-pointer border-t border-white/10 bg-castel-surface/95 font-sans text-white backdrop-blur-md ${closing ? "pointer-events-none translate-y-full opacity-0 transition-[transform,opacity] duration-[600ms] ease-in" : "animate-[bar-in_0.35s_cubic-bezier(0.2,0.8,0.2,1)]"}`}
       >
         <input
           type="range"
@@ -178,10 +227,7 @@ export function MusicBar({
           </button>
           <button
             type="button"
-            onClick={() => {
-              setExpanded(false);
-              close();
-            }}
+            onClick={fadeOutAndClose}
             aria-label="Fermer le lecteur"
             className={iconBtn}
           >

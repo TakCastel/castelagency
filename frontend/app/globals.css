@@ -85,19 +85,32 @@ html[data-transitioning] {
 
 /* Lecteur de musique (/creations) : barres de l'égaliseur et barre de progression. */
 @keyframes eq {
-  0%, 100% { transform: scaleY(0.3); }
-  50% { transform: scaleY(1); }
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
 }
 [class*="animate-[eq"] {
   transform-origin: bottom;
 }
 .music-seek::-webkit-slider-runnable-track {
   height: 3px;
-  background: linear-gradient(to right, #ff2b2b var(--p, 0%), rgb(255 255 255 / 0.15) var(--p, 0%));
+  background: linear-gradient(
+    to right,
+    #ff2b2b var(--p, 0%),
+    rgb(255 255 255 / 0.15) var(--p, 0%)
+  );
 }
 .music-seek::-moz-range-track {
   height: 3px;
-  background: linear-gradient(to right, #ff2b2b var(--p, 0%), rgb(255 255 255 / 0.15) var(--p, 0%));
+  background: linear-gradient(
+    to right,
+    #ff2b2b var(--p, 0%),
+    rgb(255 255 255 / 0.15) var(--p, 0%)
+  );
 }
 .music-seek::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -127,19 +140,55 @@ html[data-transitioning] {
   opacity: 1;
 }
 
-/* Vue « En cours de lecture » du lecteur de musiques : monte depuis la barre. */
+/* Lecteur de musiques : barre (entrée / sortie en fondu avec le son) et vue « En cours de lecture ».
+   « Réduire les animations » est géré par la règle globale plus haut. */
+@keyframes bar-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
 @keyframes np-in {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(48px);
   }
   to {
     opacity: 1;
     transform: none;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  [aria-label="En cours de lecture"] {
-    animation: none !important;
+@keyframes np-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+}
+@keyframes np-cover-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes np-list-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

@@ -18,9 +18,12 @@ import { formatTime, type MusicPlayerState } from "./useMusicPlayer";
 export function NowPlaying({
   player,
   onClose,
+  closing = false,
 }: {
   player: MusicPlayerState;
   onClose: () => void;
+  /** Animation de fermeture en cours (le parent démonte la vue juste après). */
+  closing?: boolean;
 }) {
   const { current, history, upcoming, currentId, playing, toggle } = player;
   const listRef = useRef<HTMLDivElement>(null);
@@ -65,7 +68,7 @@ export function NowPlaying({
       role="dialog"
       aria-modal="true"
       aria-label="En cours de lecture"
-      className="fixed inset-x-0 top-0 bottom-[72px] z-[139] overflow-hidden bg-castel-ink font-sans text-white animate-[np-in_0.28s_ease-out]"
+      className={`fixed inset-x-0 top-0 bottom-[72px] z-[139] overflow-hidden bg-castel-ink font-sans text-white ${closing ? "pointer-events-none animate-[np-out_0.28s_cubic-bezier(0.4,0,1,1)_forwards]" : "animate-[np-in_0.42s_cubic-bezier(0.2,0.8,0.2,1)]"}`}
     >
       {/* Fond : la pochette floutée, comme YouTube Music. */}
       <Image
@@ -89,7 +92,7 @@ export function NowPlaying({
             type="button"
             onClick={toggle}
             aria-label={playing ? "Pause" : "Lecture"}
-            className="group relative aspect-square w-full max-w-[min(72vw,320px)] shrink-0 overflow-hidden rounded-lg shadow-2xl shadow-black/60 sm:max-w-[400px] lg:max-w-[clamp(200px,calc(100vh-390px),560px)]"
+            className="group relative aspect-square w-full animate-[np-cover-in_0.55s_cubic-bezier(0.2,0.8,0.2,1)_0.04s_both] max-w-[min(72vw,320px)] shrink-0 overflow-hidden rounded-lg shadow-2xl shadow-black/60 sm:max-w-[400px] lg:max-w-[clamp(200px,calc(100vh-390px),560px)]"
           >
             <Image
               key={current.id}
@@ -146,7 +149,7 @@ export function NowPlaying({
 
         <section
           aria-label="À suivre"
-          className="flex min-h-0 flex-col lg:w-[420px] lg:shrink-0"
+          className="flex min-h-0 flex-col animate-[np-list-in_0.55s_cubic-bezier(0.2,0.8,0.2,1)_0.1s_both] lg:w-[420px] lg:shrink-0"
         >
           <h3 className="border-b border-white/15 pb-3 font-display text-sm font-semibold uppercase tracking-[0.12em] text-white/70">
             À suivre
