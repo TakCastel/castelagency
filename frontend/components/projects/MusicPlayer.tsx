@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ExternalLink, Pause, Play, Search, SkipBack, SkipForward, X } from "lucide-react";
 
-import { MUSIC_ARTIST, MUSIC_PROFILE_URL, sunoSongUrl, type MusicTrack } from "@/data/music";
+import { MUSIC_ARTIST, sunoSongUrl, type MusicTrack } from "@/data/music";
 
 const PAGE = 24;
 
@@ -163,7 +163,7 @@ export function MusicPlayer({ tracks }: { tracks: MusicTrack[] }) {
               </a>
             ) : (
               <>
-                {MUSIC_ARTIST} · <span className="tabular-nums">{formatTime(time)} / {formatTime(duration)}</span>
+                <span className="tabular-nums">{formatTime(time)} / {formatTime(duration)}</span>
               </>
             )}
           </p>
@@ -213,14 +213,7 @@ export function MusicPlayer({ tracks }: { tracks: MusicTrack[] }) {
         onError={() => currentId && setError(true)}
       />
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <p className="max-w-2xl text-lg leading-relaxed text-white/80">
-          {tracks.length} morceaux sous le nom de{" "}
-          <a href={MUSIC_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline decoration-castel-red underline-offset-4">
-            {MUSIC_ARTIST}
-          </a>
-          , composés avec Suno : psytrance, phonk, chœurs et orchestres.
-        </p>
+      <div className="flex">
         <label className="relative block w-full sm:w-72">
           <span className="sr-only">Chercher un morceau</span>
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" aria-hidden="true" />
