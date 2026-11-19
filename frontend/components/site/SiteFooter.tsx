@@ -10,8 +10,8 @@ export function SiteFooter() {
   const stores = games.flatMap((g) => g.links.map((l) => ({ ...l, game: g.name })));
   return (
     <footer className="bg-castel-ink px-5 py-14 text-white sm:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-5">
-        <div className="flex flex-col gap-4">
+      <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[minmax(0,17rem)_repeat(4,auto)] xl:justify-between xl:gap-x-12">
+        <div className="flex flex-col gap-4 lg:max-w-xs">
           <Link href="/" className="flex items-center gap-3" aria-label="Studio Castel, accueil">
             <Logo size={40} />
             <span className="font-display text-xl font-bold tracking-tight">Studio Castel</span>
@@ -28,7 +28,7 @@ export function SiteFooter() {
 
         <div>
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#A1A1AA]">Services</h2>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-2.5 xl:whitespace-nowrap">
             {servicePages.map((s) => (
               <li key={s.slug}>
                 <Link href={`/${s.slug}`} className={linkCls}>{s.h1}</Link>
@@ -39,7 +39,7 @@ export function SiteFooter() {
 
         <div>
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#A1A1AA]">Jeux</h2>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-2.5 xl:whitespace-nowrap">
             {games.filter((g) => g.status === "available").map((g) => (
               <li key={g.slug}>
                 <Link href={`/jeux/${g.slug}`} className={linkCls}>{g.name}</Link>
@@ -50,7 +50,7 @@ export function SiteFooter() {
 
         <div>
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#A1A1AA]">Jouer</h2>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-2.5 xl:whitespace-nowrap">
             {stores.map((l) => (
               <li key={l.href}>
                 <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
@@ -63,7 +63,7 @@ export function SiteFooter() {
 
         <div>
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#A1A1AA]">Studio</h2>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-2.5 xl:whitespace-nowrap">
             <li><Link href="/projets" className={linkCls}>Projets</Link></li>
             <li><Link href="/creations" className={linkCls}>Écrits et dessins</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} className={linkCls}>{CONTACT_EMAIL}</a></li>
@@ -73,7 +73,7 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <p className="mx-auto mt-12 max-w-7xl text-sm text-[#A1A1AA]">© {new Date().getFullYear()} Studio Castel</p>
+      <p className="mx-auto mt-14 max-w-7xl border-t border-white/10 pt-6 text-sm text-[#A1A1AA]">© {new Date().getFullYear()} Studio Castel</p>
     </footer>
   );
 }
