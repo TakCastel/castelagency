@@ -60,6 +60,7 @@ const tracks = published
     duration: Math.round(c.metadata?.duration ?? 0),
     tags: c.display_tags ?? "",
     date: c.created_at?.slice(0, 10) ?? "",
+    createdAt: c.created_at ?? "",
     plays: c.play_count ?? 0,
     likes: c.upvote_count ?? 0,
   }))

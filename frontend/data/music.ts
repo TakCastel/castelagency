@@ -19,6 +19,8 @@ export type MusicTrack = {
   tags: string;
   /** Date de création (AAAA-MM-JJ). */
   date: string;
+  /** Horodatage ISO complet de création (tri « Nouveautés »). */
+  createdAt: string;
   /** Nombre d'écoutes sur Suno au moment de la récupération. */
   plays: number;
   /** Nombre de likes sur Suno au moment de la récupération. */

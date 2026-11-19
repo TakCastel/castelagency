@@ -199,13 +199,22 @@ export function CreationsFeed({
   const [visible, setVisible] = useState(PAGE);
   const [openDrawing, setOpenDrawing] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
+  // Tri des musiques, comme sur Suno : « Top » (écoutes + likes, ordre de music.json) ou « Nouveautés ».
+  const [musicSort, setMusicSort] = useState<"top" | "new">("top");
   const columns = useColumns();
 
   useEffect(() => setMounted(true), []);
 
+  const sortedTracks = useMemo(
+    () =>
+      musicSort === "new"
+        ? [...tracks].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        : tracks,
+    [tracks, musicSort],
+  );
   const all = useMemo(
-    () => weave(tracks, drawings, books),
-    [tracks, drawings, books],
+    () => weave(sortedTracks, drawings, books),
+    [sortedTracks, drawings, books],
   );
   const counts = useMemo(
     () => ({
@@ -517,6 +526,35 @@ export function CreationsFeed({
           />
         </label>
       </div>
+
+      {filter === "music" && (
+        <div
+          role="radiogroup"
+          aria-label="Trier les musiques"
+          className="mt-4 inline-flex rounded-full border border-white/15 p-1"
+        >
+          {(
+            [
+              ["top", "Top"],
+              ["new", "Nouveautés"],
+            ] as const
+          ).map(([k, label]) => (
+            <button
+              key={k}
+              type="button"
+              role="radio"
+              aria-checked={musicSort === k}
+              onClick={() => {
+                setMusicSort(k);
+                reset();
+              }}
+              className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${musicSort === k ? "bg-white text-castel-ink" : "text-white/70 hover:text-white"}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {filtered.length === 0 ? (
         <p className="mt-10 text-white/60">Rien ne correspond à « {query} ».</p>
