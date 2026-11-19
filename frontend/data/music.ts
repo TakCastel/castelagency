@@ -1,5 +1,5 @@
 /**
- * Musiques de Kira Valentine (Suno), du plus récent au plus ancien.
+ * Musiques de Kira Valentine (Suno), du plus écouté au moins écouté.
  * La liste est générée par `node scripts/fetch-suno.mjs` dans music.json :
  * audio et pochettes restent sur les CDN de Suno.
  */
@@ -19,6 +19,8 @@ export type MusicTrack = {
   tags: string;
   /** Date de création (AAAA-MM-JJ). */
   date: string;
+  /** Nombre d'écoutes sur Suno au moment de la récupération. */
+  plays: number;
 };
 
 export const MUSIC_ARTIST = "Kira Valentine";

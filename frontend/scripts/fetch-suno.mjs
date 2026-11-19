@@ -58,8 +58,10 @@ const tracks = published
     duration: Math.round(c.metadata?.duration ?? 0),
     tags: c.display_tags ?? "",
     date: c.created_at?.slice(0, 10) ?? "",
+    plays: c.play_count ?? 0,
   }))
-  .sort((a, b) => b.date.localeCompare(a.date));
+  // Du plus écouté au moins écouté ; à égalité, le plus récent d'abord.
+  .sort((a, b) => b.plays - a.plays || b.date.localeCompare(a.date));
 
 await writeFile(OUT, JSON.stringify(tracks, null, 2) + "\n");
 const missing = tracks.filter((t) => !t.audio).map((t) => t.title);
