@@ -65,7 +65,7 @@ export default async function StoryPage() {
     <div className="bg-castel-paper-warm font-sans text-castel-ink">
       <article className="mx-auto max-w-[65ch] px-4 pb-24 pt-32 sm:px-0 sm:pt-40">
         <Link
-          href="/creations#ecrits"
+          href="/creations"
           className="text-sm font-medium text-castel-red-deep underline underline-offset-4 hover:text-castel-ink"
         >
           Retour aux créations
@@ -93,7 +93,7 @@ export default async function StoryPage() {
         <div className={`mt-12 ${prose}`} dangerouslySetInnerHTML={{ __html: html }} />
 
         <Link
-          href="/creations#ecrits"
+          href="/creations"
           className="mt-16 inline-block text-sm font-medium text-castel-red-deep underline underline-offset-4 hover:text-castel-ink"
         >
           Retour aux créations
