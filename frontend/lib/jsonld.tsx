@@ -1,10 +1,13 @@
 /**
  * Données structurées schema.org (JSON-LD) pour Google.
  * ProfessionalService (LocalBusiness) + WebSite sur tout le site, Service/FAQ/fil d'Ariane sur les pages de services, VideoGame sur les pages jeux,
- * SoftwareApplication / CreativeWork sur les pages projets.
+ * SoftwareApplication / CreativeWork sur les pages projets, CollectionPage (musiques, dessins, écrits) sur /creations.
  */
+import type { BookItem } from "@/data/books";
+import type { DrawingItem } from "@/data/drawings";
 import type { Game } from "@/data/games";
 import { BUSINESS, coreServices, NEARBY_CITIES, type FaqItem, type ServicePage } from "@/data/local-seo";
+import { sunoSongUrl, type MusicTrack } from "@/data/music";
 import type { ShowcaseProject } from "@/data/showcase";
 
 export const SITE_URL = "https://studio-castel.com";
@@ -167,5 +170,69 @@ export function projectJsonLd(p: ShowcaseProject, description: string): Json {
     ...(p.url ? { sameAs: abs(p.url) } : {}),
     creator: { "@id": ORG_ID },
     inLanguage: "fr-FR",
+  };
+}
+
+const isoDuration = (s: number) => `PT${Math.floor(s / 60)}M${Math.round(s % 60)}S`;
+
+/** Page /creations (ou une de ses vues filtrées) : CollectionPage + liste des œuvres de la vue. */
+export function creationsJsonLd({
+  path,
+  name,
+  description,
+  tracks = [],
+  drawings = [],
+  books = [],
+}: {
+  path: string;
+  name: string;
+  description: string;
+  tracks?: MusicTrack[];
+  drawings?: DrawingItem[];
+  books?: BookItem[];
+}): Json {
+  const works: Json[] = [
+    ...tracks.map((t) => ({
+      "@type": "MusicRecording",
+      name: t.title,
+      url: sunoSongUrl(t.id),
+      image: t.imageLarge,
+      ...(t.duration ? { duration: isoDuration(t.duration) } : {}),
+      ...(t.tags ? { genre: t.tags.split(",").map((g) => g.trim()).filter(Boolean) } : {}),
+      ...(t.date ? { datePublished: t.date } : {}),
+      byArtist: { "@id": ORG_ID },
+    })),
+    ...drawings.map((d) => ({
+      "@type": "VisualArtwork",
+      name: d.title ?? d.alt,
+      image: abs(d.src),
+      artform: "Dessin",
+      ...(d.date ? { dateCreated: String(d.date) } : {}),
+      creator: { "@id": ORG_ID },
+    })),
+    ...books.map((b) => ({
+      "@type": "Book",
+      name: b.title,
+      description: b.description,
+      image: abs(b.image),
+      url: abs(b.internalPath ?? b.url),
+      ...(b.year ? { datePublished: String(b.year) } : {}),
+      author: { "@id": ORG_ID },
+      inLanguage: "fr-FR",
+    })),
+  ];
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url: abs(path),
+    inLanguage: "fr-FR",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: works.length,
+      itemListElement: works.map((item, i) => ({ "@type": "ListItem", position: i + 1, item })),
+    },
   };
 }

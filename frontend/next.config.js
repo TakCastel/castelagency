@@ -67,9 +67,8 @@ const nextConfig = {
       { source: "/mes-projets/brice", destination: "/projets", permanent: true },
       { source: "/mes-projets", destination: "/projets", permanent: true },
       { source: "/mes-projets/:slug", destination: "/projets/:slug", permanent: true },
-      { source: "/dessins", destination: "/creations", permanent: true },
-      { source: "/creations/dessins", destination: "/creations", permanent: true },
-      { source: "/creations/ecritures", destination: "/creations", permanent: true },
+      { source: "/dessins", destination: "/creations/dessins", permanent: true },
+      { source: "/creations/ecritures", destination: "/creations/ecrits", permanent: true },
       ...toHome,
     ];
   },

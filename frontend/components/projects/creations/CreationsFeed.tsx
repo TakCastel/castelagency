@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { ArrowRight, ArrowUpRight, BookOpen, ExternalLink, Maximize2, Music2, Pause, PenLine, Play, Search } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, Check, ExternalLink, Maximize2, Music2, Pause, PenLine, Play, Search, Share2 } from "lucide-react";
 
 import type { BookItem } from "@/data/books";
+import { creationPath, creationSections, sectionByPath } from "@/data/creations";
 import { DRAWING_BLUR_DATA_URL, type DrawingItem } from "@/data/drawings";
 import { sunoSongUrl, type MusicTrack } from "@/data/music";
 import { clean } from "../text";
@@ -30,12 +32,14 @@ const KINDS: Record<Kind, { label: string; plural: string; icon: typeof Music2; 
 };
 
 function Badge({ kind }: { kind: Kind }) {
+  // En bas pour les écrits : en haut, le badge masquerait le titre imprimé sur la couverture.
+  const pos = kind === "book" ? "bottom-3 left-3" : "left-3 top-3";
   const { label, icon: Icon, badge } = KINDS[kind];
   return (
     <span
-      className={`absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] shadow-md backdrop-blur ${badge}`}
+      className={`absolute ${pos} z-10 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold shadow-md backdrop-blur ${badge}`}
     >
-      <Icon className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden="true" />
+      <Icon className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
       {label}
     </span>
   );
@@ -112,8 +116,12 @@ function Equalizer({ playing }: { playing: boolean }) {
 }
 
 export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[]; drawings: DrawingItem[]; books: BookItem[] }) {
-  const [filter, setFilter] = useState<Kind | "all">("all");
+  // Le filtre vient de l'URL (/creations/musiques…) : chaque vue est une vraie page, partageable et indexée.
+  const pathname = usePathname();
+  const section = sectionByPath(pathname);
+  const filter = section.filter;
   const [query, setQuery] = useState("");
+  const [copied, setCopied] = useState(false);
   const [visible, setVisible] = useState(PAGE);
   const [openDrawing, setOpenDrawing] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -157,6 +165,28 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
   );
 
   const reset = () => setVisible(PAGE);
+  useEffect(() => setVisible(PAGE), [filter]);
+
+  // Partage natif sur mobile, sinon copie du lien de la vue en cours.
+  const share = async () => {
+    const url = window.location.origin + creationPath(section);
+    const nav = navigator as Navigator & { share?: (d: ShareData) => Promise<void> };
+    if (nav.share && window.matchMedia("(pointer: coarse)").matches) {
+      try {
+        await nav.share({ title: `${section.heading} | Studio Castel`, url });
+        return;
+      } catch {
+        // partage annulé : on retombe sur la copie
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.prompt("Lien à copier :", url);
+    }
+  };
 
   const renderItem = (it: Item) => {
     if (it.kind === "music") {
@@ -298,28 +328,35 @@ export function CreationsFeed({ tracks, drawings, books }: { tracks: MusicTrack[
       <audio {...player.audioProps} />
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div role="group" aria-label="Filtrer par type" className="flex flex-wrap gap-2">
-          {(["all", "music", "drawing", "book"] as const).map((k) => {
+        <nav aria-label="Filtrer par type" className="flex flex-wrap gap-2">
+          {creationSections.map((s) => {
+            const k = s.filter;
             const active = filter === k;
             const Icon = k === "all" ? null : KINDS[k].icon;
             return (
-              <button
+              <Link
                 key={k}
-                type="button"
-                aria-pressed={active}
-                onClick={() => {
-                  setFilter(k);
-                  reset();
-                }}
+                href={creationPath(s)}
+                scroll={false}
+                aria-current={active ? "page" : undefined}
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 font-medium transition-colors ${active ? "border-white bg-white text-castel-ink" : "border-white/20 text-white/80 hover:border-white hover:text-white"}`}
               >
                 {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
-                {k === "all" ? "Tout" : KINDS[k].plural}
+                {s.label}
                 <span className={`text-sm tabular-nums ${active ? "text-castel-ink/60" : "text-white/45"}`}>{counts[k]}</span>
-              </button>
+              </Link>
             );
           })}
-        </div>
+          <button
+            type="button"
+            onClick={share}
+            aria-live="polite"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            {copied ? <Check className="h-4 w-4 text-castel-red" aria-hidden="true" /> : <Share2 className="h-4 w-4" aria-hidden="true" />}
+            {copied ? "Lien copié" : "Partager"}
+          </button>
+        </nav>
         <label className="relative block w-full lg:w-72">
           <span className="sr-only">Chercher</span>
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" aria-hidden="true" />
