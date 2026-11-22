@@ -87,9 +87,9 @@ export function SiteHeader() {
         </nav>
         <span className="md:hidden" />
 
-        <Link href="/" className="flex items-center justify-center" aria-label="Studio Castel, accueil">
+        <Link href="/" className="flex items-center justify-center gap-1" aria-label="Studio Castel, accueil">
           <Logo size={40} />
-          <span className="sr-only">Studio Castel</span>
+          <span className="font-brand text-lg font-semibold tracking-[-0.03em] text-white">Studio Castel</span>
         </Link>
 
         <div className="hidden items-center justify-end gap-6 md:flex">

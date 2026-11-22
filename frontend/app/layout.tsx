@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Inter } from "next/font/google";
+import { Poppins, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
 import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
@@ -15,6 +15,13 @@ const poppins = Poppins({
   weight: ["600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  weight: ["600"],
+  subsets: ["latin"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -67,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${poppins.variable} ${inter.variable}`}
+      className={`${poppins.variable} ${inter.variable} ${manrope.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-castel-ink font-sans text-white antialiased">
