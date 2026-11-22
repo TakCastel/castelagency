@@ -62,8 +62,10 @@ Fichiers fournis (à copier dans `frontend/public/brand/`) :
 - `studio-castel-c-blanc.svg` : C blanc, fond transparent. Pour le header sur fond rouge ou noir.
 - `studio-castel-c-rouge.svg` : C rouge, fond transparent. Pour les fonds clairs.
 - `studio-castel-c-noir.svg` : C noir, fond transparent. Pour les usages en une couleur.
+- `studio-castel-logo-texte-rouge.png` / `-noir.png` / `-blanc.png` : C + "Studio Castel" sur fond transparent (C rouge et texte noir, tout noir, tout blanc).
+- `studio-castel-logo-texte-fond-rouge.png` : C + "Studio Castel" en blanc sur fond rouge.
 
-Règles : toujours laisser autour du C une marge égale à la moitié de sa largeur, ne jamais le déformer, ne jamais le poser sur une photo. À côté du C, le nom s'écrit "Studio Castel" en Poppins 700.
+Règles : toujours laisser autour du C une marge égale à la moitié de sa largeur, ne jamais le déformer, ne jamais le poser sur une photo. À côté du C, le nom s'écrit "Studio Castel" en Saira 800 italique (ExtraBold Italic), interlettrage `-0.02em`.
 
 Remplacer `frontend/app/icon.svg`, `favicon.ico`, `public/og-logo-only.png` et `public/og-logo-with-text.png` par des versions tirées de ces fichiers.
 
