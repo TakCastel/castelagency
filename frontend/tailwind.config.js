@@ -25,7 +25,7 @@ module.exports = {
       fontFamily: {
         display: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
         sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
-        brand: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"]
+        brand: ["var(--font-saira)", "Saira", "system-ui", "sans-serif"]
       },
       boxShadow: {
         card: "0 30px 60px rgba(0,0,0,0.45)"

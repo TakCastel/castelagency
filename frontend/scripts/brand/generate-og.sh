@@ -1,5 +1,5 @@
 #!/bin/sh
-# Génère public/og-logo-with-text.png (1200x630) via Chrome headless (Manrope depuis Google Fonts).
+# Génère public/og-logo-with-text.png (1200x630) via Chrome headless (Saira depuis Google Fonts).
 cd "$(dirname "$0")/../.." || exit 1
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --hide-scrollbars \
   --window-size=1200,630 --virtual-time-budget=8000 \

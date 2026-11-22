@@ -65,7 +65,7 @@ Fichiers fournis (à copier dans `frontend/public/brand/`) :
 - `studio-castel-logo-texte-rouge.png` / `-noir.png` / `-blanc.png` : C + "Studio Castel" sur fond transparent (C rouge et texte noir, tout noir, tout blanc).
 - `studio-castel-logo-texte-fond-rouge.png` : C + "Studio Castel" en blanc sur fond rouge.
 
-Règles : toujours laisser autour du C une marge égale à la moitié de sa largeur, ne jamais le déformer, ne jamais le poser sur une photo. À côté du C, le nom s'écrit "Studio Castel" en Manrope 600 (SemiBold), interlettrage `-0.03em`, hauteur des majuscules à environ 2/3 de celle du C.
+Règles : toujours laisser autour du C une marge égale à la moitié de sa largeur, ne jamais le déformer, ne jamais le poser sur une photo. À côté du C, le nom s'écrit "Studio Castel" en Saira 800 italique (ExtraBold Italic), interlettrage `-0.02em`.
 
 Remplacer `frontend/app/icon.svg`, `favicon.ico`, `public/og-logo-only.png` et `public/og-logo-with-text.png` par des versions tirées de ces fichiers.
 

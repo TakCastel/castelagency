@@ -89,7 +89,7 @@ export function SiteHeader() {
 
         <Link href="/" className="flex items-center justify-center gap-1" aria-label="Studio Castel, accueil">
           <Logo size={40} />
-          <span className="font-brand text-lg font-semibold tracking-[-0.03em] text-white">Studio Castel</span>
+          <span className="font-brand text-lg font-extrabold italic tracking-[-0.01em] text-white">Studio Castel</span>
         </Link>
 
         <div className="hidden items-center justify-end gap-6 md:flex">

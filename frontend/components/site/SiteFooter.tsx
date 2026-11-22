@@ -14,7 +14,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-4 lg:max-w-xs">
           <Link href="/" className="flex items-center gap-1" aria-label="Studio Castel, accueil">
             <Logo size={40} />
-            <span className="font-brand text-lg font-semibold tracking-[-0.03em]">Studio Castel</span>
+            <span className="font-brand text-lg font-extrabold italic tracking-[-0.01em]">Studio Castel</span>
           </Link>
           <p className="text-[#A1A1AA]">Studio indépendant à Avignon. Jeux, apps et sites pour le Vaucluse et la région PACA.</p>
           <address className="not-italic text-[#A1A1AA]">
