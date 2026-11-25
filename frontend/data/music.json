@@ -87,7 +87,7 @@
     "tags": "Symphonic Opera, Phonk",
     "date": "2026-07-11",
     "createdAt": "2026-07-11T02:53:50.745Z",
-    "plays": 140,
+    "plays": 147,
     "likes": 18
   },
   {
@@ -195,6 +195,19 @@
     "likes": 16
   },
   {
+    "id": "5b06f8ff-2019-4abd-b3a3-033ff03315ba",
+    "title": "Petroloise",
+    "audio": "https://cdn1.suno.ai/5b06f8ff-2019-4abd-b3a3-033ff03315ba.mp4",
+    "image": "https://cdn2.suno.ai/0d5ccf77-33be-430f-876d-b5c86b1d62b8.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/0d5ccf77-33be-430f-876d-b5c86b1d62b8.jpeg",
+    "duration": 292,
+    "tags": "electro, chiptune, video game / game music, cinematic electronic",
+    "date": "2026-06-01",
+    "createdAt": "2026-06-01T16:13:57.387Z",
+    "plays": 237,
+    "likes": 3
+  },
+  {
     "id": "8c648c97-a073-4e66-ac89-c7934ca79da7",
     "title": "Venetire Prestinato",
     "audio": "https://cdn1.suno.ai/8c648c97-a073-4e66-ac89-c7934ca79da7.mp4",
@@ -206,19 +219,6 @@
     "createdAt": "2026-05-31T21:38:37.802Z",
     "plays": 103,
     "likes": 15
-  },
-  {
-    "id": "5b06f8ff-2019-4abd-b3a3-033ff03315ba",
-    "title": "Petroloise",
-    "audio": "https://cdn1.suno.ai/5b06f8ff-2019-4abd-b3a3-033ff03315ba.mp4",
-    "image": "https://cdn2.suno.ai/0d5ccf77-33be-430f-876d-b5c86b1d62b8.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/0d5ccf77-33be-430f-876d-b5c86b1d62b8.jpeg",
-    "duration": 292,
-    "tags": "electro, chiptune, video game / game music, cinematic electronic",
-    "date": "2026-06-01",
-    "createdAt": "2026-06-01T16:13:57.387Z",
-    "plays": 221,
-    "likes": 3
   },
   {
     "id": "7c495c24-7e62-4c27-b281-0ad97eb279e6",
@@ -351,6 +351,32 @@
     "likes": 8
   },
   {
+    "id": "cbf966f1-60ec-46c1-9ddb-c59f39ceff3a",
+    "title": "Batucada",
+    "audio": "https://cdn1.suno.ai/cbf966f1-60ec-46c1-9ddb-c59f39ceff3a.mp4",
+    "image": "https://cdn2.suno.ai/1e3f37fc-96b3-459e-82b6-41f04dd08ef0.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/1e3f37fc-96b3-459e-82b6-41f04dd08ef0.jpeg",
+    "duration": 174,
+    "tags": "synthwave, psytrance, Brazilian tribal",
+    "date": "2026-08-29",
+    "createdAt": "2026-08-29T16:24:51.270Z",
+    "plays": 104,
+    "likes": 8
+  },
+  {
+    "id": "f6dcaa2d-3115-4e13-bc6d-cca4d0bef402",
+    "title": "Zoolmaster",
+    "audio": "https://cdn1.suno.ai/f6dcaa2d-3115-4e13-bc6d-cca4d0bef402.mp4",
+    "image": "https://cdn2.suno.ai/eb542196-b311-478c-aa9c-b186aaf537c4.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/eb542196-b311-478c-aa9c-b186aaf537c4.jpeg",
+    "duration": 138,
+    "tags": "electro metal, chiptune, video game music (8-bit tracker)",
+    "date": "2026-06-14",
+    "createdAt": "2026-06-14T03:02:31.871Z",
+    "plays": 132,
+    "likes": 5
+  },
+  {
     "id": "fb4192ad-b282-40f9-b10a-a877c248ea56",
     "title": "Eternal Varda",
     "audio": "https://cdn1.suno.ai/fb4192ad-b282-40f9-b10a-a877c248ea56.mp4",
@@ -364,19 +390,6 @@
     "likes": 9
   },
   {
-    "id": "cbf966f1-60ec-46c1-9ddb-c59f39ceff3a",
-    "title": "Batucada",
-    "audio": "https://cdn1.suno.ai/cbf966f1-60ec-46c1-9ddb-c59f39ceff3a.mp4",
-    "image": "https://cdn2.suno.ai/1e3f37fc-96b3-459e-82b6-41f04dd08ef0.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/1e3f37fc-96b3-459e-82b6-41f04dd08ef0.jpeg",
-    "duration": 174,
-    "tags": "synthwave, psytrance, Brazilian tribal",
-    "date": "2026-08-29",
-    "createdAt": "2026-08-29T16:24:51.270Z",
-    "plays": 97,
-    "likes": 8
-  },
-  {
     "id": "2c54a50f-45db-4f6d-bd58-79d66f725c9a",
     "title": "Le Vieux Phare",
     "audio": "https://cdn1.suno.ai/2c54a50f-45db-4f6d-bd58-79d66f725c9a.mp4",
@@ -388,19 +401,6 @@
     "createdAt": "2026-05-18T16:51:43.946Z",
     "plays": 87,
     "likes": 9
-  },
-  {
-    "id": "f6dcaa2d-3115-4e13-bc6d-cca4d0bef402",
-    "title": "Zoolmaster",
-    "audio": "https://cdn1.suno.ai/f6dcaa2d-3115-4e13-bc6d-cca4d0bef402.mp4",
-    "image": "https://cdn2.suno.ai/eb542196-b311-478c-aa9c-b186aaf537c4.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/eb542196-b311-478c-aa9c-b186aaf537c4.jpeg",
-    "duration": 138,
-    "tags": "electro metal, chiptune, video game music (8-bit tracker)",
-    "date": "2026-06-14",
-    "createdAt": "2026-06-14T03:02:31.871Z",
-    "plays": 125,
-    "likes": 5
   },
   {
     "id": "f5fa4544-d611-45a6-9143-aea3d55b7961",
@@ -481,6 +481,19 @@
     "likes": 10
   },
   {
+    "id": "133e75cb-48aa-4409-9812-34cf0b29c9bc",
+    "title": "Canticiel",
+    "audio": "https://cdn1.suno.ai/133e75cb-48aa-4409-9812-34cf0b29c9bc.mp4",
+    "image": "https://cdn2.suno.ai/69d62aad-37a5-4994-b866-6ec64985ce9e.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/69d62aad-37a5-4994-b866-6ec64985ce9e.jpeg",
+    "duration": 379,
+    "tags": "Orchestral Psytrance, Cinematic, Choral",
+    "date": "2026-07-11",
+    "createdAt": "2026-07-11T05:44:06.578Z",
+    "plays": 71,
+    "likes": 9
+  },
+  {
     "id": "f97549fe-84dc-4762-9902-879d52145732",
     "title": "De Magnitudie",
     "audio": "https://cdn1.suno.ai/f97549fe-84dc-4762-9902-879d52145732.mp4",
@@ -505,19 +518,6 @@
     "createdAt": "2026-10-30T03:47:37.340Z",
     "plays": 102,
     "likes": 5
-  },
-  {
-    "id": "133e75cb-48aa-4409-9812-34cf0b29c9bc",
-    "title": "Canticiel",
-    "audio": "https://cdn1.suno.ai/133e75cb-48aa-4409-9812-34cf0b29c9bc.mp4",
-    "image": "https://cdn2.suno.ai/69d62aad-37a5-4994-b866-6ec64985ce9e.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/69d62aad-37a5-4994-b866-6ec64985ce9e.jpeg",
-    "duration": 379,
-    "tags": "Orchestral Psytrance, Cinematic, Choral",
-    "date": "2026-07-11",
-    "createdAt": "2026-07-11T05:44:06.578Z",
-    "plays": 62,
-    "likes": 9
   },
   {
     "id": "26af9a77-99e8-4208-9939-58130dcae2c8",
@@ -557,6 +557,19 @@
     "createdAt": "2026-05-16T21:31:28.089Z",
     "plays": 70,
     "likes": 8
+  },
+  {
+    "id": "cfe76f68-3e7d-4364-948d-399ce9516dc7",
+    "title": "Interpause Enigma",
+    "audio": "https://cdn1.suno.ai/cfe76f68-3e7d-4364-948d-399ce9516dc7.mp4",
+    "image": "https://cdn2.suno.ai/5efa2ba5-19b5-440d-b3e4-f2a5893e86c4.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/5efa2ba5-19b5-440d-b3e4-f2a5893e86c4.jpeg",
+    "duration": 175,
+    "tags": "Symphonic Opera, Phonk",
+    "date": "2026-07-11",
+    "createdAt": "2026-07-11T03:27:50.301Z",
+    "plays": 87,
+    "likes": 6
   },
   {
     "id": "03bd4f3c-b766-4af6-ad7d-57d902a33d7c",
@@ -609,19 +622,6 @@
     "createdAt": "2026-10-29T21:55:48.825Z",
     "plays": 69,
     "likes": 7
-  },
-  {
-    "id": "cfe76f68-3e7d-4364-948d-399ce9516dc7",
-    "title": "Interpause Enigma",
-    "audio": "https://cdn1.suno.ai/cfe76f68-3e7d-4364-948d-399ce9516dc7.mp4",
-    "image": "https://cdn2.suno.ai/5efa2ba5-19b5-440d-b3e4-f2a5893e86c4.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/5efa2ba5-19b5-440d-b3e4-f2a5893e86c4.jpeg",
-    "duration": 175,
-    "tags": "Symphonic Opera, Phonk",
-    "date": "2026-07-11",
-    "createdAt": "2026-07-11T03:27:50.301Z",
-    "plays": 78,
-    "likes": 6
   },
   {
     "id": "01bba951-d8f6-4fcf-898e-a1970231c8e3",
@@ -685,7 +685,7 @@
     "tags": "Marseille rap, melodic trap",
     "date": "2026-10-19",
     "createdAt": "2026-10-19T19:20:28.837Z",
-    "plays": 45,
+    "plays": 50,
     "likes": 8
   },
   {
@@ -819,6 +819,19 @@
     "likes": 5
   },
   {
+    "id": "51378594-cff6-4d7f-94dc-d7578829f550",
+    "title": "Il pleut sur l'périph",
+    "audio": "https://cdn1.suno.ai/51378594-cff6-4d7f-94dc-d7578829f550.mp4",
+    "image": "https://cdn2.suno.ai/f75d5ec5-cc91-4648-9a0f-399dfbb43625.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/f75d5ec5-cc91-4648-9a0f-399dfbb43625.jpeg",
+    "duration": 173,
+    "tags": "French rap, posse rap, club trap",
+    "date": "2026-05-16",
+    "createdAt": "2026-05-16T19:19:26.909Z",
+    "plays": 62,
+    "likes": 5
+  },
+  {
     "id": "8eb3a730-0f8a-48e2-9b35-7b65bec0cf81",
     "title": "Victoria!",
     "audio": "https://cdn1.suno.ai/8eb3a730-0f8a-48e2-9b35-7b65bec0cf81.mp4",
@@ -884,6 +897,19 @@
     "likes": 5
   },
   {
+    "id": "3a6564da-2556-4bf1-a0b6-fbe303ce6ff8",
+    "title": "Yuǎnxíng (远行)",
+    "audio": "https://cdn1.suno.ai/3a6564da-2556-4bf1-a0b6-fbe303ce6ff8.mp4",
+    "image": "https://cdn2.suno.ai/4aee1743-e83a-4cb7-9b5e-763a82e99bd0.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/4aee1743-e83a-4cb7-9b5e-763a82e99bd0.jpeg",
+    "duration": 243,
+    "tags": "psytrance, progressive electronic, electro-metal",
+    "date": "2026-06-11",
+    "createdAt": "2026-06-11T22:02:24.504Z",
+    "plays": 32,
+    "likes": 7
+  },
+  {
     "id": "918c2194-aee7-4e38-a929-602c1124d313",
     "title": "Увертюра",
     "audio": "https://cdn1.suno.ai/918c2194-aee7-4e38-a929-602c1124d313.mp4",
@@ -923,30 +949,43 @@
     "likes": 5
   },
   {
-    "id": "3a6564da-2556-4bf1-a0b6-fbe303ce6ff8",
-    "title": "Yuǎnxíng (远行)",
-    "audio": "https://cdn1.suno.ai/3a6564da-2556-4bf1-a0b6-fbe303ce6ff8.mp4",
-    "image": "https://cdn2.suno.ai/4aee1743-e83a-4cb7-9b5e-763a82e99bd0.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/4aee1743-e83a-4cb7-9b5e-763a82e99bd0.jpeg",
-    "duration": 243,
-    "tags": "psytrance, progressive electronic, electro-metal",
-    "date": "2026-06-11",
-    "createdAt": "2026-06-11T22:02:24.504Z",
-    "plays": 29,
+    "id": "a284f6a1-3980-4d2a-ba8f-9a24b08a198a",
+    "title": "...and ice",
+    "audio": "https://cdn1.suno.ai/a284f6a1-3980-4d2a-ba8f-9a24b08a198a.mp4",
+    "image": "https://cdn2.suno.ai/1686705c-7205-49c4-b9b6-4c0ed881a378.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/1686705c-7205-49c4-b9b6-4c0ed881a378.jpeg",
+    "duration": 187,
+    "tags": "electro metal, darkwave, chiptune",
+    "date": "2026-06-14",
+    "createdAt": "2026-06-14T02:48:22.486Z",
+    "plays": 45,
+    "likes": 5
+  },
+  {
+    "id": "17c28119-1d21-4f58-9695-cbeba02e9e20",
+    "title": "Abbeons",
+    "audio": "https://cdn1.suno.ai/17c28119-1d21-4f58-9695-cbeba02e9e20.mp4",
+    "image": "https://cdn2.suno.ai/f1efb000-c869-4012-a821-e5bf1cda8bdc.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/f1efb000-c869-4012-a821-e5bf1cda8bdc.jpeg",
+    "duration": 193,
+    "tags": "electronic, techno, psytrance, cinematic tribal, Gregorian chant / medieval ritual ambience",
+    "date": "2026-06-14",
+    "createdAt": "2026-06-14T02:08:58.908Z",
+    "plays": 23,
     "likes": 7
   },
   {
-    "id": "51378594-cff6-4d7f-94dc-d7578829f550",
-    "title": "Il pleut sur l'périph",
-    "audio": "https://cdn1.suno.ai/51378594-cff6-4d7f-94dc-d7578829f550.mp4",
-    "image": "https://cdn2.suno.ai/f75d5ec5-cc91-4648-9a0f-399dfbb43625.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/f75d5ec5-cc91-4648-9a0f-399dfbb43625.jpeg",
-    "duration": 173,
-    "tags": "French rap, posse rap, club trap",
-    "date": "2026-05-16",
-    "createdAt": "2026-05-16T19:19:26.909Z",
-    "plays": 56,
-    "likes": 4
+    "id": "3ccd9521-b3c2-4ca0-9db6-435c4c6de018",
+    "title": "Ashedral 2.0",
+    "audio": "https://cdn1.suno.ai/3ccd9521-b3c2-4ca0-9db6-435c4c6de018.mp4",
+    "image": "https://cdn2.suno.ai/2fccf039-9ad6-4d28-93f6-012ca4668a35.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/2fccf039-9ad6-4d28-93f6-012ca4668a35.jpeg",
+    "duration": 193,
+    "tags": "dark gothic electro, psytrance, industrial techno",
+    "date": "2026-08-25",
+    "createdAt": "2026-08-25T09:13:00.960Z",
+    "plays": 62,
+    "likes": 3
   },
   {
     "id": "399c3a61-4c7f-4b91-b96f-3407505b89e7",
@@ -999,32 +1038,6 @@
     "createdAt": "2026-08-22T00:59:06.538Z",
     "plays": 71,
     "likes": 2
-  },
-  {
-    "id": "a284f6a1-3980-4d2a-ba8f-9a24b08a198a",
-    "title": "...and ice",
-    "audio": "https://cdn1.suno.ai/a284f6a1-3980-4d2a-ba8f-9a24b08a198a.mp4",
-    "image": "https://cdn2.suno.ai/1686705c-7205-49c4-b9b6-4c0ed881a378.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/1686705c-7205-49c4-b9b6-4c0ed881a378.jpeg",
-    "duration": 187,
-    "tags": "electro metal, darkwave, chiptune",
-    "date": "2026-06-14",
-    "createdAt": "2026-06-14T02:48:22.486Z",
-    "plays": 40,
-    "likes": 5
-  },
-  {
-    "id": "17c28119-1d21-4f58-9695-cbeba02e9e20",
-    "title": "Abbeons",
-    "audio": "https://cdn1.suno.ai/17c28119-1d21-4f58-9695-cbeba02e9e20.mp4",
-    "image": "https://cdn2.suno.ai/f1efb000-c869-4012-a821-e5bf1cda8bdc.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/f1efb000-c869-4012-a821-e5bf1cda8bdc.jpeg",
-    "duration": 193,
-    "tags": "electronic, techno, psytrance, cinematic tribal, Gregorian chant / medieval ritual ambience",
-    "date": "2026-06-14",
-    "createdAt": "2026-06-14T02:08:58.908Z",
-    "plays": 20,
-    "likes": 7
   },
   {
     "id": "80d03dd8-acc8-42a1-b4b4-3468faf50b84",
@@ -1105,19 +1118,6 @@
     "likes": 2
   },
   {
-    "id": "3ccd9521-b3c2-4ca0-9db6-435c4c6de018",
-    "title": "Ashedral 2.0",
-    "audio": "https://cdn1.suno.ai/3ccd9521-b3c2-4ca0-9db6-435c4c6de018.mp4",
-    "image": "https://cdn2.suno.ai/2fccf039-9ad6-4d28-93f6-012ca4668a35.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/2fccf039-9ad6-4d28-93f6-012ca4668a35.jpeg",
-    "duration": 193,
-    "tags": "dark gothic electro, psytrance, industrial techno",
-    "date": "2026-08-25",
-    "createdAt": "2026-08-25T09:13:00.960Z",
-    "plays": 56,
-    "likes": 3
-  },
-  {
     "id": "422a1296-84a5-4343-a027-ea5b7fccd503",
     "title": "Another Giant (Psytrance Remix)",
     "audio": "https://cdn1.suno.ai/422a1296-84a5-4343-a027-ea5b7fccd503.mp4",
@@ -1127,6 +1127,19 @@
     "tags": "baroque, psytrance, industrial",
     "date": "2026-08-23",
     "createdAt": "2026-08-23T23:36:42.284Z",
+    "plays": 36,
+    "likes": 5
+  },
+  {
+    "id": "3536325e-2d51-4c9b-8b0e-84b5e74ab308",
+    "title": "We found the moon again",
+    "audio": "https://cdn1.suno.ai/3536325e-2d51-4c9b-8b0e-84b5e74ab308.mp4",
+    "image": "https://cdn2.suno.ai/a936a0bc-82e8-4b5a-b727-d2f7de1336e7.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/a936a0bc-82e8-4b5a-b727-d2f7de1336e7.jpeg",
+    "duration": 380,
+    "tags": "dark electro, K-pop, operatic industrial metal",
+    "date": "2026-06-18",
+    "createdAt": "2026-06-18T18:42:16.368Z",
     "plays": 36,
     "likes": 5
   },
@@ -1179,19 +1192,6 @@
     "tags": "Celtic hip-hop, Breton",
     "date": "2026-10-19",
     "createdAt": "2026-10-19T19:58:25.973Z",
-    "plays": 32,
-    "likes": 5
-  },
-  {
-    "id": "3536325e-2d51-4c9b-8b0e-84b5e74ab308",
-    "title": "We found the moon again",
-    "audio": "https://cdn1.suno.ai/3536325e-2d51-4c9b-8b0e-84b5e74ab308.mp4",
-    "image": "https://cdn2.suno.ai/a936a0bc-82e8-4b5a-b727-d2f7de1336e7.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/a936a0bc-82e8-4b5a-b727-d2f7de1336e7.jpeg",
-    "duration": 380,
-    "tags": "dark electro, K-pop, operatic industrial metal",
-    "date": "2026-06-18",
-    "createdAt": "2026-06-18T18:42:16.368Z",
     "plays": 32,
     "likes": 5
   },
@@ -1495,6 +1495,19 @@
     "likes": 2
   },
   {
+    "id": "43a2f27c-a8c3-4a24-9021-8f8f2d0a3a87",
+    "title": "A Child is Born",
+    "audio": "https://cdn1.suno.ai/43a2f27c-a8c3-4a24-9021-8f8f2d0a3a87.mp4",
+    "image": "https://cdn2.suno.ai/7d0e6c1f-4085-4a60-8235-5da6253c71f0.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/7d0e6c1f-4085-4a60-8235-5da6253c71f0.jpeg",
+    "duration": 193,
+    "tags": "orchestral electro psytrance, cinematic, industrial / dark electro",
+    "date": "2026-06-11",
+    "createdAt": "2026-06-11T19:19:29.414Z",
+    "plays": 40,
+    "likes": 3
+  },
+  {
     "id": "82047a6d-d5b1-42bf-becc-766e278ebae2",
     "title": "Rival Realms III",
     "audio": "https://cdn1.suno.ai/82047a6d-d5b1-42bf-becc-766e278ebae2.mp4",
@@ -1558,19 +1571,6 @@
     "createdAt": "2026-08-23T23:54:01.138Z",
     "plays": 56,
     "likes": 1
-  },
-  {
-    "id": "43a2f27c-a8c3-4a24-9021-8f8f2d0a3a87",
-    "title": "A Child is Born",
-    "audio": "https://cdn1.suno.ai/43a2f27c-a8c3-4a24-9021-8f8f2d0a3a87.mp4",
-    "image": "https://cdn2.suno.ai/7d0e6c1f-4085-4a60-8235-5da6253c71f0.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/7d0e6c1f-4085-4a60-8235-5da6253c71f0.jpeg",
-    "duration": 193,
-    "tags": "orchestral electro psytrance, cinematic, industrial / dark electro",
-    "date": "2026-06-11",
-    "createdAt": "2026-06-11T19:19:29.414Z",
-    "plays": 36,
-    "likes": 3
   },
   {
     "id": "bdde9135-7639-493a-ae41-270be983683f",
@@ -1781,6 +1781,19 @@
     "likes": 1
   },
   {
+    "id": "2994e8ea-fde1-4029-8616-dd4acfe29967",
+    "title": "Crycity",
+    "audio": "https://cdn1.suno.ai/2994e8ea-fde1-4029-8616-dd4acfe29967.mp4",
+    "image": "https://cdn2.suno.ai/3daebac7-03fc-4d01-bc52-bd180319463e.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/3daebac7-03fc-4d01-bc52-bd180319463e.jpeg",
+    "duration": 196,
+    "tags": "electro house, French pop, electropop",
+    "date": "2026-05-12",
+    "createdAt": "2026-05-12T21:48:51.634Z",
+    "plays": 40,
+    "likes": 2
+  },
+  {
     "id": "8d572797-15f0-409b-8492-4019c88af8d9",
     "title": "Pralaya",
     "audio": "https://cdn1.suno.ai/8d572797-15f0-409b-8492-4019c88af8d9.mp4",
@@ -1870,19 +1883,6 @@
     "createdAt": "2026-05-31T10:54:19.416Z",
     "plays": 26,
     "likes": 3
-  },
-  {
-    "id": "2994e8ea-fde1-4029-8616-dd4acfe29967",
-    "title": "Crycity",
-    "audio": "https://cdn1.suno.ai/2994e8ea-fde1-4029-8616-dd4acfe29967.mp4",
-    "image": "https://cdn2.suno.ai/3daebac7-03fc-4d01-bc52-bd180319463e.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/3daebac7-03fc-4d01-bc52-bd180319463e.jpeg",
-    "duration": 196,
-    "tags": "electro house, French pop, electropop",
-    "date": "2026-05-12",
-    "createdAt": "2026-05-12T21:48:51.634Z",
-    "plays": 36,
-    "likes": 2
   },
   {
     "id": "be6fbaca-01af-426c-990a-f0ca93314fe3",
@@ -1976,6 +1976,19 @@
     "likes": 2
   },
   {
+    "id": "72600a29-7c04-49d6-a470-b1f40fbd9f49",
+    "title": "Ritualdrive",
+    "audio": "https://cdn1.suno.ai/72600a29-7c04-49d6-a470-b1f40fbd9f49.mp4",
+    "image": "https://cdn2.suno.ai/f711d84b-96a4-431a-93ff-9cfec794c928.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/f711d84b-96a4-431a-93ff-9cfec794c928.jpeg",
+    "duration": 210,
+    "tags": "psytrance, chiptune (8-bit), dark tribal trance",
+    "date": "2026-06-11",
+    "createdAt": "2026-06-11T12:22:31.607Z",
+    "plays": 36,
+    "likes": 1
+  },
+  {
     "id": "98fb2fe6-c34c-4611-a322-aac008284175",
     "title": "Cathegraal",
     "audio": "https://cdn1.suno.ai/98fb2fe6-c34c-4611-a322-aac008284175.mp4",
@@ -2041,15 +2054,15 @@
     "likes": 1
   },
   {
-    "id": "72600a29-7c04-49d6-a470-b1f40fbd9f49",
-    "title": "Ritualdrive",
-    "audio": "https://cdn1.suno.ai/72600a29-7c04-49d6-a470-b1f40fbd9f49.mp4",
-    "image": "https://cdn2.suno.ai/f711d84b-96a4-431a-93ff-9cfec794c928.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/f711d84b-96a4-431a-93ff-9cfec794c928.jpeg",
-    "duration": 210,
-    "tags": "psytrance, chiptune (8-bit), dark tribal trance",
-    "date": "2026-06-11",
-    "createdAt": "2026-06-11T12:22:31.607Z",
+    "id": "eb47fa9e-0208-47b0-aaaa-4a25a1a6b80a",
+    "title": "Sengoku Jidai (戦国時代)",
+    "audio": "https://cdn1.suno.ai/eb47fa9e-0208-47b0-aaaa-4a25a1a6b80a.mp4",
+    "image": "https://cdn2.suno.ai/775b7cce-1038-4c31-aaa0-f2cecd73cf57.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/775b7cce-1038-4c31-aaa0-f2cecd73cf57.jpeg",
+    "duration": 213,
+    "tags": "dark psytrance, darkwave, cinematic ritual/electronic fusion",
+    "date": "2026-06-13",
+    "createdAt": "2026-06-13T14:21:25.610Z",
     "plays": 32,
     "likes": 1
   },
@@ -2080,6 +2093,32 @@
     "likes": 2
   },
   {
+    "id": "498c7a88-9aa8-4e44-870e-3d9b2dbfab5a",
+    "title": "Yawm al-ghadab",
+    "audio": "https://cdn1.suno.ai/498c7a88-9aa8-4e44-870e-3d9b2dbfab5a.mp4",
+    "image": "https://cdn2.suno.ai/fb565dfe-8ed6-4e81-adfb-ab1d25346732.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/fb565dfe-8ed6-4e81-adfb-ab1d25346732.jpeg",
+    "duration": 369,
+    "tags": "psytrance, phonk",
+    "date": "2026-11-18",
+    "createdAt": "2026-11-18T17:02:55.054Z",
+    "plays": 9,
+    "likes": 3
+  },
+  {
+    "id": "2b90cec5-c5d6-4222-8c83-22e59bb08bd5",
+    "title": "Интерлюдия",
+    "audio": "https://cdn1.suno.ai/2b90cec5-c5d6-4222-8c83-22e59bb08bd5.mp4",
+    "image": "https://cdn2.suno.ai/0f5680e4-652a-4d64-a9b0-5b70597e9be1.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/0f5680e4-652a-4d64-a9b0-5b70597e9be1.jpeg",
+    "duration": 213,
+    "tags": "symphonic, orchestral, choral",
+    "date": "2026-11-06",
+    "createdAt": "2026-11-06T01:14:55.963Z",
+    "plays": 29,
+    "likes": 1
+  },
+  {
     "id": "ef68dcaa-d36c-4477-9f20-418b7d9942c8",
     "title": "Ave Maria",
     "audio": "https://cdn1.suno.ai/ef68dcaa-d36c-4477-9f20-418b7d9942c8.mp4",
@@ -2106,19 +2145,6 @@
     "likes": 1
   },
   {
-    "id": "498c7a88-9aa8-4e44-870e-3d9b2dbfab5a",
-    "title": "Yawm al-ghadab",
-    "audio": "https://cdn1.suno.ai/498c7a88-9aa8-4e44-870e-3d9b2dbfab5a.mp4",
-    "image": "https://cdn2.suno.ai/fb565dfe-8ed6-4e81-adfb-ab1d25346732.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/fb565dfe-8ed6-4e81-adfb-ab1d25346732.jpeg",
-    "duration": 369,
-    "tags": "psytrance, phonk",
-    "date": "2026-11-18",
-    "createdAt": "2026-11-18T17:02:55.054Z",
-    "plays": 8,
-    "likes": 3
-  },
-  {
     "id": "aab23cd8-e0dd-41ba-b50d-372d82c99e64",
     "title": "Kiratzarine: Symphony No. 6",
     "audio": "https://cdn1.suno.ai/aab23cd8-e0dd-41ba-b50d-372d82c99e64.mp4",
@@ -2130,32 +2156,6 @@
     "createdAt": "2026-06-04T19:29:17.486Z",
     "plays": 18,
     "likes": 2
-  },
-  {
-    "id": "2b90cec5-c5d6-4222-8c83-22e59bb08bd5",
-    "title": "Интерлюдия",
-    "audio": "https://cdn1.suno.ai/2b90cec5-c5d6-4222-8c83-22e59bb08bd5.mp4",
-    "image": "https://cdn2.suno.ai/0f5680e4-652a-4d64-a9b0-5b70597e9be1.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/0f5680e4-652a-4d64-a9b0-5b70597e9be1.jpeg",
-    "duration": 213,
-    "tags": "symphonic, orchestral, choral",
-    "date": "2026-11-06",
-    "createdAt": "2026-11-06T01:14:55.963Z",
-    "plays": 26,
-    "likes": 1
-  },
-  {
-    "id": "eb47fa9e-0208-47b0-aaaa-4a25a1a6b80a",
-    "title": "Sengoku Jidai (戦国時代)",
-    "audio": "https://cdn1.suno.ai/eb47fa9e-0208-47b0-aaaa-4a25a1a6b80a.mp4",
-    "image": "https://cdn2.suno.ai/775b7cce-1038-4c31-aaa0-f2cecd73cf57.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/775b7cce-1038-4c31-aaa0-f2cecd73cf57.jpeg",
-    "duration": 213,
-    "tags": "dark psytrance, darkwave, cinematic ritual/electronic fusion",
-    "date": "2026-06-13",
-    "createdAt": "2026-06-13T14:21:25.610Z",
-    "plays": 26,
-    "likes": 1
   },
   {
     "id": "5bb23354-3c94-44af-ba0e-8b618e17d67f",
@@ -2171,19 +2171,6 @@
     "likes": 1
   },
   {
-    "id": "1bb63fcf-c63b-44db-87e4-2296e753f064",
-    "title": "The lake beneath",
-    "audio": null,
-    "image": "https://cdn2.suno.ai/ee28a6fa-2cd0-4c09-a308-10ba8f8598c2.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/ee28a6fa-2cd0-4c09-a308-10ba8f8598c2.jpeg",
-    "duration": 305,
-    "tags": "darkwave, synthwave, industrial metal",
-    "date": "2026-06-03",
-    "createdAt": "2026-06-03T17:09:58.850Z",
-    "plays": 14,
-    "likes": 2
-  },
-  {
     "id": "b05fd75c-e458-4556-a4d8-0e0bb3cc180c",
     "title": "On dansera jusqu'au bout de l'été",
     "audio": "https://cdn1.suno.ai/b05fd75c-e458-4556-a4d8-0e0bb3cc180c.mp4",
@@ -2193,6 +2180,32 @@
     "tags": "",
     "date": "2026-05-31",
     "createdAt": "2026-05-31T20:31:00.958Z",
+    "plays": 16,
+    "likes": 2
+  },
+  {
+    "id": "2f57a3a3-842a-4a90-8d1e-a713c3f0b435",
+    "title": "Boulevard Voltaire",
+    "audio": "https://cdn1.suno.ai/2f57a3a3-842a-4a90-8d1e-a713c3f0b435.mp4",
+    "image": "https://cdn2.suno.ai/bc18571f-f183-4296-adf9-10d225fb51b7.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/bc18571f-f183-4296-adf9-10d225fb51b7.jpeg",
+    "duration": 179,
+    "tags": "darkwave, electro-metal, industrial",
+    "date": "2026-06-13",
+    "createdAt": "2026-06-13T18:00:28.235Z",
+    "plays": 14,
+    "likes": 2
+  },
+  {
+    "id": "1bb63fcf-c63b-44db-87e4-2296e753f064",
+    "title": "The lake beneath",
+    "audio": null,
+    "image": "https://cdn2.suno.ai/ee28a6fa-2cd0-4c09-a308-10ba8f8598c2.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/ee28a6fa-2cd0-4c09-a308-10ba8f8598c2.jpeg",
+    "duration": 305,
+    "tags": "darkwave, synthwave, industrial metal",
+    "date": "2026-06-03",
+    "createdAt": "2026-06-03T17:09:58.850Z",
     "plays": 14,
     "likes": 2
   },
@@ -2262,19 +2275,6 @@
     "likes": 1
   },
   {
-    "id": "2f57a3a3-842a-4a90-8d1e-a713c3f0b435",
-    "title": "Boulevard Voltaire",
-    "audio": "https://cdn1.suno.ai/2f57a3a3-842a-4a90-8d1e-a713c3f0b435.mp4",
-    "image": "https://cdn2.suno.ai/bc18571f-f183-4296-adf9-10d225fb51b7.jpeg",
-    "imageLarge": "https://cdn2.suno.ai/bc18571f-f183-4296-adf9-10d225fb51b7.jpeg",
-    "duration": 179,
-    "tags": "darkwave, electro-metal, industrial",
-    "date": "2026-06-13",
-    "createdAt": "2026-06-13T18:00:28.235Z",
-    "plays": 12,
-    "likes": 2
-  },
-  {
     "id": "c96a77f0-8556-49d8-bc34-4e2e93fc84d6",
     "title": "Une Fois Intimement",
     "audio": "https://cdn1.suno.ai/c96a77f0-8556-49d8-bc34-4e2e93fc84d6.mp4",
@@ -2288,6 +2288,19 @@
     "likes": 1
   },
   {
+    "id": "36053cac-562c-4332-9f5c-6c9734852649",
+    "title": "Diurnambule",
+    "audio": "https://cdn1.suno.ai/36053cac-562c-4332-9f5c-6c9734852649.mp4",
+    "image": "https://cdn2.suno.ai/e4bfc98d-5e05-47af-a953-841ddbe26033.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/e4bfc98d-5e05-47af-a953-841ddbe26033.jpeg",
+    "duration": 225,
+    "tags": "synthwave, symphonic",
+    "date": "2026-11-25",
+    "createdAt": "2026-11-25T14:04:06.477Z",
+    "plays": 8,
+    "likes": 2
+  },
+  {
     "id": "6957702d-db72-49f4-a6b2-d9ab9b285a30",
     "title": "Cryptovania",
     "audio": "https://cdn1.suno.ai/6957702d-db72-49f4-a6b2-d9ab9b285a30.mp4",
@@ -2299,6 +2312,19 @@
     "createdAt": "2026-06-11T12:47:33.042Z",
     "plays": 18,
     "likes": 1
+  },
+  {
+    "id": "4969f11c-fbf0-4a8e-a1ee-71021207fc06",
+    "title": "Noctuaire",
+    "audio": "https://cdn1.suno.ai/4969f11c-fbf0-4a8e-a1ee-71021207fc06.mp4",
+    "image": "https://cdn2.suno.ai/31eec847-adb0-4a99-bf9e-3be00d019050.jpeg",
+    "imageLarge": "https://cdn2.suno.ai/31eec847-adb0-4a99-bf9e-3be00d019050.jpeg",
+    "duration": 200,
+    "tags": "neoclassical, electronica",
+    "date": "2026-11-25",
+    "createdAt": "2026-11-25T13:55:51.253Z",
+    "plays": 6,
+    "likes": 2
   },
   {
     "id": "bfbd8996-f1d3-4188-b4d1-3db944c8cf03",
